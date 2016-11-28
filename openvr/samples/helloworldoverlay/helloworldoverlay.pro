@@ -15,10 +15,10 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         overlaywidget.cpp \
-    openvroverlaycontroller.cpp
+        openvroverlaycontroller.cpp
 
 HEADERS  += overlaywidget.h \
-    openvroverlaycontroller.h
+            openvroverlaycontroller.h
 
 FORMS    += overlaywidget.ui
 
