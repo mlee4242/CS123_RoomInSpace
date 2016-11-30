@@ -1,8 +1,8 @@
 //========= Copyright Valve Corporation ============//
 
-#include <SDL.h>
+// #include <SDL.h>
 #include <GL/glew.h>
-#include <SDL_opengl.h>
+// #include <SDL_opengl.h>
 #include <GL/glu.h>
 #include <stdio.h>
 #include <string>
@@ -18,17 +18,19 @@
 #include "unistd.h"
 #endif
 
-#ifndef _WIN32
+#ifdef _WIN32
+#include <windows.h>
+#else
 #define APIENTRY
 #endif
 
 void ThreadSleep( unsigned long nMilliseconds )
 {
-#if defined(_WIN32)
-	::Sleep( nMilliseconds );
-#elif defined(POSIX)
-	usleep( nMilliseconds * 1000 );
-#endif
+//#if defined(_WIN32)
+	//::Sleep( nMilliseconds );
+//#elif defined(POSIX)
+	//usleep( nMilliseconds * 1000 );
+//#endif
 }
 
 class CGLRenderModel
@@ -120,11 +122,11 @@ private:
 	bool m_rbShowTrackedDevice[ vr::k_unMaxTrackedDeviceCount ];
 
 private: // SDL bookkeeping
-	SDL_Window *m_pCompanionWindow;
+	//SDL_Window *m_pCompanionWindow;
 	uint32_t m_nCompanionWindowWidth;
 	uint32_t m_nCompanionWindowHeight;
 
-	SDL_GLContext m_pContext;
+	//SDL_GLContext m_pContext;
 
 private: // OpenGL bookkeeping
 	int m_iTrackedControllerCount;
@@ -222,23 +224,23 @@ void dprintf( const char *fmt, ... )
 	va_list args;
 	char buffer[ 2048 ];
 
-	va_start( args, fmt );
+	//va_start( args, fmt );
 	vsprintf_s( buffer, fmt, args );
-	va_end( args );
+	//va_end( args );
 
 	if ( g_bPrintf )
 		printf( "%s", buffer );
 
-	OutputDebugStringA( buffer );
+	// OutputDebugStringA( buffer );
 }
 
 //-----------------------------------------------------------------------------
 // Purpose: Constructor
 //-----------------------------------------------------------------------------
 CMainApplication::CMainApplication( int argc, char *argv[] )
-	: m_pCompanionWindow(NULL)
-	, m_pContext(NULL)
-	, m_nCompanionWindowWidth( 640 )
+	: //m_pCompanionWindow(NULL)
+	//, m_pContext(NULL)
+	 m_nCompanionWindowWidth( 640 )
 	, m_nCompanionWindowHeight( 320 )
 	, m_unSceneProgramID( 0 )
 	, m_unCompanionWindowProgramID( 0 )
@@ -332,22 +334,22 @@ std::string GetTrackedDeviceString( vr::IVRSystem *pHmd, vr::TrackedDeviceIndex_
 //-----------------------------------------------------------------------------
 bool CMainApplication::BInit()
 {
-	if ( SDL_Init( SDL_INIT_VIDEO | SDL_INIT_TIMER ) < 0 )
-	{
-		printf("%s - SDL could not initialize! SDL Error: %s\n", __FUNCTION__, SDL_GetError());
-		return false;
-	}
+	//if ( SDL_Init( SDL_INIT_VIDEO | SDL_INIT_TIMER ) < 0 )
+	//{
+	//	printf("%s - SDL could not initialize! SDL Error: %s\n", __FUNCTION__, SDL_GetError());
+	//	return false;
+//	}
 
 	// Loading the SteamVR Runtime
 	vr::EVRInitError eError = vr::VRInitError_None;
-	m_pHMD = vr::VR_Init( &eError, vr::VRApplication_Scene );
+	m_pHMD = vr::VR_Init( &eError, vr::VRApplication_Utility );
 
 	if ( eError != vr::VRInitError_None )
 	{
 		m_pHMD = NULL;
 		char buf[1024];
 		sprintf_s( buf, sizeof( buf ), "Unable to init VR runtime: %s", vr::VR_GetVRInitErrorAsEnglishDescription( eError ) );
-		SDL_ShowSimpleMessageBox( SDL_MESSAGEBOX_ERROR, "VR_Init Failed", buf, NULL );
+		//SDL_ShowSimpleMessageBox( SDL_MESSAGEBOX_ERROR, "VR_Init Failed", buf, NULL );
 		return false;
 	}
 
@@ -360,37 +362,37 @@ bool CMainApplication::BInit()
 
 		char buf[1024];
 		sprintf_s( buf, sizeof( buf ), "Unable to get render model interface: %s", vr::VR_GetVRInitErrorAsEnglishDescription( eError ) );
-		SDL_ShowSimpleMessageBox( SDL_MESSAGEBOX_ERROR, "VR_Init Failed", buf, NULL );
+		//SDL_ShowSimpleMessageBox( SDL_MESSAGEBOX_ERROR, "VR_Init Failed", buf, NULL );
 		return false;
 	}
 
 	int nWindowPosX = 700;
 	int nWindowPosY = 100;
-	Uint32 unWindowFlags = SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN;
+	//Uint32 unWindowFlags = SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN;
 
-	SDL_GL_SetAttribute( SDL_GL_CONTEXT_MAJOR_VERSION, 4 );
-	SDL_GL_SetAttribute( SDL_GL_CONTEXT_MINOR_VERSION, 1 );
+	//SDL_GL_SetAttribute( SDL_GL_CONTEXT_MAJOR_VERSION, 4 );
+	//SDL_GL_SetAttribute( SDL_GL_CONTEXT_MINOR_VERSION, 1 );
 	//SDL_GL_SetAttribute( SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_COMPATIBILITY );
-	SDL_GL_SetAttribute( SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE );
+	//SDL_GL_SetAttribute( SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE );
 
-	SDL_GL_SetAttribute( SDL_GL_MULTISAMPLEBUFFERS, 0 );
-	SDL_GL_SetAttribute( SDL_GL_MULTISAMPLESAMPLES, 0 );
-	if( m_bDebugOpenGL )
-		SDL_GL_SetAttribute( SDL_GL_CONTEXT_FLAGS, SDL_GL_CONTEXT_DEBUG_FLAG );
+	//SDL_GL_SetAttribute( SDL_GL_MULTISAMPLEBUFFERS, 0 );
+	//SDL_GL_SetAttribute( SDL_GL_MULTISAMPLESAMPLES, 0 );
+	//if( m_bDebugOpenGL )
+		//SDL_GL_SetAttribute( SDL_GL_CONTEXT_FLAGS, SDL_GL_CONTEXT_DEBUG_FLAG );
 
-	m_pCompanionWindow = SDL_CreateWindow( "hellovr", nWindowPosX, nWindowPosY, m_nCompanionWindowWidth, m_nCompanionWindowHeight, unWindowFlags );
-	if (m_pCompanionWindow == NULL)
-	{
-		printf( "%s - Window could not be created! SDL Error: %s\n", __FUNCTION__, SDL_GetError() );
-		return false;
-	}
+	// m_pCompanionWindow = SDL_CreateWindow( "hellovr", nWindowPosX, nWindowPosY, m_nCompanionWindowWidth, m_nCompanionWindowHeight, unWindowFlags );
+	//if (m_pCompanionWindow == NULL)
+	//{
+	//	printf( "%s - Window could not be created! SDL Error: %s\n", __FUNCTION__, SDL_GetError() );
+	//	return false;
+	//}
 
-	m_pContext = SDL_GL_CreateContext(m_pCompanionWindow);
-	if (m_pContext == NULL)
-	{
-		printf( "%s - OpenGL context could not be created! SDL Error: %s\n", __FUNCTION__, SDL_GetError() );
-		return false;
-	}
+	//m_pContext = SDL_GL_CreateContext(m_pCompanionWindow);
+	//if (m_pContext == NULL)
+	//{
+	//	printf( "%s - OpenGL context could not be created! SDL Error: %s\n", __FUNCTION__, SDL_GetError() );
+	//	return false;
+	//}
 
 	glewExperimental = GL_TRUE;
 	GLenum nGlewError = glewInit();
@@ -401,11 +403,11 @@ bool CMainApplication::BInit()
 	}
 	glGetError(); // to clear the error caused deep in GLEW
 
-	if ( SDL_GL_SetSwapInterval( m_bVblank ? 1 : 0 ) < 0 )
-	{
-		printf( "%s - Warning: Unable to set VSync! SDL Error: %s\n", __FUNCTION__, SDL_GetError() );
-		return false;
-	}
+	//if ( SDL_GL_SetSwapInterval( m_bVblank ? 1 : 0 ) < 0 )
+	//{
+	//	printf( "%s - Warning: Unable to set VSync! SDL Error: %s\n", __FUNCTION__, SDL_GetError() );
+	//	return false;
+	//}
 
 
 	m_strDriver = "No Driver";
@@ -415,7 +417,7 @@ bool CMainApplication::BInit()
 	m_strDisplay = GetTrackedDeviceString( m_pHMD, vr::k_unTrackedDeviceIndex_Hmd, vr::Prop_SerialNumber_String );
 
 	std::string strWindowTitle = "hellovr - " + m_strDriver + " " + m_strDisplay;
-	SDL_SetWindowTitle( m_pCompanionWindow, strWindowTitle.c_str() );
+	//SDL_SetWindowTitle( m_pCompanionWindow, strWindowTitle.c_str() );
 	
 	// cube array
  	m_iSceneVolumeWidth = m_iSceneVolumeInit;
@@ -524,7 +526,7 @@ void CMainApplication::Shutdown()
 		delete (*i);
 	}
 	m_vecRenderModels.clear();
-	
+	/*
 	if( m_pContext )
 	{
 		glDebugMessageControl( GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, nullptr, GL_FALSE );
@@ -572,15 +574,15 @@ void CMainApplication::Shutdown()
 		{
 			glDeleteVertexArrays( 1, &m_unControllerVAO );
 		}
-	}
+	}*/
 
-	if( m_pCompanionWindow )
-	{
-		SDL_DestroyWindow(m_pCompanionWindow);
-		m_pCompanionWindow = NULL;
-	}
+	//if( m_pCompanionWindow )
+	//{
+		//SDL_DestroyWindow(m_pCompanionWindow);
+	//	m_pCompanionWindow = NULL;
+	//}
 
-	SDL_Quit();
+	//SDL_Quit();
 }
 
 //-----------------------------------------------------------------------------
@@ -588,8 +590,10 @@ void CMainApplication::Shutdown()
 //-----------------------------------------------------------------------------
 bool CMainApplication::HandleInput()
 {
-	SDL_Event sdlEvent;
 	bool bRet = false;
+	/*
+	SDL_Event sdlEvent;
+	
 
 	while ( SDL_PollEvent( &sdlEvent ) != 0 )
 	{
@@ -609,7 +613,7 @@ bool CMainApplication::HandleInput()
 				m_bShowCubes = !m_bShowCubes;
 			}
 		}
-	}
+	}*/
 
 	// Process SteamVR events
 	vr::VREvent_t event;
@@ -638,8 +642,8 @@ void CMainApplication::RunMainLoop()
 {
 	bool bQuit = false;
 
-	SDL_StartTextInput();
-	SDL_ShowCursor( SDL_DISABLE );
+	/*SDL_StartTextInput();
+	SDL_ShowCursor( SDL_DISABLE );*/
 
 	while ( !bQuit )
 	{
@@ -647,8 +651,8 @@ void CMainApplication::RunMainLoop()
 
 		RenderFrame();
 	}
-
-	SDL_StopTextInput();
+	/*
+	SDL_StopTextInput();*/
 }
 
 
@@ -707,9 +711,9 @@ void CMainApplication::RenderFrame()
 	}
 
 	// SwapWindow
-	{
-		SDL_GL_SwapWindow( m_pCompanionWindow );
-	}
+	//{
+	//	SDL_GL_SwapWindow( m_pCompanionWindow );
+	//}
 
 	// Clear
 	{
