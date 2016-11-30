@@ -9,8 +9,6 @@
 
 #include <stdint.h>
 
-
-
 // vrtypes.h
 #ifndef _INCLUDE_VRTYPES_H
 #define _INCLUDE_VRTYPES_H
@@ -3232,7 +3230,7 @@ namespace vr
 	* can be called outside of VR_Init/VR_Shutdown. It should be used when an application wants
 	* to know if initializing VR is a possibility but isn't ready to take that step yet.
 	*/
-	VR_INTERFACE bool VR_CALLTYPE VR_IsHmdPresent();
+    VR_INTERFACE bool VR_CALLTYPE VR_IsHmdPresent();
 
 	/** Returns true if the OpenVR runtime is installed. */
 	VR_INTERFACE bool VR_CALLTYPE VR_IsRuntimeInstalled();

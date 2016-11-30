@@ -1,0 +1,4 @@
+E:/Code/CS123_RoomInSpace/openvr/src/_build/CMakeFiles/INSTALL.dir
+E:/Code/CS123_RoomInSpace/openvr/src/_build/CMakeFiles/openvr_api_sys.dir
+E:/Code/CS123_RoomInSpace/openvr/src/_build/CMakeFiles/ALL_BUILD.dir
+E:/Code/CS123_RoomInSpace/openvr/src/_build/CMakeFiles/ZERO_CHECK.dir

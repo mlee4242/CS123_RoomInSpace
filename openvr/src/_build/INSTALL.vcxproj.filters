@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="E:\Code\CS123_RoomInSpace\openvr\src\_build\CMakeFiles\9b0485b9da2dc003cb08070589dd8689\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{E561A2F5-1FFC-36A3-877F-CE513EED50F6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

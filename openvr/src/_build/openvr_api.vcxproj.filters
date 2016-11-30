@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="E:\Code\CS123_RoomInSpace\openvr\src\openvr_api_public.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\Code\CS123_RoomInSpace\openvr\src\jsoncpp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\Code\CS123_RoomInSpace\openvr\src\vrcommon\dirtools_public.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\Code\CS123_RoomInSpace\openvr\src\vrcommon\envvartools_public.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\Code\CS123_RoomInSpace\openvr\src\vrcommon\pathtools_public.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\Code\CS123_RoomInSpace\openvr\src\vrcommon\sharedlibtools_public.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\Code\CS123_RoomInSpace\openvr\src\vrcommon\hmderrors_public.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\Code\CS123_RoomInSpace\openvr\src\vrcommon\vrpathregistry_public.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\Code\CS123_RoomInSpace\openvr\src\vrcommon\strtools_public.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="E:\Code\CS123_RoomInSpace\openvr\src\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{C063FE48-45A4-3F3C-B864-05D92202ABAC}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
