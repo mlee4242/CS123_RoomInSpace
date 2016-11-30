@@ -1,0 +1,15 @@
+INPUT(
+./release\main.o
+./release\mainwindow.o
+./release\view.o
+./release\viewformat.o
+./release\glew.o
+./release\pathtools.o
+./release\lodepng.o
+./release\Matrices.o
+./release\CGLRenderModel.o
+./release\CMainApplication.o
+./release\qrc_resources.o
+./release\moc_mainwindow.o
+./release\moc_view.o
+);

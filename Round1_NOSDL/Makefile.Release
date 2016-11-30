@@ -14,7 +14,7 @@ CXX           = cl
 DEFINES       = -DUNICODE -DWIN32 -DWIN64 -D_USE_MATH_DEFINES -DTIXML_USE_STL -DGLM_SWIZZLE -DGLM_FORCE_RADIANS -DGLEW_STATIC -DQT_QML_DEBUG -DNDEBUG
 CFLAGS        = -nologo -Zc:wchar_t -FS -Zc:strictStrings -O2 -MD -W3 -w44456 -w44457 -w44458 $(DEFINES)
 CXXFLAGS      = -nologo -Zc:wchar_t -FS -Zc:strictStrings -Zc:throwingNew -std=c++14 -g -MD -O3 -GR -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -EHsc $(DEFINES)
-INCPATH       = -I. -Iheaders -Ibin -Ithirdparty\glm -Ithirdparty\glew-1.10.0\include -Ilib\win64 -Ibin\win64 -Ithirdparty\sdl2-2.0.3\bin\win64 -Ithirdparty\sdl2-2.0.3\include -IC:\Qt\5.7\msvc2015_64\mkspecs\win32-msvc2015 
+INCPATH       = -I. -Iheaders -Ibin -Ithirdparty\glm -Ithirdparty\glew-1.10.0\include -Ilib\win64 -IC:\Qt\5.7\msvc2015_64\mkspecs\win32-msvc2015 
 LINKER        = link
 LFLAGS        = /NOLOGO /DYNAMICBASE /NXCOMPAT /INCREMENTAL:NO /SUBSYSTEM:CONSOLE "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'"
 LIBS          = opengl32.lib glu32.lib /LIBPATH:E:\Code\CS123_RoomInSpace\Round1_NOSDL\lib\win64 E:\Code\CS123_RoomInSpace\Round1_NOSDL\lib\win64\openvr_api.lib 
@@ -146,7 +146,6 @@ $(DESTDIR_TARGET):  $(OBJECTS)
 	$(LINKER) $(LFLAGS) /MANIFEST:embed /OUT:$(DESTDIR_TARGET) @<<
 $(OBJECTS) $(LIBS)
 <<
-	-$(COPY_FILE) $(DESTDIR_TARGET) bin\win64
 
 qmake: FORCE
 	@$(QMAKE) -spec win32-msvc2015 "CONFIG+=debug" "CONFIG+=qml_debug" -o Makefile.Release Round1_NOSDL.pro
@@ -183,58 +182,7 @@ compiler_clean:
 
 ####### Compile
 
-release\main.obj: main.cpp thirdparty\sdl2-2.0.3\include\SDL.h \
-		thirdparty\sdl2-2.0.3\include\SDL_main.h \
-		thirdparty\sdl2-2.0.3\include\SDL_stdinc.h \
-		thirdparty\sdl2-2.0.3\include\SDL_config.h \
-		thirdparty\sdl2-2.0.3\include\SDL_platform.h \
-		thirdparty\sdl2-2.0.3\include\begin_code.h \
-		thirdparty\sdl2-2.0.3\include\close_code.h \
-		thirdparty\sdl2-2.0.3\include\SDL_config_windows.h \
-		thirdparty\sdl2-2.0.3\include\SDL_config_winrt.h \
-		thirdparty\sdl2-2.0.3\include\SDL_config_macosx.h \
-		thirdparty\sdl2-2.0.3\include\SDL_config_iphoneos.h \
-		thirdparty\sdl2-2.0.3\include\SDL_config_android.h \
-		thirdparty\sdl2-2.0.3\include\SDL_config_psp.h \
-		thirdparty\sdl2-2.0.3\include\SDL_config_minimal.h \
-		thirdparty\sdl2-2.0.3\include\SDL_assert.h \
-		thirdparty\sdl2-2.0.3\include\SDL_atomic.h \
-		thirdparty\sdl2-2.0.3\include\SDL_audio.h \
-		thirdparty\sdl2-2.0.3\include\SDL_error.h \
-		thirdparty\sdl2-2.0.3\include\SDL_endian.h \
-		thirdparty\sdl2-2.0.3\include\SDL_mutex.h \
-		thirdparty\sdl2-2.0.3\include\SDL_thread.h \
-		thirdparty\sdl2-2.0.3\include\SDL_rwops.h \
-		thirdparty\sdl2-2.0.3\include\SDL_clipboard.h \
-		thirdparty\sdl2-2.0.3\include\SDL_cpuinfo.h \
-		thirdparty\sdl2-2.0.3\include\SDL_events.h \
-		thirdparty\sdl2-2.0.3\include\SDL_video.h \
-		thirdparty\sdl2-2.0.3\include\SDL_pixels.h \
-		thirdparty\sdl2-2.0.3\include\SDL_rect.h \
-		thirdparty\sdl2-2.0.3\include\SDL_surface.h \
-		thirdparty\sdl2-2.0.3\include\SDL_blendmode.h \
-		thirdparty\sdl2-2.0.3\include\SDL_keyboard.h \
-		thirdparty\sdl2-2.0.3\include\SDL_keycode.h \
-		thirdparty\sdl2-2.0.3\include\SDL_scancode.h \
-		thirdparty\sdl2-2.0.3\include\SDL_mouse.h \
-		thirdparty\sdl2-2.0.3\include\SDL_joystick.h \
-		thirdparty\sdl2-2.0.3\include\SDL_gamecontroller.h \
-		thirdparty\sdl2-2.0.3\include\SDL_quit.h \
-		thirdparty\sdl2-2.0.3\include\SDL_gesture.h \
-		thirdparty\sdl2-2.0.3\include\SDL_touch.h \
-		thirdparty\sdl2-2.0.3\include\SDL_filesystem.h \
-		thirdparty\sdl2-2.0.3\include\SDL_haptic.h \
-		thirdparty\sdl2-2.0.3\include\SDL_hints.h \
-		thirdparty\sdl2-2.0.3\include\SDL_loadso.h \
-		thirdparty\sdl2-2.0.3\include\SDL_log.h \
-		thirdparty\sdl2-2.0.3\include\SDL_messagebox.h \
-		thirdparty\sdl2-2.0.3\include\SDL_power.h \
-		thirdparty\sdl2-2.0.3\include\SDL_render.h \
-		thirdparty\sdl2-2.0.3\include\SDL_system.h \
-		thirdparty\sdl2-2.0.3\include\SDL_timer.h \
-		thirdparty\sdl2-2.0.3\include\SDL_version.h \
-		thirdparty\glew-1.10.0\include\GL\glew.h \
-		thirdparty\sdl2-2.0.3\include\SDL_opengl.h \
+release\main.obj: main.cpp thirdparty\glew-1.10.0\include\GL\glew.h \
 		headers\openvr.h \
 		shared\lodepng.h \
 		shared\Matrices.h \

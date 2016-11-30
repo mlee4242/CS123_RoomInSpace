@@ -7,20 +7,24 @@ CONFIG -= qt
 QMAKE_CXXFLAGS += -std=c++14
 
 HEADERS += shared/pathtools.h \
-   thirdparty/glew-1.10.0/src/glew.h\
+   thirdparty/glew-1.10.0/include/GL/glew.h \
    shared/lodepng.h \
    shared/Matrices.h \
    headers/openvr.h \
    shared/compat.h \
    shared/Vectors.h \
    headers/openvr_capi.h \
-   headers/openvr_driver.h
+   headers/openvr_driver.h \
+   CGLRenderModel.h \
+   CMainApplication.h
 
-SOURCES += main.cpp\
+SOURCES += main.cpp \
            thirdparty/glew-1.10.0/src/glew.c \
            shared/pathtools.cpp \
            shared/lodepng.cpp \
-           shared/Matrices.cpp
+           shared/Matrices.cpp \
+           CGLRenderModel.cpp \
+           CMainApplication.cpp
 
 INCLUDEPATH += headers bin thirdparty/glm thirdparty/glew-1.10.0/include
 DEPENDPATH += headers bin thirdparty/glm thirdparty/glew-1.10.0/include
@@ -49,9 +53,10 @@ unix:!macx {
 }
 
 win32 {
-
     ## Windows common build here
-
+    DEFINES += GLEW_STATIC
+    LIBS += -lopengl32 -lglu32
+    #LIBS += -loleaut64 -luuid -lodbc64 -lodbccp64 -lkernel32 -luser32 -lgdi32 -lwinspool -lcomdlg32 -ladvapi32 -lshell32 -lole32
     !contains(QMAKE_TARGET.arch, x86_64) {
         message("x86 build")
         ## Windows x86 (32bit) specific build here
@@ -59,16 +64,14 @@ win32 {
     } else {
         message("x86_64 build")
         ## Windows x64 (64bit) specific build here
-        DEFINES += GLEW_STATIC
-        INCLUDEPATH +=  lib/win64 bin/win64 #thirdparty/sdl2-2.0.3/bin/win64  thirdparty/sdl2-2.0.3/include
-        DEPENDPATH +=  lib/win64 bin/win64 #thirdparty/sdl2-2.0.3/bin/win64 thirdparty/sdl2-2.0.3/include
-        LIBS += -lopengl32 -lglu32
-        #LIBS += -loleaut64 -luuid -lodbc64 -lodbccp64 -lkernel32 -luser32 -lgdi32 -lwinspool -lcomdlg32 -ladvapi32 -lshell32 -lole32
+
+        INCLUDEPATH +=  lib/win64 #bin/win64 #thirdparty/sdl2-2.0.3/bin/win64  thirdparty/sdl2-2.0.3/include
+        DEPENDPATH +=  lib/win64 #bin/win64 #thirdparty/sdl2-2.0.3/bin/win64 thirdparty/sdl2-2.0.3/include
+
         LIBS += -L$$PWD/lib/win64 -lopenvr_api
-        DLLDESTDIR += bin/win64
+        #DLLDESTDIR += bin/win64
     }
 }
-
 
 unix{
   LIBS += -L$$PWD/lib/linux64 -lopenvr_api
@@ -82,6 +85,4 @@ macx{
     LIBS += -L$$PWD/lib/osx32 -lopenvr_api
 }
 
-DISTFILES += \
-    openvrsrc/CMakeLists.txt \
-    openvrsrc/README
+
