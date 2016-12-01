@@ -4,7 +4,7 @@
 #include <iostream>
 #include <utility>
 
-#include "glm/gtc/type_ptr.hpp"
+#include "gtc/type_ptr.hpp"
 
 #include "gl/GLDebug.h"
 #include "gl/textures/Texture2D.h"

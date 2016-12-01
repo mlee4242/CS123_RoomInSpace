@@ -24,15 +24,14 @@ win32 {
 SOURCES += \
     camera/OrbitingCamera.cpp \
     camera/CamtransCamera.cpp \
-    lib/ResourceLoader.cpp \
+    utilities/ResourceLoader.cpp \
     scenegraph/ShapesScene.cpp \
     scenegraph/Scene.cpp \
     scenegraph/OpenGLScene.cpp \
-    ui/SupportCanvas3D.cpp \
     ui/Settings.cpp \
-    ui/mainwindow.cpp \
+    ui/mainwindow.cpp\
     main.cpp \
-    glew-1.10.0/src/glew.c \
+    thirdparty/glew-1.10.0/src/glew.c \
     gl/shaders/Shader.cpp \
     gl/GLDebug.cpp \
     gl/textures/Texture.cpp \
@@ -45,54 +44,29 @@ SOURCES += \
     gl/textures/Texture2D.cpp \
     gl/textures/TextureParameters.cpp \
     gl/textures/TextureParametersBuilder.cpp \
-    lib/BGRA.cpp \
+    utilities/BGRA.cpp \
     gl/util/FullScreenQuad.cpp \
     gl/shaders/GBufferShader.cpp \
     gl/textures/RenderBuffer.cpp \
     gl/textures/DepthBuffer.cpp \
     shape/OpenGLShape.cpp \
-    shape/surfaces/Circle.cpp \
-    shape/geometry/Cube.cpp \
-    shape/geometry/Cylinder.cpp \
-    shape/surfaces/Rectangle.cpp \
     shape/geometry/Shape.cpp \
     shape/surfaces/Surface.cpp \
-    shape/surfaces/Barrel.cpp \
-    shape/geometry/Cone.cpp \
-    shape/surfaces/BarrelCone.cpp \
     shape/surfaces/SphereFace.cpp \
     shape/geometry/Sphere.cpp \
-    shape/geometry/Mobius.cpp \
-    shape/surfaces/MobiusFace.cpp \
-    shape/surfaces/KleinBottleFace.cpp \
-    shape/geometry/KleinBottle.cpp \
-    shape/geometry/Torus.cpp \
-    shape/surfaces/TorusFace.cpp \
-    shape/surfaces/SeashellFace.cpp \
-    shape/geometry/Seashell.cpp \
-    shape/geometry/SierpinskiCube.cpp \
-    shape/surfaces/FakeFace.cpp
+    ui/Canvas3D.cpp
 
 
-HEADERS += brush/SmudgeBrush.h \
-    brush/QuadraticBrush.h \
-    brush/LinearBrush.h \
-    brush/ConstantBrush.h \
-    brush/Brush.h \
-    camera/OrbitingCamera.h \
-    camera/CamtransCamera.h \
+HEADERS += camera/OrbitingCamera.h \
     camera/Camera.h \
-    lib/ResourceLoader.h \
+    utilities/ResourceLoader.h \
     scenegraph/ShapesScene.h \
-    scenegraph/SceneviewScene.h \
     scenegraph/Scene.h \
-    scenegraph/RayScene.h \
     scenegraph/OpenGLScene.h \
     ui/SupportCanvas3D.h \
     ui/Settings.h \
     ui/mainwindow.h \
-    ui_mainwindow.h \
-    glew-1.10.0/include/GL/glew.h \
+    thirdparty/glew-1.10.0/include/GL/glew.h \
     gl/shaders/Shader.h \
     gl/GLDebug.h \
     gl/textures/Texture.h \
@@ -106,7 +80,7 @@ HEADERS += brush/SmudgeBrush.h \
     gl/textures/Texture2D.h \
     gl/textures/TextureParameters.h \
     gl/textures/TextureParametersBuilder.h \
-    lib/BGRA.h \
+    utilities/BGRA.h \
     gl/util/FullScreenQuad.h \
     gl/shaders/GBufferShader.h \
     gl/textures/RenderBuffer.h \
@@ -115,31 +89,15 @@ HEADERS += brush/SmudgeBrush.h \
     shape/OpenGLShape.h \
     gl/util.h \
     shape/Parameter.h \
-    shape/surfaces/Circle.h \
-    shape/geometry/Cube.h \
-    shape/geometry/Cylinder.h \
-    shape/surfaces/Rectangle.h \
     shape/geometry/Shape.h \
     shape/surfaces/Surface.h \
-    shape/surfaces/Barrel.h \
-    shape/geometry/Cone.h \
     shape/surfaces/SphereFace.h \
-    shape/surfaces/BarrelCone.h \
-    shape/geometry/Sphere.h \
-    shape/surfaces/MobiusFace.h \
-    shape/geometry/Mobius.h \
-    shape/surfaces/KleinBottleFace.h \
-    shape/geometry/KleinBottle.h \
-    shape/geometry/Torus.h \
-    shape/surfaces/TorusFace.h \
-    shape/surfaces/SeashellFace.h \
-    shape/geometry/Seashell.h \
-    shape/geometry/SierpinskiCube.h \
-    shape/surfaces/FakeFace.h
+    shape/geometry/Sphere.h
 
-FORMS += ui/mainwindow.ui
-INCLUDEPATH += glm camera lib scenegraph ui glew-1.10.0/include
-DEPENDPATH += glm camera lib scenegraph ui glew-1.10.0/include
+FORMS += \
+    mainwindow.ui
+INCLUDEPATH += thirdparty/glm camera ui scenegraph utilities thirdparty/glew-1.10.0/include
+DEPENDPATH += thirdparty/glm camera ui scenegraph utilities thirdparty/glew-1.10.0/include
 DEFINES += _USE_MATH_DEFINES
 DEFINES += TIXML_USE_STL
 DEFINES += GLM_SWIZZLE GLM_FORCE_RADIANS
@@ -174,8 +132,46 @@ QMAKE_CXXFLAGS += -g
 
 # QMAKE_CXX_FLAGS_WARN_ON += -Wunknown-pragmas -Wunused-function -Wmain
 
-macx {
+# QMAKE_CXX_FLAGS_WARN_ON += -Wunknown-pragmas -Wunused-function -Wmain
+unix:!macx {
+    LIBS += -lGLU
+}
+
+win32 {
+    ## Windows common build here
+    DEFINES += GLEW_STATIC
+    LIBS += -lopengl32 -lglut -lglu32
+    #LIBS += -loleaut64 -luuid -lodbc64 -lodbccp64 -lkernel32 -luser32 -lgdi32 -lwinspool -lcomdlg32 -ladvapi32 -lshell32 -lole32
+    !contains(QMAKE_TARGET.arch, x86_64) {
+        message("x86 build")
+        ## Windows x86 (32bit) specific build here
+        INCLUDEPATH +=  lib/win32 bin/win32
+        DEPENDPATH +=  lib/win32 bin/win32
+
+        LIBS += -L$$PWD/lib/win32 -lopenvr_api
+
+    } else {
+        message("x86_64 build")
+        ## Windows x64 (64bit) specific build here
+
+        INCLUDEPATH +=  lib/win64 bin/win64
+        DEPENDPATH +=  lib/win64 bin/win64
+
+        LIBS += -L$$PWD/lib/win64 -lopenvr_api
+        #DLLDESTDIR += bin/win64
+    }
+}
+
+unix{
+  LIBS += -L$$PWD/lib/linux64 -lopenvr_api
+}
+
+macx{
     QMAKE_CXXFLAGS_WARN_ON -= -Warray-bounds -Wc++0x-compat
+    QMAKE_CFLAGS_X86_64 += -mmacosx-version-min=10.7
+    QMAKE_CXXFLAGS_X86_64 = $$QMAKE_CFLAGS_X86_64
+    CONFIG += c++11
+    LIBS += -L$$PWD/lib/osx32 -lopenvr_api
 }
 
 RESOURCES += \

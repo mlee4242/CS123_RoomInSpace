@@ -6,73 +6,71 @@
 #include "GL/glew.h"
 #include <QGLWidget>
 
-#include "glm/glm.hpp"
+#include "glm.hpp"
 
+#include <QtGui/QWindow>
+#include <QtGui/QOpenGLFunctions>
+#include <QtGui/QMatrix4x4>
+#include <QtGui/QOpenGLShaderProgram>
+#include <QtGui/QScreen>
+
+#include <QtCore/qmath.h>
 class BGRA;
 class Camera;
 class OpenGLScene;
 class ShapesScene;
-//class SceneviewScene;
 class OrbitingCamera;
-class CamtransCamera;
 class CS123XmlSceneParser;
+class QPainter;
+class QOpenGLContext;
+class QOpenGLPaintDevice;
 
-/**
- * @class  SupportCanvas3D
- *
- * The SupportCanvas3D class holds a single active OpenGLScene, and either
- * calls upon that scene to draw itself using OpenGL or draws the scene
- * by directly calling upon OpenGL (getting the scene-specific information
- * from the OpenGLScene object). The details of the implementation are left
- * to the student; neither way is better than the other.
- *
- * The SupportCanvas3D also contains a default camera which can be used in
- * case the loaded scene does not specify a camera.
- */
-
-class SupportCanvas3D : public QGLWidget {
+class Canvas3D :  public QGLWidget {
    Q_OBJECT
 public:
-   SupportCanvas3D(QGLFormat format, QWidget *parent);
+   Canvas3D(QGLFormat format, QWidget *parent);
+   virtual ~Canvas3D();
+   // Overridden from QGLWidget
 
-   virtual ~SupportCanvas3D();
+   virtual void render(QPainter *painter);
 
    Camera *getCamera();
    OrbitingCamera *getOrbitingCamera();
-   CamtransCamera *getCamtransCamera();
 
-   // This function will be called by the UI when the settings have changed.
+// This function will be called by the UI when the settings have changed.
    virtual void settingsChanged();
 
 signals:
    void aspectRatioChanged();
 
-protected:
-   // Overridden from QGLWidget
-   virtual void initializeGL() override;
-   virtual void paintGL() override;
 
-   // Overridden from QWidget
+protected:
+// Overridden from QWidget
    virtual void mousePressEvent(QMouseEvent *event) override;
    virtual void mouseMoveEvent(QMouseEvent *event) override;
    virtual void mouseReleaseEvent(QMouseEvent *event) override;
    virtual void wheelEvent(QWheelEvent *event) override;
    virtual void resizeEvent(QResizeEvent *event) override;
+   void initializeGL() override;
+   void paintGL() override;
 
 private:
 
    void initializeGlew();
    void initializeOpenGLSettings();
    void initializeScenes();
-   void setSceneFromSettings();
-   void setSceneToShapes();
 
    bool m_isDragging;
    glm::vec4 m_cameraEye;
-   bool m_settingsDirty;
+
    std::unique_ptr<OrbitingCamera> m_defaultOrbitingCamera;
    OpenGLScene *m_currentScene;
    std::unique_ptr<ShapesScene> m_shapesScene;
+   bool m_update_pending;
+   bool m_animating;
+
+   QOpenGLContext *m_context;
+   QOpenGLPaintDevice *m_device;
 };
 
 #endif // SUPPORTCANVAS3D_H

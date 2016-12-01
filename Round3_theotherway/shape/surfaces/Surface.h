@@ -3,8 +3,8 @@
 
 #include "shape/OpenGLShape.h"
 #include "shape/Parameter.h"
-#include "glm/glm.hpp"            // glm::vec*, mat*, and basic glm functions
-#include "glm/gtx/transform.hpp"  // glm::translate, scale, rotate"
+#include "glm.hpp"            // glm::vec*, mat*, and basic glm functions
+#include "gtx/transform.hpp"  // glm::translate, scale, rotate"
 
 /**
  * @class Surface: a based class
@@ -55,11 +55,11 @@ protected:
    // compute all the vertices on this surface in order
    virtual void computeVertices() {}
 
-   Paramater            m_para;     // the parameters of this surface
-   std::string          m_name;
+   Paramater m_para;                // the parameters of this surface
+   std::string m_name;
    std::vector<GLfloat> m_vertices;
-   glm::mat4            m_transMat; // the transformation matrix of this surface, if applys
-   bool                 m_ifTrans;  // the flag of ifdoing transformation
+   glm::mat4 m_transMat;            // the transformation matrix of this surface, if applys
+   bool m_ifTrans;                  // the flag of ifdoing transformation
 };
 
 #endif // SURFACE_H

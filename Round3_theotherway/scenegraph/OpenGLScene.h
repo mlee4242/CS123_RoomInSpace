@@ -6,7 +6,7 @@
 // Maximum number of lights, as defined in shader.
 const int MAX_NUM_LIGHTS = 10;
 
-class SupportCanvas3D;
+class Canvas3D;
 
 using std::string;
 
@@ -20,7 +20,7 @@ class OpenGLScene : public Scene {
 public:
     virtual ~OpenGLScene();
 
-    virtual void render(SupportCanvas3D *context) = 0;
+    virtual void render(Canvas3D *context) = 0;
 
 protected:
 

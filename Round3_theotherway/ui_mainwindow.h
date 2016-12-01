@@ -9,11 +9,11 @@
 #ifndef UI_MAINWINDOW_H
 #define UI_MAINWINDOW_H
 
+#include <QtCore/QLocale>
 #include <QtCore/QVariant>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QWidget>
@@ -23,38 +23,32 @@ QT_BEGIN_NAMESPACE
 class Ui_MainWindow
 {
 public:
-   QAction *actionNew;
-   QAction *actionOpen;
-   QAction *actionSave;
-   QAction *actionQuit;
-   QAction *actionRevert;
-   QAction *actionCopy3Dto2D;
-   QAction *actionClear;
-   QWidget *canvas3D;
-   QGridLayout *gridLayout_10;
+    QWidget *centralwidget;
 
-   void setupUi(QMainWindow *MainWindow) {
-      if (MainWindow->objectName().isEmpty()) {
-         MainWindow->setObjectName(QStringLiteral("MainWindow"));
-      }
-      MainWindow->setEnabled(true);
-      MainWindow->setDockNestingEnabled(true);
-      MainWindow->setDockOptions(QMainWindow::AllowNestedDocks | QMainWindow::AllowTabbedDocks | QMainWindow::AnimatedDocks | QMainWindow::ForceTabbedDocks | QMainWindow::VerticalTabs);
-      canvas3D = new QWidget(MainWindow);
-      canvas3D->setObjectName(QStringLiteral("canvas3D"));
-      MainWindow->setCentralWidget(canvas3D);
+    void setupUi(QMainWindow *MainWindow)
+    {
+        if (MainWindow->objectName().isEmpty())
+            MainWindow->setObjectName(QStringLiteral("MainWindow"));
+        MainWindow->resize(800, 600);
+        MainWindow->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
+        centralwidget = new QWidget(MainWindow);
+        centralwidget->setObjectName(QStringLiteral("centralwidget"));
+        MainWindow->setCentralWidget(centralwidget);
 
-      retranslateUi(MainWindow);
-      QMetaObject::connectSlotsByName(MainWindow);
-   }  // setupUi
+        retranslateUi(MainWindow);
 
-   void retranslateUi(QMainWindow *MainWindow) {
-      MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Final Project: Room in Space", 0));
-   }  // retranslateUi
+        QMetaObject::connectSlotsByName(MainWindow);
+    } // setupUi
+
+    void retranslateUi(QMainWindow *MainWindow)
+    {
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Final Project: A Room in Space", 0));
+    } // retranslateUi
+
 };
 
 namespace Ui {
-class MainWindow : public Ui_MainWindow {};
+    class MainWindow: public Ui_MainWindow {};
 } // namespace Ui
 
 QT_END_NAMESPACE

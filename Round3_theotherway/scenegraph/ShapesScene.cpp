@@ -24,7 +24,6 @@ ShapesScene::ShapesScene(int width, int height) :
    m_shapeList({}),
    m_dataAxes(AXES_DATA),
    m_shapeIsReady(false) {
-
    initializeSceneMaterial();
    initializeSceneLight();
    loadPhongShader();
@@ -97,11 +96,10 @@ void ShapesScene::loadNormalsArrowShader() {
 }
 
 
-void ShapesScene::render(SupportCanvas3D *context) {
+void ShapesScene::render(Canvas3D *context) {
    // Clear the screen in preparation for the next frame. (Use a gray background instead of a
    // black one for drawing wireframe or normals so they will show up against the background.)
    setClearColor();
-
    renderPhongPass(context);
 
    if (settings.drawWireframe) {
@@ -113,7 +111,8 @@ void ShapesScene::render(SupportCanvas3D *context) {
    }
 }
 
-void ShapesScene::renderPhongPass(SupportCanvas3D *context) {
+
+void ShapesScene::renderPhongPass(Canvas3D *context) {
    m_phongShader->bind();
 
    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -134,7 +133,7 @@ void ShapesScene::setPhongSceneUniforms() {
 }
 
 
-void ShapesScene::setMatrixUniforms(Shader *shader, SupportCanvas3D *context) {
+void ShapesScene::setMatrixUniforms(Shader *shader, Canvas3D *context) {
    shader->setUniform("p", context->getCamera()->getProjectionMatrix());
    shader->setUniform("v", context->getCamera()->getViewMatrix());
    shader->setUniform("m", glm::mat4(1.0f));
@@ -147,7 +146,7 @@ void ShapesScene::renderGeometryAsFilledPolygons() {
 }
 
 
-void ShapesScene::renderWireframePass(SupportCanvas3D *context) {
+void ShapesScene::renderWireframePass(Canvas3D *context) {
    m_wireframeShader->bind();
    setMatrixUniforms(m_wireframeShader.get(), context);
    renderGeometryAsWireframe();
@@ -161,7 +160,7 @@ void ShapesScene::renderGeometryAsWireframe() {
 }
 
 
-void ShapesScene::renderNormalsPass(SupportCanvas3D *context) {
+void ShapesScene::renderNormalsPass(Canvas3D *context) {
    // Render the lines.
    m_normalsShader->bind();
    setMatrixUniforms(m_normalsShader.get(), context);
@@ -175,101 +174,22 @@ void ShapesScene::renderNormalsPass(SupportCanvas3D *context) {
    m_normalsArrowShader->unbind();
 }
 
+
 /**
  * @brief ShapesScene::initShapes
  * Initialize the shape list to contain a list of shape objects
  */
 void ShapesScene::initShapes() {
-   m_shapeList["Cube"]        = std::make_shared<Cube>(m_para, "Cube");
-   m_shapeList["Sphere"]      = std::make_shared<Sphere>(m_para, "Sphere");
-   m_shapeList["Cylinder"]    = std::make_shared<Cylinder>(m_para, "Cylinder");
-   m_shapeList["Cone"]        = std::make_shared<Cone>(m_para, "Cone");
-   m_shapeList["Torus"]       = std::make_shared<Torus>(m_para, "Torus");
-   m_shapeList["Mobius"]      = std::make_shared<Mobius>(m_para, "Mobius");
-   m_shapeList["KleinBottle"] = std::make_shared<KleinBottle>(m_para, "Klein Bottle");
-   m_shapeList["Figure8"]     = std::make_shared<KleinBottle>(m_para, "Figure 8");
-   m_shapeList["Sierpinski"]  = std::make_shared<SierpinskiCube>(m_para, "Sierpinski Cube");
-   m_shapeList["Seashell"]    = std::make_shared<Seashell>(m_para, "Seashell");
+   m_shape        = std::make_shared<Sphere>(m_para, "Sphere");
+   m_shapeIsReady = true;
 }
+
 
 /**
  * @brief ShapesScene::updateShape
  * update the shape or the current shape type
  */
 void ShapesScene::updateShape() {
-   if ((m_para.shapeType == settings.shapeType) && (m_para.p1 == settings.shapeParameter1) &&
-       (m_para.p2 == settings.shapeParameter2) && (std::abs(m_para.p3 - settings.shapeParameter3) < 0.1) &&
-       (m_para.noFillShape == settings.noFillShape)) { // if no parameter nor fill flag has changed
-      return;
-   } else if ((m_para.shapeType == settings.shapeType) && (m_para.p1 == settings.shapeParameter1) &&
-              (m_para.p2 == settings.shapeParameter2) && (std::abs(m_para.p3 - settings.shapeParameter3) < 0.1) &&
-              (m_para.noFillShape != settings.noFillShape)) { // if only fill flag has changed
-      m_para.noFillShape = settings.noFillShape;
-      m_shape->sentToVAO(m_para.noFillShape);
-      return;
-   } // check if need to recompute (they might choose light, axes etc)
-
-
-   if (m_para.shapeType != settings.shapeType) {
-      switch (settings.shapeType)
-      {
-      case ShapeType::SHAPE_CUBE:
-         m_shape        = m_shapeList.at("Cube");
-         m_shapeIsReady = true;
-         break;
-
-      case ShapeType::SHAPE_CYLINDER:
-         m_shape        = m_shapeList.at("Cylinder");
-         m_shapeIsReady = true;
-         break;
-
-      case ShapeType::SHAPE_CONE:
-         m_shape        = m_shapeList.at("Cone");
-         m_shapeIsReady = true;
-         break;
-
-      case ShapeType::SHAPE_SPHERE:
-         m_shape        = m_shapeList.at("Sphere");
-         m_shapeIsReady = true;
-         break;
-
-      case ShapeType::SHAPE_TORUS:
-         m_shape        = m_shapeList.at("Torus");
-         m_shapeIsReady = true;
-         break;
-
-      case ShapeType::SHAPE_MOBIUS:
-         m_shape        = m_shapeList.at("Mobius");
-         m_shapeIsReady = true;
-         break;
-
-      case ShapeType::SHAPE_KLEIN:
-         m_shape        = m_shapeList.at("KleinBottle");
-         m_shapeIsReady = true;
-         break;
-
-      case ShapeType::SHAPE_FIGURE8:
-         m_shape        = m_shapeList.at("Figure8");
-         m_shapeIsReady = true;
-         break;
-
-      case ShapeType::SHAPE_SEASHELL:
-         m_shape        = m_shapeList.at("Seashell");
-         m_shapeIsReady = true;
-         break;
-
-      case ShapeType::SHAPE_SIERPINSKI:
-         m_shape        = m_shapeList.at("Sierpinski");
-         m_shapeIsReady = true;
-         break;
-
-      default:
-         std::cout << "Shape " << settings.shapeType << " not find" << std::endl;
-         m_shapeIsReady = false;
-         break;
-      }
-   }
-
    // if reaches here, it means parameter 1 | 2 | 3 have been changed.
    m_para.p1          = settings.shapeParameter1;
    m_para.p2          = settings.shapeParameter2;
@@ -305,6 +225,7 @@ void ShapesScene::renderGeometry() {
       m_shape->draw();
    }
 }
+
 
 void ShapesScene::clearLights() {
    for (int i = 0; i < MAX_NUM_LIGHTS; i++) {

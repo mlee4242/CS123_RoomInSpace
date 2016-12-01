@@ -32,7 +32,7 @@ public:
     SceneviewScene();
     virtual ~SceneviewScene();
 
-    virtual void render(SupportCanvas3D *context) override;
+    virtual void render(Canvas3D *context) override;
 
     // Use this method to set an internal selection, based on the (x, y) position of the mouse
     // pointer.  This will be used during the "modeler" lab, so don't worry about it for now.
@@ -44,7 +44,7 @@ private:
 private:
 
     void loadPhongShader();
-    void setSceneUniforms(SupportCanvas3D *context);
+    void setSceneUniforms(Canvas3D *context);
     void setLights();
     void renderGeometry();
 

@@ -10,16 +10,8 @@
 
 #include "gl/datatype/FBO.h"
 #include "Settings.h"
-#include "shape/geometry/Shape.h"
-#include "shape/geometry/Cube.h"
-#include "shape/geometry/Cylinder.h"
-#include "shape/geometry/Cone.h"
 #include "shape/geometry/Sphere.h"
-#include "shape/geometry/Mobius.h"
-#include "shape/geometry/KleinBottle.h"
-#include "shape/geometry/Torus.h"
-#include "shape/geometry/Seashell.h"
-#include "shape/geometry/SierpinskiCube.h"
+
 
 namespace CS123 {
 namespace GL {
@@ -51,7 +43,7 @@ public:
    ShapesScene(int width, int height);
    virtual ~ShapesScene();
 
-   virtual void render(SupportCanvas3D *context) override;
+   virtual void render(Canvas3D *context) override;
 
 protected:
    // Set the light uniforms for the lights in the scene. (The view matrix is used so that the
@@ -66,41 +58,41 @@ private:
    // need to be freed because they are VALUE types (not pointers) and the memory for them is
    // freed when the class itself is freed.
    std::unique_ptr<CS123::GL::CS123Shader> m_phongShader;
-   std::unique_ptr<CS123::GL::Shader>      m_wireframeShader;
-   std::unique_ptr<CS123::GL::Shader>      m_normalsShader;
-   std::unique_ptr<CS123::GL::Shader>      m_normalsArrowShader;
-   std::unique_ptr<CS123::GL::Shader>      m_fsqShader;
+   std::unique_ptr<CS123::GL::Shader> m_wireframeShader;
+   std::unique_ptr<CS123::GL::Shader> m_normalsShader;
+   std::unique_ptr<CS123::GL::Shader> m_normalsArrowShader;
+   std::unique_ptr<CS123::GL::Shader> m_fsqShader;
    CS123SceneLightData m_light;
-   CS123SceneMaterial  m_material;
+   CS123SceneMaterial m_material;
 
-   int                          m_width;
-   int                          m_height;
-   bool                         m_shapeIsReady;
-   Paramater                    m_para;
-   std::shared_ptr<Shape>       m_shape;
+   int m_width;
+   int m_height;
+   bool m_shapeIsReady;
+   Paramater m_para;
+   std::shared_ptr<Shape> m_shape;
    std::unique_ptr<OpenGLShape> m_axes;
-   std::vector<GLfloat>         m_dataAxes;
-   std::map<std::string, std::shared_ptr<Shape>> m_shapeList;
+   std::vector<GLfloat> m_dataAxes;
+   std::map<std::string, std::shared_ptr<Shape> > m_shapeList;
 
    void clearLights();
    void loadPhongShader();
    void loadWireframeShader();
    void loadNormalsShader();
    void loadNormalsArrowShader();
-   void renderPhongPass(SupportCanvas3D *context);
+   void renderPhongPass(Canvas3D *context);
    void renderGeometryAsFilledPolygons();
-   void renderWireframePass(SupportCanvas3D *context);
+   void renderWireframePass(Canvas3D *context);
    void renderGeometryAsWireframe();
-   void renderNormalsPass(SupportCanvas3D *context);
+   void renderNormalsPass(Canvas3D *context);
    void initializeSceneMaterial();
    void initializeSceneLight();
    void updateShape();
    void setPhongSceneUniforms();
-   void setMatrixUniforms(CS123::GL::Shader *shader, SupportCanvas3D *context);
+   void setMatrixUniforms(CS123::GL::Shader *shader, Canvas3D *context);
    void renderFilledPolygons();
    void renderNormals();
    void renderWireframe();
-   void setSceneUniforms(SupportCanvas3D *context);
+   void setSceneUniforms(Canvas3D *context);
    void initializeAxes();
    void initShapes();
 };

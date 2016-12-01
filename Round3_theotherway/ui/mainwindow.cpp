@@ -3,12 +3,12 @@
 #include "Databinding.h"
 #include "SupportCanvas3D.h"
 #include "CS123XmlSceneParser.h"
-#include "scenegraph/SceneviewScene.h"
 #include "camera/CamtransCamera.h"
 #include "Settings.h"
 #include <math.h>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QGridLayout>
 
 MainWindow::MainWindow(QWidget *parent) :
    QMainWindow(parent),
@@ -21,9 +21,9 @@ MainWindow::MainWindow(QWidget *parent) :
    qglFormat.setProfile(QGLFormat::CoreProfile);
    qglFormat.setSampleBuffers(true);
    ui->setupUi(this);
-   QGridLayout *gridLayout = new QGridLayout(ui->canvas3D);
-   m_canvas3D = new SupportCanvas3D(qglFormat, this);
-   gridLayout->addWidget(m_canvas3D, 0, 0);
+   QGridLayout *gridLayout = new QGridLayout(ui->centralwidget);
+   m_canvas3D = new Canvas3D(qglFormat, this);
+   gridLayout->addWidget(m_canvas3D, 0, 1);
 
    // Restore the UI settings
    QSettings qtSettings("ROOM_IN_SPACE", "ROOM_IN_SPACE");
@@ -32,9 +32,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
    // Resize the window because the window is huge since all docks were visible.
    resize(this->width(), this->height());
-   // Bind the UI elements to their properties in the global Settings object, using binding
-   // objects to simplify the code.  Each binding object connects to its UI elements and keeps
-   // the UI and its setting in sync.
+//   ui->canvas3D->resize(this->width(), this->height());
+//   m_canvas3D->resize(this->width(), this->height());
+// Bind the UI elements to their properties in the global Settings object, using binding
+// objects to simplify the code.  Each binding object connects to its UI elements and keeps
+// the UI and its setting in sync.
    show();
 }
 
@@ -52,15 +54,7 @@ void MainWindow::dataBind() {
 
 void MainWindow::changeEvent(QEvent *e) {
    QMainWindow::changeEvent(e);  // allow the superclass to handle this for the most part...
-   switch (e->type())
-   {
-   case QEvent::LanguageChange:
-      ui->retranslateUi(this);
-      break;
-
-   default:
-      break;
-   }
+   ui->retranslateUi(this);
 }
 
 

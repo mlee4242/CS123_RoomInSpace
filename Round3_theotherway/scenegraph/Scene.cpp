@@ -2,7 +2,7 @@
 #include "Camera.h"
 #include "CS123ISceneParser.h"
 
-#include "glm/gtx/transform.hpp"
+#include "gtx/transform.hpp"
 
 
 Scene::Scene()
@@ -15,10 +15,6 @@ Scene::Scene(Scene& scene) {
    CS123SceneGlobalData global = { 1, 1, 1, 1 };
 
    setGlobal(global);
-
-   // TODO [INTERSECT]
-   // Make sure to copy over the lights and the scenegraph from the old scene,
-   // as well as any other member variables your new scene will need.
 }
 
 
