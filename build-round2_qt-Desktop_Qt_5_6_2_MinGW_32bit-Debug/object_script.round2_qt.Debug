@@ -1,15 +1,12 @@
 INPUT(
 ./debug\main.o
-./debug\mainwindow.o
-./debug\view.o
-./debug\viewformat.o
 ./debug\glew.o
 ./debug\pathtools.o
 ./debug\lodepng.o
 ./debug\Matrices.o
 ./debug\CGLRenderModel.o
 ./debug\CMainApplication.o
+./debug\Settings.o
 ./debug\qrc_resources.o
-./debug\moc_mainwindow.o
-./debug\moc_view.o
+./debug\moc_CMainApplication.o
 );

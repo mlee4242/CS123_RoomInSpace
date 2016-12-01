@@ -10,20 +10,15 @@ CONFIG += console c++14
 CONFIG -= app_bundle
 
 SOURCES += main.cpp \
-   ui/mainwindow.cpp \
-   ui/view.cpp \
-   ui/viewformat.cpp \
     thirdparty/glew-1.10.0/src/glew.c \
     shared/pathtools.cpp \
     shared/lodepng.cpp \
     shared/Matrices.cpp \
     CGLRenderModel.cpp \
-    CMainApplication.cpp
+    CMainApplication.cpp \
+    utilities/Settings.cpp
 
-HEADERS += ui/mainwindow.h \
-   ui_mainwindow.h \
-   ui/view.h \
-   ui/viewformat.h \
+HEADERS += \
    shared/pathtools.h \
    thirdparty/glew-1.10.0/include/GL/glew.h\
    shared/lodepng.h \
@@ -32,12 +27,12 @@ HEADERS += ui/mainwindow.h \
    shared/compat.h \
    shared/Vectors.h \
    CGLRenderModel.h \
-   CMainApplication.h
-
+   CMainApplication.h \
+   utilities/Settings.h
 
 FORMS += ui/mainwindow.ui
 
-INCLUDEPATH += ui  headers bin thirdparty/glm thirdparty/glew-1.10.0/include
+INCLUDEPATH += ui headers bin thirdparty/glm thirdparty/glew-1.10.0/include
 DEPENDPATH += ui headers bin thirdparty/glm thirdparty/glew-1.10.0/include
 
 DEFINES += _USE_MATH_DEFINES
