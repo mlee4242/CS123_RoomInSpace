@@ -64,16 +64,29 @@ inline QVector<GLfloat> readObj(const QString& filename) {
                   int v  = row[0].toInt() - 1;
                   int vt = row[1].toInt() - 1;
                   int n  = row[2].toInt() - 1;
+
                   for (int j = 0; j < 3; j++) {
-                     result.append(verts.at(v * 3 + j));
+                     if (verts.length() < v * 3 + j + 1) {
+                        std::cout << "Out : " << data[i].toStdString() << std::endl;
+                     }else{
+                        result.append(verts.at(v * 3 + j));
+                     }
                      count++;
                   }
                   for (int j = 0; j < 2; j++) {
-                     result.append(uvs.at(vt * 2 + j));
+                     if (verts.length() < vt * 2 + j + 1) {
+                        std::cout << "Out : " << data[i].toStdString() << std::endl;
+                     }else{
+                        result.append(uvs.at(vt * 2 + j));
+                     }
                      count++;
                   }
-                  for (int j = 0; j < 3; j++) {
-                     result.append(ns.at(n * 3 + j));
+                  for (int j = 0; j < 3; j++) { \
+                     if (verts.length() < n * 3 + j + 1) {
+                        std::cout << "Out : " << data[i].toStdString() << std::endl;
+                     }else{
+                        result.append(ns.at(n * 3 + j));
+                     }
                      count++;
                   }
                }
@@ -81,7 +94,7 @@ inline QVector<GLfloat> readObj(const QString& filename) {
          }
       }
    }
-   std::cout << count << std::endl;
+//   std::cout << count << std::endl;
    return result;
 }
 
