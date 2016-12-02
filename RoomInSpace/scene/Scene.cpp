@@ -11,10 +11,15 @@ Scene::Scene() : m_vertCount(0), m_texture(0),
 Scene::~Scene() {
    m_vertexBuffer.destroy();
    m_vao.destroy();
-
-   delete m_leftBuffer;
-   delete m_rightBuffer;
-   delete m_resolveBuffer;
+   if (m_leftBuffer) {
+      delete m_leftBuffer;
+   }
+   if (m_rightBuffer) {
+      delete m_rightBuffer;
+   }
+   if (m_resolveBuffer) {
+      delete m_resolveBuffer;
+   }
 }
 
 
@@ -53,9 +58,8 @@ void Scene::initScene() {
 
    m_shader.setUniformValue("diffuse", 0);
 
-
-   m_shader.release(); // FM :
-   m_vao.release();    // FM :
+   m_shader.release(); // FM :+
+   m_vao.release();    // FM :+
 
    m_texture = new QOpenGLTexture(QImage(":/textures/uvmap.png"));
 }
@@ -174,6 +178,6 @@ void Scene::renderEye(vr::Hmd_Eye eye) {
    m_shader.setUniformValue("leftEye", eye == vr::Eye_Left);
    m_shader.setUniformValue("overUnder", settings.windowMode == OverUnder);
    glDrawArrays(GL_TRIANGLES, 0, m_vertCount);
-   m_shader.release(); // FM :
-   m_vao.release();    // FM :
+   m_shader.release(); // FM+ :
+   m_vao.release();    // FM+ :
 }
