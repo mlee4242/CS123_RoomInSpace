@@ -11,25 +11,18 @@
 #include <QOpenGLDebugLogger>
 #include <QOpenGLTexture>
 #include <openvr.h>
-#include "glm/glm.hpp"
 #include <memory>
+#include "glm/glm.hpp"
 #include "OrbitingCamera.h"
-
+#include "scene/Scene.h"
+#include "Settings.h"
+#include "Helpers.h"
 class VRView : public QOpenGLWidget, protected QOpenGLFunctions_4_1_Core
 {
    Q_OBJECT
 public:
    explicit VRView(QWidget *parent = 0);
    virtual ~VRView();
-
-   enum VRMode {
-      None=0,
-      OverUnder,
-      SideBySide
-   };
-
-   void loadPanorama(const QString& fileName, VRMode mode = OverUnder);
-   void loadImageRelative(int offset);
 
    QSize minimumSizeHint() const;
 
@@ -63,18 +56,24 @@ protected:
 private:
    void initVR();
 
-   void renderEye(vr::Hmd_Eye eye);
+//   void renderEye(vr::Hmd_Eye eye);
 
    void updatePoses();
 
    void updateInput();
 
-   bool compileShader(QOpenGLShaderProgram& shader,
-                      const QString&        vertexShaderPath,
-                      const QString&        fragmentShaderPath);
+   void setMatrices(vr::Hmd_Eye eye);
 
-   glm::mat4x4 vrMatrixToQt(const vr::HmdMatrix34_t& mat);
-   glm::mat4x4 vrMatrixToQt(const vr::HmdMatrix44_t& mat);
+   glm::mat4x4 getViewMatrix(vr::Hmd_Eye eye);
+
+   glm::mat4x4 getProjMatrix(vr::Hmd_Eye eye);
+
+//   bool compileShader(QOpenGLShaderProgram& shader,
+//                      const QString&        vertexShaderPath,
+//                      const QString&        fragmentShaderPath);
+
+//   glm::mat4x4 vrMatrixToQt(const vr::HmdMatrix34_t& mat);
+//   glm::mat4x4 vrMatrixToQt(const vr::HmdMatrix44_t& mat);
 
    // QMatrix is using qreal, so we need to overload to handle both platform cases
    void glUniformMatrix4(GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
@@ -96,24 +95,24 @@ private:
 
    QOpenGLDebugLogger *m_logger;
 
-   QOpenGLShaderProgram m_shader;
-   QOpenGLBuffer m_vertexBuffer;
-   QOpenGLVertexArrayObject m_vao;
-   QOpenGLTexture *m_texture;
-   int m_vertCount;
+//   QOpenGLShaderProgram m_shader;
+//   QOpenGLBuffer m_vertexBuffer;
+//   QOpenGLVertexArrayObject m_vao;
+//  QOpenGLTexture *m_texture;
+//   int m_vertCount;
 
    uint32_t m_eyeWidth, m_eyeHeight;
-   //FBOHandle *m_leftBuffer, *m_rightBuffer;
-   QOpenGLFramebufferObject *m_leftBuffer;
-   QOpenGLFramebufferObject *m_rightBuffer;
-   QOpenGLFramebufferObject *m_resolveBuffer;
+//   //FBOHandle *m_leftBuffer, *m_rightBuffer;
+//   QOpenGLFramebufferObject *m_leftBuffer;
+//   QOpenGLFramebufferObject *m_rightBuffer;
+//   QOpenGLFramebufferObject *m_resolveBuffer;
 
    int m_frames;
 
-   VRMode m_mode;
    QString m_imageDirectory;
    QString m_currentImage;
    std::unique_ptr<OrbitingCamera> m_camera;
+   std::unique_ptr<Scene> m_scene;
 
    bool m_inputNext[vr::k_unMaxTrackedDeviceCount];
    bool m_inputPrev[vr::k_unMaxTrackedDeviceCount];

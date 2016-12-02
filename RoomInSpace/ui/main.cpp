@@ -20,7 +20,6 @@ int main(int argc, char *argv[]) {
 
    QApplication a(argc, argv);
    MainWindow   w;
-//   w.setWindowS
    w.show();
 
    return a.exec();

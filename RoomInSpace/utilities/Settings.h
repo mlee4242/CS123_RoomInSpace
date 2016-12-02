@@ -9,6 +9,12 @@ enum RenderMode {
    COMPUTER_MODE
 };
 
+enum WindowMode {
+   OverUnder,
+   SideBySide,
+   NUM_WINDOWS_TYPES
+};
+
 struct Settings
 {
    float cameraFov;              // The camera's field of view, which is twice the height angle.
@@ -22,6 +28,7 @@ struct Settings
    void  saveSettings();
 
    int   renderMode;
+   int   windowMode;
 };
 extern Settings settings;
 #endif // SETTINGS_H

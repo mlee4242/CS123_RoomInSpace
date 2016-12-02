@@ -5,8 +5,11 @@ INPUT(
 ./debug\OrbitingCamera.o
 ./debug\CamtransCamera.o
 ./debug\Settings.o
-./debug\helpers.o
+./debug\Helpers.o
+./debug\Scene.o
+./debug\DataBinding.o
 ./debug\qrc_resources.o
 ./debug\moc_mainwindow.o
 ./debug\moc_vrview.o
+./debug\moc_DataBinding.o
 );

@@ -12,24 +12,28 @@ TARGET = RoomInSpace
 TEMPLATE = app
 
 
-SOURCES += src/main.cpp\
-    src/mainwindow.cpp \
-    src/vrview.cpp \
+SOURCES += ui/main.cpp\
+    ui/mainwindow.cpp \
+    ui/vrview.cpp \
     camera/OrbitingCamera.cpp \
     camera/CamtransCamera.cpp \
     utilities/Settings.cpp \
-    utilities/helpers.cpp
+    utilities/Helpers.cpp \
+    scene/Scene.cpp \
+    ui/DataBinding.cpp
 
-HEADERS  += src/mainwindow.h \
-    src/modelformats.h \
-    src/vrview.h \
+HEADERS  += ui/mainwindow.h \
+    ui/modelformats.h \
+    ui/vrview.h \
     thirdparty/openvr/headers/openvr.h \
     camera/OrbitingCamera.h \
     camera/CamtransCamera.h \
     utilities/Settings.h \
-    utilities/Helpers.h
+    utilities/Helpers.h \
+    scene/Scene.h \
+    ui/DataBinding.h
 
-FORMS    += src/mainwindow.ui
+FORMS    += ui/mainwindow.ui
 
 # from http://stackoverflow.com/a/10058744
 # Copies the given files to the destination directory

@@ -14,7 +14,8 @@ void Settings::loadSettingsOrDefaults() {
    renderMode = s.value("renderMode", COMPUTER_MODE).toInt();
    cameraFov  = s.value("cameraFov", 150).toDouble();
    cameraNear = s.value("cameraNear", 0.1).toDouble();
-   cameraFar  = s.value("cameraFar", -50).toDouble();
+   cameraFar  = s.value("cameraFar", 1000).toDouble();
+   windowMode = s.value("windowMode", OverUnder).toInt();
 }
 
 
@@ -26,4 +27,5 @@ void Settings::saveSettings() {
    s.setValue("cameraFov", cameraFov);
    s.setValue("cameraNear", cameraNear);
    s.setValue("cameraFar", cameraFar);
+   s.setValue("windowMode", windowMode);
 }

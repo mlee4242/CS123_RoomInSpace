@@ -8,7 +8,7 @@
 #include <QGL>
 #include <QDebug>
 #include <iostream>
-// this is pretty fragile - if you aren't using Blender use a better parser
+
 inline QVector<GLfloat> readObj(const QString& filename) {
    QVector<GLfloat> result;
    int              count = 0;

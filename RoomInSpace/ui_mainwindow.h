@@ -18,9 +18,6 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenu>
-#include <QtWidgets/QMenuBar>
-#include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStatusBar>
@@ -32,7 +29,6 @@ QT_BEGIN_NAMESPACE
 class Ui_MainWindow
 {
 public:
-    QAction *action_Load_Panorama;
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout;
@@ -44,18 +40,13 @@ public:
     QRadioButton *radioButton_2;
     QRadioButton *radioButton;
     QVBoxLayout *rightLayout;
-    QPushButton *loadButton;
-    QMenuBar *menuBar;
-    QMenu *menu_File;
     QStatusBar *statusBar;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(800, 600);
-        action_Load_Panorama = new QAction(MainWindow);
-        action_Load_Panorama->setObjectName(QStringLiteral("action_Load_Panorama"));
+        MainWindow->resize(1000, 600);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         verticalLayout = new QVBoxLayout(centralWidget);
@@ -115,41 +106,23 @@ public:
 
         verticalLayout->addLayout(horizontalLayout);
 
-        loadButton = new QPushButton(centralWidget);
-        loadButton->setObjectName(QStringLiteral("loadButton"));
-
-        verticalLayout->addWidget(loadButton);
-
         MainWindow->setCentralWidget(centralWidget);
-        menuBar = new QMenuBar(MainWindow);
-        menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 800, 21));
-        menu_File = new QMenu(menuBar);
-        menu_File->setObjectName(QStringLiteral("menu_File"));
-        MainWindow->setMenuBar(menuBar);
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         MainWindow->setStatusBar(statusBar);
 
-        menuBar->addAction(menu_File->menuAction());
-        menu_File->addAction(action_Load_Panorama);
-
         retranslateUi(MainWindow);
-        QObject::connect(loadButton, SIGNAL(clicked()), action_Load_Panorama, SLOT(trigger()));
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
-        action_Load_Panorama->setText(QApplication::translate("MainWindow", "&Load Panorama", 0));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Room In Space", 0));
         fpsLabel->setText(QApplication::translate("MainWindow", "FPS", 0));
         groupBox->setTitle(QApplication::translate("MainWindow", "3D Mode", 0));
         radioButton_2->setText(QApplication::translate("MainWindow", "Over and Under", 0));
         radioButton->setText(QApplication::translate("MainWindow", "Side by Side", 0));
-        loadButton->setText(QApplication::translate("MainWindow", "Load Image", 0));
-        menu_File->setTitle(QApplication::translate("MainWindow", "&File", 0));
     } // retranslateUi
 
 };

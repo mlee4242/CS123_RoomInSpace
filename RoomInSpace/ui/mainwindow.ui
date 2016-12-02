@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>1000</width>
     <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Room In Space</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -87,57 +87,11 @@
       </item>
      </layout>
     </item>
-    <item>
-     <widget class="QPushButton" name="loadButton">
-      <property name="text">
-       <string>Load Image</string>
-      </property>
-     </widget>
-    </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>800</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menu_File">
-    <property name="title">
-     <string>&amp;File</string>
-    </property>
-    <addaction name="action_Load_Panorama"/>
-   </widget>
-   <addaction name="menu_File"/>
-  </widget>
   <widget class="QStatusBar" name="statusBar"/>
-  <action name="action_Load_Panorama">
-   <property name="text">
-    <string>&amp;Load Panorama</string>
-   </property>
-  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
- <connections>
-  <connection>
-   <sender>loadButton</sender>
-   <signal>clicked()</signal>
-   <receiver>action_Load_Panorama</receiver>
-   <slot>trigger()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>102</x>
-     <y>217</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

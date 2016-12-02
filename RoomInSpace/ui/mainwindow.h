@@ -1,6 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
+#include <QButtonGroup>
 #include <QMainWindow>
 #include <QMatrix4x4>
 namespace Ui {
@@ -8,6 +8,7 @@ class MainWindow;
 }
 
 class VRView;
+class DataBinding;
 
 class MainWindow : public QMainWindow
 {
@@ -21,12 +22,13 @@ protected slots:
    void showFramerate(float fps);
    void showStatus(const QString& message);
 
-private slots:
-   void on_action_Load_Panorama_triggered();
-
 private:
+   void dataBind();
+
+   QButtonGroup *m_buttonGroup;
    Ui::MainWindow *ui;
    VRView *vr;
+   QList<DataBinding *> m_bindings;
 };
 
 #endif // MAINWINDOW_H
