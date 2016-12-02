@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>shaders/unlit.frag</file>
+        <file>shaders/unlit.vert</file>
+        <file>textures/uvmap.png</file>
+        <file>models/sphere.obj</file>
+    </qresource>
+</RCC>
