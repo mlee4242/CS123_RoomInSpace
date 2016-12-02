@@ -1,0 +1,12 @@
+INPUT(
+./release\main.o
+./release\mainwindow.o
+./release\vrview.o
+./release\OrbitingCamera.o
+./release\CamtransCamera.o
+./release\Settings.o
+./release\helpers.o
+./release\qrc_resources.o
+./release\moc_mainwindow.o
+./release\moc_vrview.o
+);
