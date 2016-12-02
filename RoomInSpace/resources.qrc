@@ -6,6 +6,7 @@
         <file>models/sphere.obj</file>
         <file>models/cylinder/cylinder.obj</file>
         <file>models/simpleroom/roomsimple.obj</file>
+        <file>models/simpleroom/roomfull.obj</file>
         <file>models/teapot/teapot.obj</file>
         <file>models/isphere/isphere.obj</file>
         <file>models/monkey.obj</file>
