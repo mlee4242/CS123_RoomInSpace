@@ -35,7 +35,7 @@ void Scene::initScene() {
    m_vao.create();
    m_vao.bind();
 
-   QVector<GLfloat> points = readObj(":/models/simpleroom/roomsimple.obj");
+   QVector<GLfloat> points = readObj(":/models/simpleroom/roomfull.obj");
    m_vertCount = points.length();
    qDebug() << "loaded" << m_vertCount << "verts";
 

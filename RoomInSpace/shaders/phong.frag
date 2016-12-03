@@ -10,6 +10,6 @@ out vec4 fragColor;
 void main()
 {
    // fragColor = texture2D(tex, fragTexCoord);
-    vec3 WorldSpace_toLight = normalize(vec3(10.0) - WorldSpace_position);
+    vec3 WorldSpace_toLight = normalize(vec3(100.0) - WorldSpace_position);
     fragColor = vec4(vec3(0.3 + 0.7 * max(0.0, dot(normalize(WorldSpace_normal), WorldSpace_toLight))), 1.0);
 }
