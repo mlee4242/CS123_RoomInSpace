@@ -9,8 +9,9 @@ Scene::Scene() : m_vertCount(0), m_texture(0),
 
 
 Scene::~Scene() {
-   m_vertexBuffer.destroy();
-   m_vao.destroy();
+//   m_vertexBuffer.destroy();
+//   m_vao.destroy();
+
    if (m_leftBuffer) {
       delete m_leftBuffer;
    }
@@ -35,7 +36,7 @@ void Scene::initScene() {
    m_vao.create();
    m_vao.bind();
 
-   QVector<GLfloat> points = readObj(":/models/simpleroom/roomfull.obj");
+   QVector<GLfloat> points = readObj(":/models/sphere.obj");
    m_vertCount = points.length();
    qDebug() << "loaded" << m_vertCount << "verts";
 
