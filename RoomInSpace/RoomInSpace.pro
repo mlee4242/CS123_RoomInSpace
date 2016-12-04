@@ -10,7 +10,6 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = RoomInSpace
 TEMPLATE = app
-QMAKE_CXXFLAGS += -std=c++14
 CONFIG += c++14
 
 SOURCES += ui/main.cpp\
@@ -79,16 +78,16 @@ INCLUDEPATH += thirdparty thirdparty/openvr/headers utilities shaders models tex
 DEPENDPATH +=  thirdparty thirdparty/openvr/headers utilities textures models camera ui scenegraph utilities thirdparty/include
 
 # from http://stackoverflow.com/a/25193580
-isEmpty(TARGET_EXT) {
-    win32 {
-        TARGET_CUSTOM_EXT = .exe
-    }
-    macx {
-        TARGET_CUSTOM_EXT = .app
-    }
-} else {
-    TARGET_CUSTOM_EXT = $${TARGET_EXT}
-}
+#isEmpty(TARGET_EXT) {
+#    win32 {
+#        TARGET_CUSTOM_EXT = .exe
+#    }
+#    macx {
+#        TARGET_CUSTOM_EXT = .app
+#    }
+#} else {
+#    TARGET_CUSTOM_EXT = $${TARGET_EXT}
+#}
 
 #win32 {
 #    DEPLOY_COMMAND = windeployqt
@@ -97,15 +96,15 @@ isEmpty(TARGET_EXT) {
 #    DEPLOY_COMMAND = macdeployqt
 #}
 
-CONFIG( debug, debug|release ) {
-    # debug
-    DEPLOY_TARGET = $$shell_quote($$shell_path($${OUT_PWD}/debug/$${TARGET}$${TARGET_CUSTOM_EXT}))
-} else {
-    # release
-    DEPLOY_TARGET = $$shell_quote($$shell_path($${OUT_PWD}/release/$${TARGET}$${TARGET_CUSTOM_EXT}))
-}
+#CONFIG( debug, debug|release ) {
+#    # debug
+#    DEPLOY_TARGET = $$shell_quote($$shell_path($${OUT_PWD}/debug/$${TARGET}$${TARGET_CUSTOM_EXT}))
+#} else {
+#    # release
+#    DEPLOY_TARGET = $$shell_quote($$shell_path($${OUT_PWD}/release/$${TARGET}$${TARGET_CUSTOM_EXT}))
+#}
 
-QMAKE_POST_LINK += $${DEPLOY_COMMAND} $${DEPLOY_TARGET} $$escape_expand(\\n\\t)
+#QMAKE_POST_LINK += $${DEPLOY_COMMAND} $${DEPLOY_TARGET} $$escape_expand(\\n\\t)
 
 RESOURCES += \
     resources.qrc
