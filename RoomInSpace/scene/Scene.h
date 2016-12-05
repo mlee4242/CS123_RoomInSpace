@@ -10,10 +10,12 @@
 #include <QOpenGLDebugMessage>
 #include <QOpenGLDebugLogger>
 #include <QOpenGLTexture>
+#include <memory>
 #include "openvr.h"
 #include "glm/glm.hpp"
 #include "Settings.h"
 #include "Helpers.h"
+#include "objmodeler/ObjLoader.h"
 class Scene
 {
 public:
@@ -41,6 +43,7 @@ private:
    QOpenGLBuffer m_vertexBuffer;
    QOpenGLVertexArrayObject m_vao;
    QOpenGLTexture *m_texture;
+   std::unique_ptr<ObjLoader> m_objLoader;
    int m_vertCount;
 
    uint32_t m_eyeWidth, m_eyeHeight;

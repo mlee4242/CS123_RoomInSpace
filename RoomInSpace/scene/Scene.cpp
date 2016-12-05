@@ -1,10 +1,10 @@
 #include "Scene.h"
 #include "ui/modelformats.h"
 #include "glm/ext.hpp"
-
+#include "objmodeler/SceneObject.h"
 Scene::Scene() : m_vertCount(0), m_texture(0),
    m_viewMat(glm::mat4x4()), m_projectMat(glm::mat4x4()), m_modelMat(glm::mat4x4()),
-   m_eyeWidth(0), m_eyeHeight(0), m_leftBuffer(0), m_rightBuffer(0)
+   m_eyeWidth(0), m_eyeHeight(0), m_leftBuffer(0), m_rightBuffer(0), m_objLoader(new ObjLoader)
 {}
 
 
@@ -36,6 +36,8 @@ void Scene::initScene() {
    m_vao.create();
    m_vao.bind();
 
+   QVector<SceneObject> tmp;
+   m_objLoader->loadObj("/models/tests/test", tmp);
    QVector<GLfloat> points = readObj(":/models/simpleroom/roomsimple.obj");
    m_vertCount = points.length();
    qDebug() << "loaded" << m_vertCount << "verts";

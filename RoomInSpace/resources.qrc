@@ -14,5 +14,9 @@
         <file>models/cube/cube.obj</file>
         <file>models/rect.obj</file>
         <file>models/teapot/2teapot.obj</file>
+        <file>models/room/roominspace.obj</file>
+        <file>models/room/roominspace.mtl</file>
+        <file>models/tests/test.obj</file>
+        <file>models/tests/test.mtl</file>
     </qresource>
 </RCC>

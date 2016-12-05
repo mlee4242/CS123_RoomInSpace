@@ -19,7 +19,12 @@ SOURCES += ui/main.cpp\
     camera/CamtransCamera.cpp \
     utilities/Settings.cpp \
     utilities/Helpers.cpp \
-    scene/Scene.cpp
+    scene/Scene.cpp \
+    scene/objmodeler/BoundingBox.cpp \
+    scene/objmodeler/SceneObject.cpp \
+    scene/objmodeler/PrimitiveObject.cpp \
+    scene/objmodeler/GroupObject.cpp \
+    scene/objmodeler/ObjLoader.cpp
 
 HEADERS  += ui/mainwindow.h \
     ui/modelformats.h \
@@ -29,7 +34,13 @@ HEADERS  += ui/mainwindow.h \
     camera/CamtransCamera.h \
     utilities/Settings.h \
     utilities/Helpers.h \
-    scene/Scene.h
+    scene/Scene.h \
+    scene/objmodeler/BoundingBox.h \
+    scene/objmodeler/SceneObject.h \
+    scene/objmodeler/PrimitiveObject.h \
+    scene/objmodeler/GroupObject.h \
+    scene/objmodeler/material.h \
+    scene/objmodeler/ObjLoader.h
 
 FORMS    += ui/mainwindow.ui
 
