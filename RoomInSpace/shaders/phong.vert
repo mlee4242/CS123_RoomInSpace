@@ -26,5 +26,5 @@ void main()
     }
     WorldSpace_position = gl_Position.xyz;
     WorldSpace_normal = normal;
-    gl_Position = p * v * m * 0.01f * vec4(vertex.x, vertex.y, -vertex.z, 1.0f);
+    gl_Position = p * v * m * vec4(vertex.x, vertex.y, -vertex.z, 1.0f);
 }

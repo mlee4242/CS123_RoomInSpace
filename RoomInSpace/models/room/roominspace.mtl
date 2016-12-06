@@ -1,5 +1,5 @@
 # 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
-# 创建的文件:05.12.2016 23:23:37
+# 创建的文件:06.12.2016 08:51:04
 
 newmtl Material__2097634029
 	Ns 10.000000
@@ -935,76 +935,6 @@ newmtl Material__2097630390
 	map_Ka maps\ceiling.jpg
 	map_Kd maps\ceiling.jpg
 
-newmtl Material__2097630738
-	Ns 10.000000
-	Ni 1.500000
-	d 1.000000
-	Tr 0.000000
-	Tf 1.000000 1.000000 1.000000 
-	illum 2
-	Ka 0.588000 0.588000 0.588000
-	Kd 0.588000 0.588000 0.588000
-	Ks 0.000000 0.000000 0.000000
-	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\face.png
-	map_Kd maps\face.png
-
-newmtl Material__2097630737
-	Ns 10.000000
-	Ni 1.500000
-	d 1.000000
-	Tr 0.000000
-	Tf 1.000000 1.000000 1.000000 
-	illum 2
-	Ka 0.588000 0.588000 0.588000
-	Kd 0.588000 0.588000 0.588000
-	Ks 0.000000 0.000000 0.000000
-	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\face.png
-	map_Kd maps\face.png
-
-newmtl Material__2097630736
-	Ns 10.000000
-	Ni 1.500000
-	d 1.000000
-	Tr 0.000000
-	Tf 1.000000 1.000000 1.000000 
-	illum 2
-	Ka 0.588000 0.588000 0.588000
-	Kd 0.588000 0.588000 0.588000
-	Ks 0.000000 0.000000 0.000000
-	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\face.png
-	map_Kd maps\face.png
-
-newmtl Material__2097630734
-	Ns 10.000000
-	Ni 1.500000
-	d 1.000000
-	Tr 0.000000
-	Tf 1.000000 1.000000 1.000000 
-	illum 2
-	Ka 0.588000 0.588000 0.588000
-	Kd 0.588000 0.588000 0.588000
-	Ks 0.000000 0.000000 0.000000
-	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\face.png
-	map_Kd maps\face.png
-
-newmtl Material__2097630735
-	Ns 10.000000
-	Ni 1.500000
-	d 1.000000
-	Tr 0.000000
-	Tf 1.000000 1.000000 1.000000 
-	illum 2
-	Ka 0.588000 0.588000 0.588000
-	Kd 0.588000 0.588000 0.588000
-	Ks 0.000000 0.000000 0.000000
-	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\face.png
-	map_Kd maps\face.png
-
 newmtl Material__2097630733
 	Ns 10.000000
 	Ni 1.500000
@@ -1032,6 +962,16 @@ newmtl Material__2097630739
 	Ke 0.000000 0.000000 0.000000
 	map_Ka maps\face.png
 	map_Kd maps\face.png
+
+newmtl wire_000000000
+	Ns 32
+	d 1
+	Tr 0
+	Tf 1 1 1
+	illum 2
+	Ka 0.000000 0.000000 0.000000
+	Kd 0.000000 0.000000 0.000000
+	Ks 0.350000 0.350000 0.350000
 
 newmtl Material__2097634026
 	Ns 10.000000
@@ -1229,30 +1169,6 @@ newmtl Material__2097649731
 	map_Ka maps\clock_body.jpg
 	map_Kd maps\clock_body.jpg
 
-newmtl wire_088143225
-	Ns 32
-	d 1
-	Tr 0
-	Tf 1 1 1
-	illum 2
-	Ka 0.345098 0.560784 0.882353
-	Kd 0.345098 0.560784 0.882353
-	Ks 0.350000 0.350000 0.350000
-
-newmtl Material__2097629582
-	Ns 10.000000
-	Ni 1.500000
-	d 1.000000
-	Tr 0.000000
-	Tf 1.000000 1.000000 1.000000 
-	illum 2
-	Ka 0.588000 0.588000 0.588000
-	Kd 0.588000 0.588000 0.588000
-	Ks 0.000000 0.000000 0.000000
-	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\black.jpg
-	map_Kd maps\black.jpg
-
 newmtl Material__2097629571
 	Ns 10.000000
 	Ni 1.500000
@@ -1266,6 +1182,20 @@ newmtl Material__2097629571
 	Ke 0.000000 0.000000 0.000000
 	map_Ka maps\clock.jpg
 	map_Kd maps\clock.jpg
+
+newmtl 19___Default
+	Ns 9.999999
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.588235 0.588235 0.588235
+	Kd 0.588235 0.588235 0.588235
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\小房间\4418749_061809499278_2.jpg
+	map_Kd maps\小房间\4418749_061809499278_2.jpg
 
 newmtl Material__2097634277
 	Ns 10.000000
@@ -1320,6 +1250,7 @@ newmtl Material__2097649736
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\photo_1.jpg
 	map_Kd maps\photo_1.jpg
 
 newmtl Material__2097649741
@@ -1333,6 +1264,7 @@ newmtl Material__2097649741
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\photo_4.jpg
 	map_Kd maps\photo_4.jpg
 
 newmtl Material__2097649738
@@ -1346,6 +1278,7 @@ newmtl Material__2097649738
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\photo_3.jpg
 	map_Kd maps\photo_3.jpg
 
 newmtl Material__2097649740
@@ -1359,6 +1292,7 @@ newmtl Material__2097649740
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\photo_5.jpg
 	map_Kd maps\photo_5.jpg
 
 newmtl Material__2097649739
@@ -1372,6 +1306,7 @@ newmtl Material__2097649739
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\photo_6.jpg
 	map_Kd maps\photo_6.jpg
 
 newmtl Material__2097649742
@@ -1385,6 +1320,7 @@ newmtl Material__2097649742
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\photo_1.jpg
 	map_Kd maps\photo_1.jpg
 
 newmtl Material__2097649737
@@ -1398,6 +1334,7 @@ newmtl Material__2097649737
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\photo_2.jpg
 	map_Kd maps\photo_2.jpg
 
 newmtl Material__2097630401
@@ -1593,6 +1530,7 @@ newmtl Material__2097649743
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\white.jpg
 	map_Kd maps\white.jpg
 
 newmtl Material__55
