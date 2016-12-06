@@ -1,16 +1,24 @@
 #include "Scene.h"
 #include "ui/modelformats.h"
 #include "glm/ext.hpp"
-
-Scene::Scene() : m_vertCount(0), m_texture(0),
-   m_viewMat(glm::mat4x4()), m_projectMat(glm::mat4x4()), m_modelMat(glm::mat4x4()),
-   m_eyeWidth(0), m_eyeHeight(0), m_leftBuffer(0), m_rightBuffer(0)
+#include "objmodeler/SceneObject.h"
+#include "objmodeler/delete_ptr.h"
+Scene::Scene() :// m_vertCount(0), m_texture(0),
+   m_glTextMap(QMap<QString, QOpenGLTexture *>()),
+   m_viewMat(glm::mat4x4()),
+   m_projectMat(glm::mat4x4()),
+   m_modelMat(glm::mat4x4()),
+   m_eyeWidth(0), m_eyeHeight(0),
+   m_leftBuffer(0), m_rightBuffer(0),
+   m_objLoader(new ObjLoader),
+   m_sceneObjs(QVector<SceneObject *>())
 {}
 
 
 Scene::~Scene() {
-   m_vertexBuffer.destroy();
-   m_vao.destroy();
+//   m_vertexBuffer.destroy();
+//   m_vao.destroy();
+
    if (m_leftBuffer) {
       delete m_leftBuffer;
    }
@@ -20,6 +28,18 @@ Scene::~Scene() {
    if (m_resolveBuffer) {
       delete m_resolveBuffer;
    }
+   if (m_sceneObjs.size() > 0) {
+      std::for_each(m_sceneObjs.begin(), m_sceneObjs.end(), delete_ptr());
+      m_sceneObjs.clear();
+   }
+}
+
+
+void Scene::generateTextureMap(const QVector<QString>& textures) {
+   for (QString txt : textures) {
+      std::cout << (m_path + txt).toStdString() << std::endl;
+      m_glTextMap[txt] = new QOpenGLTexture(QImage(":/" + m_path + txt));
+   }
 }
 
 
@@ -28,16 +48,19 @@ void Scene::initScene() {
    glEnable(GL_CULL_FACE);
    glEnable(GL_TEXTURE_2D);
 
+   QVector<QString> textures;
+   QVector<GLfloat> points;
+   m_objLoader->loadObj(m_path + m_target, m_sceneObjs, points);
+   std::cout << "HI" << std::endl;
+   m_objLoader->getTextureMap(textures);
+   generateTextureMap(textures);
+
    // compile our shader
    compileShader(m_shader, ":/shaders/phong.vert", ":/shaders/phong.frag");
 
    // build out sample geometry
    m_vao.create();
    m_vao.bind();
-
-   QVector<GLfloat> points = readObj(":/models/simpleroom/roomfull.obj");
-   m_vertCount = points.length();
-   qDebug() << "loaded" << m_vertCount << "verts";
 
    m_vertexBuffer.create();
    m_vertexBuffer.setUsagePattern(QOpenGLBuffer::StaticDraw);
@@ -56,12 +79,9 @@ void Scene::initScene() {
    m_shader.setAttributeBuffer("normal", GL_FLOAT, 5 * sizeof(GLfloat), 3, 8 * sizeof(GLfloat));
    m_shader.enableAttributeArray("normal");
 
-   m_shader.setUniformValue("diffuse", 0);
-
    m_shader.release(); // FM :+
    m_vao.release();    // FM :+
-
-   m_texture = new QOpenGLTexture(QImage(":/textures/uvmap.png"));
+   m_vertexBuffer.release();
 }
 
 
@@ -168,16 +188,22 @@ void Scene::renderEye(vr::Hmd_Eye eye) {
    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
    glEnable(GL_DEPTH_TEST);
 
+
    m_vao.bind();
    m_shader.bind();
-   m_texture->bind(0);
+//   m_texture->bind(0);
 
-   m_shader.setUniformValue("m", helper.mat4x4ToQMatrix4x4(m_modelMat));
+   m_shader.setUniformValue("diffuse", 0);
+
    m_shader.setUniformValue("v", helper.mat4x4ToQMatrix4x4(m_viewMat));
    m_shader.setUniformValue("p", helper.mat4x4ToQMatrix4x4(m_projectMat));
    m_shader.setUniformValue("leftEye", eye == vr::Eye_Left);
    m_shader.setUniformValue("overUnder", settings.windowMode == OverUnder);
-   glDrawArrays(GL_TRIANGLES, 0, m_vertCount);
-   m_shader.release(); // FM+ :
-   m_vao.release();    // FM+ :
+   for (auto obj : m_sceneObjs) {
+      obj->draw(m_shader, m_glTextMap);
+   }
+
+//   m_texture->release();
+   m_shader.release();    // FM+ :
+   m_vao.release();       // FM+ :
 }

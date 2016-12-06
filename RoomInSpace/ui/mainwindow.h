@@ -8,8 +8,6 @@ class MainWindow;
 }
 
 class VRView;
-class DataBinding;
-
 class MainWindow : public QMainWindow
 {
    Q_OBJECT
@@ -22,13 +20,14 @@ protected slots:
    void showFramerate(float fps);
    void showStatus(const QString& message);
 
-private:
-   void dataBind();
+private slots:
+   void on_overUnderButton_clicked();
 
-   QButtonGroup *m_buttonGroup;
+   void on_sideSideButton_clicked();
+
+private:
    Ui::MainWindow *ui;
    VRView *vr;
-   QList<DataBinding *> m_bindings;
 };
 
 #endif // MAINWINDOW_H

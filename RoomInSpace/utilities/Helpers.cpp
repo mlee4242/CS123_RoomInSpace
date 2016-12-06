@@ -31,3 +31,8 @@ glm::mat4x4 Helpers::vrMatrixToGlmMatrix(const vr::HmdMatrix44_t& mat) {
       mat.m[3][0], mat.m[3][1], mat.m[3][2], mat.m[3][3]
       );
 }
+
+
+QVector3D Helpers::vec3ToQVector3D(glm::vec3 v) const {
+   return QVector3D(v[0], v[1], v[2]);
+}

@@ -2,7 +2,6 @@
 #include "ui_mainwindow.h"
 #include "vrview.h"
 #include "Settings.h"
-#include "Databinding.h"
 #include <QVBoxLayout>
 #include <QSurfaceFormat>
 #include <QSettings>
@@ -11,7 +10,7 @@
 #include <QOffscreenSurface>
 
 MainWindow::MainWindow(QWidget *parent) :
-   QMainWindow(parent), m_buttonGroup(0),
+   QMainWindow(parent),
    ui(new Ui::MainWindow) {
    vr = new VRView(this);
 
@@ -22,15 +21,17 @@ MainWindow::MainWindow(QWidget *parent) :
    ui->rightLayout->addWidget(vr);
 
    connect(vr, &VRView::statusMessage, this, &MainWindow::showStatus);
-   dataBind();
 }
 
 
 MainWindow::~MainWindow() {
    delete ui;
    delete vr;
+<<<<<<< HEAD
 //   delete m_buttonGroup;
 //   foreach(DataBinding * b, m_bindings) delete b;
+=======
+>>>>>>> 007565bd24d5467b66b0a724bc995d9b5e8835eb
 }
 
 
@@ -44,6 +45,7 @@ void MainWindow::showStatus(const QString& message) {
 }
 
 
+<<<<<<< HEAD
 void MainWindow::dataBind() {
 //#define BIND(b)                 \
 //   {                            \
@@ -58,4 +60,17 @@ void MainWindow::dataBind() {
 //           ui->radioButton_2,
 //           ui->radioButton))
 //#undef BIND
+=======
+void MainWindow::on_overUnderButton_clicked() {
+   if (ui->overUnderButton->isChecked()) {
+      settings.windowMode = OverUnder;
+   }else{ settings.windowMode = SideBySide; }
+}
+
+
+void MainWindow::on_sideSideButton_clicked() {
+   if (ui->sideSideButton->isChecked()) {
+      settings.windowMode = SideBySide;
+   }else{ settings.windowMode = OverUnder; }
+>>>>>>> 007565bd24d5467b66b0a724bc995d9b5e8835eb
 }

@@ -1,4 +1,4 @@
-<RCC>
+﻿<!DOCTYPE RCC><RCC version="1.0">
     <qresource prefix="/">
         <file>shaders/phong.frag</file>
         <file>shaders/phong.vert</file>
@@ -14,5 +14,44 @@
         <file>models/cube/cube.obj</file>
         <file>models/rect.obj</file>
         <file>models/teapot/2teapot.obj</file>
+        <file>models/room/roominspace.obj</file>
+        <file>models/room/roominspace.mtl</file>
+        <file>models/tests/test.obj</file>
+        <file>models/tests/test.mtl</file>
+        <file>models/tests/maps/download.jpg</file>
+        <file>models/tests/maps/download2.jpg</file>
+        <file>models/tests/maps/download3.png</file>
+        <file>models/room/maps/6-091229101607-5-lit.jpg</file>
+        <file>models/room/maps/6-091229101607-7-lit.jpg</file>
+        <file>models/room/maps/6-091229101608-9-lit.jpg</file>
+        <file>models/room/maps/6-091229101608-11-lit.jpg</file>
+        <file>models/room/maps/2457331_093930679000_2.jpg</file>
+        <file>models/room/maps/20100724062419875118.jpg</file>
+        <file>models/room/maps/20100724062419875422.jpg</file>
+        <file>models/room/maps/bed_cover.jpg</file>
+        <file>models/room/maps/beige_wood.jpg</file>
+        <file>models/room/maps/black.jpg</file>
+        <file>models/room/maps/bool_master.jpg</file>
+        <file>models/room/maps/brown_wood.jpg</file>
+        <file>models/room/maps/ceiling.jpg</file>
+        <file>models/room/maps/clock.jpg</file>
+        <file>models/room/maps/clock_body.jpg</file>
+        <file>models/room/maps/earthinspace.jpg</file>
+        <file>models/room/maps/face.png</file>
+        <file>models/room/maps/floor.jpg</file>
+        <file>models/room/maps/hair.jpg</file>
+        <file>models/room/maps/kid_body.jpg</file>
+        <file>models/room/maps/mpm_vol.01_p22_pages_top_diff.jpg</file>
+        <file>models/room/maps/red.jpg</file>
+        <file>models/room/maps/photo_1.jpg</file>
+        <file>models/room/maps/photo_2.jpg</file>
+        <file>models/room/maps/photo_3.jpg</file>
+        <file>models/room/maps/photo_4.jpg</file>
+        <file>models/room/maps/photo_5.jpg</file>
+        <file>models/room/maps/photo_6.jpg</file>
+        <file>models/room/maps/book_page.jpg</file>
+        <file>models/room/maps/red_brown_wood.tif</file>
+        <file>models/room/maps/wall.jpg</file>
+        <file>models/room/maps/white.jpg</file>
     </qresource>
 </RCC>

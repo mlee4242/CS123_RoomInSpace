@@ -13,7 +13,7 @@
 #include "glm/ext.hpp"
 
 #define NEAR_CLIP    0.1f
-#define FAR_CLIP     10000.0f
+#define FAR_CLIP     100.0f
 
 VRView::VRView(QWidget *parent) : QOpenGLWidget(parent),
    m_hmd(0), m_frames(0), m_camera(new OrbitingCamera()),

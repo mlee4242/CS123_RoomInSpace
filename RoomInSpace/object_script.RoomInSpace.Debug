@@ -7,9 +7,12 @@ INPUT(
 ./debug\Settings.o
 ./debug\Helpers.o
 ./debug\Scene.o
-./debug\DataBinding.o
+./debug\BoundingBox.o
+./debug\SceneObject.o
+./debug\PrimitiveObject.o
+./debug\GroupObject.o
+./debug\ObjLoader.o
 ./debug\qrc_resources.o
 ./debug\moc_mainwindow.o
 ./debug\moc_vrview.o
-./debug\moc_DataBinding.o
 );

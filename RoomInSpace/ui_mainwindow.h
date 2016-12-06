@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.6.2
+** Created by: Qt User Interface Compiler version 5.7.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -19,7 +19,6 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QRadioButton>
-#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -32,21 +31,20 @@ public:
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout;
-    QVBoxLayout *verticalLayout_2;
-    QLabel *fpsLabel;
-    QSpacerItem *verticalSpacer;
+    QVBoxLayout *rightLayout;
+    QHBoxLayout *horizontalLayout_2;
     QGroupBox *groupBox;
     QVBoxLayout *verticalLayout_3;
-    QRadioButton *radioButton_2;
-    QRadioButton *radioButton;
-    QVBoxLayout *rightLayout;
+    QRadioButton *overUnderButton;
+    QRadioButton *sideSideButton;
+    QLabel *fpsLabel;
     QStatusBar *statusBar;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(1000, 600);
+        MainWindow->resize(1000, 1000);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         verticalLayout = new QVBoxLayout(centralWidget);
@@ -56,46 +54,6 @@ public:
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setSpacing(6);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        verticalLayout_2 = new QVBoxLayout();
-        verticalLayout_2->setSpacing(6);
-        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
-        fpsLabel = new QLabel(centralWidget);
-        fpsLabel->setObjectName(QStringLiteral("fpsLabel"));
-        QFont font;
-        font.setPointSize(12);
-        fpsLabel->setFont(font);
-        fpsLabel->setTextFormat(Qt::AutoText);
-        fpsLabel->setAlignment(Qt::AlignCenter);
-
-        verticalLayout_2->addWidget(fpsLabel);
-
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout_2->addItem(verticalSpacer);
-
-        groupBox = new QGroupBox(centralWidget);
-        groupBox->setObjectName(QStringLiteral("groupBox"));
-        verticalLayout_3 = new QVBoxLayout(groupBox);
-        verticalLayout_3->setSpacing(6);
-        verticalLayout_3->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
-        radioButton_2 = new QRadioButton(groupBox);
-        radioButton_2->setObjectName(QStringLiteral("radioButton_2"));
-        radioButton_2->setChecked(true);
-
-        verticalLayout_3->addWidget(radioButton_2);
-
-        radioButton = new QRadioButton(groupBox);
-        radioButton->setObjectName(QStringLiteral("radioButton"));
-
-        verticalLayout_3->addWidget(radioButton);
-
-
-        verticalLayout_2->addWidget(groupBox);
-
-
-        horizontalLayout->addLayout(verticalLayout_2);
-
         rightLayout = new QVBoxLayout();
         rightLayout->setSpacing(6);
         rightLayout->setObjectName(QStringLiteral("rightLayout"));
@@ -105,6 +63,43 @@ public:
 
 
         verticalLayout->addLayout(horizontalLayout);
+
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setSpacing(6);
+        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        horizontalLayout_2->setContentsMargins(1, -1, -1, -1);
+        groupBox = new QGroupBox(centralWidget);
+        groupBox->setObjectName(QStringLiteral("groupBox"));
+        verticalLayout_3 = new QVBoxLayout(groupBox);
+        verticalLayout_3->setSpacing(6);
+        verticalLayout_3->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
+        overUnderButton = new QRadioButton(groupBox);
+        overUnderButton->setObjectName(QStringLiteral("overUnderButton"));
+        overUnderButton->setChecked(true);
+
+        verticalLayout_3->addWidget(overUnderButton);
+
+        sideSideButton = new QRadioButton(groupBox);
+        sideSideButton->setObjectName(QStringLiteral("sideSideButton"));
+
+        verticalLayout_3->addWidget(sideSideButton);
+
+
+        horizontalLayout_2->addWidget(groupBox);
+
+        fpsLabel = new QLabel(centralWidget);
+        fpsLabel->setObjectName(QStringLiteral("fpsLabel"));
+        QFont font;
+        font.setPointSize(12);
+        fpsLabel->setFont(font);
+        fpsLabel->setTextFormat(Qt::AutoText);
+        fpsLabel->setAlignment(Qt::AlignCenter);
+
+        horizontalLayout_2->addWidget(fpsLabel);
+
+
+        verticalLayout->addLayout(horizontalLayout_2);
 
         MainWindow->setCentralWidget(centralWidget);
         statusBar = new QStatusBar(MainWindow);
@@ -119,10 +114,10 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Room In Space", 0));
-        fpsLabel->setText(QApplication::translate("MainWindow", "FPS", 0));
         groupBox->setTitle(QApplication::translate("MainWindow", "3D Mode", 0));
-        radioButton_2->setText(QApplication::translate("MainWindow", "Over and Under", 0));
-        radioButton->setText(QApplication::translate("MainWindow", "Side by Side", 0));
+        overUnderButton->setText(QApplication::translate("MainWindow", "Over and Under", 0));
+        sideSideButton->setText(QApplication::translate("MainWindow", "Side by Side", 0));
+        fpsLabel->setText(QApplication::translate("MainWindow", "FPS", 0));
     } // retranslateUi
 
 };

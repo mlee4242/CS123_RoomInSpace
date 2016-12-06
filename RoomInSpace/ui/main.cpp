@@ -4,9 +4,9 @@
 #include <QSettings>
 
 int main(int argc, char *argv[]) {
-   QCoreApplication::setOrganizationName("Skeletonbrain");
-   QCoreApplication::setOrganizationDomain("skeletonbrain.com");
-   QCoreApplication::setApplicationName("QVRViewer");
+   QCoreApplication::setOrganizationName("Brown University");
+   QCoreApplication::setOrganizationDomain("cs.brown.edu");
+   QCoreApplication::setApplicationName("Room In Space");
 
    QSurfaceFormat glFormat;
    glFormat.setVersion(4, 1);

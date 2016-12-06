@@ -10,7 +10,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = RoomInSpace
 TEMPLATE = app
-
+CONFIG += c++14
 
 SOURCES += ui/main.cpp\
     ui/mainwindow.cpp \
@@ -20,7 +20,11 @@ SOURCES += ui/main.cpp\
     utilities/Settings.cpp \
     utilities/Helpers.cpp \
     scene/Scene.cpp \
-    ui/DataBinding.cpp
+    scene/objmodeler/BoundingBox.cpp \
+    scene/objmodeler/SceneObject.cpp \
+    scene/objmodeler/PrimitiveObject.cpp \
+    scene/objmodeler/GroupObject.cpp \
+    scene/objmodeler/ObjLoader.cpp
 
 HEADERS  += ui/mainwindow.h \
     ui/modelformats.h \
@@ -31,7 +35,13 @@ HEADERS  += ui/mainwindow.h \
     utilities/Settings.h \
     utilities/Helpers.h \
     scene/Scene.h \
-    ui/DataBinding.h
+    scene/objmodeler/BoundingBox.h \
+    scene/objmodeler/SceneObject.h \
+    scene/objmodeler/PrimitiveObject.h \
+    scene/objmodeler/GroupObject.h \
+    scene/objmodeler/material.h \
+    scene/objmodeler/ObjLoader.h \
+    scene/objmodeler/delete_ptr.h
 
 FORMS    += ui/mainwindow.ui
 
@@ -73,6 +83,8 @@ win32 {
         copyToDestdir($${PWD}/thirdparty/openvr/bin/win64/openvr_api.dll)
     }
 }
+INCLUDEPATH += $$PWD/
+DEPENDPATH += $$PWD/
 
 INCLUDEPATH += thirdparty thirdparty/openvr/headers utilities shaders models textures camera ui scenegraph utilities thirdparty/include
 DEPENDPATH +=  thirdparty thirdparty/openvr/headers utilities textures models camera ui scenegraph utilities thirdparty/include
@@ -101,7 +113,7 @@ DEPENDPATH +=  thirdparty thirdparty/openvr/headers utilities textures models ca
 #    DEPLOY_TARGET = $$shell_quote($$shell_path($${OUT_PWD}/debug/$${TARGET}$${TARGET_CUSTOM_EXT}))
 #} else {
 #    # release
-#    DEPLOY_TARGET = $$shell_quote($$shell_path($${OUT_PWD}/release/$${TARGET}$${TARGET_CUSTOM_EXT}))
+#    DEPLOY_TARGET = $$shell_quote($$shell_path($${OUT_PWD}/release/$${TARGET}$${TARGE‘T_CUSTOM_EXT}))
 #}
 
 #QMAKE_POST_LINK += $${DEPLOY_COMMAND} $${DEPLOY_TARGET} $$escape_expand(\\n\\t)
