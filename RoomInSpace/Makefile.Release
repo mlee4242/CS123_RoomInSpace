@@ -92,7 +92,8 @@ DIST          = win32.rc \
 		scene\objmodeler\PrimitiveObject.h \
 		scene\objmodeler\GroupObject.h \
 		scene\objmodeler\material.h \
-		scene\objmodeler\ObjLoader.h ui\main.cpp \
+		scene\objmodeler\ObjLoader.h \
+		scene\objmodeler\delete_ptr.h ui\main.cpp \
 		ui\mainwindow.cpp \
 		ui\vrview.cpp \
 		camera\OrbitingCamera.cpp \
@@ -275,7 +276,7 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) RoomInSpace.zip $(SOURCES) $(DIST) RoomInSpace.pro C:\Qt\5.7\msvc2015_64\mkspecs\features\spec_pre.prf C:\Qt\5.7\msvc2015_64\mkspecs\common\angle.conf C:\Qt\5.7\msvc2015_64\mkspecs\common\msvc-base.conf C:\Qt\5.7\msvc2015_64\mkspecs\common\msvc-desktop.conf C:\Qt\5.7\msvc2015_64\mkspecs\qconfig.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dcore.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dcore_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dextras.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dextras_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dinput.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dinput_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dlogic.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dlogic_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dquick.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dquick_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dquickextras.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dquickextras_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dquickinput.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dquickinput_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dquickrender.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dquickrender_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_3drender.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_3drender_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_axbase.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_axbase_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_axcontainer.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_axcontainer_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_axserver.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_axserver_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_bluetooth.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_bluetooth_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_bootstrap_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_clucene_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_concurrent.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_concurrent_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_core.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_core_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_dbus.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_dbus_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_designer.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_designer_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_designercomponents_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_gamepad.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_gamepad_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_gui.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_gui_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_help.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_help_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_location.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_location_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_multimedia.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_multimedia_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_multimediawidgets.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_network.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_network_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_nfc.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_nfc_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_opengl.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_opengl_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_openglextensions.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_openglextensions_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_packetprotocol_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_platformsupport_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_positioning.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_positioning_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_printsupport.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_printsupport_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_purchasing.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_purchasing_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_qml.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_qml_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_qmldebug_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_qmldevtools_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_qmltest.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_qmltest_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_quick.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_quick_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_quickcontrols2.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_quickparticles_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_quickwidgets.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_script.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_script_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_scripttools.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_scripttools_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_scxml.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_scxml_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_sensors.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_sensors_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_serialbus.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_serialbus_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_serialport.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_serialport_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_sql.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_sql_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_svg.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_svg_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_testlib.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_testlib_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_uiplugin.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_uitools.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_uitools_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_webchannel.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_webchannel_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_webengine.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_webengine_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_webenginecore.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_webenginecore_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_webenginecoreheaders_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_webenginewidgets.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_webenginewidgets_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_websockets.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_websockets_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_webview.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_webview_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_widgets.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_widgets_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_winextras.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_winextras_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_xml.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_xml_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_xmlpatterns.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_zlib_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\features\qt_functions.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\qt_config.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\win32\qt_config.prf C:\Qt\5.7\msvc2015_64\mkspecs\win32-msvc2015\qmake.conf C:\Qt\5.7\msvc2015_64\mkspecs\features\spec_post.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\exclusive_builds.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\default_pre.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\win32\default_pre.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\resolve_config.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\exclusive_builds_post.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\default_post.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\build_pass.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\win32\rtti.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\precompile_header.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\warn_on.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\qt.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\resources.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\moc.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\win32\opengl.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\uic.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\file_copies.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\win32\windows.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\testcase_targets.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\exceptions.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\yacc.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\lex.prf RoomInSpace.pro resources.qrc C:\Qt\5.7\msvc2015_64\lib\qtmain.prl C:\Qt\5.7\msvc2015_64\lib\Qt5OpenGL.prl C:\Qt\5.7\msvc2015_64\lib\Qt5Widgets.prl C:\Qt\5.7\msvc2015_64\lib\Qt5Gui.prl C:\Qt\5.7\msvc2015_64\lib\Qt5Core.prl  NO_PCH_SOURCES RESOURCES HEADERS SOURCES OBJECTIVE_SOURCES FORMS YACCSOURCES YACCSOURCES LEXSOURCES 
+	$(ZIP) RoomInSpace.zip $(SOURCES) $(DIST) RoomInSpace.pro C:\Qt\5.7\msvc2015_64\mkspecs\features\spec_pre.prf C:\Qt\5.7\msvc2015_64\mkspecs\common\angle.conf C:\Qt\5.7\msvc2015_64\mkspecs\common\msvc-base.conf C:\Qt\5.7\msvc2015_64\mkspecs\common\msvc-desktop.conf C:\Qt\5.7\msvc2015_64\mkspecs\qconfig.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dcore.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dcore_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dextras.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dextras_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dinput.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dinput_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dlogic.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dlogic_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dquick.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dquick_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dquickextras.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dquickextras_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dquickinput.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dquickinput_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dquickrender.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dquickrender_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_3drender.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_3drender_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_axbase.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_axbase_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_axcontainer.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_axcontainer_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_axserver.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_axserver_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_bluetooth.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_bluetooth_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_bootstrap_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_clucene_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_concurrent.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_concurrent_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_core.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_core_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_dbus.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_dbus_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_designer.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_designer_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_designercomponents_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_gamepad.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_gamepad_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_gui.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_gui_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_help.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_help_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_location.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_location_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_multimedia.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_multimedia_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_multimediawidgets.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_network.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_network_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_nfc.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_nfc_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_opengl.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_opengl_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_openglextensions.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_openglextensions_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_packetprotocol_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_platformsupport_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_positioning.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_positioning_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_printsupport.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_printsupport_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_purchasing.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_purchasing_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_qml.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_qml_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_qmldebug_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_qmldevtools_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_qmltest.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_qmltest_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_quick.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_quick_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_quickcontrols2.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_quickparticles_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_quickwidgets.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_script.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_script_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_scripttools.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_scripttools_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_scxml.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_scxml_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_sensors.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_sensors_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_serialbus.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_serialbus_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_serialport.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_serialport_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_sql.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_sql_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_svg.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_svg_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_testlib.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_testlib_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_uiplugin.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_uitools.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_uitools_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_webchannel.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_webchannel_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_webengine.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_webengine_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_webenginecore.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_webenginecore_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_webenginecoreheaders_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_webenginewidgets.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_webenginewidgets_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_websockets.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_websockets_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_webview.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_webview_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_widgets.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_widgets_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_winextras.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_winextras_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_xml.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_xml_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_xmlpatterns.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\modules\qt_lib_zlib_private.pri C:\Qt\5.7\msvc2015_64\mkspecs\features\qt_functions.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\qt_config.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\win32\qt_config.prf C:\Qt\5.7\msvc2015_64\mkspecs\win32-msvc2015\qmake.conf C:\Qt\5.7\msvc2015_64\mkspecs\features\spec_post.prf .qmake.stash C:\Qt\5.7\msvc2015_64\mkspecs\features\exclusive_builds.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\default_pre.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\win32\default_pre.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\resolve_config.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\exclusive_builds_post.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\default_post.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\build_pass.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\win32\rtti.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\precompile_header.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\warn_on.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\qt.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\resources.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\moc.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\win32\opengl.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\uic.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\file_copies.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\win32\windows.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\testcase_targets.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\exceptions.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\yacc.prf C:\Qt\5.7\msvc2015_64\mkspecs\features\lex.prf RoomInSpace.pro resources.qrc C:\Qt\5.7\msvc2015_64\lib\qtmain.prl C:\Qt\5.7\msvc2015_64\lib\Qt5OpenGL.prl C:\Qt\5.7\msvc2015_64\lib\Qt5Widgets.prl C:\Qt\5.7\msvc2015_64\lib\Qt5Gui.prl C:\Qt\5.7\msvc2015_64\lib\Qt5Core.prl  NO_PCH_SOURCES RESOURCES HEADERS SOURCES OBJECTIVE_SOURCES FORMS YACCSOURCES YACCSOURCES LEXSOURCES 
 
 clean: compiler_clean 
 	-$(DEL_FILE) release\main.obj release\mainwindow.obj release\vrview.obj release\OrbitingCamera.obj release\CamtransCamera.obj release\Settings.obj release\Helpers.obj release\Scene.obj release\BoundingBox.obj release\SceneObject.obj release\PrimitiveObject.obj release\GroupObject.obj release\ObjLoader.obj release\qrc_resources.obj release\moc_mainwindow.obj release\moc_vrview.obj
@@ -283,7 +284,7 @@ clean: compiler_clean
 	-$(DEL_FILE) release\win32.res
 
 distclean: clean 
-	-$(DEL_FILE) release\RoomInSpace.lib
+	-$(DEL_FILE) .qmake.stash release\RoomInSpace.lib
 	-$(DEL_FILE) $(DESTDIR_TARGET)
 	-$(DEL_FILE) Makefile.Release
 
@@ -313,8 +314,43 @@ release\qrc_resources.cpp: resources.qrc \
 		models\cylinder\cylinder.obj \
 		models\room\roominspace.mtl \
 		models\room\roominspace.obj \
+		models\room\maps\6-091229101607-5-lit.jpg \
+		models\room\maps\black.jpg \
+		models\room\maps\kid_body.jpg \
+		models\room\maps\6-091229101608-9-lit.jpg \
+		models\room\maps\wall.jpg \
+		models\room\maps\bool_master.jpg \
+		models\room\maps\20100724062419875118.jpg \
+		models\room\maps\floor.jpg \
+		models\room\maps\clock_body.jpg \
+		models\room\maps\photo_1.jpg \
+		models\room\maps\photo_2.jpg \
+		models\room\maps\book_page.jpg \
+		models\room\maps\mpm_vol.01_p22_pages_top_diff.jpg \
+		models\room\maps\photo_3.jpg \
+		models\room\maps\bed_cover.jpg \
+		models\room\maps\photo_4.jpg \
+		models\room\maps\photo_5.jpg \
+		models\room\maps\photo_6.jpg \
+		models\room\maps\6-091229101608-11-lit.jpg \
+		models\room\maps\face.png \
+		models\room\maps\white.jpg \
+		models\room\maps\2457331_093930679000_2.jpg \
+		models\room\maps\clock.jpg \
+		models\room\maps\hair.jpg \
+		models\room\maps\brown_wood.jpg \
+		models\room\maps\20100724062419875422.jpg \
+		models\room\maps\red_brown_wood.tif \
+		models\room\maps\beige_wood.jpg \
+		models\room\maps\red.jpg \
+		models\room\maps\6-091229101607-7-lit.jpg \
+		models\room\maps\ceiling.jpg \
+		models\room\maps\earthinspace.jpg \
 		models\tests\test.mtl \
 		models\tests\test.obj \
+		models\tests\maps\download3.png \
+		models\tests\maps\download.jpg \
+		models\tests\maps\download2.jpg \
 		models\cube\cube.obj \
 		models\isphere\isphere.obj \
 		models\simpleroom\roomsimple.obj \
@@ -435,7 +471,7 @@ release\moc_mainwindow.cpp: C:\Qt\5.7\msvc2015_64\include\QtWidgets\QButtonGroup
 		C:\Qt\5.7\msvc2015_64\include\QtGui\qgenericmatrix.h \
 		ui\mainwindow.h \
 		C:\Qt\5.7\msvc2015_64\bin\moc.exe
-	C:\Qt\5.7\msvc2015_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1900 -D_WIN32 -D_WIN64 -IC:/Qt/5.7/msvc2015_64/mkspecs/win32-msvc2015 -IE:/Code/CS123_RoomInSpace/RoomInSpace -IE:/Code/CS123_RoomInSpace/RoomInSpace -IE:/Code/CS123_RoomInSpace/RoomInSpace/thirdparty -IE:/Code/CS123_RoomInSpace/RoomInSpace/thirdparty/openvr/headers -IE:/Code/CS123_RoomInSpace/RoomInSpace/utilities -IE:/Code/CS123_RoomInSpace/RoomInSpace/shaders -IE:/Code/CS123_RoomInSpace/RoomInSpace/models -IE:/Code/CS123_RoomInSpace/RoomInSpace/textures -IE:/Code/CS123_RoomInSpace/RoomInSpace/camera -IE:/Code/CS123_RoomInSpace/RoomInSpace/ui -IE:/Code/CS123_RoomInSpace/RoomInSpace/scenegraph -IE:/Code/CS123_RoomInSpace/RoomInSpace/utilities -IE:/Code/CS123_RoomInSpace/RoomInSpace/thirdparty/include -IC:/Qt/5.7/msvc2015_64/include -IC:/Qt/5.7/msvc2015_64/include/QtOpenGL -IC:/Qt/5.7/msvc2015_64/include/QtWidgets -IC:/Qt/5.7/msvc2015_64/include/QtGui -IC:/Qt/5.7/msvc2015_64/include/QtANGLE -IC:/Qt/5.7/msvc2015_64/include/QtCore ui\mainwindow.h -o release\moc_mainwindow.cpp
+	C:\Qt\5.7\msvc2015_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1900 -D_WIN32 -D_WIN64 -IC:/Qt/5.7/msvc2015_64/mkspecs/win32-msvc2015 -IE:/Code/CS123_RoomInSpace/RoomInSpace -IE:/Code/CS123_RoomInSpace/RoomInSpace -IE:/Code/CS123_RoomInSpace/RoomInSpace/thirdparty -IE:/Code/CS123_RoomInSpace/RoomInSpace/thirdparty/openvr/headers -IE:/Code/CS123_RoomInSpace/RoomInSpace/utilities -IE:/Code/CS123_RoomInSpace/RoomInSpace/shaders -IE:/Code/CS123_RoomInSpace/RoomInSpace/models -IE:/Code/CS123_RoomInSpace/RoomInSpace/textures -IE:/Code/CS123_RoomInSpace/RoomInSpace/camera -IE:/Code/CS123_RoomInSpace/RoomInSpace/ui -IE:/Code/CS123_RoomInSpace/RoomInSpace/scenegraph -IE:/Code/CS123_RoomInSpace/RoomInSpace/utilities -IE:/Code/CS123_RoomInSpace/RoomInSpace/thirdparty/include -IC:/Qt/5.7/msvc2015_64/include -IC:/Qt/5.7/msvc2015_64/include/QtOpenGL -IC:/Qt/5.7/msvc2015_64/include/QtWidgets -IC:/Qt/5.7/msvc2015_64/include/QtGui -IC:/Qt/5.7/msvc2015_64/include/QtANGLE -IC:/Qt/5.7/msvc2015_64/include/QtCore -IC:/Qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ui\mainwindow.h -o release\moc_mainwindow.cpp
 
 release\moc_vrview.cpp: C:\Qt\5.7\msvc2015_64\include\QtGui\QOpenGLFunctions_4_1_Core \
 		C:\Qt\5.7\msvc2015_64\include\QtGui\qopenglfunctions_4_1_core.h \
@@ -655,9 +691,163 @@ release\moc_vrview.cpp: C:\Qt\5.7\msvc2015_64\include\QtGui\QOpenGLFunctions_4_1
 		utilities\Settings.h \
 		utilities\Helpers.h \
 		C:\Qt\5.7\msvc2015_64\include\QtGui\QMatrix4x4 \
+		scene\objmodeler\ObjLoader.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\QString \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\QMap \
+		scene\objmodeler\material.h \
+		thirdparty\glm\ext.hpp \
+		thirdparty\glm\gtc\constants.hpp \
+		thirdparty\glm\gtc\constants.inl \
+		thirdparty\glm\gtc\epsilon.hpp \
+		thirdparty\glm\gtc\epsilon.inl \
+		thirdparty\glm\gtc\quaternion.hpp \
+		thirdparty\glm\gtc\quaternion.inl \
+		thirdparty\glm\gtc\matrix_access.hpp \
+		thirdparty\glm\gtc\matrix_access.inl \
+		thirdparty\glm\gtc\matrix_integer.hpp \
+		thirdparty\glm\gtc\matrix_inverse.hpp \
+		thirdparty\glm\gtc\matrix_inverse.inl \
+		thirdparty\glm\gtc\matrix_transform.hpp \
+		thirdparty\glm\gtc\matrix_transform.inl \
+		thirdparty\glm\gtc\noise.hpp \
+		thirdparty\glm\gtc\noise.inl \
+		thirdparty\glm\detail\_noise.hpp \
+		thirdparty\glm\gtc\packing.hpp \
+		thirdparty\glm\gtc\type_precision.hpp \
+		thirdparty\glm\gtc\type_precision.inl \
+		thirdparty\glm\gtc\packing.inl \
+		thirdparty\glm\gtc\random.hpp \
+		thirdparty\glm\gtc\random.inl \
+		thirdparty\glm\gtc\reciprocal.hpp \
+		thirdparty\glm\gtc\reciprocal.inl \
+		thirdparty\glm\gtc\type_ptr.hpp \
+		thirdparty\glm\gtc\type_ptr.inl \
+		thirdparty\glm\gtc\ulp.hpp \
+		thirdparty\glm\gtc\ulp.inl \
+		thirdparty\glm\gtx\associated_min_max.hpp \
+		thirdparty\glm\gtx\associated_min_max.inl \
+		thirdparty\glm\gtx\bit.hpp \
+		thirdparty\glm\gtx\bit.inl \
+		thirdparty\glm\gtx\closest_point.hpp \
+		thirdparty\glm\gtx\closest_point.inl \
+		thirdparty\glm\gtx\color_space.hpp \
+		thirdparty\glm\gtx\color_space.inl \
+		thirdparty\glm\gtx\color_space_YCoCg.hpp \
+		thirdparty\glm\gtx\color_space_YCoCg.inl \
+		thirdparty\glm\gtx\compatibility.hpp \
+		thirdparty\glm\gtx\compatibility.inl \
+		thirdparty\glm\gtx\component_wise.hpp \
+		thirdparty\glm\gtx\component_wise.inl \
+		thirdparty\glm\gtx\dual_quaternion.hpp \
+		thirdparty\glm\gtx\dual_quaternion.inl \
+		thirdparty\glm\gtx\euler_angles.hpp \
+		thirdparty\glm\gtx\euler_angles.inl \
+		thirdparty\glm\gtx\extend.hpp \
+		thirdparty\glm\gtx\extend.inl \
+		thirdparty\glm\gtx\extented_min_max.hpp \
+		thirdparty\glm\gtx\extented_min_max.inl \
+		thirdparty\glm\gtx\fast_exponential.hpp \
+		thirdparty\glm\gtx\fast_exponential.inl \
+		thirdparty\glm\gtx\fast_square_root.hpp \
+		thirdparty\glm\gtx\fast_square_root.inl \
+		thirdparty\glm\gtx\fast_trigonometry.hpp \
+		thirdparty\glm\gtx\fast_trigonometry.inl \
+		thirdparty\glm\gtx\gradient_paint.hpp \
+		thirdparty\glm\gtx\optimum_pow.hpp \
+		thirdparty\glm\gtx\optimum_pow.inl \
+		thirdparty\glm\gtx\gradient_paint.inl \
+		thirdparty\glm\gtx\handed_coordinate_space.hpp \
+		thirdparty\glm\gtx\handed_coordinate_space.inl \
+		thirdparty\glm\gtx\inertia.hpp \
+		thirdparty\glm\gtx\inertia.inl \
+		thirdparty\glm\gtx\int_10_10_10_2.hpp \
+		thirdparty\glm\gtx\raw_data.hpp \
+		thirdparty\glm\gtx\raw_data.inl \
+		thirdparty\glm\gtx\int_10_10_10_2.inl \
+		thirdparty\glm\gtx\integer.hpp \
+		thirdparty\glm\gtx\integer.inl \
+		thirdparty\glm\gtx\intersect.hpp \
+		thirdparty\glm\gtx\intersect.inl \
+		thirdparty\glm\gtx\log_base.hpp \
+		thirdparty\glm\gtx\log_base.inl \
+		thirdparty\glm\gtx\matrix_cross_product.hpp \
+		thirdparty\glm\gtx\matrix_cross_product.inl \
+		thirdparty\glm\gtx\matrix_interpolation.hpp \
+		thirdparty\glm\gtx\matrix_interpolation.inl \
+		thirdparty\glm\gtx\matrix_major_storage.hpp \
+		thirdparty\glm\gtx\matrix_major_storage.inl \
+		thirdparty\glm\gtx\matrix_operation.hpp \
+		thirdparty\glm\gtx\matrix_operation.inl \
+		thirdparty\glm\gtx\matrix_query.hpp \
+		thirdparty\glm\gtx\vector_query.hpp \
+		thirdparty\glm\gtx\vector_query.inl \
+		thirdparty\glm\gtx\matrix_query.inl \
+		thirdparty\glm\gtx\mixed_product.hpp \
+		thirdparty\glm\gtx\mixed_product.inl \
+		thirdparty\glm\gtx\multiple.hpp \
+		thirdparty\glm\gtx\multiple.inl \
+		thirdparty\glm\gtx\norm.hpp \
+		thirdparty\glm\gtx\quaternion.hpp \
+		thirdparty\glm\gtx\norm.inl \
+		thirdparty\glm\gtx\normal.hpp \
+		thirdparty\glm\gtx\normal.inl \
+		thirdparty\glm\gtx\normalize_dot.hpp \
+		thirdparty\glm\gtx\normalize_dot.inl \
+		thirdparty\glm\gtx\number_precision.hpp \
+		thirdparty\glm\gtx\number_precision.inl \
+		thirdparty\glm\gtx\orthonormalize.hpp \
+		thirdparty\glm\gtx\orthonormalize.inl \
+		thirdparty\glm\gtx\perpendicular.hpp \
+		thirdparty\glm\gtx\projection.hpp \
+		thirdparty\glm\gtx\projection.inl \
+		thirdparty\glm\gtx\perpendicular.inl \
+		thirdparty\glm\gtx\polar_coordinates.hpp \
+		thirdparty\glm\gtx\polar_coordinates.inl \
+		thirdparty\glm\gtx\rotate_vector.hpp \
+		thirdparty\glm\gtx\transform.hpp \
+		thirdparty\glm\gtx\transform.inl \
+		thirdparty\glm\gtx\rotate_vector.inl \
+		thirdparty\glm\gtx\spline.hpp \
+		thirdparty\glm\gtx\spline.inl \
+		thirdparty\glm\gtx\std_based_type.hpp \
+		thirdparty\glm\gtx\std_based_type.inl \
+		thirdparty\glm\gtx\string_cast.hpp \
+		thirdparty\glm\gtx\string_cast.inl \
+		thirdparty\glm\gtx\transform2.hpp \
+		thirdparty\glm\gtx\transform2.inl \
+		thirdparty\glm\gtx\vec1.hpp \
+		thirdparty\glm\gtx\vec1.inl \
+		thirdparty\glm\gtx\vector_angle.hpp \
+		thirdparty\glm\gtx\vector_angle.inl \
+		thirdparty\glm\gtx\wrap.hpp \
+		thirdparty\glm\gtx\wrap.inl \
+		thirdparty\glm\gtx\simd_vec4.hpp \
+		thirdparty\glm\detail\intrinsic_common.hpp \
+		thirdparty\glm\detail\intrinsic_common.inl \
+		thirdparty\glm\detail\intrinsic_geometric.hpp \
+		thirdparty\glm\detail\intrinsic_geometric.inl \
+		thirdparty\glm\detail\intrinsic_integer.hpp \
+		thirdparty\glm\detail\intrinsic_integer.inl \
+		thirdparty\glm\gtx\simd_vec4.inl \
+		thirdparty\glm\gtx\simd_mat4.hpp \
+		thirdparty\glm\detail\intrinsic_matrix.hpp \
+		thirdparty\glm\detail\intrinsic_matrix.inl \
+		thirdparty\glm\gtx\simd_mat4.inl \
+		scene\objmodeler\PrimitiveObject.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\QVector \
+		C:\Qt\5.7\msvc2015_64\include\QtOpenGL\QGL \
+		C:\Qt\5.7\msvc2015_64\include\QtOpenGL\qgl.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qpaintengine.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qpainter.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qtextoption.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qpen.h \
+		C:\Qt\5.7\msvc2015_64\include\QtOpenGL\qglcolormap.h \
+		C:\Qt\5.7\msvc2015_64\include\QtOpenGL\qtopenglglobal.h \
+		scene\objmodeler\SceneObject.h \
+		scene\objmodeler\BoundingBox.h \
 		ui\vrview.h \
 		C:\Qt\5.7\msvc2015_64\bin\moc.exe
-	C:\Qt\5.7\msvc2015_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1900 -D_WIN32 -D_WIN64 -IC:/Qt/5.7/msvc2015_64/mkspecs/win32-msvc2015 -IE:/Code/CS123_RoomInSpace/RoomInSpace -IE:/Code/CS123_RoomInSpace/RoomInSpace -IE:/Code/CS123_RoomInSpace/RoomInSpace/thirdparty -IE:/Code/CS123_RoomInSpace/RoomInSpace/thirdparty/openvr/headers -IE:/Code/CS123_RoomInSpace/RoomInSpace/utilities -IE:/Code/CS123_RoomInSpace/RoomInSpace/shaders -IE:/Code/CS123_RoomInSpace/RoomInSpace/models -IE:/Code/CS123_RoomInSpace/RoomInSpace/textures -IE:/Code/CS123_RoomInSpace/RoomInSpace/camera -IE:/Code/CS123_RoomInSpace/RoomInSpace/ui -IE:/Code/CS123_RoomInSpace/RoomInSpace/scenegraph -IE:/Code/CS123_RoomInSpace/RoomInSpace/utilities -IE:/Code/CS123_RoomInSpace/RoomInSpace/thirdparty/include -IC:/Qt/5.7/msvc2015_64/include -IC:/Qt/5.7/msvc2015_64/include/QtOpenGL -IC:/Qt/5.7/msvc2015_64/include/QtWidgets -IC:/Qt/5.7/msvc2015_64/include/QtGui -IC:/Qt/5.7/msvc2015_64/include/QtANGLE -IC:/Qt/5.7/msvc2015_64/include/QtCore ui\vrview.h -o release\moc_vrview.cpp
+	C:\Qt\5.7\msvc2015_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1900 -D_WIN32 -D_WIN64 -IC:/Qt/5.7/msvc2015_64/mkspecs/win32-msvc2015 -IE:/Code/CS123_RoomInSpace/RoomInSpace -IE:/Code/CS123_RoomInSpace/RoomInSpace -IE:/Code/CS123_RoomInSpace/RoomInSpace/thirdparty -IE:/Code/CS123_RoomInSpace/RoomInSpace/thirdparty/openvr/headers -IE:/Code/CS123_RoomInSpace/RoomInSpace/utilities -IE:/Code/CS123_RoomInSpace/RoomInSpace/shaders -IE:/Code/CS123_RoomInSpace/RoomInSpace/models -IE:/Code/CS123_RoomInSpace/RoomInSpace/textures -IE:/Code/CS123_RoomInSpace/RoomInSpace/camera -IE:/Code/CS123_RoomInSpace/RoomInSpace/ui -IE:/Code/CS123_RoomInSpace/RoomInSpace/scenegraph -IE:/Code/CS123_RoomInSpace/RoomInSpace/utilities -IE:/Code/CS123_RoomInSpace/RoomInSpace/thirdparty/include -IC:/Qt/5.7/msvc2015_64/include -IC:/Qt/5.7/msvc2015_64/include/QtOpenGL -IC:/Qt/5.7/msvc2015_64/include/QtWidgets -IC:/Qt/5.7/msvc2015_64/include/QtGui -IC:/Qt/5.7/msvc2015_64/include/QtANGLE -IC:/Qt/5.7/msvc2015_64/include/QtCore -IC:/Qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ui\vrview.h -o release\moc_vrview.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -1071,6 +1261,160 @@ release\mainwindow.obj: ui\mainwindow.cpp ui/mainwindow.h \
 		scene/Scene.h \
 		utilities/Settings.h \
 		utilities/Helpers.h \
+		scene/objmodeler/ObjLoader.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\QString \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\QMap \
+		scene/objmodeler/material.h \
+		thirdparty\glm\ext.hpp \
+		thirdparty\glm\gtc\constants.hpp \
+		thirdparty\glm\gtc\constants.inl \
+		thirdparty\glm\gtc\epsilon.hpp \
+		thirdparty\glm\gtc\epsilon.inl \
+		thirdparty\glm\gtc\quaternion.hpp \
+		thirdparty\glm\gtc\quaternion.inl \
+		thirdparty\glm\gtc\matrix_access.hpp \
+		thirdparty\glm\gtc\matrix_access.inl \
+		thirdparty\glm\gtc\matrix_integer.hpp \
+		thirdparty\glm\gtc\matrix_inverse.hpp \
+		thirdparty\glm\gtc\matrix_inverse.inl \
+		thirdparty\glm\gtc\matrix_transform.hpp \
+		thirdparty\glm\gtc\matrix_transform.inl \
+		thirdparty\glm\gtc\noise.hpp \
+		thirdparty\glm\gtc\noise.inl \
+		thirdparty\glm\detail\_noise.hpp \
+		thirdparty\glm\gtc\packing.hpp \
+		thirdparty\glm\gtc\type_precision.hpp \
+		thirdparty\glm\gtc\type_precision.inl \
+		thirdparty\glm\gtc\packing.inl \
+		thirdparty\glm\gtc\random.hpp \
+		thirdparty\glm\gtc\random.inl \
+		thirdparty\glm\gtc\reciprocal.hpp \
+		thirdparty\glm\gtc\reciprocal.inl \
+		thirdparty\glm\gtc\type_ptr.hpp \
+		thirdparty\glm\gtc\type_ptr.inl \
+		thirdparty\glm\gtc\ulp.hpp \
+		thirdparty\glm\gtc\ulp.inl \
+		thirdparty\glm\gtx\associated_min_max.hpp \
+		thirdparty\glm\gtx\associated_min_max.inl \
+		thirdparty\glm\gtx\bit.hpp \
+		thirdparty\glm\gtx\bit.inl \
+		thirdparty\glm\gtx\closest_point.hpp \
+		thirdparty\glm\gtx\closest_point.inl \
+		thirdparty\glm\gtx\color_space.hpp \
+		thirdparty\glm\gtx\color_space.inl \
+		thirdparty\glm\gtx\color_space_YCoCg.hpp \
+		thirdparty\glm\gtx\color_space_YCoCg.inl \
+		thirdparty\glm\gtx\compatibility.hpp \
+		thirdparty\glm\gtx\compatibility.inl \
+		thirdparty\glm\gtx\component_wise.hpp \
+		thirdparty\glm\gtx\component_wise.inl \
+		thirdparty\glm\gtx\dual_quaternion.hpp \
+		thirdparty\glm\gtx\dual_quaternion.inl \
+		thirdparty\glm\gtx\euler_angles.hpp \
+		thirdparty\glm\gtx\euler_angles.inl \
+		thirdparty\glm\gtx\extend.hpp \
+		thirdparty\glm\gtx\extend.inl \
+		thirdparty\glm\gtx\extented_min_max.hpp \
+		thirdparty\glm\gtx\extented_min_max.inl \
+		thirdparty\glm\gtx\fast_exponential.hpp \
+		thirdparty\glm\gtx\fast_exponential.inl \
+		thirdparty\glm\gtx\fast_square_root.hpp \
+		thirdparty\glm\gtx\fast_square_root.inl \
+		thirdparty\glm\gtx\fast_trigonometry.hpp \
+		thirdparty\glm\gtx\fast_trigonometry.inl \
+		thirdparty\glm\gtx\gradient_paint.hpp \
+		thirdparty\glm\gtx\optimum_pow.hpp \
+		thirdparty\glm\gtx\optimum_pow.inl \
+		thirdparty\glm\gtx\gradient_paint.inl \
+		thirdparty\glm\gtx\handed_coordinate_space.hpp \
+		thirdparty\glm\gtx\handed_coordinate_space.inl \
+		thirdparty\glm\gtx\inertia.hpp \
+		thirdparty\glm\gtx\inertia.inl \
+		thirdparty\glm\gtx\int_10_10_10_2.hpp \
+		thirdparty\glm\gtx\raw_data.hpp \
+		thirdparty\glm\gtx\raw_data.inl \
+		thirdparty\glm\gtx\int_10_10_10_2.inl \
+		thirdparty\glm\gtx\integer.hpp \
+		thirdparty\glm\gtx\integer.inl \
+		thirdparty\glm\gtx\intersect.hpp \
+		thirdparty\glm\gtx\intersect.inl \
+		thirdparty\glm\gtx\log_base.hpp \
+		thirdparty\glm\gtx\log_base.inl \
+		thirdparty\glm\gtx\matrix_cross_product.hpp \
+		thirdparty\glm\gtx\matrix_cross_product.inl \
+		thirdparty\glm\gtx\matrix_interpolation.hpp \
+		thirdparty\glm\gtx\matrix_interpolation.inl \
+		thirdparty\glm\gtx\matrix_major_storage.hpp \
+		thirdparty\glm\gtx\matrix_major_storage.inl \
+		thirdparty\glm\gtx\matrix_operation.hpp \
+		thirdparty\glm\gtx\matrix_operation.inl \
+		thirdparty\glm\gtx\matrix_query.hpp \
+		thirdparty\glm\gtx\vector_query.hpp \
+		thirdparty\glm\gtx\vector_query.inl \
+		thirdparty\glm\gtx\matrix_query.inl \
+		thirdparty\glm\gtx\mixed_product.hpp \
+		thirdparty\glm\gtx\mixed_product.inl \
+		thirdparty\glm\gtx\multiple.hpp \
+		thirdparty\glm\gtx\multiple.inl \
+		thirdparty\glm\gtx\norm.hpp \
+		thirdparty\glm\gtx\quaternion.hpp \
+		thirdparty\glm\gtx\norm.inl \
+		thirdparty\glm\gtx\normal.hpp \
+		thirdparty\glm\gtx\normal.inl \
+		thirdparty\glm\gtx\normalize_dot.hpp \
+		thirdparty\glm\gtx\normalize_dot.inl \
+		thirdparty\glm\gtx\number_precision.hpp \
+		thirdparty\glm\gtx\number_precision.inl \
+		thirdparty\glm\gtx\orthonormalize.hpp \
+		thirdparty\glm\gtx\orthonormalize.inl \
+		thirdparty\glm\gtx\perpendicular.hpp \
+		thirdparty\glm\gtx\projection.hpp \
+		thirdparty\glm\gtx\projection.inl \
+		thirdparty\glm\gtx\perpendicular.inl \
+		thirdparty\glm\gtx\polar_coordinates.hpp \
+		thirdparty\glm\gtx\polar_coordinates.inl \
+		thirdparty\glm\gtx\rotate_vector.hpp \
+		thirdparty\glm\gtx\transform.hpp \
+		thirdparty\glm\gtx\transform.inl \
+		thirdparty\glm\gtx\rotate_vector.inl \
+		thirdparty\glm\gtx\spline.hpp \
+		thirdparty\glm\gtx\spline.inl \
+		thirdparty\glm\gtx\std_based_type.hpp \
+		thirdparty\glm\gtx\std_based_type.inl \
+		thirdparty\glm\gtx\string_cast.hpp \
+		thirdparty\glm\gtx\string_cast.inl \
+		thirdparty\glm\gtx\transform2.hpp \
+		thirdparty\glm\gtx\transform2.inl \
+		thirdparty\glm\gtx\vec1.hpp \
+		thirdparty\glm\gtx\vec1.inl \
+		thirdparty\glm\gtx\vector_angle.hpp \
+		thirdparty\glm\gtx\vector_angle.inl \
+		thirdparty\glm\gtx\wrap.hpp \
+		thirdparty\glm\gtx\wrap.inl \
+		thirdparty\glm\gtx\simd_vec4.hpp \
+		thirdparty\glm\detail\intrinsic_common.hpp \
+		thirdparty\glm\detail\intrinsic_common.inl \
+		thirdparty\glm\detail\intrinsic_geometric.hpp \
+		thirdparty\glm\detail\intrinsic_geometric.inl \
+		thirdparty\glm\detail\intrinsic_integer.hpp \
+		thirdparty\glm\detail\intrinsic_integer.inl \
+		thirdparty\glm\gtx\simd_vec4.inl \
+		thirdparty\glm\gtx\simd_mat4.hpp \
+		thirdparty\glm\detail\intrinsic_matrix.hpp \
+		thirdparty\glm\detail\intrinsic_matrix.inl \
+		thirdparty\glm\gtx\simd_mat4.inl \
+		scene/objmodeler/PrimitiveObject.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\QVector \
+		C:\Qt\5.7\msvc2015_64\include\QtOpenGL\QGL \
+		C:\Qt\5.7\msvc2015_64\include\QtOpenGL\qgl.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qpaintengine.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qpainter.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qtextoption.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qpen.h \
+		C:\Qt\5.7\msvc2015_64\include\QtOpenGL\qglcolormap.h \
+		C:\Qt\5.7\msvc2015_64\include\QtOpenGL\qtopenglglobal.h \
+		scene/objmodeler/SceneObject.h \
+		scene/objmodeler/BoundingBox.h \
 		C:\Qt\5.7\msvc2015_64\include\QtCore\QSettings \
 		C:\Qt\5.7\msvc2015_64\include\QtCore\qsettings.h \
 		C:\Qt\5.7\msvc2015_64\include\QtWidgets\QFileDialog \
@@ -1303,38 +1647,10 @@ release\vrview.obj: ui\vrview.cpp ui/vrview.h \
 		utilities/Settings.h \
 		utilities/Helpers.h \
 		C:\Qt\5.7\msvc2015_64\include\QtGui\QMatrix4x4 \
-		C:\Qt\5.7\msvc2015_64\include\QtWidgets\QMessageBox \
-		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qmessagebox.h \
-		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qdialog.h \
+		scene/objmodeler/ObjLoader.h \
 		C:\Qt\5.7\msvc2015_64\include\QtCore\QString \
-		C:\Qt\5.7\msvc2015_64\include\QtCore\QTimer \
-		C:\Qt\5.7\msvc2015_64\include\QtCore\qtimer.h \
-		C:\Qt\5.7\msvc2015_64\include\QtCore\qbasictimer.h \
-		C:\Qt\5.7\msvc2015_64\include\QtCore\QFileInfo \
-		C:\Qt\5.7\msvc2015_64\include\QtCore\qfileinfo.h \
-		C:\Qt\5.7\msvc2015_64\include\QtCore\QDir \
-		C:\Qt\5.7\msvc2015_64\include\QtCore\qdir.h \
-		C:\Qt\5.7\msvc2015_64\include\QtGui\QKeyEvent \
-		C:\Qt\5.7\msvc2015_64\include\QtWidgets\QApplication \
-		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qapplication.h \
-		C:\Qt\5.7\msvc2015_64\include\QtCore\qcoreapplication.h \
-		C:\Qt\5.7\msvc2015_64\include\QtCore\qeventloop.h \
-		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qdesktopwidget.h \
-		C:\Qt\5.7\msvc2015_64\include\QtGui\qguiapplication.h \
-		C:\Qt\5.7\msvc2015_64\include\QtGui\qinputmethod.h \
-		ui\modelFormats.h \
-		C:\Qt\5.7\msvc2015_64\include\QtCore\QVector \
-		C:\Qt\5.7\msvc2015_64\include\QtCore\QFile \
-		C:\Qt\5.7\msvc2015_64\include\QtCore\QTextStream \
-		C:\Qt\5.7\msvc2015_64\include\QtOpenGL\QGL \
-		C:\Qt\5.7\msvc2015_64\include\QtOpenGL\qgl.h \
-		C:\Qt\5.7\msvc2015_64\include\QtGui\qpaintengine.h \
-		C:\Qt\5.7\msvc2015_64\include\QtGui\qpainter.h \
-		C:\Qt\5.7\msvc2015_64\include\QtGui\qtextoption.h \
-		C:\Qt\5.7\msvc2015_64\include\QtGui\qpen.h \
-		C:\Qt\5.7\msvc2015_64\include\QtOpenGL\qglcolormap.h \
-		C:\Qt\5.7\msvc2015_64\include\QtOpenGL\qtopenglglobal.h \
-		C:\Qt\5.7\msvc2015_64\include\QtCore\QDebug \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\QMap \
+		scene/objmodeler/material.h \
 		thirdparty\glm\ext.hpp \
 		thirdparty\glm\gtc\constants.hpp \
 		thirdparty\glm\gtc\constants.inl \
@@ -1472,7 +1788,41 @@ release\vrview.obj: ui\vrview.cpp ui/vrview.h \
 		thirdparty\glm\gtx\simd_mat4.hpp \
 		thirdparty\glm\detail\intrinsic_matrix.hpp \
 		thirdparty\glm\detail\intrinsic_matrix.inl \
-		thirdparty\glm\gtx\simd_mat4.inl
+		thirdparty\glm\gtx\simd_mat4.inl \
+		scene/objmodeler/PrimitiveObject.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\QVector \
+		C:\Qt\5.7\msvc2015_64\include\QtOpenGL\QGL \
+		C:\Qt\5.7\msvc2015_64\include\QtOpenGL\qgl.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qpaintengine.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qpainter.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qtextoption.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qpen.h \
+		C:\Qt\5.7\msvc2015_64\include\QtOpenGL\qglcolormap.h \
+		C:\Qt\5.7\msvc2015_64\include\QtOpenGL\qtopenglglobal.h \
+		scene/objmodeler/SceneObject.h \
+		scene/objmodeler/BoundingBox.h \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\QMessageBox \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qmessagebox.h \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qdialog.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\QTimer \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qtimer.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qbasictimer.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\QFileInfo \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qfileinfo.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\QDir \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qdir.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\QKeyEvent \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\QApplication \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qapplication.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qcoreapplication.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qeventloop.h \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qdesktopwidget.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qguiapplication.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qinputmethod.h \
+		ui\modelFormats.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\QFile \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\QTextStream \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\QDebug
 
 release\OrbitingCamera.obj: camera\OrbitingCamera.cpp thirdparty\glm\gtc\matrix_transform.hpp \
 		thirdparty\glm\mat4x4.hpp \
@@ -2558,20 +2908,10 @@ release\Scene.obj: scene\Scene.cpp scene/Scene.h \
 		utilities/Settings.h \
 		utilities/Helpers.h \
 		C:\Qt\5.7\msvc2015_64\include\QtGui\QMatrix4x4 \
-		ui/modelformats.h \
-		C:\Qt\5.7\msvc2015_64\include\QtCore\QVector \
-		C:\Qt\5.7\msvc2015_64\include\QtCore\QFile \
+		scene/objmodeler/ObjLoader.h \
 		C:\Qt\5.7\msvc2015_64\include\QtCore\QString \
-		C:\Qt\5.7\msvc2015_64\include\QtCore\QTextStream \
-		C:\Qt\5.7\msvc2015_64\include\QtOpenGL\QGL \
-		C:\Qt\5.7\msvc2015_64\include\QtOpenGL\qgl.h \
-		C:\Qt\5.7\msvc2015_64\include\QtGui\qpaintengine.h \
-		C:\Qt\5.7\msvc2015_64\include\QtGui\qpainter.h \
-		C:\Qt\5.7\msvc2015_64\include\QtGui\qtextoption.h \
-		C:\Qt\5.7\msvc2015_64\include\QtGui\qpen.h \
-		C:\Qt\5.7\msvc2015_64\include\QtOpenGL\qglcolormap.h \
-		C:\Qt\5.7\msvc2015_64\include\QtOpenGL\qtopenglglobal.h \
-		C:\Qt\5.7\msvc2015_64\include\QtCore\QDebug \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\QMap \
+		scene/objmodeler/material.h \
 		thirdparty\glm\ext.hpp \
 		thirdparty\glm\gtc\constants.hpp \
 		thirdparty\glm\gtc\constants.inl \
@@ -2709,7 +3049,24 @@ release\Scene.obj: scene\Scene.cpp scene/Scene.h \
 		thirdparty\glm\gtx\simd_mat4.hpp \
 		thirdparty\glm\detail\intrinsic_matrix.hpp \
 		thirdparty\glm\detail\intrinsic_matrix.inl \
-		thirdparty\glm\gtx\simd_mat4.inl
+		thirdparty\glm\gtx\simd_mat4.inl \
+		scene/objmodeler/PrimitiveObject.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\QVector \
+		C:\Qt\5.7\msvc2015_64\include\QtOpenGL\QGL \
+		C:\Qt\5.7\msvc2015_64\include\QtOpenGL\qgl.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qpaintengine.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qpainter.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qtextoption.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qpen.h \
+		C:\Qt\5.7\msvc2015_64\include\QtOpenGL\qglcolormap.h \
+		C:\Qt\5.7\msvc2015_64\include\QtOpenGL\qtopenglglobal.h \
+		scene/objmodeler/SceneObject.h \
+		scene/objmodeler/BoundingBox.h \
+		ui/modelformats.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\QFile \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\QTextStream \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\QDebug \
+		scene/objmodeler/delete_ptr.h
 
 release\BoundingBox.obj: scene\objmodeler\BoundingBox.cpp scene/objmodeler/BoundingBox.h \
 		thirdparty\glm\glm.hpp \
@@ -2927,7 +3284,191 @@ release\BoundingBox.obj: scene\objmodeler\BoundingBox.cpp scene/objmodeler/Bound
 		thirdparty\glm\detail\intrinsic_matrix.inl \
 		thirdparty\glm\gtx\simd_mat4.inl
 
-release\SceneObject.obj: scene\objmodeler\SceneObject.cpp scene/objmodeler/SceneObject.h
+release\SceneObject.obj: scene\objmodeler\SceneObject.cpp scene/objmodeler/SceneObject.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\QString \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qstring.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qchar.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qglobal.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qconfig.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qfeatures.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qsystemdetection.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qprocessordetection.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qcompilerdetection.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qtypeinfo.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qtypetraits.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qisenum.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qsysinfo.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qlogging.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qflags.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qatomic.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qbasicatomic.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qatomic_bootstrap.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qgenericatomic.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qatomic_cxx11.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qatomic_msvc.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qglobalstatic.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qmutex.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qnumeric.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qversiontagging.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qbytearray.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qrefcount.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qnamespace.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qarraydata.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qstringbuilder.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\QOpenGLBuffer \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qopenglbuffer.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qscopedpointer.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qopengl.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qt_windows.h \
+		C:\Qt\5.7\msvc2015_64\include\QtANGLE\GLES3\gl3.h \
+		C:\Qt\5.7\msvc2015_64\include\QtANGLE\GLES3\gl3platform.h \
+		C:\Qt\5.7\msvc2015_64\include\QtANGLE\KHR\khrplatform.h \
+		C:\Qt\5.7\msvc2015_64\include\QtANGLE\GLES2\gl2.h \
+		C:\Qt\5.7\msvc2015_64\include\QtANGLE\GLES2\gl2platform.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qopengles2ext.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qopenglext.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\QOpenGLVertexArrayObject \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qopenglvertexarrayobject.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\QObject \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qobject.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qobjectdefs.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qobjectdefs_impl.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qlist.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qalgorithms.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qiterator.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qhashfunctions.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qpair.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qbytearraylist.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qstringlist.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qregexp.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qstringmatcher.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qcoreevent.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qmetatype.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qvarlengtharray.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qcontainerfwd.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qobject_impl.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\QOpenGLShaderProgram \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qopenglshaderprogram.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qvector2d.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qpoint.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qvector3d.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qvector4d.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qmatrix4x4.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qquaternion.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qgenericmatrix.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qdebug.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qhash.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qmap.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qtextstream.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qiodevice.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qlocale.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qvariant.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qshareddata.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qvector.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qset.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qcontiguouscache.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qsharedpointer.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qsharedpointer_impl.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qdatastream.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qrect.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qmargins.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qsize.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\QOpenGLFramebufferObject \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qopenglframebufferobject.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qpaintdevice.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qwindowdefs.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qwindowdefs_win.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\QOpenGLTexture \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qopengltexture.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qimage.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qcolor.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qrgb.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qrgba64.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qpixelformat.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qtransform.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qmatrix.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qpolygon.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qregion.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qline.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qpainterpath.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\QScopedPointer \
+		scene/objmodeler/BoundingBox.h \
+		thirdparty\glm\glm.hpp \
+		thirdparty\glm\detail\_fixes.hpp \
+		thirdparty\glm\fwd.hpp \
+		thirdparty\glm\detail\type_int.hpp \
+		thirdparty\glm\detail\setup.hpp \
+		thirdparty\glm\detail\type_float.hpp \
+		thirdparty\glm\detail\type_vec.hpp \
+		thirdparty\glm\detail\precision.hpp \
+		thirdparty\glm\detail\type_mat.hpp \
+		thirdparty\glm\vec2.hpp \
+		thirdparty\glm\detail\type_vec2.hpp \
+		thirdparty\glm\detail\_swizzle.hpp \
+		thirdparty\glm\detail\_swizzle_func.hpp \
+		thirdparty\glm\detail\type_vec2.inl \
+		thirdparty\glm\vec3.hpp \
+		thirdparty\glm\detail\type_vec3.hpp \
+		thirdparty\glm\detail\type_vec3.inl \
+		thirdparty\glm\vec4.hpp \
+		thirdparty\glm\detail\type_vec4.hpp \
+		thirdparty\glm\detail\type_vec4.inl \
+		thirdparty\glm\mat2x2.hpp \
+		thirdparty\glm\detail\type_mat2x2.hpp \
+		thirdparty\glm\detail\type_mat2x2.inl \
+		thirdparty\glm\mat2x3.hpp \
+		thirdparty\glm\detail\type_mat2x3.hpp \
+		thirdparty\glm\detail\type_mat2x3.inl \
+		thirdparty\glm\mat2x4.hpp \
+		thirdparty\glm\detail\type_mat2x4.hpp \
+		thirdparty\glm\detail\type_mat2x4.inl \
+		thirdparty\glm\mat3x2.hpp \
+		thirdparty\glm\detail\type_mat3x2.hpp \
+		thirdparty\glm\detail\type_mat3x2.inl \
+		thirdparty\glm\mat3x3.hpp \
+		thirdparty\glm\detail\type_mat3x3.hpp \
+		thirdparty\glm\detail\type_mat3x3.inl \
+		thirdparty\glm\mat3x4.hpp \
+		thirdparty\glm\detail\type_mat3x4.hpp \
+		thirdparty\glm\detail\type_mat3x4.inl \
+		thirdparty\glm\mat4x2.hpp \
+		thirdparty\glm\detail\type_mat4x2.hpp \
+		thirdparty\glm\detail\type_mat4x2.inl \
+		thirdparty\glm\mat4x3.hpp \
+		thirdparty\glm\detail\type_mat4x3.hpp \
+		thirdparty\glm\detail\type_mat4x3.inl \
+		thirdparty\glm\mat4x4.hpp \
+		thirdparty\glm\detail\type_mat4x4.hpp \
+		thirdparty\glm\detail\type_mat4x4.inl \
+		thirdparty\glm\trigonometric.hpp \
+		thirdparty\glm\detail\func_trigonometric.hpp \
+		thirdparty\glm\detail\func_trigonometric.inl \
+		thirdparty\glm\detail\_vectorize.hpp \
+		thirdparty\glm\detail\type_vec1.hpp \
+		thirdparty\glm\detail\type_vec1.inl \
+		thirdparty\glm\exponential.hpp \
+		thirdparty\glm\detail\func_exponential.hpp \
+		thirdparty\glm\detail\func_exponential.inl \
+		thirdparty\glm\detail\func_vector_relational.hpp \
+		thirdparty\glm\detail\func_vector_relational.inl \
+		thirdparty\glm\common.hpp \
+		thirdparty\glm\detail\func_common.hpp \
+		thirdparty\glm\detail\func_common.inl \
+		thirdparty\glm\packing.hpp \
+		thirdparty\glm\detail\func_packing.hpp \
+		thirdparty\glm\detail\func_packing.inl \
+		thirdparty\glm\detail\type_half.hpp \
+		thirdparty\glm\detail\type_half.inl \
+		thirdparty\glm\geometric.hpp \
+		thirdparty\glm\detail\func_geometric.hpp \
+		thirdparty\glm\detail\func_geometric.inl \
+		thirdparty\glm\matrix.hpp \
+		thirdparty\glm\detail\func_matrix.hpp \
+		thirdparty\glm\detail\func_matrix.inl \
+		thirdparty\glm\vector_relational.hpp \
+		thirdparty\glm\integer.hpp \
+		thirdparty\glm\detail\func_integer.hpp \
+		thirdparty\glm\detail\func_integer.inl
 
 release\PrimitiveObject.obj: scene\objmodeler\PrimitiveObject.cpp scene/objmodeler/PrimitiveObject.h \
 		C:\Qt\5.7\msvc2015_64\include\QtCore\QVector \
@@ -3126,7 +3667,165 @@ release\PrimitiveObject.obj: scene\objmodeler\PrimitiveObject.cpp scene/objmodel
 		thirdparty\glm\vector_relational.hpp \
 		thirdparty\glm\integer.hpp \
 		thirdparty\glm\detail\func_integer.hpp \
-		thirdparty\glm\detail\func_integer.inl
+		thirdparty\glm\detail\func_integer.inl \
+		thirdparty\glm\ext.hpp \
+		thirdparty\glm\gtc\constants.hpp \
+		thirdparty\glm\gtc\constants.inl \
+		thirdparty\glm\gtc\epsilon.hpp \
+		thirdparty\glm\gtc\epsilon.inl \
+		thirdparty\glm\gtc\quaternion.hpp \
+		thirdparty\glm\gtc\quaternion.inl \
+		thirdparty\glm\gtc\matrix_access.hpp \
+		thirdparty\glm\gtc\matrix_access.inl \
+		thirdparty\glm\gtc\matrix_integer.hpp \
+		thirdparty\glm\gtc\matrix_inverse.hpp \
+		thirdparty\glm\gtc\matrix_inverse.inl \
+		thirdparty\glm\gtc\matrix_transform.hpp \
+		thirdparty\glm\gtc\matrix_transform.inl \
+		thirdparty\glm\gtc\noise.hpp \
+		thirdparty\glm\gtc\noise.inl \
+		thirdparty\glm\detail\_noise.hpp \
+		thirdparty\glm\gtc\packing.hpp \
+		thirdparty\glm\gtc\type_precision.hpp \
+		thirdparty\glm\gtc\type_precision.inl \
+		thirdparty\glm\gtc\packing.inl \
+		thirdparty\glm\gtc\random.hpp \
+		thirdparty\glm\gtc\random.inl \
+		thirdparty\glm\gtc\reciprocal.hpp \
+		thirdparty\glm\gtc\reciprocal.inl \
+		thirdparty\glm\gtc\type_ptr.hpp \
+		thirdparty\glm\gtc\type_ptr.inl \
+		thirdparty\glm\gtc\ulp.hpp \
+		thirdparty\glm\gtc\ulp.inl \
+		thirdparty\glm\gtx\associated_min_max.hpp \
+		thirdparty\glm\gtx\associated_min_max.inl \
+		thirdparty\glm\gtx\bit.hpp \
+		thirdparty\glm\gtx\bit.inl \
+		thirdparty\glm\gtx\closest_point.hpp \
+		thirdparty\glm\gtx\closest_point.inl \
+		thirdparty\glm\gtx\color_space.hpp \
+		thirdparty\glm\gtx\color_space.inl \
+		thirdparty\glm\gtx\color_space_YCoCg.hpp \
+		thirdparty\glm\gtx\color_space_YCoCg.inl \
+		thirdparty\glm\gtx\compatibility.hpp \
+		thirdparty\glm\gtx\compatibility.inl \
+		thirdparty\glm\gtx\component_wise.hpp \
+		thirdparty\glm\gtx\component_wise.inl \
+		thirdparty\glm\gtx\dual_quaternion.hpp \
+		thirdparty\glm\gtx\dual_quaternion.inl \
+		thirdparty\glm\gtx\euler_angles.hpp \
+		thirdparty\glm\gtx\euler_angles.inl \
+		thirdparty\glm\gtx\extend.hpp \
+		thirdparty\glm\gtx\extend.inl \
+		thirdparty\glm\gtx\extented_min_max.hpp \
+		thirdparty\glm\gtx\extented_min_max.inl \
+		thirdparty\glm\gtx\fast_exponential.hpp \
+		thirdparty\glm\gtx\fast_exponential.inl \
+		thirdparty\glm\gtx\fast_square_root.hpp \
+		thirdparty\glm\gtx\fast_square_root.inl \
+		thirdparty\glm\gtx\fast_trigonometry.hpp \
+		thirdparty\glm\gtx\fast_trigonometry.inl \
+		thirdparty\glm\gtx\gradient_paint.hpp \
+		thirdparty\glm\gtx\optimum_pow.hpp \
+		thirdparty\glm\gtx\optimum_pow.inl \
+		thirdparty\glm\gtx\gradient_paint.inl \
+		thirdparty\glm\gtx\handed_coordinate_space.hpp \
+		thirdparty\glm\gtx\handed_coordinate_space.inl \
+		thirdparty\glm\gtx\inertia.hpp \
+		thirdparty\glm\gtx\inertia.inl \
+		thirdparty\glm\gtx\int_10_10_10_2.hpp \
+		thirdparty\glm\gtx\raw_data.hpp \
+		thirdparty\glm\gtx\raw_data.inl \
+		thirdparty\glm\gtx\int_10_10_10_2.inl \
+		thirdparty\glm\gtx\integer.hpp \
+		thirdparty\glm\gtx\integer.inl \
+		thirdparty\glm\gtx\intersect.hpp \
+		thirdparty\glm\gtx\intersect.inl \
+		thirdparty\glm\gtx\log_base.hpp \
+		thirdparty\glm\gtx\log_base.inl \
+		thirdparty\glm\gtx\matrix_cross_product.hpp \
+		thirdparty\glm\gtx\matrix_cross_product.inl \
+		thirdparty\glm\gtx\matrix_interpolation.hpp \
+		thirdparty\glm\gtx\matrix_interpolation.inl \
+		thirdparty\glm\gtx\matrix_major_storage.hpp \
+		thirdparty\glm\gtx\matrix_major_storage.inl \
+		thirdparty\glm\gtx\matrix_operation.hpp \
+		thirdparty\glm\gtx\matrix_operation.inl \
+		thirdparty\glm\gtx\matrix_query.hpp \
+		thirdparty\glm\gtx\vector_query.hpp \
+		thirdparty\glm\gtx\vector_query.inl \
+		thirdparty\glm\gtx\matrix_query.inl \
+		thirdparty\glm\gtx\mixed_product.hpp \
+		thirdparty\glm\gtx\mixed_product.inl \
+		thirdparty\glm\gtx\multiple.hpp \
+		thirdparty\glm\gtx\multiple.inl \
+		thirdparty\glm\gtx\norm.hpp \
+		thirdparty\glm\gtx\quaternion.hpp \
+		thirdparty\glm\gtx\norm.inl \
+		thirdparty\glm\gtx\normal.hpp \
+		thirdparty\glm\gtx\normal.inl \
+		thirdparty\glm\gtx\normalize_dot.hpp \
+		thirdparty\glm\gtx\normalize_dot.inl \
+		thirdparty\glm\gtx\number_precision.hpp \
+		thirdparty\glm\gtx\number_precision.inl \
+		thirdparty\glm\gtx\orthonormalize.hpp \
+		thirdparty\glm\gtx\orthonormalize.inl \
+		thirdparty\glm\gtx\perpendicular.hpp \
+		thirdparty\glm\gtx\projection.hpp \
+		thirdparty\glm\gtx\projection.inl \
+		thirdparty\glm\gtx\perpendicular.inl \
+		thirdparty\glm\gtx\polar_coordinates.hpp \
+		thirdparty\glm\gtx\polar_coordinates.inl \
+		thirdparty\glm\gtx\rotate_vector.hpp \
+		thirdparty\glm\gtx\transform.hpp \
+		thirdparty\glm\gtx\transform.inl \
+		thirdparty\glm\gtx\rotate_vector.inl \
+		thirdparty\glm\gtx\spline.hpp \
+		thirdparty\glm\gtx\spline.inl \
+		thirdparty\glm\gtx\std_based_type.hpp \
+		thirdparty\glm\gtx\std_based_type.inl \
+		thirdparty\glm\gtx\string_cast.hpp \
+		thirdparty\glm\gtx\string_cast.inl \
+		thirdparty\glm\gtx\transform2.hpp \
+		thirdparty\glm\gtx\transform2.inl \
+		thirdparty\glm\gtx\vec1.hpp \
+		thirdparty\glm\gtx\vec1.inl \
+		thirdparty\glm\gtx\vector_angle.hpp \
+		thirdparty\glm\gtx\vector_angle.inl \
+		thirdparty\glm\gtx\wrap.hpp \
+		thirdparty\glm\gtx\wrap.inl \
+		thirdparty\glm\gtx\simd_vec4.hpp \
+		thirdparty\glm\detail\intrinsic_common.hpp \
+		thirdparty\glm\detail\intrinsic_common.inl \
+		thirdparty\glm\detail\intrinsic_geometric.hpp \
+		thirdparty\glm\detail\intrinsic_geometric.inl \
+		thirdparty\glm\detail\intrinsic_integer.hpp \
+		thirdparty\glm\detail\intrinsic_integer.inl \
+		thirdparty\glm\gtx\simd_vec4.inl \
+		thirdparty\glm\gtx\simd_mat4.hpp \
+		thirdparty\glm\detail\intrinsic_matrix.hpp \
+		thirdparty\glm\detail\intrinsic_matrix.inl \
+		thirdparty\glm\gtx\simd_mat4.inl \
+		scene/objmodeler/SceneObject.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\QOpenGLBuffer \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qopenglbuffer.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\QOpenGLVertexArrayObject \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qopenglvertexarrayobject.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\QObject \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\QOpenGLShaderProgram \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qopenglshaderprogram.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qvector3d.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qvector4d.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qmatrix4x4.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qquaternion.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qgenericmatrix.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\QOpenGLFramebufferObject \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qopenglframebufferobject.h \
+		scene/objmodeler/BoundingBox.h \
+		utilities/Settings.h \
+		utilities/Helpers.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\QMatrix4x4 \
+		thirdparty/openvr/headers/openvr.h
 
 release\GroupObject.obj: scene\objmodeler\GroupObject.cpp scene/objmodeler/GroupObject.h \
 		C:\Qt\5.7\msvc2015_64\include\QtCore\QVector \
@@ -3326,7 +4025,161 @@ release\GroupObject.obj: scene\objmodeler\GroupObject.cpp scene/objmodeler/Group
 		thirdparty\glm\vector_relational.hpp \
 		thirdparty\glm\integer.hpp \
 		thirdparty\glm\detail\func_integer.hpp \
-		thirdparty\glm\detail\func_integer.inl
+		thirdparty\glm\detail\func_integer.inl \
+		thirdparty\glm\ext.hpp \
+		thirdparty\glm\gtc\constants.hpp \
+		thirdparty\glm\gtc\constants.inl \
+		thirdparty\glm\gtc\epsilon.hpp \
+		thirdparty\glm\gtc\epsilon.inl \
+		thirdparty\glm\gtc\quaternion.hpp \
+		thirdparty\glm\gtc\quaternion.inl \
+		thirdparty\glm\gtc\matrix_access.hpp \
+		thirdparty\glm\gtc\matrix_access.inl \
+		thirdparty\glm\gtc\matrix_integer.hpp \
+		thirdparty\glm\gtc\matrix_inverse.hpp \
+		thirdparty\glm\gtc\matrix_inverse.inl \
+		thirdparty\glm\gtc\matrix_transform.hpp \
+		thirdparty\glm\gtc\matrix_transform.inl \
+		thirdparty\glm\gtc\noise.hpp \
+		thirdparty\glm\gtc\noise.inl \
+		thirdparty\glm\detail\_noise.hpp \
+		thirdparty\glm\gtc\packing.hpp \
+		thirdparty\glm\gtc\type_precision.hpp \
+		thirdparty\glm\gtc\type_precision.inl \
+		thirdparty\glm\gtc\packing.inl \
+		thirdparty\glm\gtc\random.hpp \
+		thirdparty\glm\gtc\random.inl \
+		thirdparty\glm\gtc\reciprocal.hpp \
+		thirdparty\glm\gtc\reciprocal.inl \
+		thirdparty\glm\gtc\type_ptr.hpp \
+		thirdparty\glm\gtc\type_ptr.inl \
+		thirdparty\glm\gtc\ulp.hpp \
+		thirdparty\glm\gtc\ulp.inl \
+		thirdparty\glm\gtx\associated_min_max.hpp \
+		thirdparty\glm\gtx\associated_min_max.inl \
+		thirdparty\glm\gtx\bit.hpp \
+		thirdparty\glm\gtx\bit.inl \
+		thirdparty\glm\gtx\closest_point.hpp \
+		thirdparty\glm\gtx\closest_point.inl \
+		thirdparty\glm\gtx\color_space.hpp \
+		thirdparty\glm\gtx\color_space.inl \
+		thirdparty\glm\gtx\color_space_YCoCg.hpp \
+		thirdparty\glm\gtx\color_space_YCoCg.inl \
+		thirdparty\glm\gtx\compatibility.hpp \
+		thirdparty\glm\gtx\compatibility.inl \
+		thirdparty\glm\gtx\component_wise.hpp \
+		thirdparty\glm\gtx\component_wise.inl \
+		thirdparty\glm\gtx\dual_quaternion.hpp \
+		thirdparty\glm\gtx\dual_quaternion.inl \
+		thirdparty\glm\gtx\euler_angles.hpp \
+		thirdparty\glm\gtx\euler_angles.inl \
+		thirdparty\glm\gtx\extend.hpp \
+		thirdparty\glm\gtx\extend.inl \
+		thirdparty\glm\gtx\extented_min_max.hpp \
+		thirdparty\glm\gtx\extented_min_max.inl \
+		thirdparty\glm\gtx\fast_exponential.hpp \
+		thirdparty\glm\gtx\fast_exponential.inl \
+		thirdparty\glm\gtx\fast_square_root.hpp \
+		thirdparty\glm\gtx\fast_square_root.inl \
+		thirdparty\glm\gtx\fast_trigonometry.hpp \
+		thirdparty\glm\gtx\fast_trigonometry.inl \
+		thirdparty\glm\gtx\gradient_paint.hpp \
+		thirdparty\glm\gtx\optimum_pow.hpp \
+		thirdparty\glm\gtx\optimum_pow.inl \
+		thirdparty\glm\gtx\gradient_paint.inl \
+		thirdparty\glm\gtx\handed_coordinate_space.hpp \
+		thirdparty\glm\gtx\handed_coordinate_space.inl \
+		thirdparty\glm\gtx\inertia.hpp \
+		thirdparty\glm\gtx\inertia.inl \
+		thirdparty\glm\gtx\int_10_10_10_2.hpp \
+		thirdparty\glm\gtx\raw_data.hpp \
+		thirdparty\glm\gtx\raw_data.inl \
+		thirdparty\glm\gtx\int_10_10_10_2.inl \
+		thirdparty\glm\gtx\integer.hpp \
+		thirdparty\glm\gtx\integer.inl \
+		thirdparty\glm\gtx\intersect.hpp \
+		thirdparty\glm\gtx\intersect.inl \
+		thirdparty\glm\gtx\log_base.hpp \
+		thirdparty\glm\gtx\log_base.inl \
+		thirdparty\glm\gtx\matrix_cross_product.hpp \
+		thirdparty\glm\gtx\matrix_cross_product.inl \
+		thirdparty\glm\gtx\matrix_interpolation.hpp \
+		thirdparty\glm\gtx\matrix_interpolation.inl \
+		thirdparty\glm\gtx\matrix_major_storage.hpp \
+		thirdparty\glm\gtx\matrix_major_storage.inl \
+		thirdparty\glm\gtx\matrix_operation.hpp \
+		thirdparty\glm\gtx\matrix_operation.inl \
+		thirdparty\glm\gtx\matrix_query.hpp \
+		thirdparty\glm\gtx\vector_query.hpp \
+		thirdparty\glm\gtx\vector_query.inl \
+		thirdparty\glm\gtx\matrix_query.inl \
+		thirdparty\glm\gtx\mixed_product.hpp \
+		thirdparty\glm\gtx\mixed_product.inl \
+		thirdparty\glm\gtx\multiple.hpp \
+		thirdparty\glm\gtx\multiple.inl \
+		thirdparty\glm\gtx\norm.hpp \
+		thirdparty\glm\gtx\quaternion.hpp \
+		thirdparty\glm\gtx\norm.inl \
+		thirdparty\glm\gtx\normal.hpp \
+		thirdparty\glm\gtx\normal.inl \
+		thirdparty\glm\gtx\normalize_dot.hpp \
+		thirdparty\glm\gtx\normalize_dot.inl \
+		thirdparty\glm\gtx\number_precision.hpp \
+		thirdparty\glm\gtx\number_precision.inl \
+		thirdparty\glm\gtx\orthonormalize.hpp \
+		thirdparty\glm\gtx\orthonormalize.inl \
+		thirdparty\glm\gtx\perpendicular.hpp \
+		thirdparty\glm\gtx\projection.hpp \
+		thirdparty\glm\gtx\projection.inl \
+		thirdparty\glm\gtx\perpendicular.inl \
+		thirdparty\glm\gtx\polar_coordinates.hpp \
+		thirdparty\glm\gtx\polar_coordinates.inl \
+		thirdparty\glm\gtx\rotate_vector.hpp \
+		thirdparty\glm\gtx\transform.hpp \
+		thirdparty\glm\gtx\transform.inl \
+		thirdparty\glm\gtx\rotate_vector.inl \
+		thirdparty\glm\gtx\spline.hpp \
+		thirdparty\glm\gtx\spline.inl \
+		thirdparty\glm\gtx\std_based_type.hpp \
+		thirdparty\glm\gtx\std_based_type.inl \
+		thirdparty\glm\gtx\string_cast.hpp \
+		thirdparty\glm\gtx\string_cast.inl \
+		thirdparty\glm\gtx\transform2.hpp \
+		thirdparty\glm\gtx\transform2.inl \
+		thirdparty\glm\gtx\vec1.hpp \
+		thirdparty\glm\gtx\vec1.inl \
+		thirdparty\glm\gtx\vector_angle.hpp \
+		thirdparty\glm\gtx\vector_angle.inl \
+		thirdparty\glm\gtx\wrap.hpp \
+		thirdparty\glm\gtx\wrap.inl \
+		thirdparty\glm\gtx\simd_vec4.hpp \
+		thirdparty\glm\detail\intrinsic_common.hpp \
+		thirdparty\glm\detail\intrinsic_common.inl \
+		thirdparty\glm\detail\intrinsic_geometric.hpp \
+		thirdparty\glm\detail\intrinsic_geometric.inl \
+		thirdparty\glm\detail\intrinsic_integer.hpp \
+		thirdparty\glm\detail\intrinsic_integer.inl \
+		thirdparty\glm\gtx\simd_vec4.inl \
+		thirdparty\glm\gtx\simd_mat4.hpp \
+		thirdparty\glm\detail\intrinsic_matrix.hpp \
+		thirdparty\glm\detail\intrinsic_matrix.inl \
+		thirdparty\glm\gtx\simd_mat4.inl \
+		scene/objmodeler/SceneObject.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\QOpenGLBuffer \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qopenglbuffer.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\QOpenGLVertexArrayObject \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qopenglvertexarrayobject.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\QObject \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\QOpenGLShaderProgram \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qopenglshaderprogram.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qvector3d.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qvector4d.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qmatrix4x4.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qquaternion.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qgenericmatrix.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\QOpenGLFramebufferObject \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qopenglframebufferobject.h \
+		scene/objmodeler/BoundingBox.h
 
 release\ObjLoader.obj: scene\objmodeler\ObjLoader.cpp scene/objmodeler/ObjLoader.h \
 		C:\Qt\5.7\msvc2015_64\include\QtCore\QString \
@@ -3422,10 +4275,269 @@ release\ObjLoader.obj: scene\objmodeler\ObjLoader.cpp scene/objmodeler/ObjLoader
 		C:\Qt\5.7\msvc2015_64\include\QtCore\qline.h \
 		C:\Qt\5.7\msvc2015_64\include\QtGui\qpainterpath.h \
 		C:\Qt\5.7\msvc2015_64\include\QtCore\QScopedPointer \
+		scene/objmodeler/material.h \
+		thirdparty\glm\glm.hpp \
+		thirdparty\glm\detail\_fixes.hpp \
+		thirdparty\glm\fwd.hpp \
+		thirdparty\glm\detail\type_int.hpp \
+		thirdparty\glm\detail\setup.hpp \
+		thirdparty\glm\detail\type_float.hpp \
+		thirdparty\glm\detail\type_vec.hpp \
+		thirdparty\glm\detail\precision.hpp \
+		thirdparty\glm\detail\type_mat.hpp \
+		thirdparty\glm\vec2.hpp \
+		thirdparty\glm\detail\type_vec2.hpp \
+		thirdparty\glm\detail\_swizzle.hpp \
+		thirdparty\glm\detail\_swizzle_func.hpp \
+		thirdparty\glm\detail\type_vec2.inl \
+		thirdparty\glm\vec3.hpp \
+		thirdparty\glm\detail\type_vec3.hpp \
+		thirdparty\glm\detail\type_vec3.inl \
+		thirdparty\glm\vec4.hpp \
+		thirdparty\glm\detail\type_vec4.hpp \
+		thirdparty\glm\detail\type_vec4.inl \
+		thirdparty\glm\mat2x2.hpp \
+		thirdparty\glm\detail\type_mat2x2.hpp \
+		thirdparty\glm\detail\type_mat2x2.inl \
+		thirdparty\glm\mat2x3.hpp \
+		thirdparty\glm\detail\type_mat2x3.hpp \
+		thirdparty\glm\detail\type_mat2x3.inl \
+		thirdparty\glm\mat2x4.hpp \
+		thirdparty\glm\detail\type_mat2x4.hpp \
+		thirdparty\glm\detail\type_mat2x4.inl \
+		thirdparty\glm\mat3x2.hpp \
+		thirdparty\glm\detail\type_mat3x2.hpp \
+		thirdparty\glm\detail\type_mat3x2.inl \
+		thirdparty\glm\mat3x3.hpp \
+		thirdparty\glm\detail\type_mat3x3.hpp \
+		thirdparty\glm\detail\type_mat3x3.inl \
+		thirdparty\glm\mat3x4.hpp \
+		thirdparty\glm\detail\type_mat3x4.hpp \
+		thirdparty\glm\detail\type_mat3x4.inl \
+		thirdparty\glm\mat4x2.hpp \
+		thirdparty\glm\detail\type_mat4x2.hpp \
+		thirdparty\glm\detail\type_mat4x2.inl \
+		thirdparty\glm\mat4x3.hpp \
+		thirdparty\glm\detail\type_mat4x3.hpp \
+		thirdparty\glm\detail\type_mat4x3.inl \
+		thirdparty\glm\mat4x4.hpp \
+		thirdparty\glm\detail\type_mat4x4.hpp \
+		thirdparty\glm\detail\type_mat4x4.inl \
+		thirdparty\glm\trigonometric.hpp \
+		thirdparty\glm\detail\func_trigonometric.hpp \
+		thirdparty\glm\detail\func_trigonometric.inl \
+		thirdparty\glm\detail\_vectorize.hpp \
+		thirdparty\glm\detail\type_vec1.hpp \
+		thirdparty\glm\detail\type_vec1.inl \
+		thirdparty\glm\exponential.hpp \
+		thirdparty\glm\detail\func_exponential.hpp \
+		thirdparty\glm\detail\func_exponential.inl \
+		thirdparty\glm\detail\func_vector_relational.hpp \
+		thirdparty\glm\detail\func_vector_relational.inl \
+		thirdparty\glm\common.hpp \
+		thirdparty\glm\detail\func_common.hpp \
+		thirdparty\glm\detail\func_common.inl \
+		thirdparty\glm\packing.hpp \
+		thirdparty\glm\detail\func_packing.hpp \
+		thirdparty\glm\detail\func_packing.inl \
+		thirdparty\glm\detail\type_half.hpp \
+		thirdparty\glm\detail\type_half.inl \
+		thirdparty\glm\geometric.hpp \
+		thirdparty\glm\detail\func_geometric.hpp \
+		thirdparty\glm\detail\func_geometric.inl \
+		thirdparty\glm\matrix.hpp \
+		thirdparty\glm\detail\func_matrix.hpp \
+		thirdparty\glm\detail\func_matrix.inl \
+		thirdparty\glm\vector_relational.hpp \
+		thirdparty\glm\integer.hpp \
+		thirdparty\glm\detail\func_integer.hpp \
+		thirdparty\glm\detail\func_integer.inl \
+		thirdparty\glm\ext.hpp \
+		thirdparty\glm\gtc\constants.hpp \
+		thirdparty\glm\gtc\constants.inl \
+		thirdparty\glm\gtc\epsilon.hpp \
+		thirdparty\glm\gtc\epsilon.inl \
+		thirdparty\glm\gtc\quaternion.hpp \
+		thirdparty\glm\gtc\quaternion.inl \
+		thirdparty\glm\gtc\matrix_access.hpp \
+		thirdparty\glm\gtc\matrix_access.inl \
+		thirdparty\glm\gtc\matrix_integer.hpp \
+		thirdparty\glm\gtc\matrix_inverse.hpp \
+		thirdparty\glm\gtc\matrix_inverse.inl \
+		thirdparty\glm\gtc\matrix_transform.hpp \
+		thirdparty\glm\gtc\matrix_transform.inl \
+		thirdparty\glm\gtc\noise.hpp \
+		thirdparty\glm\gtc\noise.inl \
+		thirdparty\glm\detail\_noise.hpp \
+		thirdparty\glm\gtc\packing.hpp \
+		thirdparty\glm\gtc\type_precision.hpp \
+		thirdparty\glm\gtc\type_precision.inl \
+		thirdparty\glm\gtc\packing.inl \
+		thirdparty\glm\gtc\random.hpp \
+		thirdparty\glm\gtc\random.inl \
+		thirdparty\glm\gtc\reciprocal.hpp \
+		thirdparty\glm\gtc\reciprocal.inl \
+		thirdparty\glm\gtc\type_ptr.hpp \
+		thirdparty\glm\gtc\type_ptr.inl \
+		thirdparty\glm\gtc\ulp.hpp \
+		thirdparty\glm\gtc\ulp.inl \
+		thirdparty\glm\gtx\associated_min_max.hpp \
+		thirdparty\glm\gtx\associated_min_max.inl \
+		thirdparty\glm\gtx\bit.hpp \
+		thirdparty\glm\gtx\bit.inl \
+		thirdparty\glm\gtx\closest_point.hpp \
+		thirdparty\glm\gtx\closest_point.inl \
+		thirdparty\glm\gtx\color_space.hpp \
+		thirdparty\glm\gtx\color_space.inl \
+		thirdparty\glm\gtx\color_space_YCoCg.hpp \
+		thirdparty\glm\gtx\color_space_YCoCg.inl \
+		thirdparty\glm\gtx\compatibility.hpp \
+		thirdparty\glm\gtx\compatibility.inl \
+		thirdparty\glm\gtx\component_wise.hpp \
+		thirdparty\glm\gtx\component_wise.inl \
+		thirdparty\glm\gtx\dual_quaternion.hpp \
+		thirdparty\glm\gtx\dual_quaternion.inl \
+		thirdparty\glm\gtx\euler_angles.hpp \
+		thirdparty\glm\gtx\euler_angles.inl \
+		thirdparty\glm\gtx\extend.hpp \
+		thirdparty\glm\gtx\extend.inl \
+		thirdparty\glm\gtx\extented_min_max.hpp \
+		thirdparty\glm\gtx\extented_min_max.inl \
+		thirdparty\glm\gtx\fast_exponential.hpp \
+		thirdparty\glm\gtx\fast_exponential.inl \
+		thirdparty\glm\gtx\fast_square_root.hpp \
+		thirdparty\glm\gtx\fast_square_root.inl \
+		thirdparty\glm\gtx\fast_trigonometry.hpp \
+		thirdparty\glm\gtx\fast_trigonometry.inl \
+		thirdparty\glm\gtx\gradient_paint.hpp \
+		thirdparty\glm\gtx\optimum_pow.hpp \
+		thirdparty\glm\gtx\optimum_pow.inl \
+		thirdparty\glm\gtx\gradient_paint.inl \
+		thirdparty\glm\gtx\handed_coordinate_space.hpp \
+		thirdparty\glm\gtx\handed_coordinate_space.inl \
+		thirdparty\glm\gtx\inertia.hpp \
+		thirdparty\glm\gtx\inertia.inl \
+		thirdparty\glm\gtx\int_10_10_10_2.hpp \
+		thirdparty\glm\gtx\raw_data.hpp \
+		thirdparty\glm\gtx\raw_data.inl \
+		thirdparty\glm\gtx\int_10_10_10_2.inl \
+		thirdparty\glm\gtx\integer.hpp \
+		thirdparty\glm\gtx\integer.inl \
+		thirdparty\glm\gtx\intersect.hpp \
+		thirdparty\glm\gtx\intersect.inl \
+		thirdparty\glm\gtx\log_base.hpp \
+		thirdparty\glm\gtx\log_base.inl \
+		thirdparty\glm\gtx\matrix_cross_product.hpp \
+		thirdparty\glm\gtx\matrix_cross_product.inl \
+		thirdparty\glm\gtx\matrix_interpolation.hpp \
+		thirdparty\glm\gtx\matrix_interpolation.inl \
+		thirdparty\glm\gtx\matrix_major_storage.hpp \
+		thirdparty\glm\gtx\matrix_major_storage.inl \
+		thirdparty\glm\gtx\matrix_operation.hpp \
+		thirdparty\glm\gtx\matrix_operation.inl \
+		thirdparty\glm\gtx\matrix_query.hpp \
+		thirdparty\glm\gtx\vector_query.hpp \
+		thirdparty\glm\gtx\vector_query.inl \
+		thirdparty\glm\gtx\matrix_query.inl \
+		thirdparty\glm\gtx\mixed_product.hpp \
+		thirdparty\glm\gtx\mixed_product.inl \
+		thirdparty\glm\gtx\multiple.hpp \
+		thirdparty\glm\gtx\multiple.inl \
+		thirdparty\glm\gtx\norm.hpp \
+		thirdparty\glm\gtx\quaternion.hpp \
+		thirdparty\glm\gtx\norm.inl \
+		thirdparty\glm\gtx\normal.hpp \
+		thirdparty\glm\gtx\normal.inl \
+		thirdparty\glm\gtx\normalize_dot.hpp \
+		thirdparty\glm\gtx\normalize_dot.inl \
+		thirdparty\glm\gtx\number_precision.hpp \
+		thirdparty\glm\gtx\number_precision.inl \
+		thirdparty\glm\gtx\orthonormalize.hpp \
+		thirdparty\glm\gtx\orthonormalize.inl \
+		thirdparty\glm\gtx\perpendicular.hpp \
+		thirdparty\glm\gtx\projection.hpp \
+		thirdparty\glm\gtx\projection.inl \
+		thirdparty\glm\gtx\perpendicular.inl \
+		thirdparty\glm\gtx\polar_coordinates.hpp \
+		thirdparty\glm\gtx\polar_coordinates.inl \
+		thirdparty\glm\gtx\rotate_vector.hpp \
+		thirdparty\glm\gtx\transform.hpp \
+		thirdparty\glm\gtx\transform.inl \
+		thirdparty\glm\gtx\rotate_vector.inl \
+		thirdparty\glm\gtx\spline.hpp \
+		thirdparty\glm\gtx\spline.inl \
+		thirdparty\glm\gtx\std_based_type.hpp \
+		thirdparty\glm\gtx\std_based_type.inl \
+		thirdparty\glm\gtx\string_cast.hpp \
+		thirdparty\glm\gtx\string_cast.inl \
+		thirdparty\glm\gtx\transform2.hpp \
+		thirdparty\glm\gtx\transform2.inl \
+		thirdparty\glm\gtx\vec1.hpp \
+		thirdparty\glm\gtx\vec1.inl \
+		thirdparty\glm\gtx\vector_angle.hpp \
+		thirdparty\glm\gtx\vector_angle.inl \
+		thirdparty\glm\gtx\wrap.hpp \
+		thirdparty\glm\gtx\wrap.inl \
+		thirdparty\glm\gtx\simd_vec4.hpp \
+		thirdparty\glm\detail\intrinsic_common.hpp \
+		thirdparty\glm\detail\intrinsic_common.inl \
+		thirdparty\glm\detail\intrinsic_geometric.hpp \
+		thirdparty\glm\detail\intrinsic_geometric.inl \
+		thirdparty\glm\detail\intrinsic_integer.hpp \
+		thirdparty\glm\detail\intrinsic_integer.inl \
+		thirdparty\glm\gtx\simd_vec4.inl \
+		thirdparty\glm\gtx\simd_mat4.hpp \
+		thirdparty\glm\detail\intrinsic_matrix.hpp \
+		thirdparty\glm\detail\intrinsic_matrix.inl \
+		thirdparty\glm\gtx\simd_mat4.inl \
+		scene/objmodeler/PrimitiveObject.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\QVector \
+		C:\Qt\5.7\msvc2015_64\include\QtOpenGL\QGL \
+		C:\Qt\5.7\msvc2015_64\include\QtOpenGL\qgl.h \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qwidget.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qpalette.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qbrush.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qpixmap.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qfont.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qfontmetrics.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qfontinfo.h \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qsizepolicy.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qcursor.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qkeysequence.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qevent.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qurl.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qurlquery.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qfile.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\qfiledevice.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qvector2d.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qtouchdevice.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qpaintengine.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qpainter.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qtextoption.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qpen.h \
+		C:\Qt\5.7\msvc2015_64\include\QtOpenGL\qglcolormap.h \
+		C:\Qt\5.7\msvc2015_64\include\QtOpenGL\qtopenglglobal.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\QSurfaceFormat \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qsurfaceformat.h \
+		scene/objmodeler/SceneObject.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\QOpenGLBuffer \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qopenglbuffer.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\QOpenGLVertexArrayObject \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qopenglvertexarrayobject.h \
+		C:\Qt\5.7\msvc2015_64\include\QtCore\QObject \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\QOpenGLShaderProgram \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qopenglshaderprogram.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qvector3d.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qvector4d.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qmatrix4x4.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qquaternion.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qgenericmatrix.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\QOpenGLFramebufferObject \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qopenglframebufferobject.h \
+		scene/objmodeler/BoundingBox.h \
 		C:\Qt\5.7\msvc2015_64\include\QtCore\QTextStream \
 		C:\Qt\5.7\msvc2015_64\include\QtCore\QFile \
-		C:\Qt\5.7\msvc2015_64\include\QtCore\qfile.h \
-		C:\Qt\5.7\msvc2015_64\include\QtCore\qfiledevice.h
+		scene/objmodeler/GroupObject.h
 
 release\qrc_resources.obj: release\qrc_resources.cpp 
 

@@ -11,5 +11,8 @@ void main()
 {
    // fragColor = texture2D(tex, fragTexCoord);
     vec3 WorldSpace_toLight = normalize(vec3(100.0) - WorldSpace_position);
-    fragColor = vec4(vec3(0.3 + 0.7 * max(0.0, dot(normalize(WorldSpace_normal), WorldSpace_toLight))), 1.0);
-}
+    vec3 phongColor = vec3(0.3 + 0.7 * max(0.0, dot(normalize(WorldSpace_normal), WorldSpace_toLight)));
+    vec3 texColor = texture2D(tex, fragTexCoord).rgb;
+    vec3 mixColor = mix(texColor, phongColor, 0.5);
+    fragColor = vec4(mixColor, 1.0);
+ }

@@ -1,7 +1,9 @@
 #ifndef MATERIAL_H
 #define MATERIAL_H
 #include "glm/glm.hpp"
+#include "glm/ext.hpp"
 #include <QString>
+#include <iostream>
 // using Qt library to avoid compatibility issues
 struct Material
 {
@@ -36,6 +38,10 @@ struct Material
    Material(QString& name_, int id_, glm::vec3& a, glm::vec3& d, QString& map_a, QString& map_d) {
       name = name_, id = id_;
       Ka   = a, Ka = d, map_Ka = map_a, map_Kd = map_d;
+   }
+
+   void      print() {
+      std::cout << "name is " << name.toStdString() << ", map_Ka is " << map_Ka.toStdString() << std::endl;
    }
 };
 #endif // MATERIAL_H

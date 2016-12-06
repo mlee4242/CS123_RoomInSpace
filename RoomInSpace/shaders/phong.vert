@@ -5,6 +5,7 @@ uniform bool overUnder;
 uniform mat4 m;
 uniform mat4 v;
 uniform mat4 p;
+in vec3 diffuse;
 in vec3 vertex;
 in vec2 texCoord;
 in vec3 normal;
@@ -25,5 +26,5 @@ void main()
     }
     WorldSpace_position = gl_Position.xyz;
     WorldSpace_normal = normal;
-    gl_Position = p * v * m * vec4(vertex.x, vertex.y, -vertex.z, 1.0f);
+    gl_Position = p * v * m * 0.01f * vec4(vertex.x, vertex.y, -vertex.z, 1.0f);
 }

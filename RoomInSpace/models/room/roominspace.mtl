@@ -1,5 +1,5 @@
 # 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
-# 创建的文件:04.12.2016 19:12:20
+# 创建的文件:05.12.2016 23:23:37
 
 newmtl Material__2097634029
 	Ns 10.000000
@@ -1267,20 +1267,6 @@ newmtl Material__2097629571
 	map_Ka maps\clock.jpg
 	map_Kd maps\clock.jpg
 
-newmtl 19___Default
-	Ns 9.999999
-	Ni 1.500000
-	d 1.000000
-	Tr 0.000000
-	Tf 1.000000 1.000000 1.000000 
-	illum 2
-	Ka 0.588235 0.588235 0.588235
-	Kd 0.588235 0.588235 0.588235
-	Ks 0.000000 0.000000 0.000000
-	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\小房间\4418749_061809499278_2.jpg
-	map_Kd maps\小房间\4418749_061809499278_2.jpg
-
 newmtl Material__2097634277
 	Ns 10.000000
 	Ni 1.500000
@@ -1323,7 +1309,7 @@ newmtl Material__2097634028
 	map_Ka maps\brown_wood.jpg
 	map_Kd maps\brown_wood.jpg
 
-newmtl Material__2097630399
+newmtl Material__2097649736
 	Ns 10.000000
 	Ni 1.500000
 	d 1.000000
@@ -1334,10 +1320,9 @@ newmtl Material__2097630399
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\2457331_093930679000_2.jpg
-	map_Kd maps\2457331_093930679000_2.jpg
+	map_Kd maps\photo_1.jpg
 
-newmtl Material__2097630408
+newmtl Material__2097649741
 	Ns 10.000000
 	Ni 1.500000
 	d 1.000000
@@ -1348,10 +1333,9 @@ newmtl Material__2097630408
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\6-091229101608-9-lit.jpg
-	map_Kd maps\6-091229101608-9-lit.jpg
+	map_Kd maps\photo_4.jpg
 
-newmtl Material__2097630409
+newmtl Material__2097649738
 	Ns 10.000000
 	Ni 1.500000
 	d 1.000000
@@ -1362,10 +1346,9 @@ newmtl Material__2097630409
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\6-091229101608-11-lit.jpg
-	map_Kd maps\6-091229101608-11-lit.jpg
+	map_Kd maps\photo_3.jpg
 
-newmtl Material__2097630410
+newmtl Material__2097649740
 	Ns 10.000000
 	Ni 1.500000
 	d 1.000000
@@ -1376,10 +1359,9 @@ newmtl Material__2097630410
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\6-091229101607-7-lit.jpg
-	map_Kd maps\6-091229101607-7-lit.jpg
+	map_Kd maps\photo_5.jpg
 
-newmtl Material__2097630411
+newmtl Material__2097649739
 	Ns 10.000000
 	Ni 1.500000
 	d 1.000000
@@ -1390,10 +1372,9 @@ newmtl Material__2097630411
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\6-091229101607-5-lit.jpg
-	map_Kd maps\6-091229101607-5-lit.jpg
+	map_Kd maps\photo_6.jpg
 
-newmtl Material__2097630412
+newmtl Material__2097649742
 	Ns 10.000000
 	Ni 1.500000
 	d 1.000000
@@ -1404,10 +1385,9 @@ newmtl Material__2097630412
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\6-091229101607-7-lit.jpg
-	map_Kd maps\6-091229101607-7-lit.jpg
+	map_Kd maps\photo_1.jpg
 
-newmtl Material__2097630400
+newmtl Material__2097649737
 	Ns 10.000000
 	Ni 1.500000
 	d 1.000000
@@ -1418,8 +1398,7 @@ newmtl Material__2097630400
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\2457331_093930679000_2.jpg
-	map_Kd maps\2457331_093930679000_2.jpg
+	map_Kd maps\photo_2.jpg
 
 newmtl Material__2097630401
 	Ns 10.000000
@@ -1530,6 +1509,7 @@ newmtl Material__2097649732
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\red_brown_wood.tif
 	map_Kd maps\red_brown_wood.tif
 
 newmtl Material__2097649733
@@ -1543,6 +1523,7 @@ newmtl Material__2097649733
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\20100724062419875118.jpg
 	map_Kd maps\20100724062419875118.jpg
 
 newmtl Material__2097633887
@@ -1601,26 +1582,57 @@ newmtl Material__2097634027
 	map_Ka maps\kid_body.jpg
 	map_Kd maps\kid_body.jpg
 
-newmtl ac00307_1
-	Ns 64.000000
+newmtl Material__2097649743
+	Ns 10.000000
 	Ni 1.500000
 	d 1.000000
 	Tr 0.000000
 	Tf 1.000000 1.000000 1.000000 
 	illum 2
-	Ka 0.984314 1.000000 1.000000
-	Kd 0.984314 1.000000 1.000000
-	Ks 0.738000 0.738000 0.738000
+	Ka 0.588000 0.588000 0.588000
+	Kd 0.588000 0.588000 0.588000
+	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
+	map_Kd maps\white.jpg
 
-newmtl ac00307_3
-	Ns 58.000000
+newmtl Material__55
+	Ns 10.000000
 	Ni 1.500000
 	d 1.000000
 	Tr 0.000000
 	Tf 1.000000 1.000000 1.000000 
 	illum 2
-	Ka 0.949020 0.745098 0.192157
-	Kd 0.949020 0.745098 0.192157
-	Ks 0.747000 0.747000 0.747000
+	Ka 0.588000 0.588000 0.588000
+	Kd 0.588000 0.588000 0.588000
+	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\white.jpg
+	map_Kd maps\white.jpg
+
+newmtl Material__53
+	Ns 10.000000
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.588000 0.588000 0.588000
+	Kd 0.588000 0.588000 0.588000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\red.jpg
+	map_Kd maps\red.jpg
+
+newmtl Material__54
+	Ns 10.000000
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.588000 0.588000 0.588000
+	Kd 0.588000 0.588000 0.588000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\book_page.jpg
+	map_Kd maps\book_page.jpg

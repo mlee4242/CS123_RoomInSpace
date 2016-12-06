@@ -7,10 +7,13 @@
 
 class GroupObject : public SceneObject
 {
+   friend class ObjLoader;
 public:
    GroupObject();
+   void addPrimitiveObject(PrimitiveObject *obj);
+
 protected:
-   QVector<PrimitiveObject> m_primObjects;
+   QVector<PrimitiveObject *> m_primObjects;
 };
 
 #endif // GROUPOBJECT_H

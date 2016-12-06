@@ -77,6 +77,17 @@ void BoundingBox::updateBox(const glm::vec3& p) {
  * udpate the bounding box according the input
  * @param p
  */
+void BoundingBox::updateBox(const BoundingBox& box) {
+   updateBox(box.m_lower);
+   updateBox(box.m_upper);
+}
+
+
+/**
+ * @brief BoundingBox::updateBox
+ * udpate the bounding box according the input
+ * @param p
+ */
 void BoundingBox::updateBox(const glm::vec4& p) {
    m_upper.x = std::fmax(p.x, m_upper.x);
    m_upper.y = std::fmax(p.y, m_upper.y);

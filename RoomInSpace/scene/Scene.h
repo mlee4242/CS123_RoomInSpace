@@ -35,6 +35,7 @@ public:
    void *getResolveTexture();
 
 private:
+   void generateTextureMap(const QVector<QString>& textures);
    bool compileShader(QOpenGLShaderProgram& shader,
                       const QString&        vertexShaderPath,
                       const QString&        fragmentShaderPath);
@@ -42,19 +43,21 @@ private:
    QOpenGLShaderProgram m_shader;
    QOpenGLBuffer m_vertexBuffer;
    QOpenGLVertexArrayObject m_vao;
-   QOpenGLTexture *m_texture;
+   QMap<QString, QOpenGLTexture *> m_glTextMap;
    std::unique_ptr<ObjLoader> m_objLoader;
-   int m_vertCount;
+   QVector<SceneObject *> m_sceneObjs;
 
-   uint32_t m_eyeWidth, m_eyeHeight;
-   int m_width, m_height;
-   //FBOHandle *m_leftBuffer, *m_rightBuffer;
    QOpenGLFramebufferObject *m_leftBuffer;
    QOpenGLFramebufferObject *m_rightBuffer;
    QOpenGLFramebufferObject *m_resolveBuffer;
    glm::mat4x4 m_modelMat;
    glm::mat4x4 m_viewMat;
    glm::mat4x4 m_projectMat;
+   QString m_path = "models/room/";
+   QString m_target = "roominspace";
+   uint32_t m_eyeWidth, m_eyeHeight;
+   int m_width, m_height;
+   //FBOHandle *m_leftBuffer, *m_rightBuffer;
 };
 
 #endif // SCENE_H

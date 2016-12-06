@@ -17,6 +17,7 @@ public:
    BoundingBox(const std::vector<std::shared_ptr<BoundingBox> >&);
    // initialize a bounding box from upper and lower bounds
    BoundingBox(const glm::vec3& upper, const glm::vec3& lower);
+   void updateBox(const BoundingBox& box);
    glm::vec3 getUpper();
    glm::vec3 getLower();
 
@@ -28,13 +29,12 @@ public:
 
    // check if this bounding box satifies its definition
    void check();
-
-protected:
    void updateBox(const glm::vec3&);
    void updateBox(const glm::vec4&);
    void updateUpper(const glm::vec3&);
    void updateLower(const glm::vec3&);
 
+protected:
    glm::vec3 m_upper;
    glm::vec3 m_lower;
 };

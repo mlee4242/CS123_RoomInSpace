@@ -206,6 +206,7 @@ Makefile: RoomInSpace.pro C:\Qt\5.7\msvc2015_64\mkspecs\win32-msvc2015\qmake.con
 		C:\Qt\5.7\msvc2015_64\mkspecs\features\win32\qt_config.prf \
 		C:\Qt\5.7\msvc2015_64\mkspecs\win32-msvc2015\qmake.conf \
 		C:\Qt\5.7\msvc2015_64\mkspecs\features\spec_post.prf \
+		.qmake.stash \
 		C:\Qt\5.7\msvc2015_64\mkspecs\features\exclusive_builds.prf \
 		C:\Qt\5.7\msvc2015_64\mkspecs\features\default_pre.prf \
 		C:\Qt\5.7\msvc2015_64\mkspecs\features\win32\default_pre.prf \
@@ -366,6 +367,7 @@ C:\Qt\5.7\msvc2015_64\mkspecs\features\qt_config.prf:
 C:\Qt\5.7\msvc2015_64\mkspecs\features\win32\qt_config.prf:
 C:\Qt\5.7\msvc2015_64\mkspecs\win32-msvc2015\qmake.conf:
 C:\Qt\5.7\msvc2015_64\mkspecs\features\spec_post.prf:
+.qmake.stash:
 C:\Qt\5.7\msvc2015_64\mkspecs\features\exclusive_builds.prf:
 C:\Qt\5.7\msvc2015_64\mkspecs\features\default_pre.prf:
 C:\Qt\5.7\msvc2015_64\mkspecs\features\win32\default_pre.prf:
@@ -403,7 +405,7 @@ clean: release-clean debug-clean  FORCE
 	-$(DEL_FILE) RoomInSpace.exp
 distclean: release-distclean debug-distclean  FORCE
 	-$(DEL_FILE) Makefile
-	-$(DEL_FILE) RoomInSpace.lib
+	-$(DEL_FILE) .qmake.stash RoomInSpace.lib
 
 release-mocclean:
 	@set MAKEFLAGS=$(MAKEFLAGS)
