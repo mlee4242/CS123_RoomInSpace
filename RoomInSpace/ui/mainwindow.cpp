@@ -29,8 +29,8 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow() {
    delete ui;
    delete vr;
-   delete m_buttonGroup;
-   foreach(DataBinding * b, m_bindings) delete b;
+//   delete m_buttonGroup;
+//   foreach(DataBinding * b, m_bindings) delete b;
 }
 
 
@@ -45,17 +45,17 @@ void MainWindow::showStatus(const QString& message) {
 
 
 void MainWindow::dataBind() {
-#define BIND(b)                 \
-   {                            \
-      DataBinding *_b = (b);    \
-      m_bindings.push_back(_b); \
-   }
-   m_buttonGroup = new QButtonGroup;
-   BIND(ChoiceBinding::bindRadioButtons(
-           m_buttonGroup,
-           NUM_WINDOWS_TYPES,
-           settings.windowMode,
-           ui->radioButton_2,
-           ui->radioButton))
-#undef BIND
+//#define BIND(b)                 \
+//   {                            \
+//      DataBinding *_b = (b);    \
+//      m_bindings.push_back(_b); \
+//   }
+//   m_buttonGroup = new QButtonGroup;
+//   BIND(ChoiceBinding::bindRadioButtons(
+//           m_buttonGroup,
+//           NUM_WINDOWS_TYPES,
+//           settings.windowMode,
+//           ui->radioButton_2,
+//           ui->radioButton))
+//#undef BIND
 }

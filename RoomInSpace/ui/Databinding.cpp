@@ -270,13 +270,13 @@ void BoolBinding::boolChanged(bool newValue) {
 ChoiceBinding *ChoiceBinding::bindRadioButtons(
    QButtonGroup *buttonGroup, int numRadioButtons, int& value, ...) {
    // Adjust button group from the variable argument list following initialValue
-   va_list args;
+  // va_list args;
 
-   va_start(args, value);
-   for (int id = 0; id < numRadioButtons; id++) {
-      buttonGroup->addButton(va_arg(args, QRadioButton *), id);
-   }
-   va_end(args);
+  // va_start(args, value);
+//   for (int id = 0; id < numRadioButtons; id++) {
+//      buttonGroup->addButton(va_arg(args, QRadioButton *), id);
+//   }
+ //  va_end(args);
 
    // Bind the button group and the value together
    ChoiceBinding *binding = new ChoiceBinding(value);
