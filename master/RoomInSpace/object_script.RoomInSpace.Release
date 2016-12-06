@@ -1,0 +1,17 @@
+INPUT(
+./release\main.o
+./release\mainwindow.o
+./release\vrview.o
+./release\OrbitingCamera.o
+./release\CamtransCamera.o
+./release\Settings.o
+./release\Helpers.o
+./release\Scene.o
+./release\BoundingBox.o
+./release\SceneObject.o
+./release\PrimitiveObject.o
+./release\GroupObject.o
+./release\ObjLoader.o
+./release\moc_mainwindow.o
+./release\moc_vrview.o
+);

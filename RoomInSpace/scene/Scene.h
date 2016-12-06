@@ -53,8 +53,8 @@ private:
    glm::mat4x4 m_modelMat;
    glm::mat4x4 m_viewMat;
    glm::mat4x4 m_projectMat;
-   QString m_path = "models/room/";
-   QString m_target = "roominspace";
+   QString m_path = "models/tests/";
+   QString m_target = "test";
    uint32_t m_eyeWidth, m_eyeHeight;
    int m_width, m_height;
    //FBOHandle *m_leftBuffer, *m_rightBuffer;

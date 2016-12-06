@@ -37,7 +37,7 @@ Scene::~Scene() {
 
 void Scene::generateTextureMap(const QVector<QString>& textures) {
    for (QString txt : textures) {
-      std::cout << (m_path + txt).toStdString() << std::endl;
+      std::cout << "generate " << (m_path + txt).toStdString() << std::endl;
       m_glTextMap[txt] = new QOpenGLTexture(QImage(":/" + m_path + txt));
    }
 }
@@ -192,14 +192,15 @@ void Scene::renderEye(vr::Hmd_Eye eye) {
    m_vao.bind();
    m_shader.bind();
 //   m_texture->bind(0);
-
-   m_shader.setUniformValue("diffuse", 0);
+ for (auto obj : m_sceneObjs) {
 
    m_shader.setUniformValue("v", helper.mat4x4ToQMatrix4x4(m_viewMat));
    m_shader.setUniformValue("p", helper.mat4x4ToQMatrix4x4(m_projectMat));
+//   std::cout << glm::to_string(m_projectMat) << std::endl;
+//   std::cout << glm::to_string(m_viewMat) << std::endl;
    m_shader.setUniformValue("leftEye", eye == vr::Eye_Left);
    m_shader.setUniformValue("overUnder", settings.windowMode == OverUnder);
-   for (auto obj : m_sceneObjs) {
+
       obj->draw(m_shader, m_glTextMap);
    }
 

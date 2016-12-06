@@ -56,45 +56,46 @@ void ObjLoader::loadMaterials(const QString& target) {
                data = line.simplified().split(" ");
 
                if ((data.length() <= 0) || (data[0] == "")) { nextMtl = true; continue; }
-               if (data[0] == "Ns") { mtl.Ns = data[1].toFloat(); continue; }
-               if (data[0] == "Ni") { mtl.Ni = data[1].toFloat(); continue; }
-               if (data[0] == "d") { mtl.d = data[1].toFloat(); continue; }
-               if (data[0] == "Tr") { mtl.d = data[1].toFloat(); continue; }
+               if (data[0] == "Ns") { mtl.Ns = data[1].toFloat();  }
+               if (data[0] == "Ni") { mtl.Ni = data[1].toFloat(); }
+               if (data[0] == "d") { mtl.d = data[1].toFloat();  }
+               if (data[0] == "Tr") { mtl.d = data[1].toFloat(); }
                if (data[0] == "Tf") {
                   mtl.Tf = glm::vec3(data[1].toFloat(),
                                      data[2].toFloat(),
                                      data[3].toFloat());
-                  continue;
+
                }
                if (data[0] == "illum") { mtl.illum = data[1].toInt(); continue; }
                if (data[0] == "Ka") {
                   mtl.Ka = glm::vec3(data[1].toFloat(),
                                      data[2].toFloat(),
                                      data[3].toFloat());
-                  continue;
+
                }
                if (data[0] == "Kd") {
                   mtl.Kd = glm::vec3(data[1].toFloat(),
                                      data[2].toFloat(),
                                      data[3].toFloat());
-                  continue;
+
                }
                if (data[0] == "Ks") {
                   mtl.Ks = glm::vec3(data[1].toFloat(),
                                      data[2].toFloat(),
                                      data[3].toFloat());
-                  continue;
+
                }
                if (data[0] == "Ke") {
                   mtl.Ke = glm::vec3(data[1].toFloat(),
                                      data[2].toFloat(),
                                      data[3].toFloat());
-                  continue;
+
                }
-               if (data[0] == "map_Ka") { mtl.map_Ka = data[1]; continue; }
-               if (data[0] == "map_Kd") { mtl.map_Kd = data[1]; continue; }
+               if (data[0] == "map_Ka") { mtl.map_Ka = data[1];  }
+               if (data[0] == "map_Kd") { mtl.map_Kd = data[1]; }
             }
             m_materialMap[mtlName] = mtl;
+//                 std::cout << mtlName.toStdString() << std::endl;
          }
       }
    }
@@ -120,6 +121,7 @@ void ObjLoader::parseVertices(const QString& target, QVector<GLfloat>& cVerts) {
             obj->m_offset = offset;
             obj->setName(QString(data[2]));
             bool nextObj = false;
+            int count = 0;
             while (!nextObj)
             {
                line = in.readLine();
@@ -131,16 +133,16 @@ void ObjLoader::parseVertices(const QString& target, QVector<GLfloat>& cVerts) {
                   verts.append(v2);
                   verts.append(v3);
                   obj->updateBox(glm::vec3(v1, v2, v3));
-                  offset += 3;
+
                }else if ((data.length() > 0) && (data[0] == "vt")) {
                   uvs.append(data[1].toFloat());
                   uvs.append(data[2].toFloat());
-                  offset += 2;
+
                }else if ((data.length() > 0) && (data[0] == "vn")) {
                   ns.append(data[1].toFloat());
                   ns.append(data[2].toFloat());
                   ns.append(data[3].toFloat());
-                  offset += 3;
+
                }else if ((data.length() > 0) && (data[0] == "usemtl")) {
                   QString mtlName = data[1];
                   obj->setMaterial(m_materialMap[mtlName]);
@@ -156,12 +158,18 @@ void ObjLoader::parseVertices(const QString& target, QVector<GLfloat>& cVerts) {
                         int n  = row[2].toInt() - 1;
                         for (int j = 0; j < 3; j++) {
                            cVerts.append(verts.at(v * 3 + j));
+                           offset += 3;
+                           count += 3;
                         }
                         for (int j = 0; j < 2; j++) {
                            cVerts.append(uvs.at(vt * 2 + j));
+                           offset += 2;
+                           count += 2;
                         }
                         for (int j = 0; j < 3; j++) {
                            cVerts.append(ns.at(n * 3 + j));
+                           offset += 3;
+                           count += 3;
                         }
                      }
                   }else {
@@ -173,16 +181,22 @@ void ObjLoader::parseVertices(const QString& target, QVector<GLfloat>& cVerts) {
                         int n  = row[2].toInt() - 1;
                         for (int j = 0; j < 3; j++) {
                            cVerts.append(verts.at(v * 3 + j));
+                           offset += 3;
+                           count += 3;
                         }
                         for (int j = 0; j < 2; j++) {
                            if (vt == -1) {
                               cVerts.append(0);
-                           }else{ cVerts.append(uvs.at(vt * 2 + j)); }
+                           }else{ cVerts.append(uvs.at(vt * 2 + j));
+                               offset += 2;
+                               count += 2;}
                         }
-                        for (int j = 0; j < 3; j++) { \
+                        for (int j = 0; j < 3; j++) {
                            if (n == -1) {
                               cVerts.append(0);
-                           }else{ cVerts.append(ns.at(n * 3 + j)); }
+                           }else{ cVerts.append(ns.at(n * 3 + j));
+                               offset += 3;
+                               count += 3;}
                         }
                      }
                   }
@@ -193,7 +207,7 @@ void ObjLoader::parseVertices(const QString& target, QVector<GLfloat>& cVerts) {
                }
             } // end of parsing one obj
             std::cout << "parsed " << obj->getName().toStdString() << std::endl;
-            obj->m_numVertices = cVerts.size();
+            obj->m_numVertices = count;
             m_allObjs.append(obj);
          }
       }
