@@ -12,11 +12,11 @@ MAKEFILE      = Makefile.Release
 CC            = cl
 CXX           = cl
 DEFINES       = -DUNICODE -DWIN32 -DWIN64 -DQT_QML_DEBUG -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DNDEBUG
-CFLAGS        = -nologo -Zc:wchar_t -FS -Zc:strictStrings -O2 -MD -W3 -w44456 -w44457 -w44458 $(DEFINES)
-CXXFLAGS      = -nologo -Zc:wchar_t -FS -Zc:strictStrings -Zc:throwingNew -O2 -MD -GR -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -EHsc $(DEFINES)
+CFLAGS        = -nologo -Zc:wchar_t -FS -Zc:strictStrings -O2 -MD -Zi -W3 -w44456 -w44457 -w44458 /Fdrelease\RoomInSpace.vc.pdb $(DEFINES)
+CXXFLAGS      = -nologo -Zc:wchar_t -FS -Zc:strictStrings -Zc:throwingNew -O2 -MD -Zi -GR -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -EHsc /Fdrelease\RoomInSpace.vc.pdb $(DEFINES)
 INCPATH       = -I. -I. -Ithirdparty -Ithirdparty\openvr\headers -Iutilities -Ishaders -Imodels -Itextures -Icamera -Iui -Iscenegraph -Iutilities -Ithirdparty/include -IC:\Qt\5.6\msvc2015_64\include -IC:\Qt\5.6\msvc2015_64\include\QtOpenGL -IC:\Qt\5.6\msvc2015_64\include\QtWidgets -IC:\Qt\5.6\msvc2015_64\include\QtGui -IC:\Qt\5.6\msvc2015_64\include\QtANGLE -IC:\Qt\5.6\msvc2015_64\include\QtCore -Irelease -I. -IC:\Qt\5.6\msvc2015_64\mkspecs\win32-msvc2015 
 LINKER        = link
-LFLAGS        = /NOLOGO /DYNAMICBASE /NXCOMPAT /INCREMENTAL:NO /SUBSYSTEM:WINDOWS "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'"
+LFLAGS        = /NOLOGO /DYNAMICBASE /NXCOMPAT /DEBUG /OPT:REF /INCREMENTAL:NO /SUBSYSTEM:WINDOWS "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'"
 LIBS          = /LIBPATH:C:\Qt\5.6\msvc2015_64\lib C:\Qt\5.6\msvc2015_64\lib\qtmain.lib shell32.lib /LIBPATH:C:\utils\my_sql\my_sql\lib /LIBPATH:C:\utils\postgresql\pgsql\lib /LIBPATH:E:\Code\CS123_RoomInSpace\RoomInSpace\thirdparty\openvr\lib\win64 E:\Code\CS123_RoomInSpace\RoomInSpace\thirdparty\openvr\lib\win64\openvr_api.lib opengl32.lib C:\Qt\5.6\msvc2015_64\lib\Qt5OpenGL.lib C:\Qt\5.6\msvc2015_64\lib\Qt5Widgets.lib C:\Qt\5.6\msvc2015_64\lib\Qt5Gui.lib C:\Qt\5.6\msvc2015_64\lib\Qt5Core.lib release\win32.res 
 QMAKE         = C:\Qt\5.6\msvc2015_64\bin\qmake.exe
 IDC           = idc
@@ -271,20 +271,20 @@ release\win32.res: win32.rc
 	rc $(DEFINES) -fo release\win32.res win32.rc
 
 qmake: FORCE
-	@$(QMAKE) -spec win32-msvc2015 "CONFIG+=debug" "CONFIG+=qml_debug" -o Makefile.Release RoomInSpace.pro
+	@$(QMAKE) -spec win32-msvc2015 "CONFIG+=qml_debug" "CONFIG+=force_debug_info" "CONFIG+=separate_debug_info" -o Makefile.Release RoomInSpace.pro
 
 qmake_all: FORCE
 
 dist:
-	$(ZIP) RoomInSpace.zip $(SOURCES) $(DIST) RoomInSpace.pro C:\Qt\5.6\msvc2015_64\mkspecs\features\spec_pre.prf C:\Qt\5.6\msvc2015_64\mkspecs\common\angle.conf C:\Qt\5.6\msvc2015_64\mkspecs\common\msvc-base.conf C:\Qt\5.6\msvc2015_64\mkspecs\common\msvc-desktop.conf C:\Qt\5.6\msvc2015_64\mkspecs\qconfig.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_axbase.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_axbase_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_axcontainer.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_axcontainer_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_axserver.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_axserver_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_bluetooth.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_bluetooth_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_bootstrap_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_clucene_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_concurrent.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_concurrent_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_core.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_core_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_dbus.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_dbus_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_designer.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_designer_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_designercomponents_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_gui.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_gui_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_help.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_help_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_multimedia.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_multimedia_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_multimediawidgets.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_network.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_network_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_nfc.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_nfc_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_opengl.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_opengl_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_openglextensions.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_openglextensions_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_platformsupport_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_positioning.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_positioning_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_printsupport.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_printsupport_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_qml.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_qml_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_qmldevtools_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_qmltest.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_qmltest_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_quick.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_quick_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_quickparticles_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_quickwidgets.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_sensors.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_sensors_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_serialport.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_serialport_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_sql.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_sql_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_svg.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_svg_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_testlib.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_testlib_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_uiplugin.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_uitools.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_uitools_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_webchannel.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_webchannel_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_websockets.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_websockets_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_widgets.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_widgets_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_winextras.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_winextras_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_xml.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_xml_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_xmlpatterns.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_zlib_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\features\qt_functions.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\qt_config.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\win32\qt_config.prf C:\Qt\5.6\msvc2015_64\mkspecs\win32-msvc2015\qmake.conf C:\Qt\5.6\msvc2015_64\mkspecs\features\spec_post.prf .qmake.stash C:\Qt\5.6\msvc2015_64\mkspecs\features\exclusive_builds.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\default_pre.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\win32\default_pre.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\resolve_config.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\exclusive_builds_post.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\default_post.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\build_pass.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\qml_debug.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\win32\rtti.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\precompile_header.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\warn_on.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\qt.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\resources.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\moc.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\win32\opengl.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\uic.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\file_copies.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\win32\windows.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\testcase_targets.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\exceptions.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\yacc.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\lex.prf RoomInSpace.pro resources.qrc C:\Qt\5.6\msvc2015_64\lib\qtmain.prl C:\Qt\5.6\msvc2015_64\lib\Qt5OpenGL.prl C:\Qt\5.6\msvc2015_64\lib\Qt5Widgets.prl C:\Qt\5.6\msvc2015_64\lib\Qt5Gui.prl C:\Qt\5.6\msvc2015_64\lib\Qt5Core.prl  NO_PCH_SOURCES RESOURCES HEADERS SOURCES OBJECTIVE_SOURCES FORMS YACCSOURCES YACCSOURCES LEXSOURCES 
+	$(ZIP) RoomInSpace.zip $(SOURCES) $(DIST) RoomInSpace.pro C:\Qt\5.6\msvc2015_64\mkspecs\features\spec_pre.prf C:\Qt\5.6\msvc2015_64\mkspecs\common\angle.conf C:\Qt\5.6\msvc2015_64\mkspecs\common\msvc-base.conf C:\Qt\5.6\msvc2015_64\mkspecs\common\msvc-desktop.conf C:\Qt\5.6\msvc2015_64\mkspecs\qconfig.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_axbase.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_axbase_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_axcontainer.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_axcontainer_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_axserver.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_axserver_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_bluetooth.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_bluetooth_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_bootstrap_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_clucene_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_concurrent.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_concurrent_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_core.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_core_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_dbus.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_dbus_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_designer.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_designer_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_designercomponents_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_gui.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_gui_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_help.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_help_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_multimedia.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_multimedia_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_multimediawidgets.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_network.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_network_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_nfc.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_nfc_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_opengl.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_opengl_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_openglextensions.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_openglextensions_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_platformsupport_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_positioning.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_positioning_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_printsupport.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_printsupport_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_qml.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_qml_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_qmldevtools_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_qmltest.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_qmltest_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_quick.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_quick_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_quickparticles_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_quickwidgets.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_sensors.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_sensors_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_serialport.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_serialport_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_sql.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_sql_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_svg.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_svg_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_testlib.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_testlib_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_uiplugin.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_uitools.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_uitools_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_webchannel.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_webchannel_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_websockets.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_websockets_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_widgets.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_widgets_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_winextras.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_winextras_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_xml.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_xml_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_xmlpatterns.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\modules\qt_lib_zlib_private.pri C:\Qt\5.6\msvc2015_64\mkspecs\features\qt_functions.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\qt_config.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\win32\qt_config.prf C:\Qt\5.6\msvc2015_64\mkspecs\win32-msvc2015\qmake.conf C:\Qt\5.6\msvc2015_64\mkspecs\features\spec_post.prf .qmake.stash C:\Qt\5.6\msvc2015_64\mkspecs\features\exclusive_builds.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\default_pre.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\win32\default_pre.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\resolve_config.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\exclusive_builds_post.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\default_post.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\build_pass.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\win32\separate_debug_info.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\qml_debug.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\win32\rtti.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\precompile_header.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\warn_on.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\qt.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\resources.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\moc.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\win32\opengl.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\uic.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\file_copies.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\win32\windows.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\testcase_targets.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\exceptions.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\yacc.prf C:\Qt\5.6\msvc2015_64\mkspecs\features\lex.prf RoomInSpace.pro resources.qrc C:\Qt\5.6\msvc2015_64\lib\qtmain.prl C:\Qt\5.6\msvc2015_64\lib\Qt5OpenGL.prl C:\Qt\5.6\msvc2015_64\lib\Qt5Widgets.prl C:\Qt\5.6\msvc2015_64\lib\Qt5Gui.prl C:\Qt\5.6\msvc2015_64\lib\Qt5Core.prl  NO_PCH_SOURCES RESOURCES HEADERS SOURCES OBJECTIVE_SOURCES FORMS YACCSOURCES YACCSOURCES LEXSOURCES 
 
 clean: compiler_clean 
 	-$(DEL_FILE) release\main.obj release\mainwindow.obj release\vrview.obj release\OrbitingCamera.obj release\CamtransCamera.obj release\Settings.obj release\Helpers.obj release\Scene.obj release\BoundingBox.obj release\SceneObject.obj release\PrimitiveObject.obj release\GroupObject.obj release\ObjLoader.obj release\qrc_resources.obj release\moc_mainwindow.obj release\moc_vrview.obj
-	-$(DEL_FILE) release\RoomInSpace.exp
+	-$(DEL_FILE) release\RoomInSpace.exp release\RoomInSpace.vc.pdb
 	-$(DEL_FILE) release\win32.res
 
 distclean: clean 
-	-$(DEL_FILE) .qmake.stash release\RoomInSpace.lib
+	-$(DEL_FILE) .qmake.stash release\RoomInSpace.lib release\RoomInSpace.pdb
 	-$(DEL_FILE) $(DESTDIR_TARGET)
 	-$(DEL_FILE) Makefile.Release
 
@@ -1125,6 +1125,50 @@ release\mainwindow.obj: ui\mainwindow.cpp ui/mainwindow.h \
 		C:\Qt\5.6\msvc2015_64\include\QtGui\qquaternion.h \
 		C:\Qt\5.6\msvc2015_64\include\QtGui\qgenericmatrix.h \
 		ui_mainwindow.h \
+		C:\Qt\5.6\msvc2015_64\include\QtCore\QVariant \
+		C:\Qt\5.6\msvc2015_64\include\QtWidgets\QAction \
+		C:\Qt\5.6\msvc2015_64\include\QtWidgets\qaction.h \
+		C:\Qt\5.6\msvc2015_64\include\QtWidgets\qactiongroup.h \
+		C:\Qt\5.6\msvc2015_64\include\QtWidgets\QApplication \
+		C:\Qt\5.6\msvc2015_64\include\QtWidgets\qapplication.h \
+		C:\Qt\5.6\msvc2015_64\include\QtCore\qcoreapplication.h \
+		C:\Qt\5.6\msvc2015_64\include\QtCore\qeventloop.h \
+		C:\Qt\5.6\msvc2015_64\include\QtWidgets\qdesktopwidget.h \
+		C:\Qt\5.6\msvc2015_64\include\QtGui\qguiapplication.h \
+		C:\Qt\5.6\msvc2015_64\include\QtGui\qinputmethod.h \
+		C:\Qt\5.6\msvc2015_64\include\QtWidgets\QGroupBox \
+		C:\Qt\5.6\msvc2015_64\include\QtWidgets\qgroupbox.h \
+		C:\Qt\5.6\msvc2015_64\include\QtWidgets\qframe.h \
+		C:\Qt\5.6\msvc2015_64\include\QtWidgets\QHBoxLayout \
+		C:\Qt\5.6\msvc2015_64\include\QtWidgets\qboxlayout.h \
+		C:\Qt\5.6\msvc2015_64\include\QtWidgets\qlayout.h \
+		C:\Qt\5.6\msvc2015_64\include\QtWidgets\qlayoutitem.h \
+		C:\Qt\5.6\msvc2015_64\include\QtWidgets\qgridlayout.h \
+		C:\Qt\5.6\msvc2015_64\include\QtWidgets\QHeaderView \
+		C:\Qt\5.6\msvc2015_64\include\QtWidgets\qheaderview.h \
+		C:\Qt\5.6\msvc2015_64\include\QtWidgets\qabstractitemview.h \
+		C:\Qt\5.6\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
+		C:\Qt\5.6\msvc2015_64\include\QtCore\qabstractitemmodel.h \
+		C:\Qt\5.6\msvc2015_64\include\QtCore\qitemselectionmodel.h \
+		C:\Qt\5.6\msvc2015_64\include\QtWidgets\qabstractitemdelegate.h \
+		C:\Qt\5.6\msvc2015_64\include\QtWidgets\qstyleoption.h \
+		C:\Qt\5.6\msvc2015_64\include\QtWidgets\qabstractspinbox.h \
+		C:\Qt\5.6\msvc2015_64\include\QtGui\qvalidator.h \
+		C:\Qt\5.6\msvc2015_64\include\QtCore\qregularexpression.h \
+		C:\Qt\5.6\msvc2015_64\include\QtWidgets\qslider.h \
+		C:\Qt\5.6\msvc2015_64\include\QtWidgets\qabstractslider.h \
+		C:\Qt\5.6\msvc2015_64\include\QtWidgets\qstyle.h \
+		C:\Qt\5.6\msvc2015_64\include\QtWidgets\qtabbar.h \
+		C:\Qt\5.6\msvc2015_64\include\QtWidgets\qrubberband.h \
+		C:\Qt\5.6\msvc2015_64\include\QtWidgets\QLabel \
+		C:\Qt\5.6\msvc2015_64\include\QtWidgets\qlabel.h \
+		C:\Qt\5.6\msvc2015_64\include\QtWidgets\QRadioButton \
+		C:\Qt\5.6\msvc2015_64\include\QtWidgets\qradiobutton.h \
+		C:\Qt\5.6\msvc2015_64\include\QtWidgets\qabstractbutton.h \
+		C:\Qt\5.6\msvc2015_64\include\QtWidgets\QStatusBar \
+		C:\Qt\5.6\msvc2015_64\include\QtWidgets\qstatusbar.h \
+		C:\Qt\5.6\msvc2015_64\include\QtWidgets\QVBoxLayout \
+		C:\Qt\5.6\msvc2015_64\include\QtWidgets\QWidget \
 		ui/vrview.h \
 		C:\Qt\5.6\msvc2015_64\include\QtGui\QOpenGLFunctions_4_1_Core \
 		C:\Qt\5.6\msvc2015_64\include\QtGui\qopenglfunctions_4_1_core.h \
@@ -1146,7 +1190,6 @@ release\mainwindow.obj: ui\mainwindow.cpp ui/mainwindow.h \
 		C:\Qt\5.6\msvc2015_64\include\QtGui\qsurfaceformat.h \
 		C:\Qt\5.6\msvc2015_64\include\QtWidgets\QOpenGLWidget \
 		C:\Qt\5.6\msvc2015_64\include\QtWidgets\qopenglwidget.h \
-		C:\Qt\5.6\msvc2015_64\include\QtWidgets\QWidget \
 		C:\Qt\5.6\msvc2015_64\include\QtGui\QOpenGLBuffer \
 		C:\Qt\5.6\msvc2015_64\include\QtGui\qopenglbuffer.h \
 		C:\Qt\5.6\msvc2015_64\include\QtGui\QOpenGLVertexArrayObject \
@@ -1396,11 +1439,6 @@ release\mainwindow.obj: ui\mainwindow.cpp ui/mainwindow.h \
 		C:\Qt\5.6\msvc2015_64\include\QtOpenGL\qtopenglglobal.h \
 		scene/objmodeler/SceneObject.h \
 		scene/objmodeler/BoundingBox.h \
-		C:\Qt\5.6\msvc2015_64\include\QtWidgets\QVBoxLayout \
-		C:\Qt\5.6\msvc2015_64\include\QtWidgets\qboxlayout.h \
-		C:\Qt\5.6\msvc2015_64\include\QtWidgets\qlayout.h \
-		C:\Qt\5.6\msvc2015_64\include\QtWidgets\qlayoutitem.h \
-		C:\Qt\5.6\msvc2015_64\include\QtWidgets\qgridlayout.h \
 		C:\Qt\5.6\msvc2015_64\include\QtCore\QSettings \
 		C:\Qt\5.6\msvc2015_64\include\QtCore\qsettings.h \
 		C:\Qt\5.6\msvc2015_64\include\QtWidgets\QFileDialog \
