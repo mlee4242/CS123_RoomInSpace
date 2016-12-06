@@ -24,7 +24,11 @@ void main()
             fragTexCoord.t = fragTexCoord.t * 0.5;
         }
     }
-    WorldSpace_position = gl_Position.xyz;
-    WorldSpace_normal = normal;
-    gl_Position = p * v * m * vec4(vertex.x, vertex.y, -vertex.z, 1.0f);
+
+//    gl_Position = p * v * m * vec4( 0.05 *  vertex.x,  0.05 *vertex.y, -0.05 * vertex.z, 1.0f);
+//     gl_Position = p * v * m * vec4( 0.01f * vertex.x,  -0.01f * vertex.y, 0.01f * vertex.z, 1.0f);
+     gl_Position = p * v * m * vec4(vertex, 1.0f);
+     WorldSpace_position = gl_Position.xyz;
+     WorldSpace_normal = normal;
+//      gl_Position = p * v * m * vec4( 0, 0, 1, 1.0f);
 }

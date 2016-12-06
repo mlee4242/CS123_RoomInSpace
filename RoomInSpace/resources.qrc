@@ -1,4 +1,4 @@
-﻿<!DOCTYPE RCC><RCC version="1.0">
+﻿<RCC>
     <qresource prefix="/">
         <file>shaders/phong.frag</file>
         <file>shaders/phong.vert</file>
@@ -53,5 +53,6 @@
         <file>models/room/maps/red_brown_wood.tif</file>
         <file>models/room/maps/wall.jpg</file>
         <file>models/room/maps/white.jpg</file>
+        <file>models/simpleroom/roomsimple.mtl</file>
     </qresource>
 </RCC>

@@ -27,11 +27,6 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow() {
    delete ui;
    delete vr;
-<<<<<<< HEAD
-//   delete m_buttonGroup;
-//   foreach(DataBinding * b, m_bindings) delete b;
-=======
->>>>>>> 007565bd24d5467b66b0a724bc995d9b5e8835eb
 }
 
 
@@ -44,23 +39,6 @@ void MainWindow::showStatus(const QString& message) {
    ui->statusBar->showMessage(message);
 }
 
-
-<<<<<<< HEAD
-void MainWindow::dataBind() {
-//#define BIND(b)                 \
-//   {                            \
-//      DataBinding *_b = (b);    \
-//      m_bindings.push_back(_b); \
-//   }
-//   m_buttonGroup = new QButtonGroup;
-//   BIND(ChoiceBinding::bindRadioButtons(
-//           m_buttonGroup,
-//           NUM_WINDOWS_TYPES,
-//           settings.windowMode,
-//           ui->radioButton_2,
-//           ui->radioButton))
-//#undef BIND
-=======
 void MainWindow::on_overUnderButton_clicked() {
    if (ui->overUnderButton->isChecked()) {
       settings.windowMode = OverUnder;
@@ -68,9 +46,4 @@ void MainWindow::on_overUnderButton_clicked() {
 }
 
 
-void MainWindow::on_sideSideButton_clicked() {
-   if (ui->sideSideButton->isChecked()) {
-      settings.windowMode = SideBySide;
-   }else{ settings.windowMode = OverUnder; }
->>>>>>> 007565bd24d5467b66b0a724bc995d9b5e8835eb
-}
+void MainWindow::on_sideSideButton_clicked(){}
