@@ -19,6 +19,16 @@ void PrimitiveObject::setMaterial(const Material& mtl) {
 }
 
 
+void PrimitiveObject::setOffset(int offset) {
+   m_offset = offset;
+}
+
+
+void PrimitiveObject::setNumVertices(int num) {
+   m_numVertices = num;
+}
+
+
 int PrimitiveObject::getNumVertices() {
    return m_numVertices;
 }
@@ -29,14 +39,13 @@ void PrimitiveObject::draw(QOpenGLShaderProgram& shader,
    if (m_material.map_Kd != "") {
       shader.setUniformValue("m", helper.mat4x4ToQMatrix4x4(m_modelMat));
       shader.setUniformValue("diffuse", helper.vec3ToQVector3D(m_material.Kd));
+      shader.setUniformValue("useTex", 1);
       txtMap[m_material.map_Kd]->bind();
-      glDrawArrays(GL_TRIANGLES, m_offset, m_numVertices);
-
-//   txtMap[m_material.map_Kd]->bind(0);
+      glDrawArrays(GL_TRIANGLES, m_offset / 8, m_numVertices / 8);
    }else{
       shader.setUniformValue("m", helper.mat4x4ToQMatrix4x4(m_modelMat));
       shader.setUniformValue("diffuse", helper.vec3ToQVector3D(m_material.Kd));
-      std::cout << glm::to_string(m_material.Kd) << std::endl;
-      glDrawArrays(GL_TRIANGLES, m_offset, m_numVertices);
+      shader.setUniformValue("useTex", 0);
+      glDrawArrays(GL_TRIANGLES, m_offset / 8, m_numVertices / 8);
    }
 }

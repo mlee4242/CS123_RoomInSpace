@@ -63,8 +63,8 @@ void OrbitingCamera::mouseDragged(int x, int y) {
    m_angleX += y - m_oldY;
    m_oldX    = x;
    m_oldY    = y;
-   if (m_angleX < -90) { m_angleX = -90; }
-   if (m_angleX > 90) { m_angleX = 90; }
+   if (m_angleX < -180) { m_angleX = -180; }
+   if (m_angleX > 180) { m_angleX = 180; }
 
    updateViewMatrix();
 }
@@ -88,13 +88,13 @@ void OrbitingCamera::updateMatrices() {
 void OrbitingCamera::updateProjectionMatrix() {
    // Make sure glm gets a far value that is greater than the near value.
    // Thanks Windows for making far a keyword!
-   float farPlane = std::max(settings.cameraFar, settings.cameraNear + 100.f * FLT_EPSILON);
-   float h        = farPlane * glm::tan(glm::radians(settings.cameraFov / 2));
+   float farPlane = std::max(settings.cameraFar, settings.cameraNear + 1000.f * FLT_EPSILON);
+   float h        = farPlane * glm::tan(glm::radians(settings.cameraFov));
    float w        = m_aspectRatio * h;
 
    m_scaleMatrix      = glm::scale(glm::vec3(1.f / w, 1.f / h, 1.f / farPlane));
    m_projectionMatrix = glm::perspective(
-      glm::radians(settings.cameraFov / 2.f), m_aspectRatio, settings.cameraNear, farPlane) / 50.f;
+      glm::radians(settings.cameraFov), m_aspectRatio, settings.cameraNear, farPlane) / 50.f;
 //   std::cout << "m_projectionMatrix from Orbiting is " << glm::to_string(m_projectionMatrix) << std::endl;
 }
 

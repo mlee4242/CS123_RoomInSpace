@@ -3,6 +3,7 @@
 #include "glm/ext.hpp"
 #include "objmodeler/SceneObject.h"
 #include "objmodeler/delete_ptr.h"
+#include "Settings.h"
 Scene::Scene() :// m_vertCount(0), m_texture(0),
    m_glTextMap(QMap<QString, QOpenGLTexture *>()),
    m_viewMat(glm::mat4x4()),
@@ -16,8 +17,9 @@ Scene::Scene() :// m_vertCount(0), m_texture(0),
 
 
 Scene::~Scene() {
-//   m_vertexBuffer.destroy();
-//   m_vao.destroy();
+   m_vertexBuffer.destroy();
+   m_vao.destroy();
+   m_shader.release();
 
    if (m_leftBuffer) {
       delete m_leftBuffer;
@@ -37,9 +39,7 @@ Scene::~Scene() {
 
 void Scene::generateTextureMap(const QVector<QString>& textures) {
    for (QString txt : textures) {
-      std::cout << "generate " << (m_path + txt).toStdString() << std::endl;
-      m_glTextMap[txt] = new QOpenGLTexture(QImage(QDir::currentPath() + "/" + m_path + txt));
-//      m_glTextMap[txt]->create();
+      m_glTextMap[txt] = new QOpenGLTexture(QImage(QDir::currentPath() + "/" + settings.path + txt));
    }
 }
 
@@ -51,8 +51,7 @@ void Scene::initScene() {
 
    QVector<QString> textures;
    QVector<GLfloat> points;
-   m_objLoader->loadObj(m_path + m_target, m_sceneObjs, points);
-   std::cout << "HI" << std::endl;
+   m_objLoader->loadObj(settings.path + settings.target, m_sceneObjs, points);
    m_objLoader->getTextureMap(textures);
    generateTextureMap(textures);
 
@@ -80,8 +79,8 @@ void Scene::initScene() {
    m_shader.setAttributeBuffer("normal", GL_FLOAT, 5 * sizeof(GLfloat), 3, 8 * sizeof(GLfloat));
    m_shader.enableAttributeArray("normal");
 
-//   m_shader.release(); // FM :+
-//   m_vao.release();    // FM :+
+   m_shader.release(); // FM :+
+   m_vao.release();    // FM :+
    m_vertexBuffer.release();
 }
 
@@ -188,22 +187,16 @@ void *Scene::getResolveTexture() {
 void Scene::renderEye(vr::Hmd_Eye eye) {
    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
    glEnable(GL_DEPTH_TEST);
-
-//   m_texture->bind(0);
+   m_vao.bind();
+   m_shader.bind();
    for (auto obj : m_sceneObjs) {
       m_shader.setUniformValue("v", helper.mat4x4ToQMatrix4x4(m_viewMat));
       m_shader.setUniformValue("p", helper.mat4x4ToQMatrix4x4(m_projectMat));
-//      m_shader.setUniformValue("texMap", 0);
-//   std::cout << glm::to_string(m_projectMat) << std::endl;
-//   std::cout << glm::to_string(m_viewMat) << std::endl;
       m_shader.setUniformValue("leftEye", eye == vr::Eye_Left);
       m_shader.setUniformValue("overUnder", settings.windowMode == OverUnder);
-
+      m_shader.setUniformValue("light", settings.lightOn);
       obj->draw(m_shader, m_glTextMap);
-//      m_shader.release();     // FM+ :
    }
-
-//   m_texture->release();
-
-//   m_vao.release();       // FM+ :
+   m_shader.release();   // FM+
+   m_vao.release();      // FM+ :
 }

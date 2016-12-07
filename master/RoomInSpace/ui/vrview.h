@@ -96,7 +96,6 @@ private:
 
    bool m_inputNext[vr::k_unMaxTrackedDeviceCount];
    bool m_inputPrev[vr::k_unMaxTrackedDeviceCount];
-   bool m_VRmode = false;
    bool m_isDragging;
 };
 

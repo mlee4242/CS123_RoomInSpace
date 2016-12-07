@@ -85,7 +85,7 @@ void VRView::initializeGL() {
 #endif
    m_scene->initScene();
 
-   if (m_VRmode) {
+   if (settings.VRMode) {
       initVR();
    }
 }
@@ -256,7 +256,7 @@ void VRView::glUniformMatrix4(GLint location, GLsizei count, GLboolean transpose
 
 
 glm::mat4x4 VRView::getViewMatrix(vr::Hmd_Eye eye) {
-   if (m_VRmode) {
+   if (settings.VRMode) {
       if (eye == vr::Eye_Left) {
          return m_leftPose * m_hmdPose;
       } else{
@@ -271,7 +271,7 @@ glm::mat4x4 VRView::getViewMatrix(vr::Hmd_Eye eye) {
 glm::mat4x4 VRView::getProjMatrix(vr::Hmd_Eye eye) {
    glm::mat4x4 s;
 
-   if (m_VRmode) {
+   if (settings.VRMode) {
 //        s = 1000.0f * s;
       if (eye == vr::Eye_Left) {
          return m_leftProjection * s;
@@ -279,8 +279,8 @@ glm::mat4x4 VRView::getProjMatrix(vr::Hmd_Eye eye) {
          return m_rightProjection * s;
       }
    }else{
-      s = 1000.0f * s;
-      return m_camera->getProjectionMatrix();
+      s = 0.1f * s;
+      return m_camera->getProjectionMatrix() * s;
    }
 }
 

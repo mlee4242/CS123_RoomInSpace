@@ -1,5 +1,5 @@
 # 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
-# 创建的文件:06.12.2016 16:55:45
+# 创建的文件:06.12.2016 21:36:14
 
 newmtl Material__2097634029
 	Ns 10.000000
@@ -935,44 +935,6 @@ newmtl Material__2097630390
 	map_Ka maps\ceiling.png
 	map_Kd maps\ceiling.png
 
-newmtl Material__2097630733
-	Ns 10.000000
-	Ni 1.500000
-	d 1.000000
-	Tr 0.000000
-	Tf 1.000000 1.000000 1.000000 
-	illum 2
-	Ka 0.588000 0.588000 0.588000
-	Kd 0.588000 0.588000 0.588000
-	Ks 0.000000 0.000000 0.000000
-	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\face.png
-	map_Kd maps\face.png
-
-newmtl Material__2097630739
-	Ns 10.000000
-	Ni 1.500000
-	d 1.000000
-	Tr 0.000000
-	Tf 1.000000 1.000000 1.000000 
-	illum 2
-	Ka 0.588000 0.588000 0.588000
-	Kd 0.588000 0.588000 0.588000
-	Ks 0.000000 0.000000 0.000000
-	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\face.png
-	map_Kd maps\face.png
-
-newmtl wire_000000000
-	Ns 32
-	d 1
-	Tr 0
-	Tf 1 1 1
-	illum 2
-	Ka 0.000000 0.000000 0.000000
-	Kd 0.000000 0.000000 0.000000
-	Ks 0.350000 0.350000 0.350000
-
 newmtl Material__2097634026
 	Ns 10.000000
 	Ni 1.500000
@@ -1182,6 +1144,20 @@ newmtl Material__2097629571
 	Ke 0.000000 0.000000 0.000000
 	map_Ka maps\clock.png
 	map_Kd maps\clock.png
+
+newmtl Material__2097649746
+	Ns 10.000000
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.588000 0.588000 0.588000
+	Kd 0.588000 0.588000 0.588000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\painting.png
+	map_Kd maps\painting.png
 
 newmtl Material__2097634277
 	Ns 10.000000
@@ -1448,20 +1424,6 @@ newmtl Material__2097649733
 	Ke 0.000000 0.000000 0.000000
 	map_Ka maps\20100724062419875118.png
 	map_Kd maps\20100724062419875118.png
-
-newmtl Material__2097633887
-	Ns 10.000000
-	Ni 1.500000
-	d 1.000000
-	Tr 0.000000
-	Tf 1.000000 1.000000 1.000000 
-	illum 2
-	Ka 0.588000 0.588000 0.588000
-	Kd 0.588000 0.588000 0.588000
-	Ks 0.000000 0.000000 0.000000
-	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\earthinspace.png
-	map_Kd maps\earthinspace.png
 
 newmtl Material__2097634276
 	Ns 10.000000

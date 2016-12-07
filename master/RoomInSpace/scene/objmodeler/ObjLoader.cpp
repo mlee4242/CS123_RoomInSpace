@@ -114,7 +114,7 @@ void ObjLoader::parseVertices(const QString& target, QVector<GLfloat>& cVerts) {
          QStringList data = line.simplified().split(" ");
          if ((data.length() > 1) && (data[0] == "#") && (data[1] == "object")) {
             PrimitiveObject *obj = new PrimitiveObject();
-            obj->m_offset = offset;
+            obj->setOffset(offset);
             obj->setName(QString(data[2]));
             bool nextObj = false;
             int  count   = 0;
@@ -151,18 +151,18 @@ void ObjLoader::parseVertices(const QString& target, QVector<GLfloat>& cVerts) {
                         int n  = row[2].toInt() - 1;
                         for (int j = 0; j < 3; j++) {
                            cVerts.append(verts.at(v * 3 + j));
-                           offset += 3;
-                           count  += 3;
+                           offset++;
+                           count++;
                         }
                         for (int j = 0; j < 2; j++) {
                            cVerts.append(uvs.at(vt * 2 + j));
-                           offset += 2;
-                           count  += 2;
+                           offset++;
+                           count++;
                         }
                         for (int j = 0; j < 3; j++) {
                            cVerts.append(ns.at(n * 3 + j));
-                           offset += 3;
-                           count  += 3;
+                           offset++;
+                           count++;
                         }
                      }
                   }else {
@@ -174,25 +174,27 @@ void ObjLoader::parseVertices(const QString& target, QVector<GLfloat>& cVerts) {
                         int n  = row[2].toInt() - 1;
                         for (int j = 0; j < 3; j++) {
                            cVerts.append(verts.at(v * 3 + j));
-                           offset += 3;
-                           count  += 3;
+                           offset++;
+                           count++;
                         }
                         for (int j = 0; j < 2; j++) {
                            if (vt == -1) {
                               cVerts.append(0);
                            }else{
                               cVerts.append(uvs.at(vt * 2 + j));
-                              offset += 2;
-                              count  += 2;
                            }
+                           offset++;
+                           count++;
                         }
                         for (int j = 0; j < 3; j++) {
                            if (n == -1) {
                               cVerts.append(0);
+                              offset++;
+                              count++;
                            }else{
                               cVerts.append(ns.at(n * 3 + j));
-                              offset += 3;
-                              count  += 3;
+                              offset++;
+                              count++;
                            }
                         }
                      }
@@ -204,7 +206,7 @@ void ObjLoader::parseVertices(const QString& target, QVector<GLfloat>& cVerts) {
                }
             } // end of parsing one obj
             std::cout << "parsed " << obj->getName().toStdString() << std::endl;
-            obj->m_numVertices = count;
+            obj->setNumVertices(count);
             m_allObjs.append(obj);
          }
       }

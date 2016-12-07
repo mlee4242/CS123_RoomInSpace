@@ -11,12 +11,13 @@
 #include "glm/glm.hpp"
 class PrimitiveObject : public SceneObject
 {
-   friend class ObjLoader;
    friend class GroupObject;
 public:
    PrimitiveObject();
    void setVertices(const QVector<GLfloat>& verts);
    void setMaterial(const Material& mtl);
+   void setOffset(int offset);
+   void setNumVertices(int num);
    int getNumVertices() override;
    void draw(QOpenGLShaderProgram& shader,
              QMap<QString, QOpenGLTexture *>& txtMap) override;
