@@ -11,6 +11,8 @@ class GroupObject : public SceneObject
 public:
    GroupObject();
    void addPrimitiveObject(PrimitiveObject *obj);
+   void draw(QOpenGLShaderProgram& shader,
+             QMap<QString, QOpenGLTexture *>& txtMap) override;
 
 protected:
    QVector<PrimitiveObject *> m_primObjects;

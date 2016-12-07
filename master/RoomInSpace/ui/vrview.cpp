@@ -256,14 +256,11 @@ void VRView::glUniformMatrix4(GLint location, GLsizei count, GLboolean transpose
 
 
 glm::mat4x4 VRView::getViewMatrix(vr::Hmd_Eye eye) {
-    glm::mat4x4 s;
-
    if (settings.VRMode) {
       if (eye == vr::Eye_Left) {
-//          s = 1000.f * s;
-         return m_leftPose * m_hmdPose * s;
+         return m_leftPose * m_hmdPose;
       } else{
-         return m_rightPose * m_hmdPose * s;
+         return m_rightPose * m_hmdPose;
       }
    }else{
       return m_camera->getViewMatrix();
@@ -272,18 +269,14 @@ glm::mat4x4 VRView::getViewMatrix(vr::Hmd_Eye eye) {
 
 
 glm::mat4x4 VRView::getProjMatrix(vr::Hmd_Eye eye) {
-    glm::mat4x4 s;
-
    if (settings.VRMode) {
-//      s = 10000.f * s;
       if (eye == vr::Eye_Left) {
-         return m_leftProjection * s;
+         return m_leftProjection;
       } else{
-         return m_rightProjection * s;
+         return m_rightProjection;
       }
    }else{
-       s = 0.1f * s;
-      return m_camera->getProjectionMatrix() * s;
+      return m_camera->getProjectionMatrix();
    }
 }
 

@@ -91,7 +91,7 @@ void ObjLoader::loadMaterials(const QString& target) {
                if (data[0] == "map_Kd") { mtl.map_Kd = data[1]; }
             }
             m_materialMap[mtlName] = mtl;
-//                 std::cout << mtlName.toStdString() << std::endl;
+//          std::cout << mtlName.toStdString() << std::endl;
          }
       }
    }
@@ -215,7 +215,20 @@ void ObjLoader::parseVertices(const QString& target, QVector<GLfloat>& cVerts) {
 
 
 void ObjLoader::buildGroups(QVector<SceneObject *>& results) {
-   for (auto ptr : m_allObjs) {
-      results.push_back(ptr);
+   QMap<QString, GroupObject *> groupDicts = QMap<QString, GroupObject *>();
+   for (PrimitiveObject *ptr : m_allObjs) {
+      QString     name     = ptr->getName();
+      QStringList nameDict = name.simplified().split("_");
+      if (nameDict[0] == "g") { // this is an object in a group
+         QString groupName = nameDict[1];
+         if (!groupDicts[groupName]) {
+            GroupObject *newGroup = new GroupObject;
+            newGroup->addPrimitiveObject(ptr);
+            newGroup->setName(groupName);
+            results.push_back(newGroup);
+         }
+      }else{                    // this is "o" or just an object
+         results.push_back(ptr);
+      }
    }
 }
