@@ -17,6 +17,7 @@ public:
 
    QString getName();
    glm::mat4x4 getModelMatrix();
+   void getBox(BoundingBox& box);
    void updateBox(const glm::vec3& p);
    void setName(const QString& str);
    void setModelMatrix(glm::mat4x4& mat);

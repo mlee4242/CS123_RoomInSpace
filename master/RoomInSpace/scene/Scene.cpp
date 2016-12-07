@@ -19,8 +19,6 @@ Scene::Scene() :// m_vertCount(0), m_texture(0),
 Scene::~Scene() {
    m_vertexBuffer.destroy();
    m_vao.destroy();
-   m_shader.release();
-
    if (m_leftBuffer) {
       delete m_leftBuffer;
    }
@@ -161,8 +159,6 @@ void Scene::renderLeft() {
 
 
 void Scene::renderRight() {
-
-
    glEnable(GL_MULTISAMPLE);
    m_rightBuffer->bind();
    renderEye(vr::Eye_Right);

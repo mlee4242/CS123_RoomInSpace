@@ -205,7 +205,7 @@ void ObjLoader::parseVertices(const QString& target, QVector<GLfloat>& cVerts) {
                   nextObj = true;
                }
             } // end of parsing one obj
-            std::cout << "parsed " << obj->getName().toStdString() << std::endl;
+//            std::cout << "parsed " << obj->getName().toStdString() << std::endl;
             obj->setNumVertices(count);
             m_allObjs.append(obj);
          }
@@ -223,12 +223,19 @@ void ObjLoader::buildGroups(QVector<SceneObject *>& results) {
          QString groupName = nameDict[1];
          if (!groupDicts[groupName]) {
             GroupObject *newGroup = new GroupObject;
-            newGroup->addPrimitiveObject(ptr);
             newGroup->setName(groupName);
+            groupDicts[groupName] = newGroup;
             results.push_back(newGroup);
          }
+         groupDicts[groupName]->addPrimitiveObject(ptr);
       }else{                    // this is "o" or just an object
          results.push_back(ptr);
       }
    }
+//   for (SceneObject *ptr : results) {
+//      BoundingBox b;
+//      std::cout << (ptr->getName()).toStdString() << std::endl;
+//      ptr->getBox(b);
+//      b.print();
+//   }
 }

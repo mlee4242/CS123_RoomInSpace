@@ -29,3 +29,8 @@ glm::mat4x4 SceneObject::getModelMatrix() {
 void SceneObject::setModelMatrix(glm::mat4x4& mat) {
    m_modelMat = mat;
 }
+
+
+void SceneObject::getBox(BoundingBox& box) {
+   box = m_box;
+}
