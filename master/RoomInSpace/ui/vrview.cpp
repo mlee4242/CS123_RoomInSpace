@@ -12,7 +12,7 @@
 #include "glm/ext.hpp"
 
 #define NEAR_CLIP    0.01f
-#define FAR_CLIP     10000.0f
+#define FAR_CLIP     100.0f
 
 VRView::VRView(QWidget *parent) : QOpenGLWidget(parent),
    m_hmd(0), m_frames(0), m_camera(new OrbitingCamera()),
@@ -256,11 +256,14 @@ void VRView::glUniformMatrix4(GLint location, GLsizei count, GLboolean transpose
 
 
 glm::mat4x4 VRView::getViewMatrix(vr::Hmd_Eye eye) {
+    glm::mat4x4 s;
+
    if (settings.VRMode) {
       if (eye == vr::Eye_Left) {
-         return m_leftPose * m_hmdPose;
+//          s = 1000.f * s;
+         return m_leftPose * m_hmdPose * s;
       } else{
-         return m_rightPose * m_hmdPose;
+         return m_rightPose * m_hmdPose * s;
       }
    }else{
       return m_camera->getViewMatrix();
@@ -269,17 +272,17 @@ glm::mat4x4 VRView::getViewMatrix(vr::Hmd_Eye eye) {
 
 
 glm::mat4x4 VRView::getProjMatrix(vr::Hmd_Eye eye) {
-   glm::mat4x4 s;
+    glm::mat4x4 s;
 
    if (settings.VRMode) {
-//        s = 1000.0f * s;
+//      s = 10000.f * s;
       if (eye == vr::Eye_Left) {
          return m_leftProjection * s;
       } else{
          return m_rightProjection * s;
       }
    }else{
-      s = 0.1f * s;
+       s = 0.1f * s;
       return m_camera->getProjectionMatrix() * s;
    }
 }

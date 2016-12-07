@@ -79,8 +79,8 @@ void Scene::initScene() {
    m_shader.setAttributeBuffer("normal", GL_FLOAT, 5 * sizeof(GLfloat), 3, 8 * sizeof(GLfloat));
    m_shader.enableAttributeArray("normal");
 
-   m_shader.release(); // FM :+
-   m_vao.release();    // FM :+
+//   m_shader.release(); // FM :+
+//   m_vao.release();    // FM :+
    m_vertexBuffer.release();
 }
 
@@ -152,19 +152,23 @@ void Scene::renderLeft() {
    m_leftBuffer->bind();
    renderEye(vr::Eye_Left);
    m_leftBuffer->release();
-}
 
-
-void Scene::renderRight() {
    QRect sourceRect(0, 0, m_eyeWidth, m_eyeHeight);
    QRect targetLeft(0, 0, m_eyeWidth, m_eyeHeight);
    QOpenGLFramebufferObject::blitFramebuffer(m_resolveBuffer, targetLeft,
                                              m_leftBuffer, sourceRect);
+}
+
+
+void Scene::renderRight() {
+
 
    glEnable(GL_MULTISAMPLE);
    m_rightBuffer->bind();
    renderEye(vr::Eye_Right);
    m_rightBuffer->release();
+
+   QRect sourceRect(0, 0, m_eyeWidth, m_eyeHeight);
    QRect targetRight(m_eyeWidth, 0, m_eyeWidth, m_eyeHeight);
    QOpenGLFramebufferObject::blitFramebuffer(m_resolveBuffer, targetRight,
                                              m_rightBuffer, sourceRect);
@@ -197,6 +201,6 @@ void Scene::renderEye(vr::Hmd_Eye eye) {
       m_shader.setUniformValue("light", settings.lightOn);
       obj->draw(m_shader, m_glTextMap);
    }
-   m_shader.release();   // FM+
-   m_vao.release();      // FM+ :
+//   m_shader.release();   // FM+
+//   m_vao.release();      // FM+ :
 }
