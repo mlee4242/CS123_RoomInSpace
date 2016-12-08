@@ -1,5 +1,5 @@
 # 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
-# 创建的文件:08.12.2016 13:14:22
+# File Created: 08.12.2016 14:52:22
 
 newmtl Material__2097634029
 	Ns 10.000000
@@ -393,20 +393,6 @@ newmtl Material__2097629873
 	map_Ka maps\bool_master.jpg
 	map_Kd maps\bool_master.jpg
 
-newmtl Material__2097629876
-	Ns 10.000000
-	Ni 1.500000
-	d 1.000000
-	Tr 0.000000
-	Tf 1.000000 1.000000 1.000000 
-	illum 2
-	Ka 0.588000 0.588000 0.588000
-	Kd 0.588000 0.588000 0.588000
-	Ks 0.000000 0.000000 0.000000
-	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.jpg
-	map_Kd maps\bool_master.jpg
-
 newmtl Material__2097629866
 	Ns 10.000000
 	Ni 1.500000
@@ -519,15 +505,19 @@ newmtl Material__2097633882
 	map_Ka maps\bool_master.jpg
 	map_Kd maps\bool_master.jpg
 
-newmtl wire_108008136
-	Ns 32
-	d 1
-	Tr 0
-	Tf 1 1 1
+newmtl Material__2097649759
+	Ns 10.000000
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
 	illum 2
-	Ka 0.423529 0.031373 0.533333
-	Kd 0.423529 0.031373 0.533333
-	Ks 0.350000 0.350000 0.350000
+	Ka 0.588000 0.588000 0.588000
+	Kd 0.588000 0.588000 0.588000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097633873
 	Ns 10.000000
@@ -684,6 +674,20 @@ newmtl Material__2097629880
 	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097633869
+	Ns 10.000000
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.588000 0.588000 0.588000
+	Kd 0.588000 0.588000 0.588000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
+
+newmtl Material__2097649758
 	Ns 10.000000
 	Ni 1.500000
 	d 1.000000
@@ -921,7 +925,7 @@ newmtl Material__2097630397
 	map_Ka maps\brown_wood.jpg
 	map_Kd maps\brown_wood.jpg
 
-newmtl Material__2097630390
+newmtl Material__2097649760
 	Ns 10.000000
 	Ni 1.500000
 	d 1.000000
@@ -932,8 +936,10 @@ newmtl Material__2097630390
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\ceiling.jpg
-	map_Kd maps\ceiling.jpg
+	map_Ka maps\floor.jpg
+	map_Kd maps\floor.jpg
+	map_bump maps\floor_bump.jpg
+	bump maps\floor_bump.jpg
 
 newmtl Material__2097649750
 	Ns 10.000000
@@ -1550,7 +1556,7 @@ newmtl Material__48
 	Ke 0.000000 0.000000 0.000000
 	map_Ka maps\ufo_diffuse.png
 	map_Kd maps\ufo_diffuse.png
-	map_bump -bm 0.300000 maps\贴图__423_法线凹凸.png
+	map_normal maps\ufo_normal.png
 
 newmtl Material__2097649752
 	Ns 10.000000

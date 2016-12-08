@@ -32,11 +32,17 @@ void ObjLoader::setUpPickableList() {
 
 void ObjLoader::getTextureMap(QVector<QString>& textMap) {
    for (Material m : m_materialMap) {
-      if (!textMap.contains(m.map_Ka) && (m.map_Ka != "")) {
+      if ((m.map_Ka != "") && !textMap.contains(m.map_Ka)) {
          textMap.push_back(m.map_Ka);
       }
-      if (!textMap.contains(m.map_Kd) && (m.map_Kd != "")) {
+      if ((m.map_Kd != "") && !textMap.contains(m.map_Kd)) {
          textMap.push_back(m.map_Kd);
+      }
+      if ((m.map_bump != "") && !textMap.contains(m.map_bump)) {
+         textMap.push_back(m.map_bump);
+      }
+      if ((m.map_normal != "") && !textMap.contains(m.map_normal)) {
+         textMap.push_back(m.map_normal);
       }
    }
 }
@@ -99,6 +105,7 @@ void ObjLoader::loadMaterials(const QString& target) {
                }
                if (data[0] == "map_Ka") { mtl.map_Ka = data[1]; }
                if (data[0] == "map_Kd") { mtl.map_Kd = data[1]; }
+               if (data[0] == "map_bump") { mtl.map_bump = data[1]; }
             }
             m_materialMap[mtlName] = mtl;
 //          std::cout << mtlName.toStdString() << std::endl;

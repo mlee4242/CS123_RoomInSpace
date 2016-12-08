@@ -34,6 +34,4 @@ void main()
      gl_Position =  p * v * m * vec4(vert, 1.0f); // 12/6 night
      WorldSpace_position = gl_Position.xyz;
      WorldSpace_normal = normal;
-
-
 }
