@@ -12,7 +12,7 @@ Settings settings;
 void Settings::loadSettingsOrDefaults() {
    QSettings s("Room in Space", "Room in Space");
    renderMode = s.value("renderMode", COMPUTER_MODE).toInt();
-   cameraFov  = s.value("cameraFov", 180).toDouble();
+   cameraFov  = s.value("cameraFov", 150).toDouble();
    cameraNear = s.value("cameraNear", -100).toDouble();
    cameraFar  = s.value("cameraFar", 100).toDouble();
    windowMode = s.value("windowMode", OverUnder).toInt();
