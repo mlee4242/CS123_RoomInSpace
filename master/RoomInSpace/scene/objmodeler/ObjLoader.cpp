@@ -106,6 +106,7 @@ void ObjLoader::loadMaterials(const QString& target) {
                if (data[0] == "map_Ka") { mtl.map_Ka = data[1]; }
                if (data[0] == "map_Kd") { mtl.map_Kd = data[1]; }
                if (data[0] == "map_bump") { mtl.map_bump = data[1]; }
+               if (data[0] == "map_normal") { mtl.map_normal = data[1]; }
             }
             m_materialMap[mtlName] = mtl;
 //          std::cout << mtlName.toStdString() << std::endl;
@@ -135,7 +136,7 @@ void ObjLoader::parseVertices(const QString& target, QVector<GLfloat>& cVerts) {
             obj->setName(QString(data[2]));
             bool nextObj = false;
             int  count   = 0;
-            while (!nextObj)
+            while (!nextObj && !in.atEnd())
             {
                line = in.readLine();
                data = line.simplified().split(" ");

@@ -16,20 +16,21 @@ out vec4 fragColor;
 void main()
 {
   vec3 normal = WorldSpace_normal;
-  vec3 WorldSpace_toLight = normalize(vec3(0, 4, 0) - WorldSpace_position);
-
+  vec3 WorldSpace_toLight = normalize(vec3(4, 4, 4) - WorldSpace_position);
+  vec2 uv = vec2(fragTexCoord.x, 1.f - fragTexCoord.y);
   if(useTex){
-     vec2 uv = vec2(fragTexCoord.x, 1.f - fragTexCoord.y);
 
-     if(useBump && false){ // bump mapping
+
+     if(useBump){ // bump mapping
         // do something
      }
-     if(useNormal && false){ // normal mapping
+     if(useNormal){ // normal mapping
         // do something
+        // normal = texture2D(normalMap, uv).rgb*2.0 - 1.0;
      }
     vec3 phongColor = vec3(0.3 + 0.7 * max(0.0, dot(normalize(normal), WorldSpace_toLight)));
     vec4 texColor = texture2D(textMap, uv);
-    fragColor = vec4(phongColor.x * mix(texColor.xyz, diffuse, 0.2), 1.f);
+    fragColor = vec4(phongColor.x * mix(texColor.rgb, diffuse, 0.2), 1.f);
   }else{
     fragColor = vec4(diffuse, 1.f);
   }
@@ -37,6 +38,14 @@ void main()
   if(!light){
       fragColor = 0.3 * fragColor;
   }
+
+  if(useNormal){
+      fragColor = texture2D(normalMap, uv);
+  }
+
+//  if(useBump){
+//      fragColor = vec4(0.0, 0, 1.0, 1);
+//  }
 
 //  if(pickable){
 //      fragColor = vec4(1.0, 0, 0, 1);
