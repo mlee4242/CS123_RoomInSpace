@@ -7,7 +7,7 @@ uniform vec3 diffuse;
 uniform bool pickable;
 uniform bool useTex;
 uniform bool useBump;
-uniform bool useNomral;
+uniform bool useNormal;
 uniform bool light;
 in vec2 fragTexCoord;
 in vec3 WorldSpace_position; // world-space position
@@ -24,7 +24,7 @@ void main()
      if(useBump && false){ // bump mapping
         // do something
      }
-     if(useNomral && false){ // normal mappoing
+     if(useNormal && false){ // normal mapping
         // do something
      }
     vec3 phongColor = vec3(0.3 + 0.7 * max(0.0, dot(normalize(normal), WorldSpace_toLight)));
