@@ -1,5 +1,5 @@
 # 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
-# 创建的文件:07.12.2016 18:49:16
+# File Created: 08.12.2016 14:52:22
 
 newmtl Material__2097634029
 	Ns 10.000000
@@ -12,8 +12,8 @@ newmtl Material__2097634029
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\brown_wood.png
-	map_Kd maps\brown_wood.png
+	map_Ka maps\brown_wood.jpg
+	map_Kd maps\brown_wood.jpg
 
 newmtl Material__2097630385
 	Ns 10.000000
@@ -26,8 +26,8 @@ newmtl Material__2097630385
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\wall.png
-	map_Kd maps\wall.png
+	map_Ka maps\wall.jpg
+	map_Kd maps\wall.jpg
 
 newmtl Material__2097630189
 	Ns 10.000000
@@ -40,8 +40,8 @@ newmtl Material__2097630189
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bed_cover.png
-	map_Kd maps\bed_cover.png
+	map_Ka maps\bed_cover.jpg
+	map_Kd maps\bed_cover.jpg
 
 newmtl Material__2097630190
 	Ns 10.000000
@@ -54,8 +54,8 @@ newmtl Material__2097630190
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bed_cover.png
-	map_Kd maps\bed_cover.png
+	map_Ka maps\bed_cover.jpg
+	map_Kd maps\bed_cover.jpg
 
 newmtl Material__2097634030
 	Ns 10.000000
@@ -68,8 +68,8 @@ newmtl Material__2097634030
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\brown_wood.png
-	map_Kd maps\brown_wood.png
+	map_Ka maps\brown_wood.jpg
+	map_Kd maps\brown_wood.jpg
 
 newmtl Material__2097630192
 	Ns 10.000000
@@ -82,8 +82,8 @@ newmtl Material__2097630192
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\white.png
-	map_Kd maps\white.png
+	map_Ka maps\white.jpg
+	map_Kd maps\white.jpg
 
 newmtl Material__2097630432
 	Ns 10.000000
@@ -96,8 +96,8 @@ newmtl Material__2097630432
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\brown_wood.png
-	map_Kd maps\brown_wood.png
+	map_Ka maps\brown_wood.jpg
+	map_Kd maps\brown_wood.jpg
 
 newmtl Material__2097630433
 	Ns 10.000000
@@ -110,8 +110,8 @@ newmtl Material__2097630433
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\white.png
-	map_Kd maps\white.png
+	map_Ka maps\white.jpg
+	map_Kd maps\white.jpg
 
 newmtl Material__2097630461
 	Ns 10.000000
@@ -124,8 +124,8 @@ newmtl Material__2097630461
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\brown_wood.png
-	map_Kd maps\brown_wood.png
+	map_Ka maps\brown_wood.jpg
+	map_Kd maps\brown_wood.jpg
 
 newmtl Material__2097630462
 	Ns 10.000000
@@ -138,8 +138,8 @@ newmtl Material__2097630462
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\20100724062419875422.png
-	map_Kd maps\20100724062419875422.png
+	map_Ka maps\20100724062419875422.jpg
+	map_Kd maps\20100724062419875422.jpg
 
 newmtl Material__2097649590
 	Ns 10.000000
@@ -152,8 +152,8 @@ newmtl Material__2097649590
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\brown_wood.png
-	map_Kd maps\brown_wood.png
+	map_Ka maps\brown_wood.jpg
+	map_Kd maps\brown_wood.jpg
 
 newmtl Material__2097629860
 	Ns 10.000000
@@ -166,8 +166,8 @@ newmtl Material__2097629860
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097629858
 	Ns 10.000000
@@ -180,8 +180,8 @@ newmtl Material__2097629858
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097629861
 	Ns 10.000000
@@ -194,8 +194,8 @@ newmtl Material__2097629861
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097629862
 	Ns 10.000000
@@ -208,8 +208,8 @@ newmtl Material__2097629862
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097629856
 	Ns 10.000000
@@ -222,8 +222,8 @@ newmtl Material__2097629856
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097629863
 	Ns 10.000000
@@ -236,8 +236,8 @@ newmtl Material__2097629863
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097629855
 	Ns 10.000000
@@ -250,8 +250,8 @@ newmtl Material__2097629855
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097629857
 	Ns 10.000000
@@ -264,8 +264,8 @@ newmtl Material__2097629857
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097629854
 	Ns 10.000000
@@ -278,8 +278,8 @@ newmtl Material__2097629854
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097629865
 	Ns 10.000000
@@ -292,8 +292,8 @@ newmtl Material__2097629865
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097629869
 	Ns 10.000000
@@ -306,8 +306,8 @@ newmtl Material__2097629869
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097629868
 	Ns 10.000000
@@ -320,8 +320,8 @@ newmtl Material__2097629868
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097629870
 	Ns 10.000000
@@ -334,8 +334,8 @@ newmtl Material__2097629870
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097629871
 	Ns 10.000000
@@ -348,8 +348,8 @@ newmtl Material__2097629871
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097629864
 	Ns 10.000000
@@ -362,8 +362,8 @@ newmtl Material__2097629864
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097629872
 	Ns 10.000000
@@ -376,8 +376,8 @@ newmtl Material__2097629872
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097629873
 	Ns 10.000000
@@ -390,22 +390,8 @@ newmtl Material__2097629873
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
-
-newmtl Material__2097629876
-	Ns 10.000000
-	Ni 1.500000
-	d 1.000000
-	Tr 0.000000
-	Tf 1.000000 1.000000 1.000000 
-	illum 2
-	Ka 0.588000 0.588000 0.588000
-	Kd 0.588000 0.588000 0.588000
-	Ks 0.000000 0.000000 0.000000
-	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097629866
 	Ns 10.000000
@@ -418,8 +404,8 @@ newmtl Material__2097629866
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097629874
 	Ns 10.000000
@@ -432,8 +418,8 @@ newmtl Material__2097629874
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097629875
 	Ns 10.000000
@@ -446,8 +432,8 @@ newmtl Material__2097629875
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097629878
 	Ns 10.000000
@@ -460,8 +446,8 @@ newmtl Material__2097629878
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097629867
 	Ns 10.000000
@@ -474,8 +460,8 @@ newmtl Material__2097629867
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097633884
 	Ns 10.000000
@@ -488,8 +474,8 @@ newmtl Material__2097633884
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097633883
 	Ns 10.000000
@@ -502,8 +488,8 @@ newmtl Material__2097633883
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097633882
 	Ns 10.000000
@@ -516,18 +502,22 @@ newmtl Material__2097633882
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
-newmtl wire_108008136
-	Ns 32
-	d 1
-	Tr 0
-	Tf 1 1 1
+newmtl Material__2097649759
+	Ns 10.000000
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
 	illum 2
-	Ka 0.423529 0.031373 0.533333
-	Kd 0.423529 0.031373 0.533333
-	Ks 0.350000 0.350000 0.350000
+	Ka 0.588000 0.588000 0.588000
+	Kd 0.588000 0.588000 0.588000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097633873
 	Ns 10.000000
@@ -540,8 +530,8 @@ newmtl Material__2097633873
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097633880
 	Ns 10.000000
@@ -554,8 +544,8 @@ newmtl Material__2097633880
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097633881
 	Ns 10.000000
@@ -568,8 +558,8 @@ newmtl Material__2097633881
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097633879
 	Ns 10.000000
@@ -582,8 +572,8 @@ newmtl Material__2097633879
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097633876
 	Ns 10.000000
@@ -596,8 +586,8 @@ newmtl Material__2097633876
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097633877
 	Ns 10.000000
@@ -610,8 +600,8 @@ newmtl Material__2097633877
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097633875
 	Ns 10.000000
@@ -624,8 +614,8 @@ newmtl Material__2097633875
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097633878
 	Ns 10.000000
@@ -638,8 +628,8 @@ newmtl Material__2097633878
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097633874
 	Ns 10.000000
@@ -652,8 +642,8 @@ newmtl Material__2097633874
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097629879
 	Ns 10.000000
@@ -666,8 +656,8 @@ newmtl Material__2097629879
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097629880
 	Ns 10.000000
@@ -680,8 +670,8 @@ newmtl Material__2097629880
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097633869
 	Ns 10.000000
@@ -694,8 +684,22 @@ newmtl Material__2097633869
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
+
+newmtl Material__2097649758
+	Ns 10.000000
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.588000 0.588000 0.588000
+	Kd 0.588000 0.588000 0.588000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097633862
 	Ns 10.000000
@@ -708,8 +712,8 @@ newmtl Material__2097633862
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097633872
 	Ns 10.000000
@@ -722,8 +726,8 @@ newmtl Material__2097633872
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097633868
 	Ns 10.000000
@@ -736,8 +740,8 @@ newmtl Material__2097633868
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097633870
 	Ns 10.000000
@@ -750,8 +754,8 @@ newmtl Material__2097633870
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097634022
 	Ns 10.000000
@@ -764,8 +768,8 @@ newmtl Material__2097634022
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097633867
 	Ns 10.000000
@@ -778,8 +782,8 @@ newmtl Material__2097633867
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097633866
 	Ns 10.000000
@@ -792,8 +796,8 @@ newmtl Material__2097633866
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097633865
 	Ns 10.000000
@@ -806,8 +810,8 @@ newmtl Material__2097633865
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097633863
 	Ns 10.000000
@@ -820,8 +824,8 @@ newmtl Material__2097633863
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097633864
 	Ns 10.000000
@@ -834,8 +838,8 @@ newmtl Material__2097633864
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097633861
 	Ns 10.000000
@@ -848,8 +852,8 @@ newmtl Material__2097633861
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097629859
 	Ns 10.000000
@@ -862,8 +866,8 @@ newmtl Material__2097629859
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\bool_master.png
-	map_Kd maps\bool_master.png
+	map_Ka maps\bool_master.jpg
+	map_Kd maps\bool_master.jpg
 
 newmtl Material__2097630386
 	Ns 10.000000
@@ -876,8 +880,8 @@ newmtl Material__2097630386
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\floor.png
-	map_Kd maps\floor.png
+	map_Ka maps\floor.jpg
+	map_Kd maps\floor.jpg
 
 newmtl Material__2097630398
 	Ns 10.000000
@@ -890,8 +894,8 @@ newmtl Material__2097630398
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\brown_wood.png
-	map_Kd maps\brown_wood.png
+	map_Ka maps\brown_wood.jpg
+	map_Kd maps\brown_wood.jpg
 
 newmtl Material__2097630391
 	Ns 10.000000
@@ -904,8 +908,8 @@ newmtl Material__2097630391
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\brown_wood.png
-	map_Kd maps\brown_wood.png
+	map_Ka maps\brown_wood.jpg
+	map_Kd maps\brown_wood.jpg
 
 newmtl Material__2097630397
 	Ns 10.000000
@@ -918,10 +922,10 @@ newmtl Material__2097630397
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\brown_wood.png
-	map_Kd maps\brown_wood.png
+	map_Ka maps\brown_wood.jpg
+	map_Kd maps\brown_wood.jpg
 
-newmtl Material__2097630390
+newmtl Material__2097649760
 	Ns 10.000000
 	Ni 1.500000
 	d 1.000000
@@ -932,8 +936,10 @@ newmtl Material__2097630390
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\ceiling.png
-	map_Kd maps\ceiling.png
+	map_Ka maps\floor.jpg
+	map_Kd maps\floor.jpg
+	map_bump maps\floor_bump.jpg
+	bump maps\floor_bump.jpg
 
 newmtl Material__2097649750
 	Ns 10.000000
@@ -960,8 +966,8 @@ newmtl Material__2097634026
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\hair.png
-	map_Kd maps\hair.png
+	map_Ka maps\hair.jpg
+	map_Kd maps\hair.jpg
 
 newmtl Material__2097630457
 	Ns 10.000000
@@ -974,8 +980,8 @@ newmtl Material__2097630457
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\white.png
-	map_Kd maps\white.png
+	map_Ka maps\white.jpg
+	map_Kd maps\white.jpg
 
 newmtl Material__2097630459
 	Ns 10.000000
@@ -988,8 +994,8 @@ newmtl Material__2097630459
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\white.png
-	map_Kd maps\white.png
+	map_Ka maps\white.jpg
+	map_Kd maps\white.jpg
 
 newmtl Material__2097630447
 	Ns 10.000000
@@ -1002,8 +1008,8 @@ newmtl Material__2097630447
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\mpm_vol.01_p22_pages_top_diff.png
-	map_Kd maps\mpm_vol.01_p22_pages_top_diff.png
+	map_Ka maps\mpm_vol.01_p22_pages_top_diff.jpg
+	map_Kd maps\mpm_vol.01_p22_pages_top_diff.jpg
 
 newmtl Material__2097630453
 	Ns 10.000000
@@ -1016,8 +1022,8 @@ newmtl Material__2097630453
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\red.png
-	map_Kd maps\red.png
+	map_Ka maps\red.jpg
+	map_Kd maps\red.jpg
 
 newmtl Material__2097630456
 	Ns 10.000000
@@ -1030,8 +1036,8 @@ newmtl Material__2097630456
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\mpm_vol.01_p22_pages_top_diff.png
-	map_Kd maps\mpm_vol.01_p22_pages_top_diff.png
+	map_Ka maps\mpm_vol.01_p22_pages_top_diff.jpg
+	map_Kd maps\mpm_vol.01_p22_pages_top_diff.jpg
 
 newmtl Material__2097630451
 	Ns 10.000000
@@ -1044,8 +1050,8 @@ newmtl Material__2097630451
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\mpm_vol.01_p22_pages_top_diff.png
-	map_Kd maps\mpm_vol.01_p22_pages_top_diff.png
+	map_Ka maps\mpm_vol.01_p22_pages_top_diff.jpg
+	map_Kd maps\mpm_vol.01_p22_pages_top_diff.jpg
 
 newmtl Material__2097630455
 	Ns 10.000000
@@ -1058,8 +1064,8 @@ newmtl Material__2097630455
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\mpm_vol.01_p22_pages_top_diff.png
-	map_Kd maps\mpm_vol.01_p22_pages_top_diff.png
+	map_Ka maps\mpm_vol.01_p22_pages_top_diff.jpg
+	map_Kd maps\mpm_vol.01_p22_pages_top_diff.jpg
 
 newmtl Material__2097630452
 	Ns 10.000000
@@ -1072,8 +1078,8 @@ newmtl Material__2097630452
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\red.png
-	map_Kd maps\red.png
+	map_Ka maps\red.jpg
+	map_Kd maps\red.jpg
 
 newmtl Material__2097630448
 	Ns 10.000000
@@ -1086,8 +1092,8 @@ newmtl Material__2097630448
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\mpm_vol.01_p22_pages_top_diff.png
-	map_Kd maps\mpm_vol.01_p22_pages_top_diff.png
+	map_Ka maps\mpm_vol.01_p22_pages_top_diff.jpg
+	map_Kd maps\mpm_vol.01_p22_pages_top_diff.jpg
 
 newmtl Material__2097630445
 	Ns 10.000000
@@ -1100,8 +1106,8 @@ newmtl Material__2097630445
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\red.png
-	map_Kd maps\red.png
+	map_Ka maps\red.jpg
+	map_Kd maps\red.jpg
 
 newmtl Material__2097630454
 	Ns 10.000000
@@ -1114,8 +1120,8 @@ newmtl Material__2097630454
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\mpm_vol.01_p22_pages_top_diff.png
-	map_Kd maps\mpm_vol.01_p22_pages_top_diff.png
+	map_Ka maps\mpm_vol.01_p22_pages_top_diff.jpg
+	map_Kd maps\mpm_vol.01_p22_pages_top_diff.jpg
 
 newmtl Material__2097630389
 	Ns 10.000000
@@ -1128,8 +1134,8 @@ newmtl Material__2097630389
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\brown_wood.png
-	map_Kd maps\brown_wood.png
+	map_Ka maps\brown_wood.jpg
+	map_Kd maps\brown_wood.jpg
 
 newmtl Material__2097649731
 	Ns 10.000000
@@ -1142,8 +1148,8 @@ newmtl Material__2097649731
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\clock_body.png
-	map_Kd maps\clock_body.png
+	map_Ka maps\clock_body.jpg
+	map_Kd maps\clock_body.jpg
 
 newmtl Material__2097629571
 	Ns 10.000000
@@ -1156,8 +1162,8 @@ newmtl Material__2097629571
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\clock.png
-	map_Kd maps\clock.png
+	map_Ka maps\clock.jpg
+	map_Kd maps\clock.jpg
 
 newmtl Material__2097649746
 	Ns 10.000000
@@ -1170,8 +1176,8 @@ newmtl Material__2097649746
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\painting.png
-	map_Kd maps\painting.png
+	map_Ka maps\painting.jpg
+	map_Kd maps\painting.jpg
 
 newmtl Material__2097634277
 	Ns 10.000000
@@ -1184,8 +1190,8 @@ newmtl Material__2097634277
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\beige_wood.png
-	map_Kd maps\beige_wood.png
+	map_Ka maps\beige_wood.jpg
+	map_Kd maps\beige_wood.jpg
 
 newmtl Material__2097633962
 	Ns 10.000000
@@ -1198,8 +1204,8 @@ newmtl Material__2097633962
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\black.png
-	map_Kd maps\black.png
+	map_Ka maps\black.jpg
+	map_Kd maps\black.jpg
 
 newmtl Material__2097634028
 	Ns 10.000000
@@ -1212,8 +1218,8 @@ newmtl Material__2097634028
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\brown_wood.png
-	map_Kd maps\brown_wood.png
+	map_Ka maps\brown_wood.jpg
+	map_Kd maps\brown_wood.jpg
 
 newmtl Material__2097649736
 	Ns 10.000000
@@ -1226,8 +1232,8 @@ newmtl Material__2097649736
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\photo_1.png
-	map_Kd maps\photo_1.png
+	map_Ka maps\photo_1.jpg
+	map_Kd maps\photo_1.jpg
 
 newmtl Material__2097649741
 	Ns 10.000000
@@ -1240,8 +1246,8 @@ newmtl Material__2097649741
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\photo_4.png
-	map_Kd maps\photo_4.png
+	map_Ka maps\photo_4.jpg
+	map_Kd maps\photo_4.jpg
 
 newmtl Material__2097649738
 	Ns 10.000000
@@ -1254,8 +1260,8 @@ newmtl Material__2097649738
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\photo_3.png
-	map_Kd maps\photo_3.png
+	map_Ka maps\photo_3.jpg
+	map_Kd maps\photo_3.jpg
 
 newmtl Material__2097649740
 	Ns 10.000000
@@ -1268,8 +1274,8 @@ newmtl Material__2097649740
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\photo_5.png
-	map_Kd maps\photo_5.png
+	map_Ka maps\photo_5.jpg
+	map_Kd maps\photo_5.jpg
 
 newmtl Material__2097649739
 	Ns 10.000000
@@ -1282,8 +1288,8 @@ newmtl Material__2097649739
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\photo_6.png
-	map_Kd maps\photo_6.png
+	map_Ka maps\photo_6.jpg
+	map_Kd maps\photo_6.jpg
 
 newmtl Material__2097649742
 	Ns 10.000000
@@ -1296,8 +1302,8 @@ newmtl Material__2097649742
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\photo_1.png
-	map_Kd maps\photo_1.png
+	map_Ka maps\photo_1.jpg
+	map_Kd maps\photo_1.jpg
 
 newmtl Material__2097649737
 	Ns 10.000000
@@ -1310,8 +1316,8 @@ newmtl Material__2097649737
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\photo_2.png
-	map_Kd maps\photo_2.png
+	map_Ka maps\photo_2.jpg
+	map_Kd maps\photo_2.jpg
 
 newmtl Material__2097630401
 	Ns 10.000000
@@ -1324,8 +1330,8 @@ newmtl Material__2097630401
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\clock_body.png
-	map_Kd maps\clock_body.png
+	map_Ka maps\clock_body.jpg
+	map_Kd maps\clock_body.jpg
 
 newmtl Material__2097630404
 	Ns 10.000000
@@ -1338,8 +1344,8 @@ newmtl Material__2097630404
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\clock_body.png
-	map_Kd maps\clock_body.png
+	map_Ka maps\clock_body.jpg
+	map_Kd maps\clock_body.jpg
 
 newmtl Material__2097630405
 	Ns 10.000000
@@ -1352,8 +1358,8 @@ newmtl Material__2097630405
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\clock_body.png
-	map_Kd maps\clock_body.png
+	map_Ka maps\clock_body.jpg
+	map_Kd maps\clock_body.jpg
 
 newmtl Material__2097630406
 	Ns 10.000000
@@ -1366,8 +1372,8 @@ newmtl Material__2097630406
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\clock_body.png
-	map_Kd maps\clock_body.png
+	map_Ka maps\clock_body.jpg
+	map_Kd maps\clock_body.jpg
 
 newmtl Material__2097630403
 	Ns 10.000000
@@ -1380,8 +1386,8 @@ newmtl Material__2097630403
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\clock_body.png
-	map_Kd maps\clock_body.png
+	map_Ka maps\clock_body.jpg
+	map_Kd maps\clock_body.jpg
 
 newmtl Material__2097630407
 	Ns 10.000000
@@ -1394,8 +1400,8 @@ newmtl Material__2097630407
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\clock_body.png
-	map_Kd maps\clock_body.png
+	map_Ka maps\clock_body.jpg
+	map_Kd maps\clock_body.jpg
 
 newmtl Material__2097630402
 	Ns 10.000000
@@ -1408,8 +1414,8 @@ newmtl Material__2097630402
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\clock_body.png
-	map_Kd maps\clock_body.png
+	map_Ka maps\clock_body.jpg
+	map_Kd maps\clock_body.jpg
 
 newmtl Material__2097649732
 	Ns 10.000000
@@ -1422,8 +1428,8 @@ newmtl Material__2097649732
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\red_brown_wood.png
-	map_Kd maps\red_brown_wood.png
+	map_Ka maps\red_brown_wood.tif
+	map_Kd maps\red_brown_wood.tif
 
 newmtl Material__2097649733
 	Ns 10.000000
@@ -1436,8 +1442,8 @@ newmtl Material__2097649733
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\20100724062419875118.png
-	map_Kd maps\20100724062419875118.png
+	map_Ka maps\20100724062419875118.jpg
+	map_Kd maps\20100724062419875118.jpg
 
 newmtl Material__2097634276
 	Ns 10.000000
@@ -1450,8 +1456,8 @@ newmtl Material__2097634276
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\brown_wood.png
-	map_Kd maps\brown_wood.png
+	map_Ka maps\brown_wood.jpg
+	map_Kd maps\brown_wood.jpg
 
 newmtl Material__2097634430
 	Ns 10.000000
@@ -1464,8 +1470,8 @@ newmtl Material__2097634430
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\brown_wood.png
-	map_Kd maps\brown_wood.png
+	map_Ka maps\brown_wood.jpg
+	map_Kd maps\brown_wood.jpg
 
 newmtl Material__2097634027
 	Ns 10.000000
@@ -1478,8 +1484,8 @@ newmtl Material__2097634027
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\kid_body.png
-	map_Kd maps\kid_body.png
+	map_Ka maps\kid_body.jpg
+	map_Kd maps\kid_body.jpg
 
 newmtl Material__2097649743
 	Ns 10.000000
@@ -1492,8 +1498,8 @@ newmtl Material__2097649743
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\white.png
-	map_Kd maps\white.png
+	map_Ka maps\white.jpg
+	map_Kd maps\white.jpg
 
 newmtl Material__55
 	Ns 10.000000
@@ -1506,8 +1512,8 @@ newmtl Material__55
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\white.png
-	map_Kd maps\white.png
+	map_Ka maps\white.jpg
+	map_Kd maps\white.jpg
 
 newmtl Material__53
 	Ns 10.000000
@@ -1520,8 +1526,8 @@ newmtl Material__53
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\red.png
-	map_Kd maps\red.png
+	map_Ka maps\red.jpg
+	map_Kd maps\red.jpg
 
 newmtl Material__54
 	Ns 10.000000
@@ -1534,22 +1540,8 @@ newmtl Material__54
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\book_page.png
-	map_Kd maps\book_page.png
-
-newmtl Material__2097649748
-	Ns 10.000000
-	Ni 1.500000
-	d 1.000000
-	Tr 0.000000
-	Tf 1.000000 1.000000 1.000000 
-	illum 2
-	Ka 0.588000 0.588000 0.588000
-	Kd 0.588000 0.588000 0.588000
-	Ks 0.000000 0.000000 0.000000
-	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\earthinspace.png
-	map_Kd maps\earthinspace.png
+	map_Ka maps\book_page.jpg
+	map_Kd maps\book_page.jpg
 
 newmtl Material__48
 	Ns 10.000000
@@ -1564,3 +1556,18 @@ newmtl Material__48
 	Ke 0.000000 0.000000 0.000000
 	map_Ka maps\ufo_diffuse.png
 	map_Kd maps\ufo_diffuse.png
+	map_normal maps\ufo_normal.png
+
+newmtl Material__2097649752
+	Ns 10.000000
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.588000 0.588000 0.588000
+	Kd 0.588000 0.588000 0.588000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\earthinspace.jpg
+	map_Kd maps\earthinspace.jpg
