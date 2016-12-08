@@ -15,7 +15,7 @@
 #define FAR_CLIP     100.0f
 
 VRView::VRView(QWidget *parent) : QOpenGLWidget(parent),
-   m_hmd(0), m_frames(0), m_camera(new OrbitingCamera()),
+   m_hmd(0), m_camera(new OrbitingCamera()),
    m_scene(new Scene()), m_isDragging(false) {
    memset(m_inputNext, 0, sizeof(m_inputNext));
    memset(m_inputNext, 0, sizeof(m_inputPrev));
@@ -44,10 +44,10 @@ QSize VRView::minimumSizeHint() const {
 
 
 void VRView::updateFramerate() {
-   if (m_frames > 0) {
-      emit framesPerSecond(m_frames);
+   if (settings.frames > 0) {
+      emit framesPerSecond(settings.frames);
    }
-   m_frames = 0;
+   settings.frames = 0;
 }
 
 
@@ -116,8 +116,7 @@ void VRView::paintGL() {
 
    //vr::VRCompositor()->PostPresentHandoff();
 
-   m_frames++;
-
+   settings.frames++;
    update();
 }
 

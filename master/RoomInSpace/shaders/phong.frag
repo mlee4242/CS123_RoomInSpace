@@ -2,12 +2,12 @@
 uniform bool useTex;
 uniform sampler2D texMap;
 uniform vec3 diffuse;
+uniform bool pickable;
 in vec2 fragTexCoord;
 in vec3 WorldSpace_position; // world-space position
 in vec3 WorldSpace_normal;   // world-space normal
 out vec4 fragColor;
 uniform bool light;
-
 void main()
 {
   if(useTex){
@@ -16,11 +16,15 @@ void main()
     vec3 phongColor = vec3(0.3 + 0.7 * max(0.0, dot(normalize(WorldSpace_normal), WorldSpace_toLight)));
     vec4 texColor = texture2D(texMap, uv);
     //vec3 mixColor = ;////mix(texColor.xyz, phongColor, 0.2);
-    fragColor = sqrt(phongColor.r) * texColor;
+    fragColor = vec4(sqrt(phongColor.x) * mix(texColor.xyz, diffuse, 0.2), 1.f);
   }else{
     fragColor = vec4(diffuse, 1.f);
   }
   if(!light){
       fragColor = 0.3 * fragColor;
   }
+//  if(pickable){
+//      fragColor = vec4(1.0, 0, 0, 1);
+//  }
+
  }

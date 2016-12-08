@@ -18,6 +18,7 @@ private:
    void loadMaterials(const QString& target);
    void parseVertices(const QString& target, QVector<GLfloat>& cVerts);
    void buildGroups(QVector<SceneObject *>& results);
+   void setUpPickableList();
 
    bool m_ignoreGroup = false;
    QMap<QString, Material> m_materialMap;

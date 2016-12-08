@@ -2,7 +2,8 @@
 #include <QApplication>
 #include <QSurfaceFormat>
 #include <QSettings>
-
+#include "Settings.h"
+#include <chrono>
 int main(int argc, char *argv[]) {
    QCoreApplication::setOrganizationName("Brown University");
    QCoreApplication::setOrganizationDomain("cs.brown.edu");

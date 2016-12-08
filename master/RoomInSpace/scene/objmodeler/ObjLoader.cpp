@@ -9,14 +9,24 @@
 #include "SceneObject.h"
 #include "PrimitiveObject.h"
 #include "GroupObject.h"
-
+#include "Settings.h"
 ObjLoader::ObjLoader() : m_materialMap(QMap<QString, Material>())
 {}
 
 void ObjLoader::loadObj(const QString& target, QVector<SceneObject *>& results, QVector<GLfloat>& points) {
+   setUpPickableList();
    loadMaterials(target);
    parseVertices(target, points);
    buildGroups(results);
+}
+
+
+void ObjLoader::setUpPickableList() {
+   settings.pickableList.push_back("Mug");
+   settings.pickableList.push_back("OpenBook");
+   settings.pickableList.push_back("Clock");
+   settings.pickableList.push_back("Globe");
+   settings.pickableList.push_back("RedBook");
 }
 
 
@@ -126,8 +136,9 @@ void ObjLoader::parseVertices(const QString& target, QVector<GLfloat>& cVerts) {
                if ((data.length() > 0) && (data[0] == "v")) {
                   float v1 = data[1].toFloat(), v2 = data[2].toFloat(), v3 = data[3].toFloat();
                   verts.append(v1);
-                  verts.append(v2);
+                  // flip y and z
                   verts.append(v3);
+                  verts.append(v2);
                   obj->updateBox(glm::vec3(v1, v2, v3));
                }else if ((data.length() > 0) && (data[0] == "vt")) {
                   uvs.append(data[1].toFloat());
@@ -207,6 +218,7 @@ void ObjLoader::parseVertices(const QString& target, QVector<GLfloat>& cVerts) {
             } // end of parsing one obj
 //            std::cout << "parsed " << obj->getName().toStdString() << std::endl;
             obj->setNumVertices(count);
+            obj->setObjectType(PRIMITIVE_OBJECT);
             m_allObjs.append(obj);
          }
       }
@@ -224,12 +236,23 @@ void ObjLoader::buildGroups(QVector<SceneObject *>& results) {
          if (!groupDicts[groupName]) {
             GroupObject *newGroup = new GroupObject;
             newGroup->setName(groupName);
+            newGroup->setObjectType(GROUP_OBJECT);
             groupDicts[groupName] = newGroup;
             results.push_back(newGroup);
+            if (settings.pickableList.contains(groupName)) {
+               groupDicts[groupName]->setPickable(true);
+            }
          }
+         ptr->setObjectType(PRIMITIVE_IN_GROUP);
+         ptr->setPickable(groupDicts[groupName]->getPickable());
          groupDicts[groupName]->addPrimitiveObject(ptr);
-      }else{                    // this is "o" or just an object
+      }else{ // this is "o" or just an object
+         QString simpleName = nameDict[1];
+         ptr->setName(simpleName);
          results.push_back(ptr);
+         if (settings.pickableList.contains(simpleName)) {
+            ptr->setPickable(true);
+         }
       }
    }
 //   for (SceneObject *ptr : results) {

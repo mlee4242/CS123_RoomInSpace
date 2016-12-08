@@ -10,6 +10,7 @@
 #include <QOpenGLDebugMessage>
 #include <QOpenGLDebugLogger>
 #include <QOpenGLTexture>
+#include <QElapsedTimer>
 #include <memory>
 #include "openvr.h"
 #include "glm/glm.hpp"
@@ -30,11 +31,12 @@ public:
 
    void renderLeft();
    void renderRight();
-   void renderEye(vr::Hmd_Eye eye);
+
    void renderComp();
    void *getResolveTexture();
 
 private:
+   void renderEye(vr::Hmd_Eye eye);
    void generateTextureMap(const QVector<QString>& textures);
    bool compileShader(QOpenGLShaderProgram& shader,
                       const QString&        vertexShaderPath,
@@ -55,7 +57,6 @@ private:
    glm::mat4x4 m_projectMat;
    uint32_t m_eyeWidth, m_eyeHeight;
    int m_width, m_height;
-   //FBOHandle *m_leftBuffer, *m_rightBuffer;
 };
 
 #endif // SCENE_H

@@ -2,9 +2,12 @@
 #include "Scene.h"
 #include "glm/ext.hpp"
 #include "objmodeler/SceneObject.h"
+#include "objmodeler/GroupObject.h"
+#include "objmodeler/PrimitiveObject.h"
 #include "objmodeler/delete_ptr.h"
 #include "Settings.h"
-Scene::Scene() :// m_vertCount(0), m_texture(0),
+
+Scene::Scene() :
    m_glTextMap(QMap<QString, QOpenGLTexture *>()),
    m_viewMat(glm::mat4x4()),
    m_projectMat(glm::mat4x4()),
@@ -29,8 +32,23 @@ Scene::~Scene() {
       delete m_resolveBuffer;
    }
    if (m_sceneObjs.size() > 0) {
-      std::for_each(m_sceneObjs.begin(), m_sceneObjs.end(), delete_ptr());
-      m_sceneObjs.clear();
+      for (auto obj : m_sceneObjs) {
+         if (obj->getObjectType() == PRIMITIVE_OBJECT) {
+            delete static_cast<PrimitiveObject *> (obj);
+         }
+         if (obj->getObjectType() == GROUP_OBJECT) {
+            delete static_cast<GroupObject *> (obj);
+         }
+         if (obj->getObjectType() == SCENE_OBJECT) {
+            delete (obj);
+         }
+      }
+   }
+   if (m_glTextMap.size() > 0) {
+      QMap<QString, QOpenGLTexture *>::iterator i;
+      for (i = m_glTextMap.begin(); i != m_glTextMap.end(); i++) {
+//         delete i.value();
+      }
    }
 }
 

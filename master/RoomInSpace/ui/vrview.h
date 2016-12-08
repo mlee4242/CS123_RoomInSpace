@@ -87,7 +87,6 @@ private:
    QOpenGLDebugLogger *m_logger;
 
    uint32_t m_eyeWidth, m_eyeHeight;
-   int m_frames;
 
    QString m_imageDirectory;
    QString m_currentImage;

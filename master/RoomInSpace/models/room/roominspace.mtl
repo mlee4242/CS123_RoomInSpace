@@ -1,5 +1,5 @@
 # 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
-# 创建的文件:07.12.2016 09:57:21
+# 创建的文件:07.12.2016 18:49:16
 
 newmtl Material__2097634029
 	Ns 10.000000
@@ -935,6 +935,20 @@ newmtl Material__2097630390
 	map_Ka maps\ceiling.png
 	map_Kd maps\ceiling.png
 
+newmtl Material__2097649750
+	Ns 10.000000
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.588000 0.588000 0.588000
+	Kd 0.588000 0.588000 0.588000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\face.png
+	map_Kd maps\face.png
+
 newmtl Material__2097634026
 	Ns 10.000000
 	Ni 1.500000
@@ -1536,3 +1550,17 @@ newmtl Material__2097649748
 	Ke 0.000000 0.000000 0.000000
 	map_Ka maps\earthinspace.png
 	map_Kd maps\earthinspace.png
+
+newmtl Material__48
+	Ns 10.000000
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.588000 0.588000 0.588000
+	Kd 0.588000 0.588000 0.588000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\ufo_diffuse.png
+	map_Kd maps\ufo_diffuse.png
