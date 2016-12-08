@@ -10,7 +10,7 @@
 #include <QOpenGLDebugMessage>
 #include <QOpenGLDebugLogger>
 #include <QOpenGLTexture>
-#include <openvr.h>
+#include <openvr_mingw.hpp>
 #include <memory>
 #include "glm/glm.hpp"
 #include "OrbitingCamera.h"

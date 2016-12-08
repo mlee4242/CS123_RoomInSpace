@@ -220,7 +220,8 @@ void VRView::updateInput() {
 
    for (vr::TrackedDeviceIndex_t i = 0; i < vr::k_unMaxTrackedDeviceCount; i++) {
       vr::VRControllerState_t state;
-      if (m_hmd->GetControllerState(i, &state, sizeof(state))) {
+//      if (m_hmd->GetControllerState(i, &state, sizeof(state))) { //msvc
+        if (m_hmd->GetControllerState(i, &state)) {// mingw
          if (state.ulButtonPressed & vr::ButtonMaskFromId(vr::k_EButton_SteamVR_Touchpad)) {
             if (!m_inputNext[i]) {
                // this is for next image, need to change

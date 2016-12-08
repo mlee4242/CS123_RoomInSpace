@@ -135,10 +135,17 @@ void ObjLoader::parseVertices(const QString& target, QVector<GLfloat>& cVerts) {
                // # object o_Chair
                if ((data.length() > 0) && (data[0] == "v")) {
                   float v1 = data[1].toFloat(), v2 = data[2].toFloat(), v3 = data[3].toFloat();
-                  verts.append(v1);
                   // flip y and z
-                  verts.append(v3);
-                  verts.append(v2);
+                  if(settings.VRMode){
+                      verts.append(-v1);
+                      verts.append(v3);
+                      verts.append(v2);
+                  }else{
+                      verts.append(v1);
+                      verts.append(v3);
+                      verts.append(v2);
+                  }
+
                   obj->updateBox(glm::vec3(v1, v2, v3));
                }else if ((data.length() > 0) && (data[0] == "vt")) {
                   uvs.append(data[1].toFloat());

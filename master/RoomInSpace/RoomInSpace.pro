@@ -28,7 +28,8 @@ SOURCES += ui/main.cpp\
 
 HEADERS  += ui/mainwindow.h \
     ui/vrview.h \
-    thirdparty/openvr/headers/openvr.h \
+    # thirdparty/openvr/headers/openvr.h \
+    thirdparty/openvr/headers/openvr_mingw.hpp \
     camera/OrbitingCamera.h \
     camera/CamtransCamera.h \
     utilities/Settings.h \

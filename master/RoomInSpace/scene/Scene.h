@@ -12,7 +12,7 @@
 #include <QOpenGLTexture>
 #include <QElapsedTimer>
 #include <memory>
-#include "openvr.h"
+#include "openvr_mingw.hpp"
 #include "glm/glm.hpp"
 #include "Settings.h"
 #include "Helpers.h"
