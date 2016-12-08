@@ -32,11 +32,17 @@ void ObjLoader::setUpPickableList() {
 
 void ObjLoader::getTextureMap(QVector<QString>& textMap) {
    for (Material m : m_materialMap) {
-      if (!textMap.contains(m.map_Ka) && (m.map_Ka != "")) {
+      if ((m.map_Ka != "") && !textMap.contains(m.map_Ka)) {
          textMap.push_back(m.map_Ka);
       }
-      if (!textMap.contains(m.map_Kd) && (m.map_Kd != "")) {
+      if ((m.map_Kd != "") && !textMap.contains(m.map_Kd)) {
          textMap.push_back(m.map_Kd);
+      }
+      if ((m.map_bump != "") && !textMap.contains(m.map_bump)) {
+         textMap.push_back(m.map_bump);
+      }
+      if ((m.map_normal != "") && !textMap.contains(m.map_normal)) {
+         textMap.push_back(m.map_normal);
       }
    }
 }
@@ -99,6 +105,8 @@ void ObjLoader::loadMaterials(const QString& target) {
                }
                if (data[0] == "map_Ka") { mtl.map_Ka = data[1]; }
                if (data[0] == "map_Kd") { mtl.map_Kd = data[1]; }
+               if (data[0] == "map_bump") { mtl.map_bump = data[1]; }
+               if (data[0] == "map_normal") { mtl.map_normal = data[1]; }
             }
             m_materialMap[mtlName] = mtl;
 //          std::cout << mtlName.toStdString() << std::endl;
@@ -128,7 +136,7 @@ void ObjLoader::parseVertices(const QString& target, QVector<GLfloat>& cVerts) {
             obj->setName(QString(data[2]));
             bool nextObj = false;
             int  count   = 0;
-            while (!nextObj)
+            while (!nextObj && !in.atEnd())
             {
                line = in.readLine();
                data = line.simplified().split(" ");
@@ -136,14 +144,14 @@ void ObjLoader::parseVertices(const QString& target, QVector<GLfloat>& cVerts) {
                if ((data.length() > 0) && (data[0] == "v")) {
                   float v1 = data[1].toFloat(), v2 = data[2].toFloat(), v3 = data[3].toFloat();
                   // flip y and z
-                  if(settings.VRMode){
-                      verts.append(-v1);
-                      verts.append(v3);
-                      verts.append(v2);
+                  if (settings.VRMode) {
+                     verts.append(-v1);
+                     verts.append(v2);
+                     verts.append(v3);
                   }else{
-                      verts.append(v1);
-                      verts.append(v3);
-                      verts.append(v2);
+                     verts.append(0.1f * -v1);
+                     verts.append(0.1f * v2);
+                     verts.append(0.1f * v3);
                   }
 
                   obj->updateBox(glm::vec3(v1, v2, v3));
@@ -254,7 +262,10 @@ void ObjLoader::buildGroups(QVector<SceneObject *>& results) {
          ptr->setPickable(groupDicts[groupName]->getPickable());
          groupDicts[groupName]->addPrimitiveObject(ptr);
       }else{ // this is "o" or just an object
-         QString simpleName = nameDict[1];
+         QString simpleName = name;
+         if (nameDict.length() > 1) {
+            simpleName = nameDict[1];
+         }
          ptr->setName(simpleName);
          results.push_back(ptr);
          if (settings.pickableList.contains(simpleName)) {

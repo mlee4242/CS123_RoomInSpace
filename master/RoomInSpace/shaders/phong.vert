@@ -24,16 +24,12 @@ void main()
 //        }
 //    }
 
-//     gl_Position =  p * v * m * vec4( vertex.x + 0.25, vertex.z - 0.1 , -vertex.y + 0.25, 1.0f); // 12/6 night
-//     gl_Position =  p * v * m * vec4( vertex.x , vertex.z , vertex.y, 1.0f); // 12/6 night
     vec3 vert = vertex;
     if(move.x > 0){
         vert.x += 0.5f * sin(move.y) ;
     }
 
-     gl_Position =  p * v * m * vec4(0.1f * vert, 1.0f); // 12/6 night
+     gl_Position =  p * v * m * vec4(vert, 1.0f); // 12/6 night
      WorldSpace_position = gl_Position.xyz;
      WorldSpace_normal = normal;
-
-
 }

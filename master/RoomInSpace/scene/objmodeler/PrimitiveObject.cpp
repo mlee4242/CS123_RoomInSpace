@@ -46,19 +46,31 @@ void PrimitiveObject::draw(QOpenGLShaderProgram& shader,
    }else{
       shader.setUniformValue("move", QVector2D(0.f, 0.f));
    }
-
-   shader.setUniformValue("pickable", m_pickable);
    shader.setUniformValue("m", helper.mat4x4ToQMatrix4x4(modelMat));
+   shader.setUniformValue("pickable", m_pickable);
    shader.setUniformValue("diffuse", helper.vec3ToQVector3D(m_material.Kd));
 
    if (m_material.map_Kd != "") {
       shader.setUniformValue("useTex", 1);
-      txtMap[m_material.map_Kd]->bind();
-      glDrawArrays(GL_TRIANGLES, m_offset / 8, m_numVertices / 8);
+      txtMap[m_material.map_Kd]->bind(0);
    }else{
-      shader.setUniformValue("m", helper.mat4x4ToQMatrix4x4(modelMat));
-      shader.setUniformValue("diffuse", helper.vec3ToQVector3D(m_material.Kd));
       shader.setUniformValue("useTex", 0);
-      glDrawArrays(GL_TRIANGLES, m_offset / 8, m_numVertices / 8);
    }
+
+   if (m_material.map_bump != "") {
+//      GLint location = shader.uniformLocation("bumpMap");
+      shader.setUniformValue("useBump", 1);
+//      txtMap[m_material.map_bump]->bind(1);
+   }else{
+      shader.setUniformValue("useBump", 0);
+   }
+
+   if (m_material.map_normal != "") {
+//      GLint location = shader.uniformLocation("normalMap");
+      shader.setUniformValue("useNormal", 1);
+//      txtMap[m_material.map_normal]->bind(2);
+   }else{
+      shader.setUniformValue("useNormal", 0);
+   }
+   glDrawArrays(GL_TRIANGLES, m_offset / 8, m_numVertices / 8);
 }
