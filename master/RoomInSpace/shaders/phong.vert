@@ -29,7 +29,7 @@ void main()
         vert.x += 0.5f * sin(move.y) ;
     }
 
-     gl_Position =  p * v * m * vec4(vert, 1.0f); // 12/6 night
+     gl_Position =  p * v * m * vec4(vert.x, vert.y, vert.z, 1.0f); // 12/6 night
      WorldSpace_position = gl_Position.xyz;
      WorldSpace_normal = normal;
 }

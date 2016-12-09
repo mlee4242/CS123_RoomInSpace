@@ -145,7 +145,7 @@ void ObjLoader::parseVertices(const QString& target, QVector<GLfloat>& cVerts) {
                   float v1 = data[1].toFloat(), v2 = data[2].toFloat(), v3 = data[3].toFloat();
                   // flip y and z
                   if (settings.VRMode) {
-                     verts.append(-v1);
+                     verts.append(v1) ;
                      verts.append(v2);
                      verts.append(v3);
                   }else{
@@ -272,11 +272,13 @@ void ObjLoader::buildGroups(QVector<SceneObject *>& results) {
             ptr->setPickable(true);
          }
       }
+
    }
+}
 //   for (SceneObject *ptr : results) {
 //      BoundingBox b;
 //      std::cout << (ptr->getName()).toStdString() << std::endl;
 //      ptr->getBox(b);
 //      b.print();
 //   }
-}
+//}
