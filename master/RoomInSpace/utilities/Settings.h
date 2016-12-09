@@ -32,7 +32,7 @@ struct Settings
    int              windowMode;
 
    QString          path    = "models/room/";
-   QString          target  = "roominspace";
+   QString          target  = "measure";
    bool             VRMode  = false;
    bool             lightOn = true;
 
