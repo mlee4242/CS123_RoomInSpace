@@ -37,9 +37,9 @@ void main()
       fragColor = 0.3 * fragColor;
   }
 
-//  if(useNormal){
-//      fragColor = texture2D(normalMap, uv);
-//  }
+  if(useNormal){
+      fragColor = texture2D(normalMap, uv);
+  }
 
 //  if(useBump){
 //      fragColor = vec4(0.0, 0, 1.0, 1);

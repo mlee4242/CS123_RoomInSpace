@@ -1,7 +1,7 @@
 # 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
-# File Created: 09.12.2016 12:34:15
+# File Created: 09.12.2016 13:52:20
 
-newmtl Material__2097649763
+newmtl Material__2097649787
 	Ns 10.000000
 	Ni 1.500000
 	d 1.000000
@@ -12,5 +12,44 @@ newmtl Material__2097649763
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\coordinate_grid_paper_001_pin.jpg
-	map_Kd maps\coordinate_grid_paper_001_pin.jpg
+	map_Kd maps\measure-white.jpg
+
+newmtl Material__2097649788
+	Ns 10.000000
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.588000 0.588000 0.588000
+	Kd 0.588000 0.588000 0.588000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Kd maps\measure-white.jpg
+
+newmtl Material__2097649786
+	Ns 10.000000
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.588000 0.588000 0.588000
+	Kd 0.588000 0.588000 0.588000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\measure-blue.jpg
+	map_Kd maps\measure-blue.jpg
+
+newmtl Material__2097649784
+	Ns 10.000000
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.588000 0.588000 0.588000
+	Kd 0.588000 0.588000 0.588000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Kd maps\measure-red.jpg
