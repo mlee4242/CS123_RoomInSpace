@@ -272,14 +272,21 @@ void ObjLoader::buildGroups(QVector<SceneObject *>& results) {
             ptr->setPickable(true);
          }
       }
+         << << << < HEAD
 //      if (ptr->getName().contains("UFO")) {
 //         results.push_back(ptr);
 //      }
+         == == == =
+
+            >> >> >> > 2b87be8bc0266bd48f8e9c8f9de7c79fbc1d9f8d
    }
+}
+
+
 //   for (SceneObject *ptr : results) {
 //      BoundingBox b;
 //      std::cout << (ptr->getName()).toStdString() << std::endl;
 //      ptr->getBox(b);
 //      b.print();
 //   }
-}
+//}
