@@ -19,8 +19,6 @@ void main()
   vec3 WorldSpace_toLight = normalize(vec3(4, 4, 4) - WorldSpace_position);
   vec2 uv = vec2(fragTexCoord.x, 1.f - fragTexCoord.y);
   if(useTex){
-
-
      if(useBump){ // bump mapping
         // do something
      }

@@ -11,8 +11,8 @@
 #include "Settings.h"
 #include "glm/ext.hpp"
 
-#define NEAR_CLIP    0.001f
-#define FAR_CLIP     1000.0f
+#define NEAR_CLIP    0.01f
+#define FAR_CLIP     100.0f
 
 VRView::VRView(QWidget *parent) : QOpenGLWidget(parent),
    m_hmd(0), m_camera(new OrbitingCamera()),
@@ -87,11 +87,10 @@ void VRView::initializeGL() {
 
    if (settings.VRMode) {
       initVR();
-      float *w = 0;
-      float *h = 0;
+//      float *w = 0;
+//      float *h = 0;
 //      vr::IVRChaperone::GetPlayAreaSize(w, h);
 //      std::cout << *w << "," << *h << std::endl;
-
    }
 }
 
@@ -175,7 +174,7 @@ void VRView::initVR() {
    m_leftPose       = glm::inverse(helper.vrMatrixToGlmMatrix(m_hmd->GetEyeToHeadTransform(vr::Eye_Left)));
 
    QString ident;
-   ident.append("QVRViewer - ");
+   ident.append("Room In Space - ");
    ident.append(getTrackedDeviceString(vr::k_unTrackedDeviceIndex_Hmd, vr::Prop_TrackingSystemName_String));
    ident.append(" ");
    ident.append(getTrackedDeviceString(vr::k_unTrackedDeviceIndex_Hmd, vr::Prop_SerialNumber_String));
@@ -211,7 +210,15 @@ void VRView::updatePoses() {
    }
 
    if (m_trackedDevicePose[vr::k_unTrackedDeviceIndex_Hmd].bPoseIsValid) {
+      // original
       m_hmdPose = glm::inverse(m_matrixDevicePose[vr::k_unTrackedDeviceIndex_Hmd]);
+
+//      glm::mat4x4 toOrig = glm::inverse(m_trackedDevicePose[vr::k_unTrackedDeviceIndex_Hmd]);
+//      glm::mat4x4 toCur  = glm::translate(glm::mat4x4(),
+//                                          glm::vec3(-toOrig[3][0], -toOrig[3][1], -toOrig[3][2]));
+//      m_hmdPose = toCur * toOrig;
+      //  solution 1
+      // m_hmdPose = glm::inverse(m_trackedDevicePose[vr::k_unTrackedDeviceIndex_Hmd].mDeviceToAbsoluteTracking);
    }
 }
 
@@ -225,8 +232,8 @@ void VRView::updateInput() {
 
    for (vr::TrackedDeviceIndex_t i = 0; i < vr::k_unMaxTrackedDeviceCount; i++) {
       vr::VRControllerState_t state;
-//      if (m_hmd->GetControllerState(i, &state, sizeof(state))) { //msvc
-        if (m_hmd->GetControllerState(i, &state)) {// mingw
+//    if (m_hmd->GetControllerState(i, &state, sizeof(state))) { //msvc and openvr.h
+      if (m_hmd->GetControllerState(i, &state)) {  // mingw and openvr_mingw.hpp
          if (state.ulButtonPressed & vr::ButtonMaskFromId(vr::k_EButton_SteamVR_Touchpad)) {
             if (!m_inputNext[i]) {
                // this is for next image, need to change
