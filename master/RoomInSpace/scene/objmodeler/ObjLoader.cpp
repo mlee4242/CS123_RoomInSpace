@@ -76,7 +76,7 @@ void ObjLoader::loadMaterials(const QString& target) {
                if (data[0] == "Ns") { mtl.Ns = data[1].toFloat(); }
                if (data[0] == "Ni") { mtl.Ni = data[1].toFloat(); }
                if (data[0] == "d") { mtl.d = data[1].toFloat(); }
-               if (data[0] == "Tr") { mtl.d = data[1].toFloat(); }
+               if (data[0] == "Tr") { mtl.Tr = data[1].toFloat(); }
                if (data[0] == "Tf") {
                   mtl.Tf = glm::vec3(data[1].toFloat(),
                                      data[2].toFloat(),
@@ -246,7 +246,11 @@ void ObjLoader::buildGroups(QVector<SceneObject *>& results) {
    for (PrimitiveObject *ptr : m_allObjs) {
       QString     name     = ptr->getName();
       QStringList nameDict = name.simplified().split("_");
-      if (nameDict[0] == "g") { // this is an object in a group
+//      if (name.contains("Box")) {
+//         continue;
+//      }
+      std::cout << name.toStdString() << std::endl;
+      if (nameDict[0] == "g") {    // this is an object in a group
          QString groupName = nameDict[1];
          if (!groupDicts[groupName]) {
             GroupObject *newGroup = new GroupObject;
@@ -261,7 +265,7 @@ void ObjLoader::buildGroups(QVector<SceneObject *>& results) {
          ptr->setObjectType(PRIMITIVE_IN_GROUP);
          ptr->setPickable(groupDicts[groupName]->getPickable());
          groupDicts[groupName]->addPrimitiveObject(ptr);
-      }else{ // this is "o" or just an object
+      }else{    // this is "o" or just an object
          QString simpleName = name;
          if (nameDict.length() > 1) {
             simpleName = nameDict[1];

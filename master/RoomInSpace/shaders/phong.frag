@@ -19,8 +19,6 @@ void main()
   vec3 WorldSpace_toLight = normalize(vec3(4, 4, 4) - WorldSpace_position);
   vec2 uv = vec2(fragTexCoord.x, 1.f - fragTexCoord.y);
   if(useTex){
-
-
      if(useBump){ // bump mapping
         // do something
      }
@@ -39,9 +37,9 @@ void main()
       fragColor = 0.3 * fragColor;
   }
 
-  if(useNormal){
-      fragColor = texture2D(normalMap, uv);
-  }
+//  if(useNormal){
+//      fragColor = texture2D(normalMap, uv);
+//  }
 
 //  if(useBump){
 //      fragColor = vec4(0.0, 0, 1.0, 1);
