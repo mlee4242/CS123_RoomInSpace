@@ -210,7 +210,15 @@ void VRView::updatePoses() {
    }
 
    if (m_trackedDevicePose[vr::k_unTrackedDeviceIndex_Hmd].bPoseIsValid) {
+      // original
       m_hmdPose = glm::inverse(m_matrixDevicePose[vr::k_unTrackedDeviceIndex_Hmd]);
+
+//      glm::mat4x4 toOrig = glm::inverse(m_trackedDevicePose[vr::k_unTrackedDeviceIndex_Hmd]);
+//      glm::mat4x4 toCur  = glm::translate(glm::mat4x4(),
+//                                          glm::vec3(-toOrig[3][0], -toOrig[3][1], -toOrig[3][2]));
+//      m_hmdPose = toCur * toOrig;
+      //  solution 1
+      // m_hmdPose = glm::inverse(m_trackedDevicePose[vr::k_unTrackedDeviceIndex_Hmd].mDeviceToAbsoluteTracking);
    }
 }
 
