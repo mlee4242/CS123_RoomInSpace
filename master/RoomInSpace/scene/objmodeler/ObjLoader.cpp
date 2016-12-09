@@ -145,13 +145,13 @@ void ObjLoader::parseVertices(const QString& target, QVector<GLfloat>& cVerts) {
                   float v1 = data[1].toFloat(), v2 = data[2].toFloat(), v3 = data[3].toFloat();
                   // flip y and z
                   if (settings.VRMode) {
-                     verts.append(v1) ;
+                     verts.append(v1);
                      verts.append(v2);
                      verts.append(v3);
                   }else{
-                     verts.append(0.1f * -v1);
-                     verts.append(0.1f * v2);
-                     verts.append(0.1f * v3);
+                     verts.append(-v1);
+                     verts.append(v2);
+                     verts.append(v3);
                   }
 
                   obj->updateBox(glm::vec3(v1, v2, v3));
@@ -272,9 +272,17 @@ void ObjLoader::buildGroups(QVector<SceneObject *>& results) {
             ptr->setPickable(true);
          }
       }
+         << << << < HEAD
+//      if (ptr->getName().contains("UFO")) {
+//         results.push_back(ptr);
+//      }
+         == == == =
 
+            >> >> >> > 2b87be8bc0266bd48f8e9c8f9de7c79fbc1d9f8d
    }
 }
+
+
 //   for (SceneObject *ptr : results) {
 //      BoundingBox b;
 //      std::cout << (ptr->getName()).toStdString() << std::endl;
