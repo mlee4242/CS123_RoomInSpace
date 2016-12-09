@@ -26,10 +26,11 @@ void main()
 
     vec3 vert = vertex;
     if(move.x > 0){
-        vert.x += 0.5f * sin(move.y) ;
+        vert.z +=  1.75f * cos(move.y);
+        vert.x +=  1.75f * sin(move.y);
     }
 
-     gl_Position =  p * v * m * vec4(vert, 1.0f); // 12/6 night
+     gl_Position =  p * v * m * vec4(vert, 1.0f);
      WorldSpace_position = gl_Position.xyz;
      WorldSpace_normal = normal;
 }

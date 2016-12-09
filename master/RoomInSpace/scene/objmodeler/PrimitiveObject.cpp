@@ -41,7 +41,7 @@ void PrimitiveObject::draw(QOpenGLShaderProgram& shader,
                            QMap<QString, QOpenGLTexture *>& txtMap) {
    glm::mat4x4 modelMat = m_modelMat;
 
-   if (m_name == "UFO") {
+   if (m_name.contains("UFO")) {
       shader.setUniformValue("move", QVector2D(1.f, float((m_timer.nsecsElapsed() / 3000000000.f))));
    }else{
       shader.setUniformValue("move", QVector2D(0.f, 0.f));
