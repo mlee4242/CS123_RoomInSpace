@@ -11,8 +11,8 @@
 #include "Settings.h"
 #include "glm/ext.hpp"
 
-#define NEAR_CLIP    0.001f
-#define FAR_CLIP     10.0f
+#define NEAR_CLIP    0.01f
+#define FAR_CLIP     100.0f
 
 VRView::VRView(QWidget *parent) : QOpenGLWidget(parent),
    m_hmd(0), m_camera(new OrbitingCamera()),
@@ -87,8 +87,8 @@ void VRView::initializeGL() {
 
    if (settings.VRMode) {
       initVR();
-      float *w = 0;
-      float *h = 0;
+//      float *w = 0;
+//      float *h = 0;
 //      vr::IVRChaperone::GetPlayAreaSize(w, h);
 //      std::cout << *w << "," << *h << std::endl;
    }
