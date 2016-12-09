@@ -32,8 +32,8 @@ struct Settings
    int              windowMode;
 
    QString          path    = "models/room/";
-   QString          target  = "roominspace";
-   bool             VRMode  = false;
+   QString          target  = "measure";
+   bool             VRMode  = true;
    bool             lightOn = true;
 
    QVector<QString> pickableList;

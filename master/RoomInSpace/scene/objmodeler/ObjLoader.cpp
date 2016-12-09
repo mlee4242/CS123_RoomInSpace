@@ -246,10 +246,7 @@ void ObjLoader::buildGroups(QVector<SceneObject *>& results) {
    for (PrimitiveObject *ptr : m_allObjs) {
       QString     name     = ptr->getName();
       QStringList nameDict = name.simplified().split("_");
-//      if (name.contains("Box")) {
-//         continue;
-//      }
-      std::cout << name.toStdString() << std::endl;
+//      std::cout << name.toStdString() << std::endl;
       if (nameDict[0] == "g") {    // this is an object in a group
          QString groupName = nameDict[1];
          if (!groupDicts[groupName]) {
