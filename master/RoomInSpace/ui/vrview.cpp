@@ -14,18 +14,9 @@
 #define NEAR_CLIP    0.01f
 #define FAR_CLIP     100.0f
 
-void ThreadSleep(unsigned long nMilliseconds) {
-#if defined(_WIN32)
-   ::Sleep(nMilliseconds);
-#elif defined(POSIX)
-   usleep(nMilliseconds * 1000);
-#endif
-}
-
-
 VRView::VRView(QWidget *parent) : QOpenGLWidget(parent),
    m_hmd(0), m_camera(new OrbitingCamera()),
-   m_scene(new Scene()), m_deviceModels(new DeviceModels),
+   m_scene(new Scene()),
    m_isDragging(false) {
    memset(m_inputNext, 0, sizeof(m_inputNext));
    memset(m_inputNext, 0, sizeof(m_inputPrev));
@@ -45,7 +36,6 @@ VRView::VRView(QWidget *parent) : QOpenGLWidget(parent),
 
 VRView::~VRView() {
    shutdown();
-   m_deviceModels->shutdown();
 }
 
 
@@ -98,7 +88,6 @@ void VRView::initializeGL() {
 
    if (settings.VRMode) {
       initVR();
-      m_deviceModels->initRenderModel(m_hmd);
    }
 }
 
@@ -107,7 +96,6 @@ void VRView::paintGL() {
    if (m_hmd) {
       updatePoses();
       updateInput();
-      m_scene->setDeviceModelPointerFromVRView(m_deviceModels.get());
       setMatrices(vr::Eye_Left);
       m_scene->renderLeft();
 
@@ -139,7 +127,6 @@ void VRView::setMatrices(vr::Hmd_Eye eye) {
    glm::mat4x4 v = getViewMatrix(eye);
    glm::mat4x4 p = getProjMatrix(eye);
    m_scene->setMatrices(v, p);
-   m_deviceModels->setMatrices(p * v, &m_matrixDevicePose[0]);
 }
 
 
@@ -231,7 +218,7 @@ void VRView::updateInput() {
    vr::VREvent_t event;
    while (m_hmd->PollNextEvent(&event, sizeof(event)))
    {
-      ProcessVREvent( event );
+      ProcessVREvent(event);
    }
 
    for (vr::TrackedDeviceIndex_t i = 0; i < vr::k_unMaxTrackedDeviceCount; i++) {
@@ -260,31 +247,33 @@ void VRView::updateInput() {
    }
 }
 
+
 //-----------------------------------------------------------------------------
 // Purpose: Processes a single VR event
 //-----------------------------------------------------------------------------
-void VRView::ProcessVREvent(const vr::VREvent_t & event)
-{
-    switch (event.eventType)
-    {
-    case vr::VREvent_TrackedDeviceActivated:
-    {
-        m_deviceModels->setupRenderModelForTrackedDevice(event.trackedDeviceIndex);
-        std::cout << "Device " << int(event.trackedDeviceIndex) << " attached. Setting up render model." << std::endl;
-    }
-    break;
-    case vr::VREvent_TrackedDeviceDeactivated:
-    {
-        std::cout << "Device " << int(event.trackedDeviceIndex) << " deattached." << std::endl;
-    }
-    break;
-    case vr::VREvent_TrackedDeviceUpdated:
-    {
+void VRView::ProcessVREvent(const vr::VREvent_t& event) {
+   switch (event.eventType)
+   {
+   case vr::VREvent_TrackedDeviceActivated:
+      {
+         std::cout << "Device " << int(event.trackedDeviceIndex) << " attached. Setting up render model." << std::endl;
+      }
+      break;
+
+   case vr::VREvent_TrackedDeviceDeactivated:
+      {
+         std::cout << "Device " << int(event.trackedDeviceIndex) << " deattached." << std::endl;
+      }
+      break;
+
+   case vr::VREvent_TrackedDeviceUpdated:
+      {
          std::cout << "Device " << int(event.trackedDeviceIndex) << " updated." << std::endl;
-    }
-    break;
-    }
+      }
+      break;
+   }
 }
+
 
 void VRView::glUniformMatrix4(GLint location, GLsizei count, GLboolean transpose, const GLfloat *value) {
    glUniformMatrix4fv(location, count, transpose, value);

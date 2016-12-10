@@ -30,9 +30,16 @@ public:
    void updateBox(const glm::vec3& p);
    void setName(const QString& str);
    void setModelMatrix(glm::mat4x4& mat);
+   void updateModelMatrixFromReference(const glm::mat4x4& poseMat);
+   void resetModelMatrix();
+   void resetReferenceMatrx();
+   void setReferenceMatrx(glm::mat4x4& mat);
    void setObjectType(ObjectType t);
    void setPickable(bool b);
-   bool getPickable();
+   void setVisible(bool b);
+   bool isPickable();
+   bool isVisible();
+   bool isPicked();
 
    virtual void free() {}
 
@@ -47,8 +54,11 @@ protected:
    QString m_name;
    BoundingBox m_box;
    glm::mat4x4 m_modelMat;
+   glm::mat4x4 m_referenceMat;
    ObjectType m_type;
    bool m_pickable;
+   bool m_isPicked;
+   bool m_isVisible;
    QElapsedTimer m_timer;
 };
 

@@ -1,6 +1,5 @@
 #ifndef VRVIEW_H
 #define VRVIEW_H
-#include "scene/rendermodel/CGLRenderModel.h"
 #include <QOpenGLFunctions_4_1_Core>
 #include <QOpenGLWidget>
 #include <QOpenGLBuffer>
@@ -17,7 +16,6 @@
 #include "Settings.h"
 #include "Helpers.h"
 #include "OrbitingCamera.h"
-#include "scene/rendermodel/DeviceModels.h"
 class VRView : public QOpenGLWidget, protected QOpenGLFunctions_4_1_Core
 {
    Q_OBJECT
@@ -45,7 +43,7 @@ protected:
    void paintGL();
    void resizeGL(int w, int h);
    void keyPressEvent(QKeyEvent *event);
-   void ProcessVREvent(const vr::VREvent_t & event);
+   void ProcessVREvent(const vr::VREvent_t& event);
 
    // Overridden from QWidget
    virtual void mousePressEvent(QMouseEvent *event) override;
@@ -93,7 +91,6 @@ private:
    QString m_currentImage;
    std::unique_ptr<OrbitingCamera> m_camera;
    std::unique_ptr<Scene> m_scene;
-   std::unique_ptr<DeviceModels> m_deviceModels;
 
    bool m_inputNext[vr::k_unMaxTrackedDeviceCount];
    bool m_inputPrev[vr::k_unMaxTrackedDeviceCount];

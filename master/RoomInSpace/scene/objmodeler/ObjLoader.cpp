@@ -149,9 +149,9 @@ void ObjLoader::parseVertices(const QString& target, QVector<GLfloat>& cVerts) {
                      verts.append(v2);
                      verts.append(v3);
                   }else{
-                     verts.append(0.1f * -v1);
-                     verts.append(0.1f * v2);
-                     verts.append(0.1f * v3);
+                     verts.append(0.5f * -v1);
+                     verts.append(0.5f * v2);
+                     verts.append(0.5f * v3);
                   }
 
                   obj->updateBox(glm::vec3(v1, v2, v3));
@@ -240,6 +240,7 @@ void ObjLoader::parseVertices(const QString& target, QVector<GLfloat>& cVerts) {
    }
 }
 
+
 void ObjLoader::buildGroups(QVector<SceneObject *>& results) {
    QMap<QString, GroupObject *> groupDicts = QMap<QString, GroupObject *>();
    for (PrimitiveObject *ptr : m_allObjs) {
@@ -259,7 +260,7 @@ void ObjLoader::buildGroups(QVector<SceneObject *>& results) {
             }
          }
          ptr->setObjectType(PRIMITIVE_IN_GROUP);
-         ptr->setPickable(groupDicts[groupName]->getPickable());
+         ptr->setPickable(groupDicts[groupName]->isPickable());
          groupDicts[groupName]->addPrimitiveObject(ptr);
       }else{    // this is "o" or just an object
          QString simpleName = name;
