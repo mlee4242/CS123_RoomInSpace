@@ -48,9 +48,9 @@ void PrimitiveObject::draw(QOpenGLShaderProgram& shader,
       shader.setUniformValue("move", QVector2D(0.f, 0.f));
    }
 
-//   if(m_name.contains("Controller")){
-//       std::cerr << glm::to_string(m_modelMat) << std::endl;
-//   }
+   if(m_name.contains("Controller")){
+       std::cout << "in draw " << glm::to_string(m_modelMat) << std::endl;
+   }
 
    shader.setUniformValue("m", helper.mat4x4ToQMatrix4x4(modelMat));
    shader.setUniformValue("pickable", m_pickable);

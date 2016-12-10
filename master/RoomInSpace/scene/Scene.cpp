@@ -72,7 +72,7 @@ void Scene::categorizeSceneObjects(QVector<SceneObject *>& objects) {
          obj->setActive(false);
          m_controllerObj.reset(obj);
       }else{
-         m_sceneObjs.push_back(obj);
+        // m_sceneObjs.push_back(obj);
       }
    }
 }

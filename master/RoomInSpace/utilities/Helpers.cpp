@@ -26,8 +26,6 @@ glm::mat4x4 Helpers::vrMatrixToGlmMatrix(const vr::HmdMatrix44_t &mat) {
       );
 }
 
-
-
 // transpose?
 glm::mat4x4 Helpers::vrMatrixToGlmMatrixEyeHead(const vr::HmdMatrix44_t &mat) {
    return glm::mat4x4(mat.m[0][0], mat.m[1][0], mat.m[2][0],mat.m[3][0],
@@ -38,7 +36,8 @@ glm::mat4x4 Helpers::vrMatrixToGlmMatrixEyeHead(const vr::HmdMatrix44_t &mat) {
 }
 
 glm::mat4x4 Helpers::vrMatrixToGlmMatrixEyeHead(const vr::HmdMatrix34_t &mat) {
-   return glm::mat4x4(mat.m[0][0], mat.m[1][0], mat.m[2][0], 0.0,
+   return glm::mat4x4(
+           mat.m[0][0], mat.m[1][0], mat.m[2][0], 0.0,
            mat.m[0][1], mat.m[1][1], mat.m[2][1], 0.0,
            mat.m[0][2], mat.m[1][2], mat.m[2][2], 0.0,
            mat.m[0][3], mat.m[1][3], mat.m[2][3], 1.0f
@@ -47,11 +46,17 @@ glm::mat4x4 Helpers::vrMatrixToGlmMatrixEyeHead(const vr::HmdMatrix34_t &mat) {
 
 
 glm::mat4x4 Helpers::vrMatrixToGlmMatrixPose(const vr::HmdMatrix34_t& mat) {
-   return glm::mat4x4(mat.m[0][0], mat.m[1][0], mat.m[2][0], 0.0,
-           mat.m[0][1], mat.m[1][1], mat.m[2][1], 0.0,
-           mat.m[0][2], mat.m[1][2], mat.m[2][2], 0.0,
-           mat.m[0][3], mat.m[1][3], mat.m[2][3], 1.0f
-      );
+//   return glm::mat4x4(mat.m[0][0], mat.m[1][0], mat.m[2][0], 0.0,
+//           mat.m[0][1], mat.m[1][1], mat.m[2][1], 0.0,
+//           mat.m[0][2], mat.m[1][2], mat.m[2][2], 0.0,
+//           mat.m[0][3], mat.m[1][3], mat.m[2][3], 1.0f
+//      );
+
+    return glm::mat4x4(mat.m[0][0], mat.m[1][0], mat.m[2][0], 0.0,
+            mat.m[0][1], mat.m[1][1], mat.m[2][1], 0.0,
+            mat.m[0][2], mat.m[1][2], mat.m[2][2], 0.0,
+            mat.m[0][3], mat.m[1][3], mat.m[2][3], 1.0f
+       );
 }
 
 QVector3D Helpers::vec3ToQVector3D(glm::vec3 v) const {
