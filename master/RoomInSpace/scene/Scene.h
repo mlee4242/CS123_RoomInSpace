@@ -29,6 +29,9 @@ public:
    void setDimension(uint32_t w, uint32_t h);
    void setMatrices(const glm::mat4x4& m, const glm::mat4x4& v, const glm::mat4x4& p);
    void setMatrices(const glm::mat4x4& v, const glm::mat4x4& p);
+   void activeController();
+   void inactiveController();
+   void updateController(glm::mat4x4& mat);
 
    void renderLeft();
    void renderRight();

@@ -94,8 +94,9 @@ void VRView::initializeGL() {
 
 void VRView::paintGL() {
    if (m_hmd) {
-      updatePoses();
+      // FM switched these two statements: input and poses
       updateInput();
+      updatePoses();
       setMatrices(vr::Eye_Left);
       m_scene->renderLeft();
 
@@ -204,6 +205,10 @@ void VRView::updatePoses() {
    for (unsigned int i = 0; i < vr::k_unMaxTrackedDeviceCount; i++) {
       if (m_trackedDevicePose[i].bPoseIsValid) {
          m_matrixDevicePose[i] = helper.vrMatrixToGlmMatrix(m_trackedDevicePose[i].mDeviceToAbsoluteTracking);
+         // use the last one
+         if (i != vr::k_unTrackedDeviceIndex_Hmd) {
+            m_scene->updateController(m_matrixDevicePose[i]);
+         }
       }
    }
 
@@ -228,7 +233,6 @@ void VRView::updateInput() {
          if (state.ulButtonPressed & vr::ButtonMaskFromId(vr::k_EButton_SteamVR_Touchpad)) {
             if (!m_inputNext[i]) {
                // this is for next image, need to change
-               // loadImageRelative(1);
                m_inputNext[i] = true;
             }
          }else if (m_inputNext[i]) {
@@ -237,7 +241,6 @@ void VRView::updateInput() {
 
          if (state.ulButtonPressed & vr::ButtonMaskFromId(vr::k_EButton_Grip)) {
             if (!m_inputPrev[i]) {
-               // loadImageRelative(-1);
                m_inputPrev[i] = true;
             }
          }else if (m_inputPrev[i]) {
@@ -256,13 +259,15 @@ void VRView::ProcessVREvent(const vr::VREvent_t& event) {
    {
    case vr::VREvent_TrackedDeviceActivated:
       {
-         std::cout << "Device " << int(event.trackedDeviceIndex) << " attached. Setting up render model." << std::endl;
+         m_scene->activeController();
+         std::cout << "Device " << int(event.trackedDeviceIndex) << " attached. Set it visible." << std::endl;
       }
       break;
 
    case vr::VREvent_TrackedDeviceDeactivated:
       {
-         std::cout << "Device " << int(event.trackedDeviceIndex) << " deattached." << std::endl;
+         m_scene->inactiveController();
+         std::cout << "Device " << int(event.trackedDeviceIndex) << " deattached. Invisiable." << std::endl;
       }
       break;
 

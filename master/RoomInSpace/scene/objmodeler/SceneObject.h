@@ -36,9 +36,9 @@ public:
    void setReferenceMatrx(glm::mat4x4& mat);
    void setObjectType(ObjectType t);
    void setPickable(bool b);
-   void setVisible(bool b);
+   void setActive(bool b);
    bool isPickable();
-   bool isVisible();
+   bool isActive();
    bool isPicked();
 
    virtual void free() {}
@@ -58,7 +58,7 @@ protected:
    ObjectType m_type;
    bool m_pickable;
    bool m_isPicked;
-   bool m_isVisible;
+   bool m_isActive;
    QElapsedTimer m_timer;
 };
 

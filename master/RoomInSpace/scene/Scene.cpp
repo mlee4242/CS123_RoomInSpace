@@ -66,10 +66,10 @@ void Scene::generateTextureMap(const QVector<QString>& textures) {
 void Scene::categorizeSceneObjects(QVector<SceneObject *>& objects) {
    for (SceneObject *obj : objects) {
       if (obj->getName().contains("Sky")) {
-         obj->setVisible(false);
-         m_skyBoxes.push_back(obj);
+         obj->setActive(false);
+         m_skyBoxes.push_front(obj);
       }else if (obj->getName().contains("Controller")) {
-         obj->setVisible(false);
+         obj->setActive(false);
          m_controllerObj.reset(obj);
       }else{
          m_sceneObjs.push_back(obj);
@@ -227,6 +227,23 @@ void Scene::nextSky() {
 }
 
 
+void Scene::activeController() {
+   m_controllerObj->setActive(true);
+}
+
+
+void Scene::inactiveController() {
+   m_controllerObj->setActive(false);
+}
+
+
+void Scene::updateController(glm::mat4x4& mat) {
+   if (m_controllerObj->isActive()) {
+      m_controllerObj->setModelMatrix(mat);
+   }
+}
+
+
 void Scene::renderEye(vr::Hmd_Eye eye) {
    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
    glEnable(GL_DEPTH_TEST);
@@ -240,7 +257,7 @@ void Scene::renderEye(vr::Hmd_Eye eye) {
    for (auto obj : m_sceneObjs) {
       obj->draw(m_shader, m_glTextMap);
    }
-   if (m_controllerObj->isVisible()) {
+   if (m_controllerObj->isActive()) {
       m_controllerObj->draw(m_shader, m_glTextMap);
    }
    m_skyBoxes[m_currentSky]->draw(m_shader, m_glTextMap);

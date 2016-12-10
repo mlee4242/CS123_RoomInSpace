@@ -7,7 +7,7 @@ SceneObject::SceneObject() : m_name(""),
    m_type(SCENE_OBJECT),
    m_pickable(false),
    m_isPicked(false),
-   m_isVisible(true),
+   m_isActive(true),
    m_timer(QElapsedTimer()) {
    m_timer.start();
 }
@@ -74,8 +74,8 @@ void SceneObject::getBox(BoundingBox& box) {
 }
 
 
-void SceneObject::setVisible(bool b) {
-   m_isVisible = b;
+void SceneObject::setActive(bool b) {
+   m_isActive = b;
 }
 
 
@@ -84,8 +84,8 @@ void SceneObject::setPickable(bool b) {
 }
 
 
-bool SceneObject::isVisible() {
-   return m_isVisible;
+bool SceneObject::isActive() {
+   return m_isActive;
 }
 
 
