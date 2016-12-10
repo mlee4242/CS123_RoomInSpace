@@ -6,6 +6,7 @@
 #include "Helpers.h"
 #include <time.h>
 #include <chrono>
+#include "glm/ext.hpp"
 PrimitiveObject::PrimitiveObject() : m_setted(0), m_modelMat(glm::mat4x4())
 {}
 
@@ -46,6 +47,10 @@ void PrimitiveObject::draw(QOpenGLShaderProgram& shader,
    }else{
       shader.setUniformValue("move", QVector2D(0.f, 0.f));
    }
+
+//   if(m_name.contains("Controller")){
+//       std::cout << glm::to_string(m_modelMat) << std::endl;
+//   }
    shader.setUniformValue("m", helper.mat4x4ToQMatrix4x4(modelMat));
    shader.setUniformValue("pickable", m_pickable);
    shader.setUniformValue("diffuse", helper.vec3ToQVector3D(m_material.Kd));

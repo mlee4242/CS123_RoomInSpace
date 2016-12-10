@@ -56,7 +56,7 @@ void DeviceModels::drawRenderModelForDevice() {
 
       glm::mat4x4 deviceMatrix = *(m_matrixDevicePosePtr + i);
       glm::mat4x4 finalMatrix  = m_tranMat * deviceMatrix;
-      //glUniformMatrix4fv(m_nRenderModelMatrixLocation, 1, GL_FALSE, glm::value_ptr(finalMatrix));
+      glUniformMatrix4fv(m_nRenderModelMatrixLocation, 1, GL_FALSE, glm::value_ptr(finalMatrix));
       m_rTrackedDeviceToRenderModel[i]->render();
    }
 
