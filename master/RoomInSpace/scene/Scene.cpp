@@ -221,6 +221,6 @@ void Scene::renderEye(vr::Hmd_Eye eye) {
       obj->draw(m_shader, m_glTextMap);
    }
    m_deviceModelFromVRView->drawRenderModelForDevice();
-//   m_shader.release();   // FM+
+//   m_shader.release();   // FM+ :
 //   m_vao.release();      // FM+ :
 }
