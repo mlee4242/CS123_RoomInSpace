@@ -26,8 +26,8 @@ void main()
 
     vec3 vert = vertex;
     if(move.x > 0){
-        vert.z +=  2.25f * cos(move.y);
-        vert.x +=  2.25f * sin(move.y);
+        vert.z +=  2.5f * cos(move.y);
+        vert.x +=  2.5f * sin(move.y);
     }
 
      gl_Position =  p * v * m * vec4(vert.x,vert.y, vert.z, 1.0f); // 12/6 night

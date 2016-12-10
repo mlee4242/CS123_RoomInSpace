@@ -239,8 +239,8 @@ void Scene::inactiveController() {
 
 void Scene::updateController(glm::mat4x4& mat) {
    //  if (m_controllerObj->isActive()) {
-   //std::cerr << glm::to_string(mat) << std::endl;
-   m_controllerObj->setActive(true);
+   // std::cerr << glm::to_string(mat) << std::endl;
+   // m_controllerObj->setActive(true);
    m_controllerObj->setModelMatrix(mat);
    //  }
 }
