@@ -11,7 +11,9 @@ class ObjLoader
 {
 public:
    ObjLoader();
-   void loadObj(const QString& target, QVector<SceneObject *>& results, QVector<GLfloat>& cVerts);
+   void loadObj(const QString&          target,
+                QVector<SceneObject *>& results,
+                QVector<GLfloat>&       cVerts);
    void getTextureMap(QVector<QString>& textMap);
 
 private:

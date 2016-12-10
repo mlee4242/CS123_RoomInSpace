@@ -32,6 +32,7 @@ public:
 
    void renderLeft();
    void renderRight();
+   void nextSky();
 
    void renderComp();
    void *getResolveTexture();
@@ -39,6 +40,7 @@ public:
 private:
    void renderEye(vr::Hmd_Eye eye);
    void generateTextureMap(const QVector<QString>& textures);
+   void categorizeSceneObjects(QVector<SceneObject *>& objects);
    bool compileShader(QOpenGLShaderProgram& shader,
                       const QString&        vertexShaderPath,
                       const QString&        fragmentShaderPath);
@@ -49,6 +51,9 @@ private:
    QMap<QString, QOpenGLTexture *> m_glTextMap;
    std::unique_ptr<ObjLoader> m_objLoader;
    QVector<SceneObject *> m_sceneObjs;
+   QVector<SceneObject *> m_skyBoxes;
+   int m_currentSky;
+   std::unique_ptr<SceneObject> m_controllerObj;
 
    QOpenGLFramebufferObject *m_leftBuffer;
    QOpenGLFramebufferObject *m_rightBuffer;

@@ -15,7 +15,10 @@ Scene::Scene() :
    m_eyeWidth(0), m_eyeHeight(0),
    m_leftBuffer(0), m_rightBuffer(0),
    m_objLoader(new ObjLoader),
-   m_sceneObjs(QVector<SceneObject *>())
+   m_sceneObjs(QVector<SceneObject *>()),
+   m_skyBoxes(QVector<SceneObject *>()),
+   m_currentSky(0),
+   m_controllerObj(nullptr)
 {}
 
 
@@ -60,15 +63,32 @@ void Scene::generateTextureMap(const QVector<QString>& textures) {
 }
 
 
+void Scene::categorizeSceneObjects(QVector<SceneObject *>& objects) {
+   for (SceneObject *obj : objects) {
+      if (obj->getName().contains("Sky")) {
+         obj->setVisible(false);
+         m_skyBoxes.push_back(obj);
+      }else if (obj->getName().contains("Controller")) {
+         obj->setVisible(false);
+         m_controllerObj.reset(obj);
+      }else{
+         m_sceneObjs.push_back(obj);
+      }
+   }
+}
+
+
 void Scene::initScene() {
    glEnable(GL_DEPTH_TEST);
    glEnable(GL_CULL_FACE);
    glEnable(GL_TEXTURE_2D);
 
-   QVector<QString> textures;
-   QVector<GLfloat> points;
-   m_objLoader->loadObj(settings.path + settings.target, m_sceneObjs, points);
+   QVector<QString>       textures;
+   QVector<GLfloat>       points;
+   QVector<SceneObject *> objects;
+   m_objLoader->loadObj(settings.path + settings.target, objects, points);
    m_objLoader->getTextureMap(textures);
+   categorizeSceneObjects(objects);
    generateTextureMap(textures);
 
    // compile our shader
@@ -202,19 +222,28 @@ void *Scene::getResolveTexture() {
 }
 
 
+void Scene::nextSky() {
+   m_currentSky = (m_currentSky + 1) % m_skyBoxes.length();
+}
+
+
 void Scene::renderEye(vr::Hmd_Eye eye) {
    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
    glEnable(GL_DEPTH_TEST);
    m_vao.bind();
    m_shader.bind();
+   m_shader.setUniformValue("v", helper.mat4x4ToQMatrix4x4(m_viewMat));
+   m_shader.setUniformValue("p", helper.mat4x4ToQMatrix4x4(m_projectMat));
+   m_shader.setUniformValue("leftEye", eye == vr::Eye_Left);
+   m_shader.setUniformValue("overUnder", settings.windowMode == OverUnder);
+   m_shader.setUniformValue("light", settings.lightOn);
    for (auto obj : m_sceneObjs) {
-      m_shader.setUniformValue("v", helper.mat4x4ToQMatrix4x4(m_viewMat));
-      m_shader.setUniformValue("p", helper.mat4x4ToQMatrix4x4(m_projectMat));
-      m_shader.setUniformValue("leftEye", eye == vr::Eye_Left);
-      m_shader.setUniformValue("overUnder", settings.windowMode == OverUnder);
-      m_shader.setUniformValue("light", settings.lightOn);
       obj->draw(m_shader, m_glTextMap);
    }
+   if (m_controllerObj->isVisible()) {
+      m_controllerObj->draw(m_shader, m_glTextMap);
+   }
+   m_skyBoxes[m_currentSky]->draw(m_shader, m_glTextMap);
 //   m_shader.release();   // FM+ :
 //   m_vao.release();      // FM+ :
 }

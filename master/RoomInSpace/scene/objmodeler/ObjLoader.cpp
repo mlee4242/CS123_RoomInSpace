@@ -13,7 +13,9 @@
 ObjLoader::ObjLoader() : m_materialMap(QMap<QString, Material>())
 {}
 
-void ObjLoader::loadObj(const QString& target, QVector<SceneObject *>& results, QVector<GLfloat>& points) {
+void ObjLoader::loadObj(const QString&          target,
+                        QVector<SceneObject *>& results,
+                        QVector<GLfloat>&       points) {
    setUpPickableList();
    loadMaterials(target);
    parseVertices(target, points);
@@ -246,7 +248,6 @@ void ObjLoader::buildGroups(QVector<SceneObject *>& results) {
    for (PrimitiveObject *ptr : m_allObjs) {
       QString     name     = ptr->getName();
       QStringList nameDict = name.simplified().split("_");
-//      std::cout << name.toStdString() << std::endl;
       if (nameDict[0] == "g") {    // this is an object in a group
          QString groupName = nameDict[1];
          if (!groupDicts[groupName]) {
@@ -273,9 +274,6 @@ void ObjLoader::buildGroups(QVector<SceneObject *>& results) {
             ptr->setPickable(true);
          }
       }
-//      if (ptr->getName().contains("UFO")) {
-//         results.push_back(ptr);
-//      }
    }
 }
 
