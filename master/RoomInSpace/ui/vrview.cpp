@@ -206,8 +206,9 @@ void VRView::updatePoses() {
       if (m_trackedDevicePose[i].bPoseIsValid) {
          m_matrixDevicePose[i] = helper.vrMatrixToGlmMatrix(m_trackedDevicePose[i].mDeviceToAbsoluteTracking);
          // use the last one
-         if (i != vr::k_unTrackedDeviceIndex_Hmd) {
-            m_scene->updateController(m_matrixDevicePose[i]);
+         if (m_hmd->GetControllerRoleForTrackedDeviceIndex(i)  == vr::TrackedControllerRole_RightHand){
+                //std::cerr << glm::to_string(m_matrixDevicePose[i]) << std::endl;
+                m_scene->updateController(m_matrixDevicePose[i]);
          }
       }
    }
