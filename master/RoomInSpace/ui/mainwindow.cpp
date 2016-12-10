@@ -1,6 +1,6 @@
+#include "vrview.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "vrview.h"
 #include "Settings.h"
 #include <QVBoxLayout>
 #include <QSurfaceFormat>
@@ -39,6 +39,7 @@ void MainWindow::showStatus(const QString& message) {
    ui->statusBar->showMessage(message);
 }
 
+
 void MainWindow::on_overUnderButton_clicked() {
    if (ui->overUnderButton->isChecked()) {
       settings.windowMode = OverUnder;
@@ -46,4 +47,4 @@ void MainWindow::on_overUnderButton_clicked() {
 }
 
 
-void MainWindow::on_sideSideButton_clicked(){}
+void MainWindow::on_sideSideButton_clicked() {}

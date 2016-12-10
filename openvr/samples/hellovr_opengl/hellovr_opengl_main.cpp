@@ -311,7 +311,7 @@ CMainApplication::~CMainApplication()
 
 //-----------------------------------------------------------------------------
 // Purpose: Helper to get a string from a tracked device property and turn it
-//			into a std::string
+//			into a std::stringCGLCG
 //-----------------------------------------------------------------------------
 std::string GetTrackedDeviceString(vr::IVRSystem *pHmd, vr::TrackedDeviceIndex_t unDevice, vr::TrackedDeviceProperty prop, vr::TrackedPropertyError *peError = NULL)
 {

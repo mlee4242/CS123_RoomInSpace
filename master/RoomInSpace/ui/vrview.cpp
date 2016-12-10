@@ -14,9 +14,19 @@
 #define NEAR_CLIP    0.01f
 #define FAR_CLIP     100.0f
 
+void ThreadSleep(unsigned long nMilliseconds) {
+#if defined(_WIN32)
+   ::Sleep(nMilliseconds);
+#elif defined(POSIX)
+   usleep(nMilliseconds * 1000);
+#endif
+}
+
+
 VRView::VRView(QWidget *parent) : QOpenGLWidget(parent),
    m_hmd(0), m_camera(new OrbitingCamera()),
-   m_scene(new Scene()), m_isDragging(false) {
+   m_scene(new Scene()), m_deviceModels(new DeviceModels),
+   m_isDragging(false) {
    memset(m_inputNext, 0, sizeof(m_inputNext));
    memset(m_inputNext, 0, sizeof(m_inputPrev));
 
@@ -35,6 +45,7 @@ VRView::VRView(QWidget *parent) : QOpenGLWidget(parent),
 
 VRView::~VRView() {
    shutdown();
+   m_deviceModels->shutdown();
 }
 
 
@@ -87,10 +98,7 @@ void VRView::initializeGL() {
 
    if (settings.VRMode) {
       initVR();
-//      float *w = 0;
-//      float *h = 0;
-//      vr::IVRChaperone::GetPlayAreaSize(w, h);
-//      std::cout << *w << "," << *h << std::endl;
+      m_deviceModels->initRenderModel(m_hmd);
    }
 }
 
@@ -101,8 +109,11 @@ void VRView::paintGL() {
       updateInput();
       setMatrices(vr::Eye_Left);
       m_scene->renderLeft();
+      m_deviceModels->drawRenderModelForDevice(m_matrixDevicePose);
+
       setMatrices(vr::Eye_Right);
       m_scene->renderRight();
+      m_deviceModels->drawRenderModelForDevice(m_matrixDevicePose);
    }else{
       setMatrices(vr::Eye_Right);
    }
@@ -129,6 +140,7 @@ void VRView::setMatrices(vr::Hmd_Eye eye) {
    glm::mat4x4 v = getViewMatrix(eye);
    glm::mat4x4 p = getProjMatrix(eye);
    m_scene->setMatrices(v, p);
+   m_deviceModels->setMatrice(p * v);
 }
 
 
@@ -212,13 +224,6 @@ void VRView::updatePoses() {
    if (m_trackedDevicePose[vr::k_unTrackedDeviceIndex_Hmd].bPoseIsValid) {
       // original
       m_hmdPose = glm::inverse(m_matrixDevicePose[vr::k_unTrackedDeviceIndex_Hmd]);
-
-//      glm::mat4x4 toOrig = glm::inverse(m_trackedDevicePose[vr::k_unTrackedDeviceIndex_Hmd]);
-//      glm::mat4x4 toCur  = glm::translate(glm::mat4x4(),
-//                                          glm::vec3(-toOrig[3][0], -toOrig[3][1], -toOrig[3][2]));
-//      m_hmdPose = toCur * toOrig;
-      //  solution 1
-      // m_hmdPose = glm::inverse(m_trackedDevicePose[vr::k_unTrackedDeviceIndex_Hmd].mDeviceToAbsoluteTracking);
    }
 }
 

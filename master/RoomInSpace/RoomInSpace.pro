@@ -12,6 +12,22 @@ TARGET = RoomInSpace
 TEMPLATE = app
 CONFIG += c++14
 
+win32 {
+    RC_FILE = win32.rc
+    DEFINES += GLEW_STATIC
+    contains(QT_ARCH, i386) {
+    message("32 bit build")
+        LIBS += -L$$PWD/thirdparty/openvr/lib/win32/ \
+                -lopenvr_api -lopengl32 -lglu32
+        copyToDestdir($${PWD}/thirdparty/openvr/bin/win32/openvr_api.dll)
+    } else {
+    message("64 bit build")
+        LIBS += -L$$PWD/thirdparty/openvr/lib/win64/ \
+                -lopenvr_api -lopengl32 -lglu32
+        copyToDestdir($${PWD}/thirdparty/openvr/bin/win64/openvr_api.dll)
+    }
+}
+
 SOURCES += ui/main.cpp\
     ui/mainwindow.cpp \
     ui/vrview.cpp \
@@ -24,7 +40,10 @@ SOURCES += ui/main.cpp\
     scene/objmodeler/SceneObject.cpp \
     scene/objmodeler/PrimitiveObject.cpp \
     scene/objmodeler/GroupObject.cpp \
-    scene/objmodeler/ObjLoader.cpp
+    scene/objmodeler/ObjLoader.cpp \
+    thirdparty/glew/src/glew.c \
+    scene/rendermodel/CGLRenderModel.cpp \
+    scene/rendermodel/DeviceModels.cpp
 
 HEADERS  += ui/mainwindow.h \
     ui/vrview.h \
@@ -41,7 +60,10 @@ HEADERS  += ui/mainwindow.h \
     scene/objmodeler/GroupObject.h \
     scene/objmodeler/material.h \
     scene/objmodeler/ObjLoader.h \
-    scene/objmodeler/delete_ptr.h
+    scene/objmodeler/delete_ptr.h \
+    thirdparty/glew/include/GL/glew.h \
+    scene/rendermodel/CGLRenderModel.h \
+    scene/rendermodel/DeviceModels.h
 
 FORMS    += ui/mainwindow.ui
 
@@ -68,26 +90,13 @@ defineTest(copyToDestdir) {
 }
 
 
-win32 {
-    RC_FILE = win32.rc
-
-    contains(QT_ARCH, i386) {
-    message("32 bit build")
-        LIBS += -L$$PWD/thirdparty/openvr/lib/win32/ \
-                -lopenvr_api -lopengl32
-        copyToDestdir($${PWD}/thirdparty/openvr/bin/win32/openvr_api.dll)
-    } else {
-    message("64 bit build")
-        LIBS += -L$$PWD/thirdparty/openvr/lib/win64/ \
-                -lopenvr_api -lopengl32
-        copyToDestdir($${PWD}/thirdparty/openvr/bin/win64/openvr_api.dll)
-    }
-}
 INCLUDEPATH += $$PWD/
 DEPENDPATH += $$PWD/
 
-INCLUDEPATH += thirdparty thirdparty/openvr/headers utilities shaders models textures camera ui scenegraph utilities thirdparty/include
-DEPENDPATH +=  thirdparty thirdparty/openvr/headers utilities textures models camera ui scenegraph utilities thirdparty/include
+INCLUDEPATH += thirdparty thirdparty/openvr/headers thirdparty/glew/include
+INCLUDEPATH += utilities shaders models textures camera ui scenegraph utilities thirdparty/include
+DEPENDPATH +=  thirdparty thirdparty/openvr/headersthirdparty/glew/include
+DEPENDPATH += utilities textures models camera ui scenegraph utilities thirdparty/include
 
 # from http://stackoverflow.com/a/25193580
 #isEmpty(TARGET_EXT) {
