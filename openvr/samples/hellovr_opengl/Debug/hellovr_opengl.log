@@ -1,7 +1,3 @@
-﻿  pathtools.cpp
-  Matrices.cpp
-  lodepng.cpp
-  Generating Code...
-SDL2main.lib(SDL_windows_main.obj) : error LNK2005: _main already defined in hellovr_opengl_main.obj
-SDL2main.lib(SDL_windows_main.obj) : error LNK2019: unresolved external symbol _SDL_main referenced in function _main
-..\bin\win32\hellovr_opengl.exe : fatal error LNK1120: 1 unresolved externals
+﻿  hellovr_opengl_main.cpp
+  hellovr_opengl.vcxproj -> C:\Users\avd\Documents\CS123_Mike_Han_FM\CS123_RoomInSpace\openvr\samples\hellovr_opengl\..\bin\win32\hellovr_opengl.exe
+  hellovr_opengl.vcxproj -> ..\bin\win32\hellovr_opengl.pdb (Full PDB)

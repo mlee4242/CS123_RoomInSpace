@@ -146,7 +146,7 @@ void ObjLoader::parseVertices(const QString& target, QVector<GLfloat>& cVerts) {
                   // flip y and z
                   if (settings.VRMode) {
                      verts.append(v1);
-                     verts.append(v2 + 0.5f);
+                     verts.append(v2);
                      verts.append(v3);
                   }else{
                      verts.append(0.1f * -v1);
@@ -239,7 +239,6 @@ void ObjLoader::parseVertices(const QString& target, QVector<GLfloat>& cVerts) {
       }
    }
 }
-
 
 void ObjLoader::buildGroups(QVector<SceneObject *>& results) {
    QMap<QString, GroupObject *> groupDicts = QMap<QString, GroupObject *>();
