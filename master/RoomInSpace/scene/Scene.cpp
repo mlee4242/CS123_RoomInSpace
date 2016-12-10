@@ -238,9 +238,11 @@ void Scene::inactiveController() {
 
 
 void Scene::updateController(glm::mat4x4& mat) {
-   if (m_controllerObj->isActive()) {
+ //  if (m_controllerObj->isActive()) {
+      //std::cerr << glm::to_string(mat) << std::endl;
+      m_controllerObj->setActive(true);
       m_controllerObj->setModelMatrix(mat);
-   }
+ //  }
 }
 
 
@@ -249,6 +251,8 @@ void Scene::renderEye(vr::Hmd_Eye eye) {
    glEnable(GL_DEPTH_TEST);
    m_vao.bind();
    m_shader.bind();
+   //added passing model matrix and the controller disappeared
+   //m_shader.setUniformValue("m", helper.mat4x4ToQMatrix4x4(m_modelMat));
    m_shader.setUniformValue("v", helper.mat4x4ToQMatrix4x4(m_viewMat));
    m_shader.setUniformValue("p", helper.mat4x4ToQMatrix4x4(m_projectMat));
    m_shader.setUniformValue("leftEye", eye == vr::Eye_Left);

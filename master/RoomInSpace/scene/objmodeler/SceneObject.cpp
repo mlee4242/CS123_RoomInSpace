@@ -1,5 +1,6 @@
 #include "SceneObject.h"
-
+#include <iostream>
+#include <glm/ext.hpp>
 SceneObject::SceneObject() : m_name(""),
    m_box(BoundingBox()),
    m_modelMat(glm::mat4x4()),
@@ -65,6 +66,8 @@ glm::mat4x4 SceneObject::getModelMatrix() {
 
 
 void SceneObject::setModelMatrix(glm::mat4x4& mat) {
+//    if(m_name.contains("Controller"))
+//    std::cout << "Hi" << glm::to_string(mat) << std::endl;
    m_modelMat = mat;
 }
 

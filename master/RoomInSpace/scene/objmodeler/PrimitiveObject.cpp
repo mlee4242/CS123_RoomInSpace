@@ -7,7 +7,7 @@
 #include <time.h>
 #include <chrono>
 #include "glm/ext.hpp"
-PrimitiveObject::PrimitiveObject() : m_setted(0), m_modelMat(glm::mat4x4())
+PrimitiveObject::PrimitiveObject() : m_setted(0)
 {}
 
 void PrimitiveObject::setVertices(const QVector<GLfloat>& verts) {
@@ -49,8 +49,9 @@ void PrimitiveObject::draw(QOpenGLShaderProgram& shader,
    }
 
 //   if(m_name.contains("Controller")){
-//       std::cout << glm::to_string(m_modelMat) << std::endl;
+//       std::cerr << glm::to_string(m_modelMat) << std::endl;
 //   }
+
    shader.setUniformValue("m", helper.mat4x4ToQMatrix4x4(modelMat));
    shader.setUniformValue("pickable", m_pickable);
    shader.setUniformValue("diffuse", helper.vec3ToQVector3D(m_material.Kd));

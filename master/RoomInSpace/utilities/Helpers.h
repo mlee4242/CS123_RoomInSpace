@@ -10,8 +10,12 @@ struct Helpers
    QVector3D   vec3ToQVector3D(glm::vec3 v) const;
 
    glm::mat4x4 vrMatrixToGlmMatrix(const vr::HmdMatrix34_t& mat);
-
    glm::mat4x4 vrMatrixToGlmMatrix(const vr::HmdMatrix44_t& mat);
+
+   glm::mat4x4 vrMatrixToGlmMatrixEyeHead(const vr::HmdMatrix44_t& mat);
+    glm::mat4x4 vrMatrixToGlmMatrixEyeHead(const vr::HmdMatrix34_t& mat);
+
+   glm::mat4x4 vrMatrixToGlmMatrixPose(const vr::HmdMatrix34_t& mat);
 };
 
 extern Helpers helper;

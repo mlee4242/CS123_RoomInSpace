@@ -30,7 +30,6 @@ protected:
 
 private:
    int m_setted;
-   glm::mat4x4 m_modelMat;
 };
 
 #endif // PRIMITIVEOBJECT_H

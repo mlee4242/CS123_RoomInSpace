@@ -166,11 +166,11 @@ void VRView::initVR() {
    }
 
    // get eye matrices
-   m_rightProjection = helper.vrMatrixToGlmMatrix(m_hmd->GetProjectionMatrix(vr::Eye_Right, NEAR_CLIP, FAR_CLIP, vr::API_OpenGL));
-   m_rightPose       = glm::inverse(helper.vrMatrixToGlmMatrix(m_hmd->GetEyeToHeadTransform(vr::Eye_Right)));
+   m_rightProjection = helper.vrMatrixToGlmMatrixEyeHead(m_hmd->GetProjectionMatrix(vr::Eye_Right, NEAR_CLIP, FAR_CLIP, vr::API_OpenGL));
+   m_rightPose       = glm::inverse(helper.vrMatrixToGlmMatrixEyeHead(m_hmd->GetEyeToHeadTransform(vr::Eye_Right)));
 
-   m_leftProjection = helper.vrMatrixToGlmMatrix(m_hmd->GetProjectionMatrix(vr::Eye_Left, NEAR_CLIP, FAR_CLIP, vr::API_OpenGL));
-   m_leftPose       = glm::inverse(helper.vrMatrixToGlmMatrix(m_hmd->GetEyeToHeadTransform(vr::Eye_Left)));
+   m_leftProjection = helper.vrMatrixToGlmMatrixEyeHead(m_hmd->GetProjectionMatrix(vr::Eye_Left, NEAR_CLIP, FAR_CLIP, vr::API_OpenGL));
+   m_leftPose       = glm::inverse(helper.vrMatrixToGlmMatrixEyeHead(m_hmd->GetEyeToHeadTransform(vr::Eye_Left)));
 
    QString ident;
    ident.append("Room In Space - ");
@@ -203,19 +203,21 @@ void VRView::updatePoses() {
    vr::VRCompositor()->WaitGetPoses(m_trackedDevicePose, vr::k_unMaxTrackedDeviceCount, NULL, 0);
 
    for (unsigned int i = 0; i < vr::k_unMaxTrackedDeviceCount; i++) {
-      if (m_trackedDevicePose[i].bPoseIsValid) {
-         m_matrixDevicePose[i] = helper.vrMatrixToGlmMatrix(m_trackedDevicePose[i].mDeviceToAbsoluteTracking);
+      if (m_trackedDevicePose[i].bPoseIsValid && i != vr::k_unTrackedDeviceIndex_Hm) {
+         m_matrixDevicePose[i] = helper.vrMatrixToGlmMatrixPose(m_trackedDevicePose[i].mDeviceToAbsoluteTracking);
          // use the last one
-         if (m_hmd->GetControllerRoleForTrackedDeviceIndex(i)  == vr::TrackedControllerRole_RightHand){
-                //std::cerr << glm::to_string(m_matrixDevicePose[i]) << std::endl;
-                m_scene->updateController(m_matrixDevicePose[i]);
-         }
       }
    }
 
    if (m_trackedDevicePose[vr::k_unTrackedDeviceIndex_Hmd].bPoseIsValid) {
       // original
       m_hmdPose = glm::inverse(m_matrixDevicePose[vr::k_unTrackedDeviceIndex_Hmd]);
+   }
+
+   if (m_trackedDevicePose[vr::TrackedControllerRole_RightHand].bPoseIsValid){
+          //std::cerr << glm::to_string(m_matrixDevicePose[i]) << std::endl;
+       glm::mat4x4 mat = glm::inverse(m_matrixDevicePose[vr::TrackedControllerRole_RightHand]);
+       m_scene->updateController(mat);
    }
 }
 
