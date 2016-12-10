@@ -72,7 +72,7 @@ void Scene::categorizeSceneObjects(QVector<SceneObject *>& objects) {
          obj->setActive(false);
          m_controllerObj.reset(obj);
       }else{
-        // m_sceneObjs.push_back(obj);
+         m_sceneObjs.push_back(obj);
       }
    }
 }
@@ -238,11 +238,11 @@ void Scene::inactiveController() {
 
 
 void Scene::updateController(glm::mat4x4& mat) {
- //  if (m_controllerObj->isActive()) {
-      //std::cerr << glm::to_string(mat) << std::endl;
-      m_controllerObj->setActive(true);
-      m_controllerObj->setModelMatrix(mat);
- //  }
+   //  if (m_controllerObj->isActive()) {
+   //std::cerr << glm::to_string(mat) << std::endl;
+   m_controllerObj->setActive(true);
+   m_controllerObj->setModelMatrix(mat);
+   //  }
 }
 
 
