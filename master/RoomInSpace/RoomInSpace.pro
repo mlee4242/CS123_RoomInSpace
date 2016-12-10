@@ -12,21 +12,7 @@ TARGET = RoomInSpace
 TEMPLATE = app
 CONFIG += c++14
 
-win32 {
-    RC_FILE = win32.rc
-    DEFINES += GLEW_STATIC
-    contains(QT_ARCH, i386) {
-    message("32 bit build")
-        LIBS += -L$$PWD/thirdparty/openvr/lib/win32/ \
-                -lopenvr_api -lopengl32 -lglu32
-        copyToDestdir($${PWD}/thirdparty/openvr/bin/win32/openvr_api.dll)
-    } else {
-    message("64 bit build")
-        LIBS += -L$$PWD/thirdparty/openvr/lib/win64/ \
-                -lopenvr_api -lopengl32 -lglu32
-        copyToDestdir($${PWD}/thirdparty/openvr/bin/win64/openvr_api.dll)
-    }
-}
+
 
 SOURCES += ui/main.cpp\
     ui/mainwindow.cpp \
@@ -89,6 +75,21 @@ defineTest(copyToDestdir) {
     export(QMAKE_POST_LINK)
 }
 
+win32 {
+    RC_FILE = win32.rc
+    DEFINES += GLEW_STATIC
+    contains(QT_ARCH, i386) {
+    message("32 bit build")
+        LIBS += -L$$PWD/thirdparty/openvr/lib/win32/ \
+                -lopenvr_api -lopengl32 -lglu32
+        copyToDestdir($${PWD}/thirdparty/openvr/bin/win32/openvr_api.dll)
+    } else {
+    message("64 bit build")
+        LIBS += -L$$PWD/thirdparty/openvr/lib/win64/ \
+                -lopenvr_api -lopengl32 -lglu32
+        copyToDestdir($${PWD}/thirdparty/openvr/bin/win64/openvr_api.dll)
+    }
+}
 
 INCLUDEPATH += $$PWD/
 DEPENDPATH += $$PWD/

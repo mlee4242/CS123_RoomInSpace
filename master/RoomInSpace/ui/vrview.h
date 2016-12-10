@@ -45,6 +45,7 @@ protected:
    void paintGL();
    void resizeGL(int w, int h);
    void keyPressEvent(QKeyEvent *event);
+   void ProcessVREvent(const vr::VREvent_t & event);
 
    // Overridden from QWidget
    virtual void mousePressEvent(QMouseEvent *event) override;

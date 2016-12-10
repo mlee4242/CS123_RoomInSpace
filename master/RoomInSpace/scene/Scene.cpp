@@ -15,6 +15,7 @@ Scene::Scene() :
    m_eyeWidth(0), m_eyeHeight(0),
    m_leftBuffer(0), m_rightBuffer(0),
    m_objLoader(new ObjLoader),
+   m_deviceModelFromVRView(0),
    m_sceneObjs(QVector<SceneObject *>())
 {}
 
@@ -188,6 +189,10 @@ void Scene::renderRight() {
                                              m_rightBuffer, sourceRect);
 }
 
+void Scene::setDeviceModelPointerFromVRView(DeviceModels * ptr){
+    if(!m_deviceModelFromVRView)
+       m_deviceModelFromVRView = ptr;
+}
 
 void Scene::renderComp() {
    glClearColor(0.25f, 0.25f, 0.28f, 1.0f);
@@ -215,6 +220,7 @@ void Scene::renderEye(vr::Hmd_Eye eye) {
       m_shader.setUniformValue("light", settings.lightOn);
       obj->draw(m_shader, m_glTextMap);
    }
+   m_deviceModelFromVRView->drawRenderModelForDevice();
 //   m_shader.release();   // FM+
 //   m_vao.release();      // FM+ :
 }

@@ -10,10 +10,12 @@ class DeviceModels
 public:
    DeviceModels();
    void initRenderModel(vr::IVRSystem *hmd);
-   void drawRenderModelForDevice(const glm::mat4x4(&matrixDevicePose)[vr::k_unMaxTrackedDeviceCount]);
+   void setTrackedDevicePoses(const glm::mat4x4(&matrixDevicePose)[vr::k_unMaxTrackedDeviceCount]);
+   void setupRenderModelForTrackedDevice(vr::TrackedDeviceIndex_t unTrackedDeviceIndex);
+   void drawRenderModelForDevice();
 
    void shutdown();
-   void setMatrice(const glm::mat4x4& m);
+   void setMatrices(const glm::mat4x4& m, glm::mat4x4 *matrixDevicePose);
 
 private:
    void setupRenderModels();
@@ -25,7 +27,7 @@ private:
    GLuint CompileGLShader(const char *pchShaderName, const char *pchVertexShader,
                           const char *pchFragmentShader);
 
-   void setupRenderModelForTrackedDevice(vr::TrackedDeviceIndex_t unTrackedDeviceIndex);
+
    CGLRenderModel *findOrLoadRenderModel(const char *pchRenderModelName);
 
    vr::IVRSystem *m_hmd;
@@ -35,6 +37,7 @@ private:
    bool m_rbShowTrackedDevice[vr::k_unMaxTrackedDeviceCount];
    GLuint m_unRenderModelProgramID;
    GLint m_nRenderModelMatrixLocation;
+   glm::mat4x4 * m_matrixDevicePosePtr;
 
    glm::mat4x4 m_tranMat;
 };

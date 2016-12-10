@@ -1,6 +1,6 @@
 #ifndef SCENE_H
 #define SCENE_H
-
+#include "rendermodel/DeviceModels.h"
 #include <QOpenGLFunctions_4_1_Core>
 #include <QOpenGLWidget>
 #include <QOpenGLBuffer>
@@ -11,12 +11,14 @@
 #include <QOpenGLDebugLogger>
 #include <QOpenGLTexture>
 #include <QElapsedTimer>
+
 #include <memory>
 #include "openvr_mingw.hpp"
 #include "glm/glm.hpp"
 #include "Settings.h"
 #include "Helpers.h"
 #include "objmodeler/ObjLoader.h"
+
 class Scene
 {
 public:
@@ -28,6 +30,7 @@ public:
    void setDimension(uint32_t w, uint32_t h);
    void setMatrices(const glm::mat4x4& m, const glm::mat4x4& v, const glm::mat4x4& p);
    void setMatrices(const glm::mat4x4& v, const glm::mat4x4& p);
+   void setDeviceModelPointerFromVRView(DeviceModels * ptr);
 
    void renderLeft();
    void renderRight();
@@ -48,6 +51,7 @@ private:
    QMap<QString, QOpenGLTexture *> m_glTextMap;
    std::unique_ptr<ObjLoader> m_objLoader;
    QVector<SceneObject *> m_sceneObjs;
+   DeviceModels *m_deviceModelFromVRView;
 
    QOpenGLFramebufferObject *m_leftBuffer;
    QOpenGLFramebufferObject *m_rightBuffer;

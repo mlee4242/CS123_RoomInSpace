@@ -5,7 +5,7 @@
 #include <QString>
 #include <glm/ext.hpp>
 
-DeviceModels::DeviceModels()
+DeviceModels::DeviceModels():m_matrixDevicePosePtr(0)
 {}
 
 void DeviceModels::shutdown() {
@@ -41,12 +41,12 @@ void DeviceModels::initRenderModel(vr::IVRSystem *hmd) {
 }
 
 
-void DeviceModels::setMatrice(const glm::mat4x4& m) {
+void DeviceModels::setMatrices(const glm::mat4x4& m,  glm::mat4x4 * matrixDevicePose) {
    m_tranMat = m;
+   m_matrixDevicePosePtr = matrixDevicePose;
 }
 
-
-void DeviceModels::drawRenderModelForDevice(const glm::mat4x4 (&matrixDevicePose)[vr::k_unMaxTrackedDeviceCount]) {
+void DeviceModels::drawRenderModelForDevice() {
    glUseProgram(m_unRenderModelProgramID);
 
    for (unsigned int i = 0; i < vr::k_unMaxTrackedDeviceCount; i++) {
@@ -54,10 +54,9 @@ void DeviceModels::drawRenderModelForDevice(const glm::mat4x4 (&matrixDevicePose
          continue;
       }
 
-      glm::mat4x4 deviceMatrix = *(matrixDevicePose + i);
+      glm::mat4x4 deviceMatrix = *(m_matrixDevicePosePtr + i);
       glm::mat4x4 finalMatrix  = m_tranMat * deviceMatrix;
-      glUniformMatrix4fv(m_nRenderModelMatrixLocation, 1, GL_FALSE, glm::value_ptr(finalMatrix));
-
+      //glUniformMatrix4fv(m_nRenderModelMatrixLocation, 1, GL_FALSE, glm::value_ptr(finalMatrix));
       m_rTrackedDeviceToRenderModel[i]->render();
    }
 
@@ -159,7 +158,7 @@ void DeviceModels::setupRenderModelForTrackedDevice(vr::TrackedDeviceIndex_t unT
       std::cout << "Unable to load render model for tracked device" << std::endl;
    }else {
       m_rTrackedDeviceToRenderModel[unTrackedDeviceIndex] = pRenderModel;
-      m_rbShowTrackedDevice[unTrackedDeviceIndex]         = true; //??
+      m_rbShowTrackedDevice[unTrackedDeviceIndex]         = true;
    }
 }
 

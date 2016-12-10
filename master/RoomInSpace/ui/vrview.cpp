@@ -107,13 +107,12 @@ void VRView::paintGL() {
    if (m_hmd) {
       updatePoses();
       updateInput();
+      m_scene->setDeviceModelPointerFromVRView(m_deviceModels.get());
       setMatrices(vr::Eye_Left);
       m_scene->renderLeft();
-      m_deviceModels->drawRenderModelForDevice(m_matrixDevicePose);
 
       setMatrices(vr::Eye_Right);
       m_scene->renderRight();
-      m_deviceModels->drawRenderModelForDevice(m_matrixDevicePose);
    }else{
       setMatrices(vr::Eye_Right);
    }
@@ -140,7 +139,7 @@ void VRView::setMatrices(vr::Hmd_Eye eye) {
    glm::mat4x4 v = getViewMatrix(eye);
    glm::mat4x4 p = getProjMatrix(eye);
    m_scene->setMatrices(v, p);
-   m_deviceModels->setMatrice(p * v);
+   m_deviceModels->setMatrices(p * v, &m_matrixDevicePose[0]);
 }
 
 
@@ -232,7 +231,7 @@ void VRView::updateInput() {
    vr::VREvent_t event;
    while (m_hmd->PollNextEvent(&event, sizeof(event)))
    {
-      //ProcessVREvent( event );
+      ProcessVREvent( event );
    }
 
    for (vr::TrackedDeviceIndex_t i = 0; i < vr::k_unMaxTrackedDeviceCount; i++) {
@@ -261,6 +260,31 @@ void VRView::updateInput() {
    }
 }
 
+//-----------------------------------------------------------------------------
+// Purpose: Processes a single VR event
+//-----------------------------------------------------------------------------
+void VRView::ProcessVREvent(const vr::VREvent_t & event)
+{
+    switch (event.eventType)
+    {
+    case vr::VREvent_TrackedDeviceActivated:
+    {
+        m_deviceModels->setupRenderModelForTrackedDevice(event.trackedDeviceIndex);
+        std::cout << "Device " << int(event.trackedDeviceIndex) << " attached. Setting up render model." << std::endl;
+    }
+    break;
+    case vr::VREvent_TrackedDeviceDeactivated:
+    {
+        std::cout << "Device " << int(event.trackedDeviceIndex) << " deattached." << std::endl;
+    }
+    break;
+    case vr::VREvent_TrackedDeviceUpdated:
+    {
+         std::cout << "Device " << int(event.trackedDeviceIndex) << " updated." << std::endl;
+    }
+    break;
+    }
+}
 
 void VRView::glUniformMatrix4(GLint location, GLsizei count, GLboolean transpose, const GLfloat *value) {
    glUniformMatrix4fv(location, count, transpose, value);
