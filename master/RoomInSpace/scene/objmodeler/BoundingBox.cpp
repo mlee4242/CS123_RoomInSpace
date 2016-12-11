@@ -196,6 +196,11 @@ bool BoundingBox::overlap(const BoundingBox& box) {
          return true;
       }
    }
+   for (glm::vec4 x : m_corners) {
+      if (box.inside(x)) {
+         return true;
+      }
+   }
    return false;
 }
 

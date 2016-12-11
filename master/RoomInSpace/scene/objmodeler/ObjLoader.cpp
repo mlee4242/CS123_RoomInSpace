@@ -29,6 +29,7 @@ void ObjLoader::setUpPickableList() {
    settings.pickableList.push_back("Clock");
    settings.pickableList.push_back("Globe");
    settings.pickableList.push_back("RedBook");
+   settings.pickableList.push_back("Boy");
 }
 
 
