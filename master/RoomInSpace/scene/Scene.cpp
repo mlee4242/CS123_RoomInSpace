@@ -17,7 +17,7 @@ Scene::Scene() :
    m_objLoader(new ObjLoader),
    m_sceneObjs(QVector<SceneObject *>()),
    m_skyBoxes(QVector<SceneObject *>()),
-   m_currentSky(0),
+   m_currentSky(2),
    m_controllerObj(nullptr)
 {}
 
@@ -242,7 +242,7 @@ void Scene::updateController(glm::mat4x4& mat) {
    // std::cerr << glm::to_string(mat) << std::endl;
    // m_controllerObj->setActive(true);
    m_controllerObj->setModelMatrix(mat);
-   //  }
+   //}
 }
 
 
