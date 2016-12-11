@@ -91,9 +91,11 @@ private:
    QString m_currentImage;
    std::unique_ptr<OrbitingCamera> m_camera;
    std::unique_ptr<Scene> m_scene;
+   long int m_preClickTime;
+   long int m_curClickTime;
 
-   bool m_inputNext[vr::k_unMaxTrackedDeviceCount];
-   bool m_inputPrev[vr::k_unMaxTrackedDeviceCount];
+//   bool m_inputNext[vr::k_unMaxTrackedDeviceCount];
+//   bool m_inputPrev[vr::k_unMaxTrackedDeviceCount];
    bool m_isDragging;
 };
 

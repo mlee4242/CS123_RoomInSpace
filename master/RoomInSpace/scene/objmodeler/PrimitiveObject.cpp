@@ -53,6 +53,8 @@ void PrimitiveObject::draw(QOpenGLShaderProgram& shader,
 //   }
 
    shader.setUniformValue("m", helper.mat4x4ToQMatrix4x4(modelMat));
+   shader.setUniformValue("isSky", m_name.contains("Sky"));
+   shader.setUniformValue("isInside", !m_name.contains("Sky") && !m_name.contains("UFO"));
    shader.setUniformValue("pickable", m_pickable);
    shader.setUniformValue("diffuse", helper.vec3ToQVector3D(m_material.Kd));
 

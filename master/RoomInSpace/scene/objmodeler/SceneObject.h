@@ -59,6 +59,7 @@ protected:
    bool m_pickable;
    bool m_isPicked;
    bool m_isActive;
+   bool m_isHit;
    QElapsedTimer m_timer;
 };
 
