@@ -84,6 +84,17 @@ void VRView::initializeGL() {
       m_logger->enableMessages();
    }
 #endif
+
+   if (settings.VRMode == false) {
+      std::cerr << " ============================================" << std::endl;
+      std::cerr << " This is the non-VR mode" << std::endl;
+      std::cerr << " ============================================" << std::endl;
+   }else{
+      std::cerr << " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+      std::cerr << " This is the VR mode" << std::endl;
+      std::cerr << " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+   }
+
    m_scene->initScene();
 
    if (settings.VRMode) {
@@ -155,7 +166,6 @@ void VRView::keyPressEvent(QKeyEvent *event) {
 void VRView::initVR() {
    vr::EVRInitError error = vr::VRInitError_None;
    m_hmd = vr::VR_Init(&error, vr::VRApplication_Scene);
-
    if (error != vr::VRInitError_None) {
       m_hmd = 0;
 
@@ -206,10 +216,10 @@ void VRView::updatePoses() {
       if (m_trackedDevicePose[i].bPoseIsValid) {
          m_matrixDevicePose[i] = helper.vrMatrixToGlmMatrixPose(m_trackedDevicePose[i].mDeviceToAbsoluteTracking);
          // use the last one
-         if (m_hmd->GetControllerRoleForTrackedDeviceIndex(i)  == vr::TrackedControllerRole_RightHand){
-                //std::cerr << glm::to_string(m_matrixDevicePose[i]) << std::endl;
-             glm::mat4x4 mat = (m_matrixDevicePose[i]);
-             m_scene->updateController(mat);
+         if (m_hmd->GetControllerRoleForTrackedDeviceIndex(i) == vr::TrackedControllerRole_RightHand) {
+            //std::cerr << glm::to_string(m_matrixDevicePose[i]) << std::endl;
+            glm::mat4x4 mat = (m_matrixDevicePose[i]);
+            m_scene->updateController(mat);
          }
       }
    }
