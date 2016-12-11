@@ -86,6 +86,13 @@ void BoundingBox::print() {
 }
 
 
+void BoundingBox::printCorners(){
+    for (auto corner : m_corners){
+     std::cout << "corners are " << glm::to_string(corner) << std::endl;
+    }
+
+}
+
 /**
  * @brief BoundingBox::updateBox
  * udpate the bounding box according the input

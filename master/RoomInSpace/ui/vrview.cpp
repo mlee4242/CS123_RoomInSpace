@@ -225,7 +225,6 @@ void VRView::updatePoses() {
    }
 
    if (m_trackedDevicePose[vr::k_unTrackedDeviceIndex_Hmd].bPoseIsValid) {
-      // original
       m_hmdPose = glm::inverse(m_matrixDevicePose[vr::k_unTrackedDeviceIndex_Hmd]);
    }
 }

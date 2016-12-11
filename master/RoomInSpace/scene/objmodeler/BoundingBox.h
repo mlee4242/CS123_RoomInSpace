@@ -38,6 +38,7 @@ public:
 
    // print the upper and lower bound
    void print();
+   void printCorners();
 
    // check if this bounding box satifies its definition
    void check();

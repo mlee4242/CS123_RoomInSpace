@@ -9,7 +9,8 @@ SceneObject::SceneObject() : m_name(""),
    m_pickable(false),
    m_isPicked(false),
    m_isActive(true),
-   m_timer(QElapsedTimer()) {
+   m_timer(QElapsedTimer()),
+   m_isHit(false){
    m_timer.start();
 }
 
@@ -66,9 +67,8 @@ glm::mat4x4 SceneObject::getModelMatrix() {
 
 
 void SceneObject::setModelMatrix(glm::mat4x4& mat) {
-//    if(m_name.contains("Controller"))
-//    std::cout << "Hi" << glm::to_string(mat) << std::endl;
    m_modelMat = mat;
+   m_box.setModelMatrix(mat);
 }
 
 

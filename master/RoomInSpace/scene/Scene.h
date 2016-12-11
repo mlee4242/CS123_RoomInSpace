@@ -36,7 +36,7 @@ public:
    void renderLeft();
    void renderRight();
    void nextSky();
-   void printBoundingBox();
+   void printControllerBoundingBox();
    void renderComp();
    void *getResolveTexture();
 

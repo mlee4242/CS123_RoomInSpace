@@ -77,14 +77,11 @@ void Scene::categorizeSceneObjects(QVector<SceneObject *>& objects) {
    }
 }
 
-void Scene::printBoundingBox(){
-    for (SceneObject *obj : m_sceneObjs){
-        BoundingBox box;
-        if (obj->getName().contains("Controller")){
-                 obj->getBox(box);
-        }
-        std:cerr << glm::to_string(box) << std::endl;
-    }
+void Scene::printControllerBoundingBox(){
+    BoundingBox box;
+    m_controllerObj->getBox(box);
+    box.printCorners();
+
 }
 
 void Scene::initScene() {
@@ -127,7 +124,6 @@ void Scene::initScene() {
 //   m_shader.release(); // FM :+
 //   m_vao.release();    // FM :+
    m_vertexBuffer.release();
-   printBoundingBox();
 }
 
 
@@ -241,7 +237,6 @@ void Scene::activeController() {
    m_controllerObj->setActive(true);
 }
 
-
 void Scene::inactiveController() {
    m_controllerObj->setActive(false);
 }
@@ -277,4 +272,5 @@ void Scene::renderEye(vr::Hmd_Eye eye) {
    m_skyBoxes[m_currentSky]->draw(m_shader, m_glTextMap);
 //   m_shader.release();   // FM+ :
 //   m_vao.release();      // FM+ :
+ // printControllerBoundingBox();
 }
