@@ -190,7 +190,7 @@ glm::vec3 BoundingBox::getLower() {
  * @param p
  * @param d
  */
-bool BoundingBox::overlap(const BoundingBox& box) {
+bool BoundingBox::overlap(BoundingBox& box) {
    for (glm::vec4 x : box.m_corners) {
       if (inside(x)) {
          return true;

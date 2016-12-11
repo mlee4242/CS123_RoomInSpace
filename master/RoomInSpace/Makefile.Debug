@@ -17,7 +17,7 @@ CXXFLAGS      = -pipe -fno-keep-inline-dllexport -g -std=gnu++1y -frtti -Wall -W
 INCPATH       = -I. -I. -Ithirdparty -Ithirdparty/openvr/headers -Ithirdparty/glew/include -Iutilities -Ishaders -Imodels -Itextures -Icamera -Iui -Iscenegraph -Iutilities -Ithirdparty/include -IC:/Qt/5.6/mingw49_32/include -IC:/Qt/5.6/mingw49_32/include/QtOpenGL -IC:/Qt/5.6/mingw49_32/include/QtWidgets -IC:/Qt/5.6/mingw49_32/include/QtGui -IC:/Qt/5.6/mingw49_32/include/QtANGLE -IC:/Qt/5.6/mingw49_32/include/QtCore -Idebug -I. -IC:/Qt/5.6/mingw49_32/mkspecs/win32-g++ 
 LINKER      =        g++
 LFLAGS        =        -Wl,-subsystem,windows -mthreads
-LIBS        =        -lmingw32 -LC:/Qt/5.6/mingw49_32/lib C:/Qt/5.6/mingw49_32/lib/libqtmaind.a -lshell32 C:/Qt/5.6/mingw49_32/lib/libQt5Cored.a -LC:/utils/my_sql/my_sql/lib -LC:/utils/postgresql/pgsql/lib -LC:/Users/avd/Documents/CS123_Mike_Han_FM/CS123_RoomInSpace/master/RoomInSpace/thirdparty/openvr/lib/win32 -lopenvr_api -lopengl32 -lglu32 C:/Qt/5.6/mingw49_32/lib/libQt5OpenGLd.a C:/Qt/5.6/mingw49_32/lib/libQt5Widgetsd.a C:/Qt/5.6/mingw49_32/lib/libQt5Guid.a C:/Qt/5.6/mingw49_32/lib/libQt5Cored.a debug/win32_res.o 
+LIBS        =        -lmingw32 -LC:/Qt/5.6/mingw49_32/lib C:/Qt/5.6/mingw49_32/lib/libqtmaind.a -lshell32 C:/Qt/5.6/mingw49_32/lib/libQt5Cored.a -LC:/utils/my_sql/my_sql/lib -LC:/utils/postgresql/pgsql/lib -LC:/Users/avd/Documents/CS123_Han_Mike_FM/Working_space/CS123_RoomInSpace/master/RoomInSpace/thirdparty/openvr/lib/win32 -lopenvr_api -lopengl32 -lglu32 C:/Qt/5.6/mingw49_32/lib/libQt5OpenGLd.a C:/Qt/5.6/mingw49_32/lib/libQt5Widgetsd.a C:/Qt/5.6/mingw49_32/lib/libQt5Guid.a C:/Qt/5.6/mingw49_32/lib/libQt5Cored.a debug/win32_res.o 
 QMAKE         = C:/Qt/5.6/mingw49_32/bin/qmake.exe
 IDC           = idc
 IDL           = midl
@@ -165,7 +165,7 @@ all: Makefile.Debug  $(DESTDIR_TARGET)
 
 $(DESTDIR_TARGET): ui_mainwindow.h $(OBJECTS) debug/win32_res.o
 	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) object_script.RoomInSpace.Debug  $(LIBS)
-	cp -f C:\Users\avd\Documents\CS123_Mike_Han_FM\CS123_RoomInSpace\master\RoomInSpace\thirdparty\openvr\bin\win32\openvr_api.dll C:\Users\avd\Documents\CS123_Mike_Han_FM\CS123_RoomInSpace\master\RoomInSpace\debug 
+	cp -f C:\Users\avd\Documents\CS123_Han_Mike_FM\Working_space\CS123_RoomInSpace\master\RoomInSpace\thirdparty\openvr\bin\win32\openvr_api.dll C:\Users\avd\Documents\CS123_Han_Mike_FM\Working_space\CS123_RoomInSpace\master\RoomInSpace\debug 
 	
 
 debug/win32_res.o: win32.rc
@@ -318,7 +318,7 @@ debug/moc_mainwindow.cpp: C:/Qt/5.6/mingw49_32/include/QtWidgets/QButtonGroup \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qquaternion.h \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qgenericmatrix.h \
 		ui/mainwindow.h
-	'C:\Qt\5.6\mingw49_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.6/mingw49_32/mkspecs/win32-g++ -IC:/Users/avd/Documents/CS123_Mike_Han_FM/CS123_RoomInSpace/master/RoomInSpace -IC:/Users/avd/Documents/CS123_Mike_Han_FM/CS123_RoomInSpace/master/RoomInSpace -IC:/Users/avd/Documents/CS123_Mike_Han_FM/CS123_RoomInSpace/master/RoomInSpace/thirdparty -IC:/Users/avd/Documents/CS123_Mike_Han_FM/CS123_RoomInSpace/master/RoomInSpace/thirdparty/openvr/headers -IC:/Users/avd/Documents/CS123_Mike_Han_FM/CS123_RoomInSpace/master/RoomInSpace/thirdparty/glew/include -IC:/Users/avd/Documents/CS123_Mike_Han_FM/CS123_RoomInSpace/master/RoomInSpace/utilities -IC:/Users/avd/Documents/CS123_Mike_Han_FM/CS123_RoomInSpace/master/RoomInSpace/shaders -IC:/Users/avd/Documents/CS123_Mike_Han_FM/CS123_RoomInSpace/master/RoomInSpace/models -IC:/Users/avd/Documents/CS123_Mike_Han_FM/CS123_RoomInSpace/master/RoomInSpace/textures -IC:/Users/avd/Documents/CS123_Mike_Han_FM/CS123_RoomInSpace/master/RoomInSpace/camera -IC:/Users/avd/Documents/CS123_Mike_Han_FM/CS123_RoomInSpace/master/RoomInSpace/ui -IC:/Users/avd/Documents/CS123_Mike_Han_FM/CS123_RoomInSpace/master/RoomInSpace/scenegraph -IC:/Users/avd/Documents/CS123_Mike_Han_FM/CS123_RoomInSpace/master/RoomInSpace/utilities -IC:/Users/avd/Documents/CS123_Mike_Han_FM/CS123_RoomInSpace/master/RoomInSpace/thirdparty/include -IC:/Qt/5.6/mingw49_32/include -IC:/Qt/5.6/mingw49_32/include/QtOpenGL -IC:/Qt/5.6/mingw49_32/include/QtWidgets -IC:/Qt/5.6/mingw49_32/include/QtGui -IC:/Qt/5.6/mingw49_32/include/QtANGLE -IC:/Qt/5.6/mingw49_32/include/QtCore ui/mainwindow.h -o debug/moc_mainwindow.cpp
+	'C:\Qt\5.6\mingw49_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.6/mingw49_32/mkspecs/win32-g++ -IC:/Users/avd/Documents/CS123_Han_Mike_FM/Working_space/CS123_RoomInSpace/master/RoomInSpace -IC:/Users/avd/Documents/CS123_Han_Mike_FM/Working_space/CS123_RoomInSpace/master/RoomInSpace -IC:/Users/avd/Documents/CS123_Han_Mike_FM/Working_space/CS123_RoomInSpace/master/RoomInSpace/thirdparty -IC:/Users/avd/Documents/CS123_Han_Mike_FM/Working_space/CS123_RoomInSpace/master/RoomInSpace/thirdparty/openvr/headers -IC:/Users/avd/Documents/CS123_Han_Mike_FM/Working_space/CS123_RoomInSpace/master/RoomInSpace/thirdparty/glew/include -IC:/Users/avd/Documents/CS123_Han_Mike_FM/Working_space/CS123_RoomInSpace/master/RoomInSpace/utilities -IC:/Users/avd/Documents/CS123_Han_Mike_FM/Working_space/CS123_RoomInSpace/master/RoomInSpace/shaders -IC:/Users/avd/Documents/CS123_Han_Mike_FM/Working_space/CS123_RoomInSpace/master/RoomInSpace/models -IC:/Users/avd/Documents/CS123_Han_Mike_FM/Working_space/CS123_RoomInSpace/master/RoomInSpace/textures -IC:/Users/avd/Documents/CS123_Han_Mike_FM/Working_space/CS123_RoomInSpace/master/RoomInSpace/camera -IC:/Users/avd/Documents/CS123_Han_Mike_FM/Working_space/CS123_RoomInSpace/master/RoomInSpace/ui -IC:/Users/avd/Documents/CS123_Han_Mike_FM/Working_space/CS123_RoomInSpace/master/RoomInSpace/scenegraph -IC:/Users/avd/Documents/CS123_Han_Mike_FM/Working_space/CS123_RoomInSpace/master/RoomInSpace/utilities -IC:/Users/avd/Documents/CS123_Han_Mike_FM/Working_space/CS123_RoomInSpace/master/RoomInSpace/thirdparty/include -IC:/Qt/5.6/mingw49_32/include -IC:/Qt/5.6/mingw49_32/include/QtOpenGL -IC:/Qt/5.6/mingw49_32/include/QtWidgets -IC:/Qt/5.6/mingw49_32/include/QtGui -IC:/Qt/5.6/mingw49_32/include/QtANGLE -IC:/Qt/5.6/mingw49_32/include/QtCore ui/mainwindow.h -o debug/moc_mainwindow.cpp
 
 debug/moc_vrview.cpp: C:/Qt/5.6/mingw49_32/include/QtGui/QOpenGLFunctions_4_1_Core \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qopenglfunctions_4_1_core.h \
@@ -702,7 +702,7 @@ debug/moc_vrview.cpp: C:/Qt/5.6/mingw49_32/include/QtGui/QOpenGLFunctions_4_1_Co
 		camera/OrbitingCamera.h \
 		camera/Camera.h \
 		ui/vrview.h
-	'C:\Qt\5.6\mingw49_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.6/mingw49_32/mkspecs/win32-g++ -IC:/Users/avd/Documents/CS123_Mike_Han_FM/CS123_RoomInSpace/master/RoomInSpace -IC:/Users/avd/Documents/CS123_Mike_Han_FM/CS123_RoomInSpace/master/RoomInSpace -IC:/Users/avd/Documents/CS123_Mike_Han_FM/CS123_RoomInSpace/master/RoomInSpace/thirdparty -IC:/Users/avd/Documents/CS123_Mike_Han_FM/CS123_RoomInSpace/master/RoomInSpace/thirdparty/openvr/headers -IC:/Users/avd/Documents/CS123_Mike_Han_FM/CS123_RoomInSpace/master/RoomInSpace/thirdparty/glew/include -IC:/Users/avd/Documents/CS123_Mike_Han_FM/CS123_RoomInSpace/master/RoomInSpace/utilities -IC:/Users/avd/Documents/CS123_Mike_Han_FM/CS123_RoomInSpace/master/RoomInSpace/shaders -IC:/Users/avd/Documents/CS123_Mike_Han_FM/CS123_RoomInSpace/master/RoomInSpace/models -IC:/Users/avd/Documents/CS123_Mike_Han_FM/CS123_RoomInSpace/master/RoomInSpace/textures -IC:/Users/avd/Documents/CS123_Mike_Han_FM/CS123_RoomInSpace/master/RoomInSpace/camera -IC:/Users/avd/Documents/CS123_Mike_Han_FM/CS123_RoomInSpace/master/RoomInSpace/ui -IC:/Users/avd/Documents/CS123_Mike_Han_FM/CS123_RoomInSpace/master/RoomInSpace/scenegraph -IC:/Users/avd/Documents/CS123_Mike_Han_FM/CS123_RoomInSpace/master/RoomInSpace/utilities -IC:/Users/avd/Documents/CS123_Mike_Han_FM/CS123_RoomInSpace/master/RoomInSpace/thirdparty/include -IC:/Qt/5.6/mingw49_32/include -IC:/Qt/5.6/mingw49_32/include/QtOpenGL -IC:/Qt/5.6/mingw49_32/include/QtWidgets -IC:/Qt/5.6/mingw49_32/include/QtGui -IC:/Qt/5.6/mingw49_32/include/QtANGLE -IC:/Qt/5.6/mingw49_32/include/QtCore ui/vrview.h -o debug/moc_vrview.cpp
+	'C:\Qt\5.6\mingw49_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.6/mingw49_32/mkspecs/win32-g++ -IC:/Users/avd/Documents/CS123_Han_Mike_FM/Working_space/CS123_RoomInSpace/master/RoomInSpace -IC:/Users/avd/Documents/CS123_Han_Mike_FM/Working_space/CS123_RoomInSpace/master/RoomInSpace -IC:/Users/avd/Documents/CS123_Han_Mike_FM/Working_space/CS123_RoomInSpace/master/RoomInSpace/thirdparty -IC:/Users/avd/Documents/CS123_Han_Mike_FM/Working_space/CS123_RoomInSpace/master/RoomInSpace/thirdparty/openvr/headers -IC:/Users/avd/Documents/CS123_Han_Mike_FM/Working_space/CS123_RoomInSpace/master/RoomInSpace/thirdparty/glew/include -IC:/Users/avd/Documents/CS123_Han_Mike_FM/Working_space/CS123_RoomInSpace/master/RoomInSpace/utilities -IC:/Users/avd/Documents/CS123_Han_Mike_FM/Working_space/CS123_RoomInSpace/master/RoomInSpace/shaders -IC:/Users/avd/Documents/CS123_Han_Mike_FM/Working_space/CS123_RoomInSpace/master/RoomInSpace/models -IC:/Users/avd/Documents/CS123_Han_Mike_FM/Working_space/CS123_RoomInSpace/master/RoomInSpace/textures -IC:/Users/avd/Documents/CS123_Han_Mike_FM/Working_space/CS123_RoomInSpace/master/RoomInSpace/camera -IC:/Users/avd/Documents/CS123_Han_Mike_FM/Working_space/CS123_RoomInSpace/master/RoomInSpace/ui -IC:/Users/avd/Documents/CS123_Han_Mike_FM/Working_space/CS123_RoomInSpace/master/RoomInSpace/scenegraph -IC:/Users/avd/Documents/CS123_Han_Mike_FM/Working_space/CS123_RoomInSpace/master/RoomInSpace/utilities -IC:/Users/avd/Documents/CS123_Han_Mike_FM/Working_space/CS123_RoomInSpace/master/RoomInSpace/thirdparty/include -IC:/Qt/5.6/mingw49_32/include -IC:/Qt/5.6/mingw49_32/include/QtOpenGL -IC:/Qt/5.6/mingw49_32/include/QtWidgets -IC:/Qt/5.6/mingw49_32/include/QtGui -IC:/Qt/5.6/mingw49_32/include/QtANGLE -IC:/Qt/5.6/mingw49_32/include/QtCore ui/vrview.h -o debug/moc_vrview.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -1322,49 +1322,11 @@ debug/mainwindow.o: ui/mainwindow.cpp ui/vrview.h \
 		C:/Qt/5.6/mingw49_32/include/QtWidgets/qtabwidget.h \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qicon.h \
 		ui_mainwindow.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/QVariant \
-		C:/Qt/5.6/mingw49_32/include/QtWidgets/QAction \
-		C:/Qt/5.6/mingw49_32/include/QtWidgets/qaction.h \
-		C:/Qt/5.6/mingw49_32/include/QtWidgets/qactiongroup.h \
-		C:/Qt/5.6/mingw49_32/include/QtWidgets/QApplication \
-		C:/Qt/5.6/mingw49_32/include/QtWidgets/qapplication.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qcoreapplication.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qeventloop.h \
-		C:/Qt/5.6/mingw49_32/include/QtWidgets/qdesktopwidget.h \
-		C:/Qt/5.6/mingw49_32/include/QtGui/qguiapplication.h \
-		C:/Qt/5.6/mingw49_32/include/QtGui/qinputmethod.h \
-		C:/Qt/5.6/mingw49_32/include/QtWidgets/QGroupBox \
-		C:/Qt/5.6/mingw49_32/include/QtWidgets/qgroupbox.h \
-		C:/Qt/5.6/mingw49_32/include/QtWidgets/qframe.h \
-		C:/Qt/5.6/mingw49_32/include/QtWidgets/QHBoxLayout \
+		C:/Qt/5.6/mingw49_32/include/QtWidgets/QVBoxLayout \
 		C:/Qt/5.6/mingw49_32/include/QtWidgets/qboxlayout.h \
 		C:/Qt/5.6/mingw49_32/include/QtWidgets/qlayout.h \
 		C:/Qt/5.6/mingw49_32/include/QtWidgets/qlayoutitem.h \
 		C:/Qt/5.6/mingw49_32/include/QtWidgets/qgridlayout.h \
-		C:/Qt/5.6/mingw49_32/include/QtWidgets/QHeaderView \
-		C:/Qt/5.6/mingw49_32/include/QtWidgets/qheaderview.h \
-		C:/Qt/5.6/mingw49_32/include/QtWidgets/qabstractitemview.h \
-		C:/Qt/5.6/mingw49_32/include/QtWidgets/qabstractscrollarea.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qabstractitemmodel.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qitemselectionmodel.h \
-		C:/Qt/5.6/mingw49_32/include/QtWidgets/qabstractitemdelegate.h \
-		C:/Qt/5.6/mingw49_32/include/QtWidgets/qstyleoption.h \
-		C:/Qt/5.6/mingw49_32/include/QtWidgets/qabstractspinbox.h \
-		C:/Qt/5.6/mingw49_32/include/QtGui/qvalidator.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qregularexpression.h \
-		C:/Qt/5.6/mingw49_32/include/QtWidgets/qslider.h \
-		C:/Qt/5.6/mingw49_32/include/QtWidgets/qabstractslider.h \
-		C:/Qt/5.6/mingw49_32/include/QtWidgets/qstyle.h \
-		C:/Qt/5.6/mingw49_32/include/QtWidgets/qtabbar.h \
-		C:/Qt/5.6/mingw49_32/include/QtWidgets/qrubberband.h \
-		C:/Qt/5.6/mingw49_32/include/QtWidgets/QLabel \
-		C:/Qt/5.6/mingw49_32/include/QtWidgets/qlabel.h \
-		C:/Qt/5.6/mingw49_32/include/QtWidgets/QRadioButton \
-		C:/Qt/5.6/mingw49_32/include/QtWidgets/qradiobutton.h \
-		C:/Qt/5.6/mingw49_32/include/QtWidgets/qabstractbutton.h \
-		C:/Qt/5.6/mingw49_32/include/QtWidgets/QStatusBar \
-		C:/Qt/5.6/mingw49_32/include/QtWidgets/qstatusbar.h \
-		C:/Qt/5.6/mingw49_32/include/QtWidgets/QVBoxLayout \
 		C:/Qt/5.6/mingw49_32/include/QtCore/QSettings \
 		C:/Qt/5.6/mingw49_32/include/QtCore/qsettings.h \
 		C:/Qt/5.6/mingw49_32/include/QtWidgets/QFileDialog \
