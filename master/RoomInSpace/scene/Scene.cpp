@@ -17,7 +17,7 @@ Scene::Scene() :
    m_objLoader(new ObjLoader),
    m_sceneObjs(QVector<SceneObject *>()),
    m_skyBoxes(QVector<SceneObject *>()),
-   m_currentSky(2),
+   m_currentSky(0),
    m_controllerObj(nullptr)
 {}
 
@@ -77,6 +77,15 @@ void Scene::categorizeSceneObjects(QVector<SceneObject *>& objects) {
    }
 }
 
+void Scene::printBoundingBox(){
+    for (SceneObject *obj : m_sceneObjs){
+        BoundingBox box;
+        if (obj->getName().contains("Controller")){
+                 obj->getBox(box);
+        }
+        std:cerr << glm::to_string(box) << std::endl;
+    }
+}
 
 void Scene::initScene() {
    glEnable(GL_DEPTH_TEST);
@@ -118,6 +127,7 @@ void Scene::initScene() {
 //   m_shader.release(); // FM :+
 //   m_vao.release();    // FM :+
    m_vertexBuffer.release();
+   printBoundingBox();
 }
 
 
@@ -239,10 +249,10 @@ void Scene::inactiveController() {
 
 void Scene::updateController(glm::mat4x4& mat) {
    //  if (m_controllerObj->isActive()) {
-   // std::cerr << glm::to_string(mat) << std::endl;
-   // m_controllerObj->setActive(true);
+   //std::cerr << glm::to_string(mat) << std::endl;
+   m_controllerObj->setActive(true);
    m_controllerObj->setModelMatrix(mat);
-   //}
+   //  }
 }
 
 
