@@ -40,6 +40,8 @@ public:
    void renderComp();
    void *getResolveTexture();
 
+   void pickBoy();
+
 private:
    void renderEye(vr::Hmd_Eye eye);
    void generateTextureMap(const QVector<QString>& textures);

@@ -65,6 +65,7 @@ void Scene::generateTextureMap(const QVector<QString>& textures) {
 
 void Scene::categorizeSceneObjects(QVector<SceneObject *>& objects) {
    for (SceneObject *obj : objects) {
+      std::cout << obj->getName().toStdString() << std::endl;
       if (obj->getName().contains("Sky")) {
          obj->setActive(false);
          m_skyBoxes.push_front(obj);
@@ -82,6 +83,19 @@ void Scene::printControllerBoundingBox(){
     m_controllerObj->getBox(box);
     box.printCorners();
 
+}
+
+
+void Scene::pickBoy(){
+      BoundingBox controllerBox;
+      BoundingBox objBox;
+      m_controllerObj->getBox(controllerBox);
+      for (SceneObject *obj : m_sceneObjs) {
+            if (obj->getName().contains("Kid")){
+                obj->getBox(objBox);
+            }
+      }
+      std::cout << objBox.overlap(controllerBox) << std::endl;
 }
 
 void Scene::initScene() {
