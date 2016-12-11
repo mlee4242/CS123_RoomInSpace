@@ -145,7 +145,7 @@ void ObjLoader::parseVertices(const QString& target, QVector<GLfloat>& cVerts) {
                data = line.simplified().split(" ");
                // # object o_Chair
                if ((data.length() > 0) && (data[0] == "v")) {
-                  float v1 = data[1].toFloat(), v2 = data[2].toFloat(), v3 = data[3].toFloat();
+                  float v1 = data[1].toFloat() + 0.1, v2 = data[2].toFloat() - 0.5f, v3 = data[3].toFloat();
                   // flip y and z
                   if (settings.VRMode) {
                      verts.append(v1);

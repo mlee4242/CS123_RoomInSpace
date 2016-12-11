@@ -26,7 +26,7 @@ public:
    glm::vec3 getTranLower();
 
    // test if another bounding hits this box
-   bool overlap(const BoundingBox& box);
+   bool overlap(BoundingBox& box);
    bool inside(const glm::vec4& x);
    void updateBox(const BoundingBox& box);
    void setModelMatrix(glm::mat4x4& mat);
