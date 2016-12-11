@@ -85,17 +85,40 @@ void Scene::printControllerBoundingBox(){
 
 }
 
-
-void Scene::pickBoy(){
+void Scene::pickUp(bool& pickStatus, glm::mat4x4& mat){
       BoundingBox controllerBox;
       BoundingBox objBox;
+      bool collide;
       m_controllerObj->getBox(controllerBox);
       for (SceneObject *obj : m_sceneObjs) {
-            if (obj->getName().contains("Kid")){
+            if (obj->isPickable()){
+                std::cout << "this object is pickable" << std::endl;
                 obj->getBox(objBox);
+                collide = objBox.overlap(controllerBox);
+                if (collide == 0){
+                    continue;
+                }
+                std::cout << "collide value is " + collide << std::endl;
+                obj->setReferenceMatrx(mat);
+                obj->updateModelMatrixFromReference(mat);
+                obj->setIsPicked(true);
+                pickStatus = true;
+                break;
             }
       }
-      std::cout << objBox.overlap(controllerBox) << std::endl;
+}
+
+
+void Scene::putDown(bool& pickStatus){
+      for (SceneObject *obj : m_sceneObjs) {
+            if (obj->isPicked()){
+                obj->resetModelMatrix();
+                obj->resetReferenceMatrx();
+                obj->setIsPicked(false);
+                break;
+            }
+         }
+      pickStatus = false;
 }
 
 void Scene::initScene() {
@@ -270,8 +293,6 @@ void Scene::renderEye(vr::Hmd_Eye eye) {
    glEnable(GL_DEPTH_TEST);
    m_vao.bind();
    m_shader.bind();
-   //added passing model matrix and the controller disappeared
-   //m_shader.setUniformValue("m", helper.mat4x4ToQMatrix4x4(m_modelMat));
    m_shader.setUniformValue("v", helper.mat4x4ToQMatrix4x4(m_viewMat));
    m_shader.setUniformValue("p", helper.mat4x4ToQMatrix4x4(m_projectMat));
    m_shader.setUniformValue("leftEye", eye == vr::Eye_Left);

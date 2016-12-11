@@ -97,6 +97,7 @@ private:
 //   bool m_inputNext[vr::k_unMaxTrackedDeviceCount];
 //   bool m_inputPrev[vr::k_unMaxTrackedDeviceCount];
    bool m_isDragging;
+   bool m_hasPicked = false;
 };
 
 #endif // VRVIEW_H

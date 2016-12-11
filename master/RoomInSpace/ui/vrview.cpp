@@ -253,7 +253,6 @@ void VRView::updatePoses()
          {
             //std::cerr << glm::to_string(m_matrixDevicePose[i]) << std::endl;
             m_scene->updateController( m_matrixDevicePose[i]);
-            m_scene->pickBoy();
             //m_scene->printControllerBoundingBox();
          }
       }
@@ -286,6 +285,22 @@ void VRView::updateInput()
              float diff = m_curClickTime - m_preClickTime;
              if(std::fabs(diff) > 0.2){
                  settings.lightOn = !settings.lightOn;
+                 m_preClickTime = m_curClickTime;
+             }
+
+         }
+
+         if (state.ulButtonPressed & vr::ButtonMaskFromId(vr::k_EButton_SteamVR_Trigger))
+         {
+             m_curClickTime = QDateTime::currentMSecsSinceEpoch() / 1000;
+             float diff = m_curClickTime - m_preClickTime;
+             if(std::fabs(diff) > 0.2){
+                 if (m_hasPicked == false){
+                    m_scene->pickUp(m_hasPicked, m_matrixDevicePose[i]);
+                 }else{
+                    m_scene->putDown(m_hasPicked);
+                 }
+
                  m_preClickTime = m_curClickTime;
              }
 
