@@ -18,7 +18,7 @@ out vec4 fragColor;
 void main()
 {
   vec3 normal = WorldSpace_normal;
-  vec3 WorldSpace_toLight = normalize(vec3(4, 4, 4) - WorldSpace_position);
+  vec3 WorldSpace_toLight = normalize(vec3(0, 1.7, 0) - WorldSpace_position);
   vec2 uv = vec2(fragTexCoord.x, 1.f - fragTexCoord.y);
 
   if(useTex){
