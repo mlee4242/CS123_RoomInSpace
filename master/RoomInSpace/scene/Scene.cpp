@@ -87,7 +87,10 @@ void Scene::printControllerBoundingBox() {
    BoundingBox box;
    m_controllerObj->getBox(box);
    box.printVertices();
+
 }
+
+
 
 void Scene::pickUp(bool& pickStatus, glm::mat4x4& mat){
       BoundingBox controllerBox;
@@ -95,17 +98,22 @@ void Scene::pickUp(bool& pickStatus, glm::mat4x4& mat){
       bool collide;
       m_controllerObj->getBox(controllerBox);
       for (SceneObject *obj : m_sceneObjs) {
-            if (obj->isPickable()){
-                std::cout << "this object is pickable" << std::endl;
+           if (obj->isPickable()){
+               std::cout << "this object is pickable" << std::endl;
                 obj->getBox(objBox);
                 collide = objBox.overlap(controllerBox);
                 if (collide == 0){
                     continue;
                 }
-                std::cout << "collide value is " + collide << std::endl;
+                std::cout << "collide value is " << std::endl;
+                std::cout << collide << std::endl;
                 obj->setReferenceMatrx(mat);
+
+                std::cout << "this is reference matrix" << std::endl;
+                std::cout <<glm::to_string(mat) << std::endl;
                 obj->updateModelMatrixFromReference(mat);
                 obj->setIsPicked(true);
+                m_pickedObj.reset(obj);
                 pickStatus = true;
                 break;
             }
@@ -113,9 +121,10 @@ void Scene::pickUp(bool& pickStatus, glm::mat4x4& mat){
 }
 
 
+
 void Scene::putDown(bool& pickStatus){
-      for (SceneObject *obj : m_sceneObjs) {
-            if (obj->isPicked()){
+     for (SceneObject *obj : m_sceneObjs) {
+           if (obj->isPicked()){
                 obj->resetModelMatrix();
                 obj->resetReferenceMatrx();
                 obj->setIsPicked(false);
@@ -123,6 +132,12 @@ void Scene::putDown(bool& pickStatus){
             }
          }
       pickStatus = false;
+}
+
+
+
+void Scene::updatePickedObjPos(glm::mat4x4& mat){
+      m_pickedObj->updateModelMatrixFromReference(mat);
 }
 
 void Scene::initScene() {

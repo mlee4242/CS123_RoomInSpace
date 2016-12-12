@@ -42,6 +42,7 @@ public:
 
    void pickUp(bool& pickStatus, glm::mat4x4& mat);
    void putDown(bool& pickStatus);
+   void updatePickedObjPos(glm::mat4x4& mat);
 
 private:
    void renderEye(vr::Hmd_Eye eye, QOpenGLShaderProgram & shader);
@@ -62,6 +63,7 @@ private:
    QVector<SceneObject *> m_skyBoxes;
    int m_currentSky;
    std::unique_ptr<SceneObject> m_controllerObj;
+   std::unique_ptr<SceneObject> m_pickedObj;
 
    QOpenGLFramebufferObject *m_leftBuffer;
    QOpenGLFramebufferObject *m_rightBuffer;
