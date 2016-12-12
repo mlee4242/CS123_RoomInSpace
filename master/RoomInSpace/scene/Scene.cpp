@@ -123,22 +123,7 @@ void Scene::putDown(bool& pickStatus){
             }
          }
       pickStatus = false;
->>>>>>> 44c7c27b408120c0cbf18ca2c9379207f38d077f
 }
-
-
-void Scene::putDown(bool& pickStatus){
-      for (SceneObject *obj : m_sceneObjs) {
-            if (obj->isPicked()){
-                obj->resetModelMatrix();
-                obj->resetReferenceMatrx();
-                obj->setIsPicked(false);
-                break;
-            }
-         }
-      pickStatus = false;
-}
-
 
 void Scene::initScene() {
    glEnable(GL_DEPTH_TEST);
