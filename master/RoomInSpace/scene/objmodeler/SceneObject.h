@@ -37,6 +37,7 @@ public:
    void setObjectType(ObjectType t);
    void setPickable(bool b);
    void setActive(bool b);
+   void setIsPicked(bool b);
    bool isPickable();
    bool isActive();
    bool isPicked();

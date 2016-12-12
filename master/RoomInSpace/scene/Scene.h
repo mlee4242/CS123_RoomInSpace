@@ -40,7 +40,8 @@ public:
    void renderComp();
    void *getResolveTexture();
 
-   void pickBoy();
+   void pickUp(bool& pickStatus, glm::mat4x4& mat);
+   void putDown(bool& pickStatus);
 
 private:
    void renderEye(vr::Hmd_Eye eye, QOpenGLShaderProgram & shader);

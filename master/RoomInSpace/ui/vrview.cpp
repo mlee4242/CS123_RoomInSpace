@@ -95,7 +95,7 @@ void VRView::initializeGL() {
       std::cerr << " ============================================" << std::endl;
       std::cerr << " This is the non-VR mode" << std::endl;
       std::cerr << " ============================================" << std::endl;
-   }else  {
+   }else {
       std::cerr << " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
       std::cerr << " This is the VR mode" << std::endl;
       std::cerr << " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
@@ -119,7 +119,7 @@ void VRView::paintGL() {
 
       setMatrices(vr::Eye_Right);
       m_scene->renderRight();
-   }else  {
+   }else {
       setMatrices(vr::Eye_Right);
    }
    m_scene->setDimension(width(), height());
@@ -225,7 +225,8 @@ void VRView::updatePoses() {
          if (m_hmd->GetControllerRoleForTrackedDeviceIndex(i) == vr::TrackedControllerRole_RightHand) {
             //std::cerr << glm::to_string(m_matrixDevicePose[i]) << std::endl;
             m_scene->updateController(m_matrixDevicePose[i]);
-            m_scene->pickBoy();
+            //// Han : do you need this?
+//            m_scene->pickBoy();
             //m_scene->printControllerBoundingBox();
          }
       }
@@ -254,6 +255,20 @@ void VRView::updateInput() {
             if (std::fabs(diff) > 0.2) {
                settings.lightOn = !settings.lightOn;
                m_preClickTime   = m_curClickTime;
+            }
+         }
+
+         if (state.ulButtonPressed & vr::ButtonMaskFromId(vr::k_EButton_SteamVR_Trigger)) {
+            m_curClickTime = QDateTime::currentMSecsSinceEpoch() / 1000;
+            float diff = m_curClickTime - m_preClickTime;
+            if (std::fabs(diff) > 0.2) {
+               if (m_hasPicked == false) {
+                  m_scene->pickUp(m_hasPicked, m_matrixDevicePose[i]);
+               }else{
+                  m_scene->putDown(m_hasPicked);
+               }
+
+               m_preClickTime = m_curClickTime;
             }
          }
 
@@ -313,10 +328,10 @@ glm::mat4x4 VRView::getViewMatrix(vr::Hmd_Eye eye) {
    if (settings.VRMode) {
       if (eye == vr::Eye_Left) {
          return m_leftPose * m_hmdPose;
-      }else  {
+      }else {
          return m_rightPose * m_hmdPose;
       }
-   }else  {
+   }else {
       return m_camera->getViewMatrix();
    }
 }
@@ -326,10 +341,10 @@ glm::mat4x4 VRView::getProjMatrix(vr::Hmd_Eye eye) {
    if (settings.VRMode) {
       if (eye == vr::Eye_Left) {
          return m_leftProjection;
-      }else  {
+      }else {
          return m_rightProjection;
       }
-   }else  {
+   }else {
       return m_camera->getProjectionMatrix();
    }
 }

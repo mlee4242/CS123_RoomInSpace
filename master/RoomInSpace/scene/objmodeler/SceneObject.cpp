@@ -86,6 +86,9 @@ void SceneObject::setPickable(bool b) {
    m_pickable = b;
 }
 
+void SceneObject::setIsPicked(bool b) {
+   m_isPicked = b;
+}
 
 bool SceneObject::isActive() {
    return m_isActive;

@@ -93,6 +93,7 @@ private:
    long int m_preClickTime;
    long int m_curClickTime;
    bool m_isDragging;
+   bool m_hasPicked = false;
 };
 
 #endif // VRVIEW_H

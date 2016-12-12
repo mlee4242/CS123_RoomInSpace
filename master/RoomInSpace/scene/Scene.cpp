@@ -89,17 +89,51 @@ void Scene::printControllerBoundingBox() {
    box.printVertices();
 }
 
+//void Scene::pickBoy() {
+//   BoundingBox controllerBox;
+//   BoundingBox objBox;
+//   m_controllerObj->getBox(controllerBox);
+//   for (SceneObject *obj : m_sceneObjs) {
+//      if (obj->getName().contains("Kid")) {
+//         obj->getBox(objBox);
+//      }
+//   }
+//   std::cout << objBox.overlap(controllerBox) << std::endl;
 
-void Scene::pickBoy() {
-   BoundingBox controllerBox;
-   BoundingBox objBox;
-   m_controllerObj->getBox(controllerBox);
-   for (SceneObject *obj : m_sceneObjs) {
-      if (obj->getName().contains("Kid")) {
-         obj->getBox(objBox);
+void Scene::pickUp(bool& pickStatus, glm::mat4x4& mat){
+      BoundingBox controllerBox;
+      BoundingBox objBox;
+      bool collide;
+      m_controllerObj->getBox(controllerBox);
+      for (SceneObject *obj : m_sceneObjs) {
+            if (obj->isPickable()){
+                std::cout << "this object is pickable" << std::endl;
+                obj->getBox(objBox);
+                collide = objBox.overlap(controllerBox);
+                if (collide == 0){
+                    continue;
+                }
+                std::cout << "collide value is " + collide << std::endl;
+                obj->setReferenceMatrx(mat);
+                obj->updateModelMatrixFromReference(mat);
+                obj->setIsPicked(true);
+                pickStatus = true;
+                break;
+            }
       }
-   }
-   std::cout << objBox.overlap(controllerBox) << std::endl;
+}
+
+
+void Scene::putDown(bool& pickStatus){
+      for (SceneObject *obj : m_sceneObjs) {
+            if (obj->isPicked()){
+                obj->resetModelMatrix();
+                obj->resetReferenceMatrx();
+                obj->setIsPicked(false);
+                break;
+            }
+         }
+      pickStatus = false;
 }
 
 
@@ -118,7 +152,7 @@ void Scene::initScene() {
 
    // compile our shader
    compileShader(m_phongShader, QDir::currentPath() + "/shaders/phong.vert", QDir::currentPath() + "/shaders/phong.frag");
-   compileShader(m_shadowShader, QDir::currentPath() + "/shaders/shadow.vert", QDir::currentPath() + "/shaders/shadow.frag");
+//   compileShader(m_shadowShader, QDir::currentPath() + "/shaders/shadow.vert", QDir::currentPath() + "/shaders/shadow.frag");
 
    // build out sample geometry
    m_vao.create();
@@ -161,12 +195,6 @@ void Scene::initVRScene() {
    buffFormat.setSamples(0);
 
    m_resolveBuffer = new QOpenGLFramebufferObject(m_eyeWidth * 2, m_eyeHeight, resolveFormat);
-
-//   QOpenGLFramebufferObjectFormat depthFormat;
-//   depthFormat.setAttachment(QOpenGLFramebufferObject::Depth);
-//   depthFormat.setInternalTextureFormat(GL_RGBA8);
-//   depthFormat.setSamples(0);
-//   m_depthBuffer = new QOpenGLFramebufferObject(m_eyeWidth * 2, m_eyeHeight, resolveFormat);
 }
 
 
@@ -240,43 +268,7 @@ void Scene::renderRight() {
                                              m_rightBuffer, sourceRect);
 }
 
-
-//void Scene::renderToDepth(){
-
-//}
-
-
 void Scene::renderComp() {
-   //------try shadow mapping------
-   GLfloat   near_plane = 1.0f, far_plane = 10.0f;
-   glm::mat4 lightProjection = glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f, near_plane, far_plane);
-
-   glm::mat4 lightView = glm::lookAt(glm::vec3(0.0f,  .5f, 0.0f),
-                                     glm::vec3(0.0f, 0.0f, 0.0f),
-                                     glm::vec3(0.0f, 1.0f, 0.0f));
-   glm::mat4 lightSpaceMatrix = lightProjection * lightView;
-
-   QOpenGLFramebufferObjectFormat depthFormat;
-   depthFormat.setInternalTextureFormat(GL_RGBA8);
-   depthFormat.setSamples(0);
-   QOpenGLFramebufferObject *m_depthBuffer = new QOpenGLFramebufferObject(m_width, m_height, depthFormat);
-
-   glClearColor(0.25f, 0.25f, 0.28f, 1.0f);
-   glViewport(0, 0, m_width, m_height);
-   glDisable(GL_MULTISAMPLE);
-   m_depthBuffer->bind();
-   m_shadowShader.bind();
-   m_shadowShader.setUniformValue("lightSpaceMatrix", helper.mat4x4ToQMatrix4x4(lightSpaceMatrix));
-   renderEye(vr::Eye_Right, m_shadowShader);
-   m_depthBuffer->release();
-   QOpenGLTexture *depthMap = new QOpenGLTexture(m_depthBuffer->toImage());
-
-   m_phongShader.bind();
-   m_phongShader.setUniformValue("shadowMap", 99);
-   depthMap->bind(99);
-
-   m_phongShader.setUniformValue("lightSpaceMatrix", helper.mat4x4ToQMatrix4x4(lightSpaceMatrix));
-   //------try shadow mapping end------
    glClearColor(0.25f, 0.25f, 0.28f, 1.0f);
    glViewport(0, 0, m_width, m_height);
    glDisable(GL_MULTISAMPLE);
@@ -325,6 +317,7 @@ void Scene::renderEye(vr::Hmd_Eye eye, QOpenGLShaderProgram& shader) {
    shader.setUniformValue("leftEye", eye == vr::Eye_Left);
    shader.setUniformValue("overUnder", settings.windowMode == OverUnder);
    shader.setUniformValue("light", settings.lightOn);
+
    for (auto obj : m_sceneObjs) {
       obj->draw(shader, m_glTextMap);
    }
