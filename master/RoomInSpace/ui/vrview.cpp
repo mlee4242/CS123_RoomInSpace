@@ -225,9 +225,9 @@ void VRView::updatePoses() {
          if (m_hmd->GetControllerRoleForTrackedDeviceIndex(i) == vr::TrackedControllerRole_RightHand) {
             //std::cerr << glm::to_string(m_matrixDevicePose[i]) << std::endl;
             glm::mat4x4 mat = m_matrixDevicePose[i];
-            m_scene->updateController(mat);
+            m_scene->updateController(m_matrixDevicePose[i]);
             if (m_hasPicked == true){
-                    m_scene->updatePickedObjPos(mat);
+                    m_scene->updatePickedObjPos(m_matrixDevicePose[i]);
              }
             //m_scene->printControllerBoundingBox();
          }

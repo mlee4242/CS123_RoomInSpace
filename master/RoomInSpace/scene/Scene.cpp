@@ -107,13 +107,13 @@ void Scene::pickUp(bool& pickStatus, glm::mat4x4& mat){
                 }
                 std::cout << "collide value is " << std::endl;
                 std::cout << collide << std::endl;
-                obj->setReferenceMatrx(mat);
+                m_pickedObj.reset(obj);
+                m_pickedObj->setReferenceMatrx(mat);
 
                 std::cout << "this is reference matrix" << std::endl;
                 std::cout <<glm::to_string(mat) << std::endl;
-                obj->updateModelMatrixFromReference(mat);
-                obj->setIsPicked(true);
-                m_pickedObj.reset(obj);
+                m_pickedObj->updateModelMatrixFromReference(mat);
+                m_pickedObj->setIsPicked(true);
                 pickStatus = true;
                 break;
             }
@@ -122,22 +122,18 @@ void Scene::pickUp(bool& pickStatus, glm::mat4x4& mat){
 
 
 
-void Scene::putDown(bool& pickStatus){
-     for (SceneObject *obj : m_sceneObjs) {
-           if (obj->isPicked()){
-                obj->resetModelMatrix();
-                obj->resetReferenceMatrx();
-                obj->setIsPicked(false);
-                break;
-            }
-         }
-      pickStatus = false;
+void Scene::putDown(bool &pickStatus){
+    m_pickedObj->resetModelMatrix();
+    m_pickedObj->resetReferenceMatrx();
+    m_pickedObj->setIsPicked(false);
+    //m_pickedObj.reset();
+    pickStatus = false;
 }
 
 
 
 void Scene::updatePickedObjPos(glm::mat4x4& mat){
-      m_pickedObj->updateModelMatrixFromReference(mat);
+    m_pickedObj->updateModelMatrixFromReference(mat);
 }
 
 void Scene::initScene() {
