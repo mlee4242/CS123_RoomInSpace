@@ -25,6 +25,7 @@ public:
    ~Scene();
    void initScene();
    void initVRScene();
+   void initShadowMap();
    void setEyeDimension(uint32_t w, uint32_t h);
    void setDimension(uint32_t w, uint32_t h);
    void setMatrices(const glm::mat4x4& m, const glm::mat4x4& v, const glm::mat4x4& p);
@@ -35,16 +36,17 @@ public:
 
    void renderLeft();
    void renderRight();
+   void renderComp();
+   void renderShawdowMap(vr::Hmd_Eye eye);
    void nextSky();
    void printControllerBoundingBox();
-   void renderComp();
    void *getResolveTexture();
 
    void pickUp(bool& pickStatus, glm::mat4x4& mat);
    void putDown(bool& pickStatus);
 
 private:
-   void renderEye(vr::Hmd_Eye eye, QOpenGLShaderProgram & shader);
+   void renderEye(vr::Hmd_Eye eye, QOpenGLShaderProgram& shader);
    void generateTextureMap(const QVector<QString>& textures);
    void categorizeSceneObjects(QVector<SceneObject *>& objects);
    bool compileShader(QOpenGLShaderProgram& shader,
@@ -66,12 +68,17 @@ private:
    QOpenGLFramebufferObject *m_leftBuffer;
    QOpenGLFramebufferObject *m_rightBuffer;
    QOpenGLFramebufferObject *m_resolveBuffer;
-//   QOpenGLFramebufferObject *m_depthBuffer;
+   QOpenGLFramebufferObject *m_shadowMapBuffer;
+   QOpenGLTexture *m_depthMap;
    glm::mat4x4 m_modelMat;
    glm::mat4x4 m_viewMat;
    glm::mat4x4 m_projectMat;
    uint32_t m_eyeWidth, m_eyeHeight;
    int m_width, m_height;
+
+   glm::mat4        lightProjection;
+   glm::mat4        lightView;
+   QMatrix4x4       lightSpaceMatrix;
 };
 
 #endif // SCENE_H

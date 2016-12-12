@@ -12,17 +12,6 @@ QMatrix4x4 Helpers::mat4x4ToQMatrix4x4(glm::mat4x4 mat) const {
                      );
 }
 
-
-//// this wrong?
-//glm::mat4x4 Helpers::vrMatrixToGlmMatrix(const vr::HmdMatrix44_t &mat) {
-//   return glm::mat4x4(mat.m[0][0], mat.m[0][1], mat.m[0][2], mat.m[0][3],
-//                      mat.m[1][0], mat.m[1][1], mat.m[1][2], mat.m[1][3],
-//                      mat.m[2][0], mat.m[2][1], mat.m[2][2], mat.m[2][3],
-//                      0.0, 0.0, 0.0, 1.0f
-//      );
-//}
-
-
 bool Helpers::between(float e, float a, float b) {
    return e >= std::fmin(a, b) && e <= std::fmax(a, b);
 }

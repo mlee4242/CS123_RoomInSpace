@@ -12,10 +12,8 @@
 #include "glm/glm.hpp"
 #include "Settings.h"
 #include "glm/ext.hpp"
-
-#define NEAR_CLIP    0.01f
-#define FAR_CLIP     100.0f
-
+#define SCENE_NEAR_CLIP    0.01f
+#define SCENE_FAR_CLIP     100.0f
 VRView::VRView(QWidget *parent) : QOpenGLWidget(parent),
    m_hmd(0), m_camera(new OrbitingCamera()),
    m_scene(new Scene()),
@@ -66,7 +64,6 @@ void VRView::shutdown() {
    }
 
    qDebug() << "Shutdown";
-   settings.saveSettings();
    doneCurrent();
 }
 
@@ -90,6 +87,7 @@ void VRView::initializeGL() {
 //      m_logger->enableMessages();
 //   }
 #endif
+   m_camera->updateMatrices();
 
    if (settings.VRMode == false) {
       std::cerr << " ============================================" << std::endl;
@@ -102,10 +100,12 @@ void VRView::initializeGL() {
    }
 
    m_scene->initScene();
-
+   m_eyeWidth = width(), m_eyeHeight = height();
    if (settings.VRMode) {
       initVR();
    }
+   m_scene->setDimension(width(), height());
+   m_scene->initShadowMap();
 }
 
 
@@ -114,15 +114,18 @@ void VRView::paintGL() {
       // FM switched these two statements: input and poses
       updateInput();
       updatePoses();
+
       setMatrices(vr::Eye_Left);
+      m_scene->renderShawdowMap(vr::Eye_Left);
       m_scene->renderLeft();
 
       setMatrices(vr::Eye_Right);
+      m_scene->renderShawdowMap(vr::Eye_Right);
       m_scene->renderRight();
    }else {
       setMatrices(vr::Eye_Right);
+      m_scene->renderShawdowMap(vr::Eye_Right);
    }
-   m_scene->setDimension(width(), height());
    m_scene->renderComp();
    if (m_hmd) {
       void *resolveTex = m_scene->getResolveTexture();
@@ -182,10 +185,10 @@ void VRView::initVR() {
    }
 
    // get eye matrices
-   m_rightProjection = helper.vrMatrixToGlmMatrixEyeHead(m_hmd->GetProjectionMatrix(vr::Eye_Right, NEAR_CLIP, FAR_CLIP, vr::API_OpenGL));
+   m_rightProjection = helper.vrMatrixToGlmMatrixEyeHead(m_hmd->GetProjectionMatrix(vr::Eye_Right, SCENE_NEAR_CLIP, SCENE_FAR_CLIP, vr::API_OpenGL));
    m_rightPose       = glm::inverse(helper.vrMatrixToGlmMatrixEyeHead(m_hmd->GetEyeToHeadTransform(vr::Eye_Right)));
 
-   m_leftProjection = helper.vrMatrixToGlmMatrixEyeHead(m_hmd->GetProjectionMatrix(vr::Eye_Left, NEAR_CLIP, FAR_CLIP, vr::API_OpenGL));
+   m_leftProjection = helper.vrMatrixToGlmMatrixEyeHead(m_hmd->GetProjectionMatrix(vr::Eye_Left, SCENE_NEAR_CLIP, SCENE_FAR_CLIP, vr::API_OpenGL));
    m_leftPose       = glm::inverse(helper.vrMatrixToGlmMatrixEyeHead(m_hmd->GetEyeToHeadTransform(vr::Eye_Left)));
 
    QString ident;

@@ -11,7 +11,7 @@ MAKEFILE      = Makefile.Debug
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DUNICODE -DGLEW_STATIC -DQT_QML_DEBUG -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_NEEDS_QMAIN
+DEFINES       = -DUNICODE -DGLEW_STATIC -D_USE_MATH_DEFINES -DTIXML_USE_STL -DGLM_SWIZZLE -DGLM_FORCE_RADIANS -DQT_QML_DEBUG -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_NEEDS_QMAIN
 CFLAGS        = -pipe -fno-keep-inline-dllexport -g -Wall -Wextra $(DEFINES)
 CXXFLAGS      = -pipe -fno-keep-inline-dllexport -g -std=gnu++1y -frtti -Wall -Wextra -fexceptions -mthreads $(DEFINES)
 INCPATH       = -I. -I. -Ithirdparty -Ithirdparty\openvr\headers -Ithirdparty\glew\include -Iutilities -Ishaders -Imodels -Itextures -Icamera -Iui -Iscenegraph -Iutilities -Ithirdparty/include -IC:\Qt\5.6\mingw49_32\include -IC:\Qt\5.6\mingw49_32\include\QtOpenGL -IC:\Qt\5.6\mingw49_32\include\QtWidgets -IC:\Qt\5.6\mingw49_32\include\QtGui -IC:\Qt\5.6\mingw49_32\include\QtANGLE -IC:\Qt\5.6\mingw49_32\include\QtCore -Idebug -I. -IC:\Qt\5.6\mingw49_32\mkspecs\win32-g++ 

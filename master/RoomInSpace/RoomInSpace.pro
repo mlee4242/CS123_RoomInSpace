@@ -98,7 +98,9 @@ INCLUDEPATH += thirdparty thirdparty/openvr/headers thirdparty/glew/include
 INCLUDEPATH += utilities shaders models textures camera ui scenegraph utilities thirdparty/include
 DEPENDPATH +=  thirdparty thirdparty/openvr/headersthirdparty/glew/include
 DEPENDPATH += utilities textures models camera ui scenegraph utilities thirdparty/include
-
+DEFINES += _USE_MATH_DEFINES
+DEFINES += TIXML_USE_STL
+DEFINES += GLM_SWIZZLE GLM_FORCE_RADIANS
 # from http://stackoverflow.com/a/25193580
 #isEmpty(TARGET_EXT) {
 #    win32 {

@@ -1,5 +1,5 @@
 # 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
-# File Created: 11.12.2016 15:40:12
+# File Created: 12.12.2016 12:16:05
 
 newmtl Material__2097634029
 	Ns 10.000000
@@ -1514,7 +1514,6 @@ newmtl Material__48
 	Ke 0.000000 0.000000 0.000000
 	map_Ka maps\ufo_diffuse.png
 	map_Kd maps\ufo_diffuse.png
-    map_normal maps\ufo_normal.png
 
 newmtl Material__2097649838
 	Ns 10.000000

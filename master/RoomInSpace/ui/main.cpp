@@ -8,7 +8,6 @@ int main(int argc, char *argv[]) {
    QCoreApplication::setOrganizationName("Brown University");
    QCoreApplication::setOrganizationDomain("cs.brown.edu");
    QCoreApplication::setApplicationName("Room In Space");
-   settings.loadSettingsOrDefaults();
    QSurfaceFormat glFormat;
    glFormat.setVersion(4, 1);
    glFormat.setProfile(QSurfaceFormat::CoreProfile);

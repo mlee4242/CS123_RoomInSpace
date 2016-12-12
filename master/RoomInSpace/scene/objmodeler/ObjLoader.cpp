@@ -148,15 +148,10 @@ void ObjLoader::parseVertices(const QString& target, QVector<GLfloat>& cVerts) {
                if ((data.length() > 0) && (data[0] == "v")) {
                   float v1 = data[1].toFloat() + 0.1, v2 = data[2].toFloat() - 0.5f, v3 = data[3].toFloat();
                   // flip y and z
-                  if (settings.VRMode) {
-                     verts.append(v1);
-                     verts.append(v2);
-                     verts.append(v3);
-                  }else{
-                     verts.append(0.35f * -v1);
-                     verts.append(0.35f * v2 - 0.1f);
-                     verts.append(0.35f * v3);
-                  }
+
+                  verts.append(v1);
+                  verts.append(v2);
+                  verts.append(v3);
 
                   obj->updateBox(glm::vec3(v1, v2, v3));
                }else if ((data.length() > 0) && (data[0] == "vt")) {

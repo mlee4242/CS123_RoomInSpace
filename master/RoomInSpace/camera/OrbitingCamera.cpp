@@ -22,11 +22,11 @@
 #include "OrbitingCamera.h"
 #include "Settings.h"
 #include <iostream>
-#include <algorithm>
+
 OrbitingCamera::OrbitingCamera() {
    m_aspectRatio = 1;
    m_angleX      = m_angleY = 0;
-   m_zoomZ       = -1;
+   m_zoomZ       = -5;
 }
 
 
@@ -43,7 +43,7 @@ glm::mat4x4 OrbitingCamera::getProjectionMatrix() const {
 
 
 glm::mat4x4 OrbitingCamera::getViewMatrix() const {
-   return m_viewMatrix;
+   return  m_viewMatrix;
 }
 
 
@@ -63,8 +63,8 @@ void OrbitingCamera::mouseDragged(int x, int y) {
    m_angleX += y - m_oldY;
    m_oldX    = x;
    m_oldY    = y;
-   if (m_angleX < -180) { m_angleX = -180; }
-   if (m_angleX > 180) { m_angleX = 180; }
+   if (m_angleX < -90) { m_angleX = -90; }
+   if (m_angleX > 90) { m_angleX = 90; }
 
    updateViewMatrix();
 }
@@ -72,9 +72,8 @@ void OrbitingCamera::mouseDragged(int x, int y) {
 
 void OrbitingCamera::mouseScrolled(int delta) {
    // Use an exponential factor so the zoom increments are small when we are
-   // close to the object and large when we are far away from the object
-   m_zoomZ *= powf(0.95f, delta);
-
+   // close to the object and large when we are far away from the object;
+   m_zoomZ *= powf(0.999f, delta);
    updateViewMatrix();
 }
 
@@ -84,18 +83,17 @@ void OrbitingCamera::updateMatrices() {
    updateViewMatrix();
 }
 
-
 void OrbitingCamera::updateProjectionMatrix() {
    // Make sure glm gets a far value that is greater than the near value.
    // Thanks Windows for making far a keyword!
-   float farPlane = std::max(settings.cameraFar, settings.cameraNear + 1000.f * FLT_EPSILON);
-   float h        = farPlane * glm::tan(glm::radians(settings.cameraFov));
+   float farPlane = std::max(settings.cameraFar, settings.cameraNear + 100.f * FLT_EPSILON);
+   float h        = farPlane * glm::tan((settings.cameraFov / 2.0f) / 180.0f * 3.14);
    float w        = m_aspectRatio * h;
 
    m_scaleMatrix      = glm::scale(glm::vec3(1.f / w, 1.f / h, 1.f / farPlane));
    m_projectionMatrix = glm::perspective(
-      glm::radians(settings.cameraFov), m_aspectRatio, settings.cameraNear, farPlane) / 50.f;
-//   std::cout << "m_projectionMatrix from Orbiting is " << glm::to_string(m_projectionMatrix) << std::endl;
+   glm::radians(settings.cameraFov / 2.0f), m_aspectRatio, settings.cameraNear, farPlane) / 50.f;
+// std::cout << "m_projectionMatrix from Orbiting is " << glm::to_string(m_projectionMatrix) << std::endl;
 }
 
 
