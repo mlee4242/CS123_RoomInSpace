@@ -96,43 +96,54 @@ void Scene::printControllerBoundingBox() {
    BoundingBox box;
    m_controllerObj->getBox(box);
    box.printVertices();
+
 }
 
 
-void Scene::pickUp(bool& pickStatus, glm::mat4x4& mat) {
-   BoundingBox controllerBox;
-   BoundingBox objBox;
-   bool        collide;
-   m_controllerObj->getBox(controllerBox);
-   for (SceneObject *obj : m_sceneObjs) {
-      if (obj->isPickable()) {
-         std::cout << "this object is pickable" << std::endl;
-         obj->getBox(objBox);
-         collide = objBox.overlap(controllerBox);
-         if (collide == 0) {
-            continue;
-         }
-         std::cout << "collide value is " + collide << std::endl;
-         obj->setReferenceMatrx(mat);
-         obj->updateModelMatrixFromReference(mat);
-         obj->setIsPicked(true);
-         pickStatus = true;
-         break;
+
+void Scene::pickUp(bool& pickStatus, glm::mat4x4& mat){
+      BoundingBox controllerBox;
+      BoundingBox objBox;
+      bool collide;
+      m_controllerObj->getBox(controllerBox);
+      for (SceneObject *obj : m_sceneObjs) {
+           if (obj->isPickable()){
+               std::cout << "this object is pickable" << std::endl;
+                obj->getBox(objBox);
+                collide = objBox.overlap(controllerBox);
+                if (collide == 0){
+                    continue;
+                }
+                std::cout << "collide value is " << std::endl;
+                std::cout << collide << std::endl;
+                m_pickedObj.reset(obj);
+                m_pickedObj->setReferenceMatrx(mat);
+
+                std::cout << "this is reference matrix" << std::endl;
+                std::cout <<glm::to_string(mat) << std::endl;
+                m_pickedObj->updateModelMatrixFromReference(mat);
+                m_pickedObj->setIsPicked(true);
+                pickStatus = true;
+                break;
+            }
       }
    }
 }
 
 
-void Scene::putDown(bool& pickStatus) {
-   for (SceneObject *obj : m_sceneObjs) {
-      if (obj->isPicked()) {
-         obj->resetModelMatrix();
-         obj->resetReferenceMatrx();
-         obj->setIsPicked(false);
-         break;
-      }
-   }
-   pickStatus = false;
+
+void Scene::putDown(bool &pickStatus){
+    m_pickedObj->resetModelMatrix();
+    m_pickedObj->resetReferenceMatrx();
+    m_pickedObj->setIsPicked(false);
+    //m_pickedObj.reset();
+    pickStatus = false;
+}
+
+
+
+void Scene::updatePickedObjPos(glm::mat4x4& mat){
+    m_pickedObj->updateModelMatrixFromReference(mat);
 }
 
 

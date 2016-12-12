@@ -227,7 +227,11 @@ void VRView::updatePoses() {
          // use the last one
          if (m_hmd->GetControllerRoleForTrackedDeviceIndex(i) == vr::TrackedControllerRole_RightHand) {
             //std::cerr << glm::to_string(m_matrixDevicePose[i]) << std::endl;
+            glm::mat4x4 mat = m_matrixDevicePose[i];
             m_scene->updateController(m_matrixDevicePose[i]);
+            if (m_hasPicked == true){
+                    m_scene->updatePickedObjPos(m_matrixDevicePose[i]);
+             }
             //m_scene->printControllerBoundingBox();
          }
       }
@@ -258,20 +262,26 @@ void VRView::updateInput() {
                m_preClickTime   = m_curClickTime;
             }
          }
-         if (state.ulButtonPressed & vr::ButtonMaskFromId(vr::k_EButton_SteamVR_Trigger)) {
-            m_curClickTime = QDateTime::currentMSecsSinceEpoch() / 1000;
-            float diff = m_curClickTime - m_preClickTime;
-            if (std::fabs(diff) > 0.2) {
-               if (m_hasPicked == false) {
-                  m_scene->pickUp(m_hasPicked, m_matrixDevicePose[i]);
-               }else{
-                  m_scene->putDown(m_hasPicked);
-               }
+         if (state.ulButtonPressed & vr::ButtonMaskFromId(vr::k_EButton_SteamVR_Trigger))
+         {
+             m_curClickTime = QDateTime::currentMSecsSinceEpoch() / 1000;
+             float diff = m_curClickTime - m_preClickTime;
+             if(std::fabs(diff) > 0.2){
+                 if (m_hasPicked == false){
+                     std::cout << "this should be false when you pick it up" << std::endl;
+                     std::cout << m_hasPicked << std::endl;
+                    m_scene->pickUp(m_hasPicked, m_matrixDevicePose[i]);
+                 }else{
+                    std::cout << "this should be true when you put it down" << std::endl;
+                    std::cout << m_hasPicked << std::endl;
+                    m_scene->putDown(m_hasPicked);
+                    std::cout << "now it should be false" << std::endl;
+                    std::cout << m_hasPicked << std::endl;
+                 }
 
-               m_preClickTime = m_curClickTime;
-            }
+                 m_preClickTime = m_curClickTime;
+             }
          }
-
          if (state.ulButtonPressed & vr::ButtonMaskFromId(vr::k_EButton_Grip)) {
             m_curClickTime = QDateTime::currentMSecsSinceEpoch() / 1000;
             float diff = m_curClickTime - m_preClickTime;

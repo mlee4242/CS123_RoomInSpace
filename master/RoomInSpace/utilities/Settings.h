@@ -27,10 +27,10 @@ struct Settings
    int              windowMode = OverUnder;
    int              VERTEX_UNIT_SIZE = 8;
 
-   QString          path            = "models/room/";
-   QString          target          = "roominspace";
-   bool             VRMode          = false;
-   bool             lightOn         = true;
+   QString          path    = "models/room/";
+   QString          target  = "roominspace";
+   bool             VRMode  = true;
+   bool             lightOn = true;
 
    QVector<QString> pickableList;
    long int         frames = 0;
