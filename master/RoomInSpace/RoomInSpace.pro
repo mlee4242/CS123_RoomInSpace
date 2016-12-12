@@ -26,7 +26,7 @@ SOURCES += ui/main.cpp\
     scene/objmodeler/SceneObject.cpp \
     scene/objmodeler/PrimitiveObject.cpp \
     scene/objmodeler/GroupObject.cpp \
-    scene/objmodeler/ObjLoader.cpp \
+    scene/objmodeler/ObjLoader.cpp
     #thirdparty/glew/src/glew.c
     #scene/rendermodel/CGLRenderModel.cpp \
     #scene/rendermodel/DeviceModels.cpp
@@ -47,7 +47,7 @@ HEADERS  += ui/mainwindow.h \
     scene/objmodeler/material.h \
     scene/objmodeler/ObjLoader.h \
     scene/objmodeler/delete_ptr.h
-    #thirdparty/glew/include/GL/glew.h \
+    #thirdparty/glew/include/GL/glew.h
     #scene/rendermodel/CGLRenderModel.h \
     #scene/rendermodel/DeviceModels.h
 
@@ -182,4 +182,6 @@ DISTFILES += \
     models/room/maps/photo_6.jpg \
     models/room/maps/book_page.jpg \
     models/room/maps/red_brown_wood.tif \
-    models/room/maps/wall.jpg
+    models/room/maps/wall.jpg \
+    shaders/shadow.vert \
+    shaders/shadow.frag

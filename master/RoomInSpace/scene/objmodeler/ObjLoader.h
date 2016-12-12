@@ -11,6 +11,7 @@ class ObjLoader
 {
 public:
    ObjLoader();
+   ~ObjLoader();
    void loadObj(const QString&          target,
                 QVector<SceneObject *>& results,
                 QVector<GLfloat>&       cVerts);
@@ -24,7 +25,7 @@ private:
 
    bool m_ignoreGroup = false;
    QMap<QString, Material> m_materialMap;
-   QVector<PrimitiveObject *> m_allObjs;
+   QVector<PrimitiveObject *> m_allObjs; // will be freed by
 };
 
 #endif // OBJLOADER_H

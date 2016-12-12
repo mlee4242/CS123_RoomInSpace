@@ -34,6 +34,9 @@ Scene::~Scene() {
    if (m_resolveBuffer) {
       delete m_resolveBuffer;
    }
+//   if (m_depthBuffer) {
+//      delete m_depthBuffer;
+//   }
    if (m_sceneObjs.size() > 0) {
       for (auto obj : m_sceneObjs) {
          if (obj->getObjectType() == PRIMITIVE_OBJECT) {
@@ -50,7 +53,8 @@ Scene::~Scene() {
    if (m_glTextMap.size() > 0) {
       QMap<QString, QOpenGLTexture *>::iterator i;
       for (i = m_glTextMap.begin(); i != m_glTextMap.end(); i++) {
-//         delete i.value();
+         // i.value()->destroy();
+         // delete i.value();
       }
    }
 }
@@ -78,25 +82,26 @@ void Scene::categorizeSceneObjects(QVector<SceneObject *>& objects) {
    }
 }
 
-void Scene::printControllerBoundingBox(){
-    BoundingBox box;
-    m_controllerObj->getBox(box);
-    box.printCorners();
 
+void Scene::printControllerBoundingBox() {
+   BoundingBox box;
+   m_controllerObj->getBox(box);
+   box.printVertices();
 }
 
 
-void Scene::pickBoy(){
-      BoundingBox controllerBox;
-      BoundingBox objBox;
-      m_controllerObj->getBox(controllerBox);
-      for (SceneObject *obj : m_sceneObjs) {
-            if (obj->getName().contains("Kid")){
-                obj->getBox(objBox);
-            }
+void Scene::pickBoy() {
+   BoundingBox controllerBox;
+   BoundingBox objBox;
+   m_controllerObj->getBox(controllerBox);
+   for (SceneObject *obj : m_sceneObjs) {
+      if (obj->getName().contains("Kid")) {
+         obj->getBox(objBox);
       }
-      std::cout << objBox.overlap(controllerBox) << std::endl;
+   }
+   std::cout << objBox.overlap(controllerBox) << std::endl;
 }
+
 
 void Scene::initScene() {
    glEnable(GL_DEPTH_TEST);
@@ -112,7 +117,8 @@ void Scene::initScene() {
    generateTextureMap(textures);
 
    // compile our shader
-   compileShader(m_shader, QDir::currentPath() + "/shaders/phong.vert", QDir::currentPath() + "/shaders/phong.frag");
+   compileShader(m_phongShader, QDir::currentPath() + "/shaders/phong.vert", QDir::currentPath() + "/shaders/phong.frag");
+   compileShader(m_shadowShader, QDir::currentPath() + "/shaders/shadow.vert", QDir::currentPath() + "/shaders/shadow.frag");
 
    // build out sample geometry
    m_vao.create();
@@ -124,16 +130,16 @@ void Scene::initScene() {
 
    m_vertexBuffer.allocate(points.data(), points.length() * sizeof(GLfloat));
 
-   m_shader.bind();
+   m_phongShader.bind();
 
-   m_shader.setAttributeBuffer("vertex", GL_FLOAT, 0, 3, 8 * sizeof(GLfloat));
-   m_shader.enableAttributeArray("vertex");
+   m_phongShader.setAttributeBuffer("vertex", GL_FLOAT, 0, 3, 8 * sizeof(GLfloat));
+   m_phongShader.enableAttributeArray("vertex");
 
-   m_shader.setAttributeBuffer("texCoord", GL_FLOAT, 3 * sizeof(GLfloat), 2, 8 * sizeof(GLfloat));
-   m_shader.enableAttributeArray("texCoord");
+   m_phongShader.setAttributeBuffer("texCoord", GL_FLOAT, 3 * sizeof(GLfloat), 2, 8 * sizeof(GLfloat));
+   m_phongShader.enableAttributeArray("texCoord");
 
-   m_shader.setAttributeBuffer("normal", GL_FLOAT, 5 * sizeof(GLfloat), 3, 8 * sizeof(GLfloat));
-   m_shader.enableAttributeArray("normal");
+   m_phongShader.setAttributeBuffer("normal", GL_FLOAT, 5 * sizeof(GLfloat), 3, 8 * sizeof(GLfloat));
+   m_phongShader.enableAttributeArray("normal");
 
 //   m_shader.release(); // FM :+
 //   m_vao.release();    // FM :+
@@ -155,6 +161,12 @@ void Scene::initVRScene() {
    buffFormat.setSamples(0);
 
    m_resolveBuffer = new QOpenGLFramebufferObject(m_eyeWidth * 2, m_eyeHeight, resolveFormat);
+
+//   QOpenGLFramebufferObjectFormat depthFormat;
+//   depthFormat.setAttachment(QOpenGLFramebufferObject::Depth);
+//   depthFormat.setInternalTextureFormat(GL_RGBA8);
+//   depthFormat.setSamples(0);
+//   m_depthBuffer = new QOpenGLFramebufferObject(m_eyeWidth * 2, m_eyeHeight, resolveFormat);
 }
 
 
@@ -206,7 +218,7 @@ void Scene::renderLeft() {
 
    glEnable(GL_MULTISAMPLE);
    m_leftBuffer->bind();
-   renderEye(vr::Eye_Left);
+   renderEye(vr::Eye_Left, m_phongShader);
    m_leftBuffer->release();
 
    QRect sourceRect(0, 0, m_eyeWidth, m_eyeHeight);
@@ -219,7 +231,7 @@ void Scene::renderLeft() {
 void Scene::renderRight() {
    glEnable(GL_MULTISAMPLE);
    m_rightBuffer->bind();
-   renderEye(vr::Eye_Right);
+   renderEye(vr::Eye_Right, m_phongShader);
    m_rightBuffer->release();
 
    QRect sourceRect(0, 0, m_eyeWidth, m_eyeHeight);
@@ -229,11 +241,46 @@ void Scene::renderRight() {
 }
 
 
+//void Scene::renderToDepth(){
+
+//}
+
+
 void Scene::renderComp() {
+   //------try shadow mapping------
+   GLfloat   near_plane = 1.0f, far_plane = 10.0f;
+   glm::mat4 lightProjection = glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f, near_plane, far_plane);
+
+   glm::mat4 lightView = glm::lookAt(glm::vec3(0.0f,  .5f, 0.0f),
+                                     glm::vec3(0.0f, 0.0f, 0.0f),
+                                     glm::vec3(0.0f, 1.0f, 0.0f));
+   glm::mat4 lightSpaceMatrix = lightProjection * lightView;
+
+   QOpenGLFramebufferObjectFormat depthFormat;
+   depthFormat.setInternalTextureFormat(GL_RGBA8);
+   depthFormat.setSamples(0);
+   QOpenGLFramebufferObject *m_depthBuffer = new QOpenGLFramebufferObject(m_width, m_height, depthFormat);
+
    glClearColor(0.25f, 0.25f, 0.28f, 1.0f);
    glViewport(0, 0, m_width, m_height);
    glDisable(GL_MULTISAMPLE);
-   renderEye(vr::Eye_Right);
+   m_depthBuffer->bind();
+   m_shadowShader.bind();
+   m_shadowShader.setUniformValue("lightSpaceMatrix", helper.mat4x4ToQMatrix4x4(lightSpaceMatrix));
+   renderEye(vr::Eye_Right, m_shadowShader);
+   m_depthBuffer->release();
+   QOpenGLTexture *depthMap = new QOpenGLTexture(m_depthBuffer->toImage());
+
+   m_phongShader.bind();
+   m_phongShader.setUniformValue("shadowMap", 99);
+   depthMap->bind(99);
+
+   m_phongShader.setUniformValue("lightSpaceMatrix", helper.mat4x4ToQMatrix4x4(lightSpaceMatrix));
+   //------try shadow mapping end------
+   glClearColor(0.25f, 0.25f, 0.28f, 1.0f);
+   glViewport(0, 0, m_width, m_height);
+   glDisable(GL_MULTISAMPLE);
+   renderEye(vr::Eye_Right, m_phongShader);
 }
 
 
@@ -251,6 +298,7 @@ void Scene::activeController() {
    m_controllerObj->setActive(true);
 }
 
+
 void Scene::inactiveController() {
    m_controllerObj->setActive(false);
 }
@@ -265,26 +313,26 @@ void Scene::updateController(glm::mat4x4& mat) {
 }
 
 
-void Scene::renderEye(vr::Hmd_Eye eye) {
+void Scene::renderEye(vr::Hmd_Eye eye, QOpenGLShaderProgram& shader) {
    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
    glEnable(GL_DEPTH_TEST);
    m_vao.bind();
-   m_shader.bind();
+   shader.bind();
    //added passing model matrix and the controller disappeared
    //m_shader.setUniformValue("m", helper.mat4x4ToQMatrix4x4(m_modelMat));
-   m_shader.setUniformValue("v", helper.mat4x4ToQMatrix4x4(m_viewMat));
-   m_shader.setUniformValue("p", helper.mat4x4ToQMatrix4x4(m_projectMat));
-   m_shader.setUniformValue("leftEye", eye == vr::Eye_Left);
-   m_shader.setUniformValue("overUnder", settings.windowMode == OverUnder);
-   m_shader.setUniformValue("light", settings.lightOn);
+   shader.setUniformValue("v", helper.mat4x4ToQMatrix4x4(m_viewMat));
+   shader.setUniformValue("p", helper.mat4x4ToQMatrix4x4(m_projectMat));
+   shader.setUniformValue("leftEye", eye == vr::Eye_Left);
+   shader.setUniformValue("overUnder", settings.windowMode == OverUnder);
+   shader.setUniformValue("light", settings.lightOn);
    for (auto obj : m_sceneObjs) {
-      obj->draw(m_shader, m_glTextMap);
+      obj->draw(shader, m_glTextMap);
    }
    if (m_controllerObj->isActive()) {
-      m_controllerObj->draw(m_shader, m_glTextMap);
+      m_controllerObj->draw(shader, m_glTextMap);
    }
-   m_skyBoxes[m_currentSky]->draw(m_shader, m_glTextMap);
+   m_skyBoxes[m_currentSky]->draw(shader, m_glTextMap);
 //   m_shader.release();   // FM+ :
 //   m_vao.release();      // FM+ :
- // printControllerBoundingBox();
+// printControllerBoundingBox();
 }

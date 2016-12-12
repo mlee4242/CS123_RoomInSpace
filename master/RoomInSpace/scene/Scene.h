@@ -43,14 +43,16 @@ public:
    void pickBoy();
 
 private:
-   void renderEye(vr::Hmd_Eye eye);
+   void renderEye(vr::Hmd_Eye eye, QOpenGLShaderProgram & shader);
    void generateTextureMap(const QVector<QString>& textures);
    void categorizeSceneObjects(QVector<SceneObject *>& objects);
    bool compileShader(QOpenGLShaderProgram& shader,
                       const QString&        vertexShaderPath,
                       const QString&        fragmentShaderPath);
 
-   QOpenGLShaderProgram m_shader;
+   // QOpenGLShaderProgram m_shader;
+   QOpenGLShaderProgram m_shadowShader;
+   QOpenGLShaderProgram m_phongShader;
    QOpenGLBuffer m_vertexBuffer;
    QOpenGLVertexArrayObject m_vao;
    QMap<QString, QOpenGLTexture *> m_glTextMap;
@@ -63,6 +65,7 @@ private:
    QOpenGLFramebufferObject *m_leftBuffer;
    QOpenGLFramebufferObject *m_rightBuffer;
    QOpenGLFramebufferObject *m_resolveBuffer;
+//   QOpenGLFramebufferObject *m_depthBuffer;
    glm::mat4x4 m_modelMat;
    glm::mat4x4 m_viewMat;
    glm::mat4x4 m_projectMat;

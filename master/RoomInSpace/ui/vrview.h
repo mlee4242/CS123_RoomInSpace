@@ -1,6 +1,10 @@
 #ifndef VRVIEW_H
 #define VRVIEW_H
-#include <QOpenGLFunctions_4_1_Core>
+#include "glm/glm.hpp"
+#include "scene/Scene.h"
+#include "Settings.h"
+#include "Helpers.h"
+#include "OrbitingCamera.h"
 #include <QOpenGLWidget>
 #include <QOpenGLBuffer>
 #include <QOpenGLVertexArrayObject>
@@ -11,11 +15,6 @@
 #include <QOpenGLTexture>
 #include <openvr_mingw.hpp>
 #include <memory>
-#include "glm/glm.hpp"
-#include "scene/Scene.h"
-#include "Settings.h"
-#include "Helpers.h"
-#include "OrbitingCamera.h"
 class VRView : public QOpenGLWidget, protected QOpenGLFunctions_4_1_Core
 {
    Q_OBJECT
@@ -93,9 +92,6 @@ private:
    std::unique_ptr<Scene> m_scene;
    long int m_preClickTime;
    long int m_curClickTime;
-
-//   bool m_inputNext[vr::k_unMaxTrackedDeviceCount];
-//   bool m_inputPrev[vr::k_unMaxTrackedDeviceCount];
    bool m_isDragging;
 };
 

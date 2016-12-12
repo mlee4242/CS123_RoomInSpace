@@ -2,19 +2,23 @@
 #define GROUPOBJECT_H
 
 #include <QVector>
-// using Qt library to avoid compatibility issues
 #include "PrimitiveObject.h"
 
+/**
+ * @brief The GroupObject class
+ *
+ */
 class GroupObject : public SceneObject
 {
    friend class ObjLoader;
 public:
    GroupObject();
+   ~GroupObject();
    void addPrimitiveObject(PrimitiveObject *obj);
    void draw(QOpenGLShaderProgram& shader,
              QMap<QString, QOpenGLTexture *>& txtMap) override;
 
-protected:
+private:
    QVector<PrimitiveObject *> m_primObjects;
 };
 

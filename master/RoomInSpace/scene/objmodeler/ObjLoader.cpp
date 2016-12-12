@@ -13,6 +13,7 @@
 ObjLoader::ObjLoader() : m_materialMap(QMap<QString, Material>())
 {}
 
+ObjLoader::~ObjLoader() {}
 void ObjLoader::loadObj(const QString&          target,
                         QVector<SceneObject *>& results,
                         QVector<GLfloat>&       points) {
@@ -152,9 +153,9 @@ void ObjLoader::parseVertices(const QString& target, QVector<GLfloat>& cVerts) {
                      verts.append(v2);
                      verts.append(v3);
                   }else{
-                     verts.append(0.5f * -v1);
-                     verts.append(0.5f * v2);
-                     verts.append(0.5f * v3);
+                     verts.append(0.35f * -v1);
+                     verts.append(0.35f * v2 - 0.1f);
+                     verts.append(0.35f * v3);
                   }
 
                   obj->updateBox(glm::vec3(v1, v2, v3));

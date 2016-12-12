@@ -73,7 +73,7 @@ void OrbitingCamera::mouseDragged(int x, int y) {
 void OrbitingCamera::mouseScrolled(int delta) {
    // Use an exponential factor so the zoom increments are small when we are
    // close to the object and large when we are far away from the object
-   m_zoomZ *= powf(0.99f, delta);
+   m_zoomZ *= powf(0.95f, delta);
 
    updateViewMatrix();
 }
@@ -88,7 +88,7 @@ void OrbitingCamera::updateMatrices() {
 void OrbitingCamera::updateProjectionMatrix() {
    // Make sure glm gets a far value that is greater than the near value.
    // Thanks Windows for making far a keyword!
-   float farPlane = std::max(settings.cameraFar, settings.cameraNear + 100.f * FLT_EPSILON);
+   float farPlane = std::max(settings.cameraFar, settings.cameraNear + 1000.f * FLT_EPSILON);
    float h        = farPlane * glm::tan(glm::radians(settings.cameraFov));
    float w        = m_aspectRatio * h;
 

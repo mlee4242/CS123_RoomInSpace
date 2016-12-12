@@ -126,7 +126,9 @@ DIST          = shaders/phong.frag \
 		models/room/maps/photo_6.jpg \
 		models/room/maps/book_page.jpg \
 		models/room/maps/red_brown_wood.tif \
-		models/room/maps/wall.jpg ui\mainwindow.h \
+		models/room/maps/wall.jpg \
+		shaders/shadow.vert \
+		shaders/shadow.frag ui\mainwindow.h \
 		ui\vrview.h \
 		thirdparty\openvr\headers\openvr_mingw.hpp \
 		camera\OrbitingCamera.h \
@@ -320,7 +322,84 @@ release/moc_mainwindow.cpp: C:/Qt/5.6/mingw49_32/include/QtWidgets/QButtonGroup 
 		ui/mainwindow.h
 	C:\Qt\5.6\mingw49_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.6/mingw49_32/mkspecs/win32-g++ -IE:/Code/CS123_RoomInSpace/master/RoomInSpace -IE:/Code/CS123_RoomInSpace/master/RoomInSpace -IE:/Code/CS123_RoomInSpace/master/RoomInSpace/thirdparty -IE:/Code/CS123_RoomInSpace/master/RoomInSpace/thirdparty/openvr/headers -IE:/Code/CS123_RoomInSpace/master/RoomInSpace/thirdparty/glew/include -IE:/Code/CS123_RoomInSpace/master/RoomInSpace/utilities -IE:/Code/CS123_RoomInSpace/master/RoomInSpace/shaders -IE:/Code/CS123_RoomInSpace/master/RoomInSpace/models -IE:/Code/CS123_RoomInSpace/master/RoomInSpace/textures -IE:/Code/CS123_RoomInSpace/master/RoomInSpace/camera -IE:/Code/CS123_RoomInSpace/master/RoomInSpace/ui -IE:/Code/CS123_RoomInSpace/master/RoomInSpace/scenegraph -IE:/Code/CS123_RoomInSpace/master/RoomInSpace/utilities -IE:/Code/CS123_RoomInSpace/master/RoomInSpace/thirdparty/include -IC:/Qt/5.6/mingw49_32/include -IC:/Qt/5.6/mingw49_32/include/QtOpenGL -IC:/Qt/5.6/mingw49_32/include/QtWidgets -IC:/Qt/5.6/mingw49_32/include/QtGui -IC:/Qt/5.6/mingw49_32/include/QtANGLE -IC:/Qt/5.6/mingw49_32/include/QtCore ui\mainwindow.h -o release\moc_mainwindow.cpp
 
-release/moc_vrview.cpp: C:/Qt/5.6/mingw49_32/include/QtGui/QOpenGLFunctions_4_1_Core \
+release/moc_vrview.cpp: thirdparty/glm/glm.hpp \
+		thirdparty/glm/detail/_fixes.hpp \
+		thirdparty/glm/fwd.hpp \
+		thirdparty/glm/detail/type_int.hpp \
+		thirdparty/glm/detail/setup.hpp \
+		thirdparty/glm/detail/type_float.hpp \
+		thirdparty/glm/detail/type_vec.hpp \
+		thirdparty/glm/detail/precision.hpp \
+		thirdparty/glm/detail/type_mat.hpp \
+		thirdparty/glm/vec2.hpp \
+		thirdparty/glm/detail/type_vec2.hpp \
+		thirdparty/glm/detail/_swizzle.hpp \
+		thirdparty/glm/detail/_swizzle_func.hpp \
+		thirdparty/glm/detail/type_vec2.inl \
+		thirdparty/glm/vec3.hpp \
+		thirdparty/glm/detail/type_vec3.hpp \
+		thirdparty/glm/detail/type_vec3.inl \
+		thirdparty/glm/vec4.hpp \
+		thirdparty/glm/detail/type_vec4.hpp \
+		thirdparty/glm/detail/type_vec4.inl \
+		thirdparty/glm/mat2x2.hpp \
+		thirdparty/glm/detail/type_mat2x2.hpp \
+		thirdparty/glm/detail/type_mat2x2.inl \
+		thirdparty/glm/mat2x3.hpp \
+		thirdparty/glm/detail/type_mat2x3.hpp \
+		thirdparty/glm/detail/type_mat2x3.inl \
+		thirdparty/glm/mat2x4.hpp \
+		thirdparty/glm/detail/type_mat2x4.hpp \
+		thirdparty/glm/detail/type_mat2x4.inl \
+		thirdparty/glm/mat3x2.hpp \
+		thirdparty/glm/detail/type_mat3x2.hpp \
+		thirdparty/glm/detail/type_mat3x2.inl \
+		thirdparty/glm/mat3x3.hpp \
+		thirdparty/glm/detail/type_mat3x3.hpp \
+		thirdparty/glm/detail/type_mat3x3.inl \
+		thirdparty/glm/mat3x4.hpp \
+		thirdparty/glm/detail/type_mat3x4.hpp \
+		thirdparty/glm/detail/type_mat3x4.inl \
+		thirdparty/glm/mat4x2.hpp \
+		thirdparty/glm/detail/type_mat4x2.hpp \
+		thirdparty/glm/detail/type_mat4x2.inl \
+		thirdparty/glm/mat4x3.hpp \
+		thirdparty/glm/detail/type_mat4x3.hpp \
+		thirdparty/glm/detail/type_mat4x3.inl \
+		thirdparty/glm/mat4x4.hpp \
+		thirdparty/glm/detail/type_mat4x4.hpp \
+		thirdparty/glm/detail/type_mat4x4.inl \
+		thirdparty/glm/trigonometric.hpp \
+		thirdparty/glm/detail/func_trigonometric.hpp \
+		thirdparty/glm/detail/func_trigonometric.inl \
+		thirdparty/glm/detail/_vectorize.hpp \
+		thirdparty/glm/detail/type_vec1.hpp \
+		thirdparty/glm/detail/type_vec1.inl \
+		thirdparty/glm/exponential.hpp \
+		thirdparty/glm/detail/func_exponential.hpp \
+		thirdparty/glm/detail/func_exponential.inl \
+		thirdparty/glm/detail/func_vector_relational.hpp \
+		thirdparty/glm/detail/func_vector_relational.inl \
+		thirdparty/glm/common.hpp \
+		thirdparty/glm/detail/func_common.hpp \
+		thirdparty/glm/detail/func_common.inl \
+		thirdparty/glm/packing.hpp \
+		thirdparty/glm/detail/func_packing.hpp \
+		thirdparty/glm/detail/func_packing.inl \
+		thirdparty/glm/detail/type_half.hpp \
+		thirdparty/glm/detail/type_half.inl \
+		thirdparty/glm/geometric.hpp \
+		thirdparty/glm/detail/func_geometric.hpp \
+		thirdparty/glm/detail/func_geometric.inl \
+		thirdparty/glm/matrix.hpp \
+		thirdparty/glm/detail/func_matrix.hpp \
+		thirdparty/glm/detail/func_matrix.inl \
+		thirdparty/glm/vector_relational.hpp \
+		thirdparty/glm/integer.hpp \
+		thirdparty/glm/detail/func_integer.hpp \
+		thirdparty/glm/detail/func_integer.inl \
+		scene/Scene.h \
+		C:/Qt/5.6/mingw49_32/include/QtGui/QOpenGLFunctions_4_1_Core \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qopenglfunctions_4_1_core.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/qglobal.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/qconfig.h \
@@ -462,86 +541,9 @@ release/moc_vrview.cpp: C:/Qt/5.6/mingw49_32/include/QtGui/QOpenGLFunctions_4_1_
 		C:/Qt/5.6/mingw49_32/include/QtGui/QOpenGLDebugLogger \
 		C:/Qt/5.6/mingw49_32/include/QtGui/QOpenGLTexture \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qopengltexture.h \
-		thirdparty/openvr/headers/openvr_mingw.hpp \
-		thirdparty/glm/glm.hpp \
-		thirdparty/glm/detail/_fixes.hpp \
-		thirdparty/glm/fwd.hpp \
-		thirdparty/glm/detail/type_int.hpp \
-		thirdparty/glm/detail/setup.hpp \
-		thirdparty/glm/detail/type_float.hpp \
-		thirdparty/glm/detail/type_vec.hpp \
-		thirdparty/glm/detail/precision.hpp \
-		thirdparty/glm/detail/type_mat.hpp \
-		thirdparty/glm/vec2.hpp \
-		thirdparty/glm/detail/type_vec2.hpp \
-		thirdparty/glm/detail/_swizzle.hpp \
-		thirdparty/glm/detail/_swizzle_func.hpp \
-		thirdparty/glm/detail/type_vec2.inl \
-		thirdparty/glm/vec3.hpp \
-		thirdparty/glm/detail/type_vec3.hpp \
-		thirdparty/glm/detail/type_vec3.inl \
-		thirdparty/glm/vec4.hpp \
-		thirdparty/glm/detail/type_vec4.hpp \
-		thirdparty/glm/detail/type_vec4.inl \
-		thirdparty/glm/mat2x2.hpp \
-		thirdparty/glm/detail/type_mat2x2.hpp \
-		thirdparty/glm/detail/type_mat2x2.inl \
-		thirdparty/glm/mat2x3.hpp \
-		thirdparty/glm/detail/type_mat2x3.hpp \
-		thirdparty/glm/detail/type_mat2x3.inl \
-		thirdparty/glm/mat2x4.hpp \
-		thirdparty/glm/detail/type_mat2x4.hpp \
-		thirdparty/glm/detail/type_mat2x4.inl \
-		thirdparty/glm/mat3x2.hpp \
-		thirdparty/glm/detail/type_mat3x2.hpp \
-		thirdparty/glm/detail/type_mat3x2.inl \
-		thirdparty/glm/mat3x3.hpp \
-		thirdparty/glm/detail/type_mat3x3.hpp \
-		thirdparty/glm/detail/type_mat3x3.inl \
-		thirdparty/glm/mat3x4.hpp \
-		thirdparty/glm/detail/type_mat3x4.hpp \
-		thirdparty/glm/detail/type_mat3x4.inl \
-		thirdparty/glm/mat4x2.hpp \
-		thirdparty/glm/detail/type_mat4x2.hpp \
-		thirdparty/glm/detail/type_mat4x2.inl \
-		thirdparty/glm/mat4x3.hpp \
-		thirdparty/glm/detail/type_mat4x3.hpp \
-		thirdparty/glm/detail/type_mat4x3.inl \
-		thirdparty/glm/mat4x4.hpp \
-		thirdparty/glm/detail/type_mat4x4.hpp \
-		thirdparty/glm/detail/type_mat4x4.inl \
-		thirdparty/glm/trigonometric.hpp \
-		thirdparty/glm/detail/func_trigonometric.hpp \
-		thirdparty/glm/detail/func_trigonometric.inl \
-		thirdparty/glm/detail/_vectorize.hpp \
-		thirdparty/glm/detail/type_vec1.hpp \
-		thirdparty/glm/detail/type_vec1.inl \
-		thirdparty/glm/exponential.hpp \
-		thirdparty/glm/detail/func_exponential.hpp \
-		thirdparty/glm/detail/func_exponential.inl \
-		thirdparty/glm/detail/func_vector_relational.hpp \
-		thirdparty/glm/detail/func_vector_relational.inl \
-		thirdparty/glm/common.hpp \
-		thirdparty/glm/detail/func_common.hpp \
-		thirdparty/glm/detail/func_common.inl \
-		thirdparty/glm/packing.hpp \
-		thirdparty/glm/detail/func_packing.hpp \
-		thirdparty/glm/detail/func_packing.inl \
-		thirdparty/glm/detail/type_half.hpp \
-		thirdparty/glm/detail/type_half.inl \
-		thirdparty/glm/geometric.hpp \
-		thirdparty/glm/detail/func_geometric.hpp \
-		thirdparty/glm/detail/func_geometric.inl \
-		thirdparty/glm/matrix.hpp \
-		thirdparty/glm/detail/func_matrix.hpp \
-		thirdparty/glm/detail/func_matrix.inl \
-		thirdparty/glm/vector_relational.hpp \
-		thirdparty/glm/integer.hpp \
-		thirdparty/glm/detail/func_integer.hpp \
-		thirdparty/glm/detail/func_integer.inl \
-		scene/Scene.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/QElapsedTimer \
 		C:/Qt/5.6/mingw49_32/include/QtCore/qelapsedtimer.h \
+		thirdparty/openvr/headers/openvr_mingw.hpp \
 		utilities/Settings.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/QString \
 		C:/Qt/5.6/mingw49_32/include/QtCore/QVector \
@@ -933,6 +935,83 @@ release/main.o: ui/main.cpp ui/mainwindow.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\main.o ui\main.cpp
 
 release/mainwindow.o: ui/mainwindow.cpp ui/vrview.h \
+		thirdparty/glm/glm.hpp \
+		thirdparty/glm/detail/_fixes.hpp \
+		thirdparty/glm/fwd.hpp \
+		thirdparty/glm/detail/type_int.hpp \
+		thirdparty/glm/detail/setup.hpp \
+		thirdparty/glm/detail/type_float.hpp \
+		thirdparty/glm/detail/type_vec.hpp \
+		thirdparty/glm/detail/precision.hpp \
+		thirdparty/glm/detail/type_mat.hpp \
+		thirdparty/glm/vec2.hpp \
+		thirdparty/glm/detail/type_vec2.hpp \
+		thirdparty/glm/detail/_swizzle.hpp \
+		thirdparty/glm/detail/_swizzle_func.hpp \
+		thirdparty/glm/detail/type_vec2.inl \
+		thirdparty/glm/vec3.hpp \
+		thirdparty/glm/detail/type_vec3.hpp \
+		thirdparty/glm/detail/type_vec3.inl \
+		thirdparty/glm/vec4.hpp \
+		thirdparty/glm/detail/type_vec4.hpp \
+		thirdparty/glm/detail/type_vec4.inl \
+		thirdparty/glm/mat2x2.hpp \
+		thirdparty/glm/detail/type_mat2x2.hpp \
+		thirdparty/glm/detail/type_mat2x2.inl \
+		thirdparty/glm/mat2x3.hpp \
+		thirdparty/glm/detail/type_mat2x3.hpp \
+		thirdparty/glm/detail/type_mat2x3.inl \
+		thirdparty/glm/mat2x4.hpp \
+		thirdparty/glm/detail/type_mat2x4.hpp \
+		thirdparty/glm/detail/type_mat2x4.inl \
+		thirdparty/glm/mat3x2.hpp \
+		thirdparty/glm/detail/type_mat3x2.hpp \
+		thirdparty/glm/detail/type_mat3x2.inl \
+		thirdparty/glm/mat3x3.hpp \
+		thirdparty/glm/detail/type_mat3x3.hpp \
+		thirdparty/glm/detail/type_mat3x3.inl \
+		thirdparty/glm/mat3x4.hpp \
+		thirdparty/glm/detail/type_mat3x4.hpp \
+		thirdparty/glm/detail/type_mat3x4.inl \
+		thirdparty/glm/mat4x2.hpp \
+		thirdparty/glm/detail/type_mat4x2.hpp \
+		thirdparty/glm/detail/type_mat4x2.inl \
+		thirdparty/glm/mat4x3.hpp \
+		thirdparty/glm/detail/type_mat4x3.hpp \
+		thirdparty/glm/detail/type_mat4x3.inl \
+		thirdparty/glm/mat4x4.hpp \
+		thirdparty/glm/detail/type_mat4x4.hpp \
+		thirdparty/glm/detail/type_mat4x4.inl \
+		thirdparty/glm/trigonometric.hpp \
+		thirdparty/glm/detail/func_trigonometric.hpp \
+		thirdparty/glm/detail/func_trigonometric.inl \
+		thirdparty/glm/detail/_vectorize.hpp \
+		thirdparty/glm/detail/type_vec1.hpp \
+		thirdparty/glm/detail/type_vec1.inl \
+		thirdparty/glm/exponential.hpp \
+		thirdparty/glm/detail/func_exponential.hpp \
+		thirdparty/glm/detail/func_exponential.inl \
+		thirdparty/glm/detail/func_vector_relational.hpp \
+		thirdparty/glm/detail/func_vector_relational.inl \
+		thirdparty/glm/common.hpp \
+		thirdparty/glm/detail/func_common.hpp \
+		thirdparty/glm/detail/func_common.inl \
+		thirdparty/glm/packing.hpp \
+		thirdparty/glm/detail/func_packing.hpp \
+		thirdparty/glm/detail/func_packing.inl \
+		thirdparty/glm/detail/type_half.hpp \
+		thirdparty/glm/detail/type_half.inl \
+		thirdparty/glm/geometric.hpp \
+		thirdparty/glm/detail/func_geometric.hpp \
+		thirdparty/glm/detail/func_geometric.inl \
+		thirdparty/glm/matrix.hpp \
+		thirdparty/glm/detail/func_matrix.hpp \
+		thirdparty/glm/detail/func_matrix.inl \
+		thirdparty/glm/vector_relational.hpp \
+		thirdparty/glm/integer.hpp \
+		thirdparty/glm/detail/func_integer.hpp \
+		thirdparty/glm/detail/func_integer.inl \
+		scene/Scene.h \
 		C:/Qt/5.6/mingw49_32/include/QtGui/QOpenGLFunctions_4_1_Core \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qopenglfunctions_4_1_core.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/qglobal.h \
@@ -1075,86 +1154,9 @@ release/mainwindow.o: ui/mainwindow.cpp ui/vrview.h \
 		C:/Qt/5.6/mingw49_32/include/QtGui/QOpenGLDebugLogger \
 		C:/Qt/5.6/mingw49_32/include/QtGui/QOpenGLTexture \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qopengltexture.h \
-		thirdparty/openvr/headers/openvr_mingw.hpp \
-		thirdparty/glm/glm.hpp \
-		thirdparty/glm/detail/_fixes.hpp \
-		thirdparty/glm/fwd.hpp \
-		thirdparty/glm/detail/type_int.hpp \
-		thirdparty/glm/detail/setup.hpp \
-		thirdparty/glm/detail/type_float.hpp \
-		thirdparty/glm/detail/type_vec.hpp \
-		thirdparty/glm/detail/precision.hpp \
-		thirdparty/glm/detail/type_mat.hpp \
-		thirdparty/glm/vec2.hpp \
-		thirdparty/glm/detail/type_vec2.hpp \
-		thirdparty/glm/detail/_swizzle.hpp \
-		thirdparty/glm/detail/_swizzle_func.hpp \
-		thirdparty/glm/detail/type_vec2.inl \
-		thirdparty/glm/vec3.hpp \
-		thirdparty/glm/detail/type_vec3.hpp \
-		thirdparty/glm/detail/type_vec3.inl \
-		thirdparty/glm/vec4.hpp \
-		thirdparty/glm/detail/type_vec4.hpp \
-		thirdparty/glm/detail/type_vec4.inl \
-		thirdparty/glm/mat2x2.hpp \
-		thirdparty/glm/detail/type_mat2x2.hpp \
-		thirdparty/glm/detail/type_mat2x2.inl \
-		thirdparty/glm/mat2x3.hpp \
-		thirdparty/glm/detail/type_mat2x3.hpp \
-		thirdparty/glm/detail/type_mat2x3.inl \
-		thirdparty/glm/mat2x4.hpp \
-		thirdparty/glm/detail/type_mat2x4.hpp \
-		thirdparty/glm/detail/type_mat2x4.inl \
-		thirdparty/glm/mat3x2.hpp \
-		thirdparty/glm/detail/type_mat3x2.hpp \
-		thirdparty/glm/detail/type_mat3x2.inl \
-		thirdparty/glm/mat3x3.hpp \
-		thirdparty/glm/detail/type_mat3x3.hpp \
-		thirdparty/glm/detail/type_mat3x3.inl \
-		thirdparty/glm/mat3x4.hpp \
-		thirdparty/glm/detail/type_mat3x4.hpp \
-		thirdparty/glm/detail/type_mat3x4.inl \
-		thirdparty/glm/mat4x2.hpp \
-		thirdparty/glm/detail/type_mat4x2.hpp \
-		thirdparty/glm/detail/type_mat4x2.inl \
-		thirdparty/glm/mat4x3.hpp \
-		thirdparty/glm/detail/type_mat4x3.hpp \
-		thirdparty/glm/detail/type_mat4x3.inl \
-		thirdparty/glm/mat4x4.hpp \
-		thirdparty/glm/detail/type_mat4x4.hpp \
-		thirdparty/glm/detail/type_mat4x4.inl \
-		thirdparty/glm/trigonometric.hpp \
-		thirdparty/glm/detail/func_trigonometric.hpp \
-		thirdparty/glm/detail/func_trigonometric.inl \
-		thirdparty/glm/detail/_vectorize.hpp \
-		thirdparty/glm/detail/type_vec1.hpp \
-		thirdparty/glm/detail/type_vec1.inl \
-		thirdparty/glm/exponential.hpp \
-		thirdparty/glm/detail/func_exponential.hpp \
-		thirdparty/glm/detail/func_exponential.inl \
-		thirdparty/glm/detail/func_vector_relational.hpp \
-		thirdparty/glm/detail/func_vector_relational.inl \
-		thirdparty/glm/common.hpp \
-		thirdparty/glm/detail/func_common.hpp \
-		thirdparty/glm/detail/func_common.inl \
-		thirdparty/glm/packing.hpp \
-		thirdparty/glm/detail/func_packing.hpp \
-		thirdparty/glm/detail/func_packing.inl \
-		thirdparty/glm/detail/type_half.hpp \
-		thirdparty/glm/detail/type_half.inl \
-		thirdparty/glm/geometric.hpp \
-		thirdparty/glm/detail/func_geometric.hpp \
-		thirdparty/glm/detail/func_geometric.inl \
-		thirdparty/glm/matrix.hpp \
-		thirdparty/glm/detail/func_matrix.hpp \
-		thirdparty/glm/detail/func_matrix.inl \
-		thirdparty/glm/vector_relational.hpp \
-		thirdparty/glm/integer.hpp \
-		thirdparty/glm/detail/func_integer.hpp \
-		thirdparty/glm/detail/func_integer.inl \
-		scene/Scene.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/QElapsedTimer \
 		C:/Qt/5.6/mingw49_32/include/QtCore/qelapsedtimer.h \
+		thirdparty/openvr/headers/openvr_mingw.hpp \
 		utilities/Settings.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/QString \
 		C:/Qt/5.6/mingw49_32/include/QtCore/QVector \
@@ -1380,6 +1382,83 @@ release/mainwindow.o: ui/mainwindow.cpp ui/vrview.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\mainwindow.o ui\mainwindow.cpp
 
 release/vrview.o: ui/vrview.cpp ui/vrview.h \
+		thirdparty/glm/glm.hpp \
+		thirdparty/glm/detail/_fixes.hpp \
+		thirdparty/glm/fwd.hpp \
+		thirdparty/glm/detail/type_int.hpp \
+		thirdparty/glm/detail/setup.hpp \
+		thirdparty/glm/detail/type_float.hpp \
+		thirdparty/glm/detail/type_vec.hpp \
+		thirdparty/glm/detail/precision.hpp \
+		thirdparty/glm/detail/type_mat.hpp \
+		thirdparty/glm/vec2.hpp \
+		thirdparty/glm/detail/type_vec2.hpp \
+		thirdparty/glm/detail/_swizzle.hpp \
+		thirdparty/glm/detail/_swizzle_func.hpp \
+		thirdparty/glm/detail/type_vec2.inl \
+		thirdparty/glm/vec3.hpp \
+		thirdparty/glm/detail/type_vec3.hpp \
+		thirdparty/glm/detail/type_vec3.inl \
+		thirdparty/glm/vec4.hpp \
+		thirdparty/glm/detail/type_vec4.hpp \
+		thirdparty/glm/detail/type_vec4.inl \
+		thirdparty/glm/mat2x2.hpp \
+		thirdparty/glm/detail/type_mat2x2.hpp \
+		thirdparty/glm/detail/type_mat2x2.inl \
+		thirdparty/glm/mat2x3.hpp \
+		thirdparty/glm/detail/type_mat2x3.hpp \
+		thirdparty/glm/detail/type_mat2x3.inl \
+		thirdparty/glm/mat2x4.hpp \
+		thirdparty/glm/detail/type_mat2x4.hpp \
+		thirdparty/glm/detail/type_mat2x4.inl \
+		thirdparty/glm/mat3x2.hpp \
+		thirdparty/glm/detail/type_mat3x2.hpp \
+		thirdparty/glm/detail/type_mat3x2.inl \
+		thirdparty/glm/mat3x3.hpp \
+		thirdparty/glm/detail/type_mat3x3.hpp \
+		thirdparty/glm/detail/type_mat3x3.inl \
+		thirdparty/glm/mat3x4.hpp \
+		thirdparty/glm/detail/type_mat3x4.hpp \
+		thirdparty/glm/detail/type_mat3x4.inl \
+		thirdparty/glm/mat4x2.hpp \
+		thirdparty/glm/detail/type_mat4x2.hpp \
+		thirdparty/glm/detail/type_mat4x2.inl \
+		thirdparty/glm/mat4x3.hpp \
+		thirdparty/glm/detail/type_mat4x3.hpp \
+		thirdparty/glm/detail/type_mat4x3.inl \
+		thirdparty/glm/mat4x4.hpp \
+		thirdparty/glm/detail/type_mat4x4.hpp \
+		thirdparty/glm/detail/type_mat4x4.inl \
+		thirdparty/glm/trigonometric.hpp \
+		thirdparty/glm/detail/func_trigonometric.hpp \
+		thirdparty/glm/detail/func_trigonometric.inl \
+		thirdparty/glm/detail/_vectorize.hpp \
+		thirdparty/glm/detail/type_vec1.hpp \
+		thirdparty/glm/detail/type_vec1.inl \
+		thirdparty/glm/exponential.hpp \
+		thirdparty/glm/detail/func_exponential.hpp \
+		thirdparty/glm/detail/func_exponential.inl \
+		thirdparty/glm/detail/func_vector_relational.hpp \
+		thirdparty/glm/detail/func_vector_relational.inl \
+		thirdparty/glm/common.hpp \
+		thirdparty/glm/detail/func_common.hpp \
+		thirdparty/glm/detail/func_common.inl \
+		thirdparty/glm/packing.hpp \
+		thirdparty/glm/detail/func_packing.hpp \
+		thirdparty/glm/detail/func_packing.inl \
+		thirdparty/glm/detail/type_half.hpp \
+		thirdparty/glm/detail/type_half.inl \
+		thirdparty/glm/geometric.hpp \
+		thirdparty/glm/detail/func_geometric.hpp \
+		thirdparty/glm/detail/func_geometric.inl \
+		thirdparty/glm/matrix.hpp \
+		thirdparty/glm/detail/func_matrix.hpp \
+		thirdparty/glm/detail/func_matrix.inl \
+		thirdparty/glm/vector_relational.hpp \
+		thirdparty/glm/integer.hpp \
+		thirdparty/glm/detail/func_integer.hpp \
+		thirdparty/glm/detail/func_integer.inl \
+		scene/Scene.h \
 		C:/Qt/5.6/mingw49_32/include/QtGui/QOpenGLFunctions_4_1_Core \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qopenglfunctions_4_1_core.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/qglobal.h \
@@ -1522,86 +1601,9 @@ release/vrview.o: ui/vrview.cpp ui/vrview.h \
 		C:/Qt/5.6/mingw49_32/include/QtGui/QOpenGLDebugLogger \
 		C:/Qt/5.6/mingw49_32/include/QtGui/QOpenGLTexture \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qopengltexture.h \
-		thirdparty/openvr/headers/openvr_mingw.hpp \
-		thirdparty/glm/glm.hpp \
-		thirdparty/glm/detail/_fixes.hpp \
-		thirdparty/glm/fwd.hpp \
-		thirdparty/glm/detail/type_int.hpp \
-		thirdparty/glm/detail/setup.hpp \
-		thirdparty/glm/detail/type_float.hpp \
-		thirdparty/glm/detail/type_vec.hpp \
-		thirdparty/glm/detail/precision.hpp \
-		thirdparty/glm/detail/type_mat.hpp \
-		thirdparty/glm/vec2.hpp \
-		thirdparty/glm/detail/type_vec2.hpp \
-		thirdparty/glm/detail/_swizzle.hpp \
-		thirdparty/glm/detail/_swizzle_func.hpp \
-		thirdparty/glm/detail/type_vec2.inl \
-		thirdparty/glm/vec3.hpp \
-		thirdparty/glm/detail/type_vec3.hpp \
-		thirdparty/glm/detail/type_vec3.inl \
-		thirdparty/glm/vec4.hpp \
-		thirdparty/glm/detail/type_vec4.hpp \
-		thirdparty/glm/detail/type_vec4.inl \
-		thirdparty/glm/mat2x2.hpp \
-		thirdparty/glm/detail/type_mat2x2.hpp \
-		thirdparty/glm/detail/type_mat2x2.inl \
-		thirdparty/glm/mat2x3.hpp \
-		thirdparty/glm/detail/type_mat2x3.hpp \
-		thirdparty/glm/detail/type_mat2x3.inl \
-		thirdparty/glm/mat2x4.hpp \
-		thirdparty/glm/detail/type_mat2x4.hpp \
-		thirdparty/glm/detail/type_mat2x4.inl \
-		thirdparty/glm/mat3x2.hpp \
-		thirdparty/glm/detail/type_mat3x2.hpp \
-		thirdparty/glm/detail/type_mat3x2.inl \
-		thirdparty/glm/mat3x3.hpp \
-		thirdparty/glm/detail/type_mat3x3.hpp \
-		thirdparty/glm/detail/type_mat3x3.inl \
-		thirdparty/glm/mat3x4.hpp \
-		thirdparty/glm/detail/type_mat3x4.hpp \
-		thirdparty/glm/detail/type_mat3x4.inl \
-		thirdparty/glm/mat4x2.hpp \
-		thirdparty/glm/detail/type_mat4x2.hpp \
-		thirdparty/glm/detail/type_mat4x2.inl \
-		thirdparty/glm/mat4x3.hpp \
-		thirdparty/glm/detail/type_mat4x3.hpp \
-		thirdparty/glm/detail/type_mat4x3.inl \
-		thirdparty/glm/mat4x4.hpp \
-		thirdparty/glm/detail/type_mat4x4.hpp \
-		thirdparty/glm/detail/type_mat4x4.inl \
-		thirdparty/glm/trigonometric.hpp \
-		thirdparty/glm/detail/func_trigonometric.hpp \
-		thirdparty/glm/detail/func_trigonometric.inl \
-		thirdparty/glm/detail/_vectorize.hpp \
-		thirdparty/glm/detail/type_vec1.hpp \
-		thirdparty/glm/detail/type_vec1.inl \
-		thirdparty/glm/exponential.hpp \
-		thirdparty/glm/detail/func_exponential.hpp \
-		thirdparty/glm/detail/func_exponential.inl \
-		thirdparty/glm/detail/func_vector_relational.hpp \
-		thirdparty/glm/detail/func_vector_relational.inl \
-		thirdparty/glm/common.hpp \
-		thirdparty/glm/detail/func_common.hpp \
-		thirdparty/glm/detail/func_common.inl \
-		thirdparty/glm/packing.hpp \
-		thirdparty/glm/detail/func_packing.hpp \
-		thirdparty/glm/detail/func_packing.inl \
-		thirdparty/glm/detail/type_half.hpp \
-		thirdparty/glm/detail/type_half.inl \
-		thirdparty/glm/geometric.hpp \
-		thirdparty/glm/detail/func_geometric.hpp \
-		thirdparty/glm/detail/func_geometric.inl \
-		thirdparty/glm/matrix.hpp \
-		thirdparty/glm/detail/func_matrix.hpp \
-		thirdparty/glm/detail/func_matrix.inl \
-		thirdparty/glm/vector_relational.hpp \
-		thirdparty/glm/integer.hpp \
-		thirdparty/glm/detail/func_integer.hpp \
-		thirdparty/glm/detail/func_integer.inl \
-		scene/Scene.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/QElapsedTimer \
 		C:/Qt/5.6/mingw49_32/include/QtCore/qelapsedtimer.h \
+		thirdparty/openvr/headers/openvr_mingw.hpp \
 		utilities/Settings.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/QString \
 		C:/Qt/5.6/mingw49_32/include/QtCore/QVector \
@@ -3413,7 +3415,38 @@ release/BoundingBox.o: scene/objmodeler/BoundingBox.cpp scene/objmodeler/Boundin
 		thirdparty/glm/gtx/simd_mat4.hpp \
 		thirdparty/glm/detail/intrinsic_matrix.hpp \
 		thirdparty/glm/detail/intrinsic_matrix.inl \
-		thirdparty/glm/gtx/simd_mat4.inl
+		thirdparty/glm/gtx/simd_mat4.inl \
+		utilities/Helpers.h \
+		C:/Qt/5.6/mingw49_32/include/QtGui/QMatrix4x4 \
+		C:/Qt/5.6/mingw49_32/include/QtGui/qmatrix4x4.h \
+		C:/Qt/5.6/mingw49_32/include/QtGui/qvector3d.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qmetatype.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qvarlengtharray.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qcontainerfwd.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qobjectdefs.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qobjectdefs_impl.h \
+		C:/Qt/5.6/mingw49_32/include/QtGui/qvector4d.h \
+		C:/Qt/5.6/mingw49_32/include/QtGui/qquaternion.h \
+		C:/Qt/5.6/mingw49_32/include/QtGui/qgenericmatrix.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qdebug.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qhash.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qmap.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qtextstream.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qiodevice.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qobject.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qcoreevent.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qscopedpointer.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qobject_impl.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qlocale.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qvariant.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qshareddata.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qset.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qcontiguouscache.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qdatastream.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qrect.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qmargins.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qsize.h \
+		thirdparty/openvr/headers/openvr_mingw.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\BoundingBox.o scene\objmodeler\BoundingBox.cpp
 
 release/SceneObject.o: scene/objmodeler/SceneObject.cpp scene/objmodeler/SceneObject.h \
@@ -3749,10 +3782,8 @@ release/SceneObject.o: scene/objmodeler/SceneObject.cpp scene/objmodeler/SceneOb
 		thirdparty/glm/gtx/simd_mat4.inl
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\SceneObject.o scene\objmodeler\SceneObject.cpp
 
-release/PrimitiveObject.o: scene/objmodeler/PrimitiveObject.cpp scene/objmodeler/PrimitiveObject.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/QVector \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qvector.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qalgorithms.h \
+release/PrimitiveObject.o: scene/objmodeler/PrimitiveObject.cpp C:/Qt/5.6/mingw49_32/include/QtGui/QOpenGLShaderProgram \
+		C:/Qt/5.6/mingw49_32/include/QtGui/qopenglshaderprogram.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/qglobal.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/qconfig.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/qfeatures.h \
@@ -3782,24 +3813,6 @@ release/PrimitiveObject.o: scene/objmodeler/PrimitiveObject.cpp scene/objmodeler
 		C:/Qt/5.6/mingw49_32/include/QtCore/qmutex.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/qnumeric.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/qversiontagging.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qiterator.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qlist.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qrefcount.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qarraydata.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qhashfunctions.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qchar.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qpair.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qbytearraylist.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qbytearray.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qnamespace.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qstring.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qstringbuilder.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qstringlist.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qregexp.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qstringmatcher.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qpoint.h \
-		C:/Qt/5.6/mingw49_32/include/QtOpenGL/QGL \
-		C:/Qt/5.6/mingw49_32/include/QtOpenGL/qgl.h \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qopengl.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/qt_windows.h \
 		C:/Qt/5.6/mingw49_32/include/QtANGLE/GLES3/gl3.h \
@@ -3809,22 +3822,61 @@ release/PrimitiveObject.o: scene/objmodeler/PrimitiveObject.cpp scene/objmodeler
 		C:/Qt/5.6/mingw49_32/include/QtANGLE/GLES2/gl2platform.h \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qopengles2ext.h \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qopenglext.h \
-		C:/Qt/5.6/mingw49_32/include/QtWidgets/qwidget.h \
-		C:/Qt/5.6/mingw49_32/include/QtGui/qwindowdefs.h \
+		C:/Qt/5.6/mingw49_32/include/QtGui/qvector2d.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qpoint.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qnamespace.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qmetatype.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qbytearray.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qrefcount.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qarraydata.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qstring.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qchar.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qstringbuilder.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qvarlengtharray.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qcontainerfwd.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qalgorithms.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/qobjectdefs.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/qobjectdefs_impl.h \
-		C:/Qt/5.6/mingw49_32/include/QtGui/qwindowdefs_win.h \
+		C:/Qt/5.6/mingw49_32/include/QtGui/qvector3d.h \
+		C:/Qt/5.6/mingw49_32/include/QtGui/qvector4d.h \
+		C:/Qt/5.6/mingw49_32/include/QtGui/qmatrix4x4.h \
+		C:/Qt/5.6/mingw49_32/include/QtGui/qquaternion.h \
+		C:/Qt/5.6/mingw49_32/include/QtGui/qgenericmatrix.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qdebug.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qhash.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qiterator.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qlist.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qhashfunctions.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qpair.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qbytearraylist.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qstringlist.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qregexp.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qstringmatcher.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qmap.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qtextstream.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qiodevice.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/qobject.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/qcoreevent.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/qscopedpointer.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qmetatype.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qvarlengtharray.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qcontainerfwd.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/qobject_impl.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qmargins.h \
-		C:/Qt/5.6/mingw49_32/include/QtGui/qpaintdevice.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qlocale.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qvariant.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qshareddata.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qvector.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qset.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qcontiguouscache.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qdatastream.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/qrect.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qmargins.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/qsize.h \
+		scene/objmodeler/PrimitiveObject.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/QVector \
+		C:/Qt/5.6/mingw49_32/include/QtOpenGL/QGL \
+		C:/Qt/5.6/mingw49_32/include/QtOpenGL/qgl.h \
+		C:/Qt/5.6/mingw49_32/include/QtWidgets/qwidget.h \
+		C:/Qt/5.6/mingw49_32/include/QtGui/qwindowdefs.h \
+		C:/Qt/5.6/mingw49_32/include/QtGui/qwindowdefs_win.h \
+		C:/Qt/5.6/mingw49_32/include/QtGui/qpaintdevice.h \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qpalette.h \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qcolor.h \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qrgb.h \
@@ -3833,8 +3885,6 @@ release/PrimitiveObject.o: scene/objmodeler/PrimitiveObject.cpp scene/objmodeler
 		C:/Qt/5.6/mingw49_32/include/QtGui/qmatrix.h \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qpolygon.h \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qregion.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qdatastream.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qiodevice.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/qline.h \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qtransform.h \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qpainterpath.h \
@@ -3842,8 +3892,6 @@ release/PrimitiveObject.o: scene/objmodeler/PrimitiveObject.cpp scene/objmodeler
 		C:/Qt/5.6/mingw49_32/include/QtGui/qpixelformat.h \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qpixmap.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/qsharedpointer.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qshareddata.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qhash.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/qsharedpointer_impl.h \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qfont.h \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qfontmetrics.h \
@@ -3852,18 +3900,10 @@ release/PrimitiveObject.o: scene/objmodeler/PrimitiveObject.cpp scene/objmodeler
 		C:/Qt/5.6/mingw49_32/include/QtGui/qcursor.h \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qkeysequence.h \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qevent.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qvariant.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qmap.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qdebug.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qtextstream.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qlocale.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qset.h \
-		C:/Qt/5.6/mingw49_32/include/QtCore/qcontiguouscache.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/qurl.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/qurlquery.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/qfile.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/qfiledevice.h \
-		C:/Qt/5.6/mingw49_32/include/QtGui/qvector2d.h \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qtouchdevice.h \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qpaintengine.h \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qpainter.h \
@@ -4098,13 +4138,6 @@ release/PrimitiveObject.o: scene/objmodeler/PrimitiveObject.cpp scene/objmodeler
 		C:/Qt/5.6/mingw49_32/include/QtGui/QOpenGLVertexArrayObject \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qopenglvertexarrayobject.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/QObject \
-		C:/Qt/5.6/mingw49_32/include/QtGui/QOpenGLShaderProgram \
-		C:/Qt/5.6/mingw49_32/include/QtGui/qopenglshaderprogram.h \
-		C:/Qt/5.6/mingw49_32/include/QtGui/qvector3d.h \
-		C:/Qt/5.6/mingw49_32/include/QtGui/qvector4d.h \
-		C:/Qt/5.6/mingw49_32/include/QtGui/qmatrix4x4.h \
-		C:/Qt/5.6/mingw49_32/include/QtGui/qquaternion.h \
-		C:/Qt/5.6/mingw49_32/include/QtGui/qgenericmatrix.h \
 		C:/Qt/5.6/mingw49_32/include/QtGui/QOpenGLFramebufferObject \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qopenglframebufferobject.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/QElapsedTimer \

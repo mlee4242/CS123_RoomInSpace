@@ -30,6 +30,7 @@ struct Settings
 
    int              renderMode;
    int              windowMode;
+   int              VERTEX_UNIT_SIZE = 8;
 
    QString          path    = "models/room/";
    QString          target  = "roominspace";
