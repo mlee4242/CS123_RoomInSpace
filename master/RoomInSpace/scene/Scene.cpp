@@ -89,17 +89,6 @@ void Scene::printControllerBoundingBox() {
    box.printVertices();
 }
 
-//void Scene::pickBoy() {
-//   BoundingBox controllerBox;
-//   BoundingBox objBox;
-//   m_controllerObj->getBox(controllerBox);
-//   for (SceneObject *obj : m_sceneObjs) {
-//      if (obj->getName().contains("Kid")) {
-//         obj->getBox(objBox);
-//      }
-//   }
-//   std::cout << objBox.overlap(controllerBox) << std::endl;
-
 void Scene::pickUp(bool& pickStatus, glm::mat4x4& mat){
       BoundingBox controllerBox;
       BoundingBox objBox;
@@ -121,6 +110,20 @@ void Scene::pickUp(bool& pickStatus, glm::mat4x4& mat){
                 break;
             }
       }
+}
+
+
+void Scene::putDown(bool& pickStatus){
+      for (SceneObject *obj : m_sceneObjs) {
+            if (obj->isPicked()){
+                obj->resetModelMatrix();
+                obj->resetReferenceMatrx();
+                obj->setIsPicked(false);
+                break;
+            }
+         }
+      pickStatus = false;
+>>>>>>> 44c7c27b408120c0cbf18ca2c9379207f38d077f
 }
 
 
@@ -309,6 +312,7 @@ void Scene::renderEye(vr::Hmd_Eye eye, QOpenGLShaderProgram& shader) {
    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
    glEnable(GL_DEPTH_TEST);
    m_vao.bind();
+
    shader.bind();
    //added passing model matrix and the controller disappeared
    //m_shader.setUniformValue("m", helper.mat4x4ToQMatrix4x4(m_modelMat));

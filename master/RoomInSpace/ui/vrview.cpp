@@ -224,9 +224,7 @@ void VRView::updatePoses() {
          // use the last one
          if (m_hmd->GetControllerRoleForTrackedDeviceIndex(i) == vr::TrackedControllerRole_RightHand) {
             //std::cerr << glm::to_string(m_matrixDevicePose[i]) << std::endl;
-            m_scene->updateController(m_matrixDevicePose[i]);
-            //// Han : do you need this?
-//            m_scene->pickBoy();
+            m_scene->updateController( m_matrixDevicePose[i]);
             //m_scene->printControllerBoundingBox();
          }
       }
@@ -258,6 +256,7 @@ void VRView::updateInput() {
             }
          }
 
+<<<<<<< HEAD
          if (state.ulButtonPressed & vr::ButtonMaskFromId(vr::k_EButton_SteamVR_Trigger)) {
             m_curClickTime = QDateTime::currentMSecsSinceEpoch() / 1000;
             float diff = m_curClickTime - m_preClickTime;
@@ -271,6 +270,32 @@ void VRView::updateInput() {
                m_preClickTime = m_curClickTime;
             }
          }
+=======
+         if (state.ulButtonPressed & vr::ButtonMaskFromId(vr::k_EButton_SteamVR_Trigger))
+         {
+             m_curClickTime = QDateTime::currentMSecsSinceEpoch() / 1000;
+             float diff = m_curClickTime - m_preClickTime;
+             if(std::fabs(diff) > 0.2){
+                 if (m_hasPicked == false){
+                    m_scene->pickUp(m_hasPicked, m_matrixDevicePose[i]);
+                 }else{
+                    m_scene->putDown(m_hasPicked);
+                 }
+
+                 m_preClickTime = m_curClickTime;
+             }
+
+         }
+
+         if (state.ulButtonPressed & vr::ButtonMaskFromId(vr::k_EButton_Grip))
+         {
+             m_curClickTime = QDateTime::currentMSecsSinceEpoch() / 1000;
+             float diff = m_curClickTime - m_preClickTime;
+             if(std::fabs(diff) > 0.2){
+                 m_scene->nextSky();
+                 m_preClickTime = m_curClickTime;
+             }
+>>>>>>> 44c7c27b408120c0cbf18ca2c9379207f38d077f
 
          if (state.ulButtonPressed & vr::ButtonMaskFromId(vr::k_EButton_Grip)) {
             m_curClickTime = QDateTime::currentMSecsSinceEpoch() / 1000;
