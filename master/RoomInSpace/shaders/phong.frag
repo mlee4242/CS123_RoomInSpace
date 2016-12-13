@@ -53,7 +53,7 @@ void main()
      }
      if(useNormal){ // normal mapping
         // do something
-        normal = texture2D(normalMap, uv).rgb * 2.0 - 1.0;
+        // normal = texture2D(normalMap, uv).rgb * 2.0 - 1.0;
      }
     vec3 phongColor = vec3(0.3 + 0.7 * max(0.0, dot(normalize(normal), WorldSpace_toLight)));
     vec4 texColor = 0.5 * texture2D(textMap, uv);
@@ -67,8 +67,8 @@ void main()
   }
 
   //if(isInside){
-//      shadow = ShadowCalculation(fs_in.FragPosLightSpace);
-//      fragColor = (1.0f - shadow) * fragColor;
+     shadow = ShadowCalculation(fs_in.FragPosLightSpace);
+     fragColor = (1.0f - shadow) * fragColor;
 //  }
 
   // light on / light off
