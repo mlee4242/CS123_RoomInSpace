@@ -265,6 +265,8 @@ void Scene::renderShawdowMap(vr::Hmd_Eye eye) {
 //   m_shadowMapBuffer->setAttachment(QOpenGLFramebufferObject::Depth);
 //   m_shadowMapBuffer->bind();
 //   m_shadowShader.bind();
+//   glDrawBuffer(GL_NONE);
+//   glReadBuffer(GL_NONE);
 //   renderEye(eye, m_shadowShader);
 //   m_shadowMapBuffer->release();
 //   if (m_depthMap) {
@@ -279,6 +281,8 @@ void Scene::renderShawdowMap(vr::Hmd_Eye eye) {
 ////   glBindTexture(GL_TEXTURE_2D, id);
 //   m_phongShader.setUniformValue("shadowMap", 4);
 //   m_depthMap->bind(4);
+//   glDrawBuffer(GL_COLOR_ATTACHMENT0);
+//   glReadBuffer(GL_COLOR_ATTACHMENT0);
 }
 
 

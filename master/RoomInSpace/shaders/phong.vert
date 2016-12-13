@@ -32,7 +32,7 @@ void main()
         vert.x +=  4.0f * sin(move.y);
     }
 
-     gl_Position =  p * v * m * vec4(vert.x, vert.y, vert.z, 1.0f);
+     gl_Position =  p * v * m * vec4(vert.x, vert.y + 0.2f, vert.z, 1.0f);
      position = gl_Position.xyz;
      n = normal;
      vs_out.FragPos = vec3(m * vec4(vert, 1.0f));

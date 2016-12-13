@@ -67,8 +67,8 @@ void main()
   }
 
   //if(isInside){
-     shadow = ShadowCalculation(fs_in.FragPosLightSpace);
-     fragColor = (1.0f - shadow) * fragColor;
+      shadow = ShadowCalculation(fs_in.FragPosLightSpace);
+      fragColor = (1.0f - shadow) * fragColor;
 //  }
 
   // light on / light off

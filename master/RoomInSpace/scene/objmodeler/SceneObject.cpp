@@ -30,13 +30,13 @@ void SceneObject::resetModelMatrix() {
 
 
 void SceneObject::setReferenceMatrx(glm::mat4x4& mat) {
-   m_referenceMat = mat;
+   m_referenceMat = glm::inverse(mat);
 }
 
 
 void SceneObject::updateModelMatrixFromReference(const glm::mat4x4& poseMat) {
    /// TODO: double check, is this correct?
-   m_modelMat = glm::inverse(poseMat) * m_referenceMat;
+   m_modelMat = poseMat * m_referenceMat;
 }
 
 
