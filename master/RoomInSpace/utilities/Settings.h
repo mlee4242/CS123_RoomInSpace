@@ -30,7 +30,7 @@ struct Settings
 
    QString          path    = "models/room/";
    QString          target  = "roominspace";
-   bool             VRMode  = false;
+   bool             VRMode  = true;
    bool             lightOn = true;
 
    QVector<QString> pickableList;
