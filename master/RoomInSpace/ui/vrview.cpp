@@ -181,6 +181,13 @@ void VRView::keyPressEvent(QKeyEvent *event) {
    case Qt::Key_4:
       settings.SAMPLES = 4;
       break;
+
+   case Qt::Key_N:
+      m_scene->nextSky();
+      break;
+
+   case Qt::Key_L:
+      settings.lightOn = !settings.lightOn;
       break;
 
    default:

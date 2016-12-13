@@ -9,8 +9,8 @@
 #include "objmodeler/delete_ptr.h"
 #include "Settings.h"
 #include <gl/glew.h>
-#define LIGHT_NEAR_CLIP    1.0f
-#define LIGHT_FAR_CLIP     10.0f
+#define LIGHT_NEAR_CLIP    0.01f
+#define LIGHT_FAR_CLIP     5.5f
 Scene::Scene() :
    m_glTextMap(QMap<QString, QOpenGLTexture *>()),
    m_viewMat(glm::mat4x4()),
@@ -24,10 +24,10 @@ Scene::Scene() :
    m_skyBoxes(QVector<SceneObject *>()),
    m_currentSky(0),
    m_controllerObj(nullptr) {
-   m_lightProjection = glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f,
+   m_lightProjection = glm::ortho(-2.5f, 2.5f, -2.5f, 2.5f,
                                   LIGHT_NEAR_CLIP, LIGHT_FAR_CLIP);
-   m_lightView = glm::lookAt(glm::vec3(0.0f, 0.5f, 0.5f),
-                             glm::vec3(0.0f, 0.f, 1.f),
+   m_lightView = glm::lookAt(glm::vec3(0.0f, 1.0f, 1.75f),
+                             glm::vec3(0.0f, 0.f, 0.f),
                              glm::vec3(0.0f, 1.0f, 0.0f));
    m_lightSpaceMatrix = helper.mat4x4ToQMatrix4x4(m_lightProjection * m_lightView);
 }
@@ -250,39 +250,33 @@ void Scene::setMatrices(const glm::mat4x4& v, const glm::mat4x4& p) {
 void Scene::initShadowMap() {
    QOpenGLFramebufferObjectFormat depthBuffFormat;
    depthBuffFormat.setAttachment(QOpenGLFramebufferObject::Depth);
-   depthBuffFormat.setInternalTextureFormat(GL_RGBA);
+   depthBuffFormat.setInternalTextureFormat(GL_RGBA8);
    depthBuffFormat.setSamples(settings.SAMPLES);
-   m_shadowMapBuffer = new QOpenGLFramebufferObject(m_width, m_height, depthBuffFormat);
+   m_shadowMapBuffer = new QOpenGLFramebufferObject(1024, 1024, depthBuffFormat);
 }
 
 
 void Scene::renderShawdowMap(vr::Hmd_Eye eye) {
-//   glEnable(GL_DEPTH_TEST);
-//   glClear(GL_DEPTH_BUFFER_BIT);
-
-//   glViewport(0, 0, m_width, m_height);
-//   glDisable(GL_MULTISAMPLE);
-//   m_shadowMapBuffer->setAttachment(QOpenGLFramebufferObject::Depth);
-//   m_shadowMapBuffer->bind();
-//   m_shadowShader.bind();
-//   glDrawBuffer(GL_NONE);
-//   glReadBuffer(GL_NONE);
-//   renderEye(eye, m_shadowShader);
-//   m_shadowMapBuffer->release();
-//   if (m_depthMap) {
-//      delete m_depthMap;
-//   }
-//   m_depthMap = new QOpenGLTexture(m_shadowMapBuffer->toImage());
-//   m_depthMap->setDepthStencilMode(QOpenGLTexture::DepthMode);
-//   m_shadowShader.release();
-////   GLint id  = m_shadowMapBuffer->texture();
-////   GLint loc = m_phongShader.attributeLocation("shadowMap");
-//   m_phongShader.bind();
-////   glBindTexture(GL_TEXTURE_2D, id);
-//   m_phongShader.setUniformValue("shadowMap", 4);
-//   m_depthMap->bind(4);
-//   glDrawBuffer(GL_COLOR_ATTACHMENT0);
-//   glReadBuffer(GL_COLOR_ATTACHMENT0);
+   glEnable(GL_DEPTH_TEST);
+   glClear(GL_DEPTH_BUFFER_BIT);
+   glEnable(GL_MULTISAMPLE);
+   glViewport(0, 0, m_width, m_height);
+   m_shadowMapBuffer->bind();
+   m_shadowShader.bind();
+   renderEye(eye, m_shadowShader);
+   m_shadowMapBuffer->release();
+   if (m_depthMap) {
+      delete m_depthMap;
+   }
+   m_depthMap = new QOpenGLTexture(m_shadowMapBuffer->toImage());
+   m_depthMap->setDepthStencilMode(QOpenGLTexture::DepthMode);
+   m_shadowShader.release();
+//   GLint id  = m_shadowMapBuffer->texture();
+//   GLint loc = m_phongShader.attributeLocation("shadowMap");
+   m_phongShader.bind();
+//   glBindTexture(GL_TEXTURE_2D, id);
+   m_phongShader.setUniformValue("shadowMap", 4);
+   m_depthMap->bind(4);
 }
 
 
@@ -356,6 +350,12 @@ void Scene::updateController(glm::mat4x4& mat) {
 void Scene::renderEye(vr::Hmd_Eye eye, QOpenGLShaderProgram& shader) {
    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
    glEnable(GL_DEPTH_TEST);
+
+   if (settings.SAMPLES == 0) {
+      glDisable(GL_MULTISAMPLE);
+   } else{
+      glEnable(GL_MULTISAMPLE);
+   }
    m_vao.bind();
    shader.bind();
    //added passing model matrix and the controller disappeared
