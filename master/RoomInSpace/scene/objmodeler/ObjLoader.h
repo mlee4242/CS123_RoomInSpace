@@ -12,6 +12,7 @@ class ObjLoader
 public:
    ObjLoader();
    ~ObjLoader();
+   // load an obj file
    void loadObj(const QString&          target,
                 QVector<SceneObject *>& results,
                 QVector<GLfloat>&       cVerts);

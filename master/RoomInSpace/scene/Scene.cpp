@@ -1,3 +1,5 @@
+#include <gl/glew.h>
+#include <gl/glu.h>
 #include <QDir>
 #include "Scene.h"
 #include "glm/ext.hpp"
@@ -6,7 +8,7 @@
 #include "objmodeler/PrimitiveObject.h"
 #include "objmodeler/delete_ptr.h"
 #include "Settings.h"
-
+#include <gl/glew.h>
 #define LIGHT_NEAR_CLIP    1.0f
 #define LIGHT_FAR_CLIP     10.0f
 Scene::Scene() :
@@ -22,12 +24,12 @@ Scene::Scene() :
    m_skyBoxes(QVector<SceneObject *>()),
    m_currentSky(0),
    m_controllerObj(nullptr) {
-   lightProjection = glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f,
-                                LIGHT_NEAR_CLIP, LIGHT_FAR_CLIP);
-   lightView = glm::lookAt(glm::vec3(0.0f, 0.5f, -0.5f),
-                           glm::vec3(0.0f, -25.0f, 15.0f),
-                           glm::vec3(0.0f, 1.0f, 0.0f));
-   lightSpaceMatrix = helper.mat4x4ToQMatrix4x4(lightProjection * lightView);
+   m_lightProjection = glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f,
+                                  LIGHT_NEAR_CLIP, LIGHT_FAR_CLIP);
+   m_lightView = glm::lookAt(glm::vec3(0.0f, 0.5f, 0.5f),
+                             glm::vec3(0.0f, 0.f, 1.f),
+                             glm::vec3(0.0f, 1.0f, 0.0f));
+   m_lightSpaceMatrix = helper.mat4x4ToQMatrix4x4(m_lightProjection * m_lightView);
 }
 
 
@@ -96,54 +98,49 @@ void Scene::printControllerBoundingBox() {
    BoundingBox box;
    m_controllerObj->getBox(box);
    box.printVertices();
-
 }
 
 
+void Scene::pickUp(bool& pickStatus, glm::mat4x4& mat) {
+   BoundingBox controllerBox;
+   BoundingBox objBox;
+   bool        collide;
+   m_controllerObj->getBox(controllerBox);
+   for (SceneObject *obj : m_sceneObjs) {
+      if (obj->isPickable()) {
+         std::cout << "this object is pickable" << std::endl;
+         obj->getBox(objBox);
+         collide = objBox.overlap(controllerBox);
+         if (collide == 0) {
+            continue;
+         }
+         std::cout << "collide value is " << std::endl;
+         std::cout << collide << std::endl;
+         m_pickedObj.reset(obj);
+         m_pickedObj->setReferenceMatrx(mat);
 
-void Scene::pickUp(bool& pickStatus, glm::mat4x4& mat){
-      BoundingBox controllerBox;
-      BoundingBox objBox;
-      bool collide;
-      m_controllerObj->getBox(controllerBox);
-      for (SceneObject *obj : m_sceneObjs) {
-           if (obj->isPickable()){
-               std::cout << "this object is pickable" << std::endl;
-                obj->getBox(objBox);
-                collide = objBox.overlap(controllerBox);
-                if (collide == 0){
-                    continue;
-                }
-                std::cout << "collide value is " << std::endl;
-                std::cout << collide << std::endl;
-                m_pickedObj.reset(obj);
-                m_pickedObj->setReferenceMatrx(mat);
-
-                std::cout << "this is reference matrix" << std::endl;
-                std::cout <<glm::to_string(mat) << std::endl;
-                m_pickedObj->updateModelMatrixFromReference(mat);
-                m_pickedObj->setIsPicked(true);
-                pickStatus = true;
-                break;
-            }
+         std::cout << "this is reference matrix" << std::endl;
+         std::cout << glm::to_string(mat) << std::endl;
+         m_pickedObj->updateModelMatrixFromReference(mat);
+         m_pickedObj->setIsPicked(true);
+         pickStatus = true;
+         break;
       }
    }
 }
 
 
-
-void Scene::putDown(bool &pickStatus){
-    m_pickedObj->resetModelMatrix();
-    m_pickedObj->resetReferenceMatrx();
-    m_pickedObj->setIsPicked(false);
-    //m_pickedObj.reset();
-    pickStatus = false;
+void Scene::putDown(bool& pickStatus) {
+   m_pickedObj->resetModelMatrix();
+   m_pickedObj->resetReferenceMatrx();
+   m_pickedObj->setIsPicked(false);
+   //m_pickedObj.reset();
+   pickStatus = false;
 }
 
 
-
-void Scene::updatePickedObjPos(glm::mat4x4& mat){
-    m_pickedObj->updateModelMatrixFromReference(mat);
+void Scene::updatePickedObjPos(glm::mat4x4& mat) {
+   m_pickedObj->updateModelMatrixFromReference(mat);
 }
 
 
@@ -188,7 +185,6 @@ void Scene::initScene() {
 //   m_shader.release(); // FM :+
 //   m_vao.release();    // FM :+
    m_vertexBuffer.release();
-
 }
 
 
@@ -196,13 +192,13 @@ void Scene::initVRScene() {
    QOpenGLFramebufferObjectFormat buffFormat;
    buffFormat.setAttachment(QOpenGLFramebufferObject::Depth);
    buffFormat.setInternalTextureFormat(GL_RGBA8);
-   buffFormat.setSamples(4);
+   buffFormat.setSamples(settings.SAMPLES);
 
    m_leftBuffer  = new QOpenGLFramebufferObject(m_eyeWidth, m_eyeHeight, buffFormat);
    m_rightBuffer = new QOpenGLFramebufferObject(m_eyeWidth, m_eyeHeight, buffFormat);
 
    QOpenGLFramebufferObjectFormat resolveFormat;
-   resolveFormat.setInternalTextureFormat(GL_RGBA8);
+   resolveFormat.setInternalTextureFormat(GL_RGBA);
    buffFormat.setSamples(0);
 
    m_resolveBuffer = new QOpenGLFramebufferObject(m_eyeWidth * 2, m_eyeHeight, resolveFormat);
@@ -254,32 +250,37 @@ void Scene::setMatrices(const glm::mat4x4& v, const glm::mat4x4& p) {
 void Scene::initShadowMap() {
    QOpenGLFramebufferObjectFormat depthBuffFormat;
    depthBuffFormat.setAttachment(QOpenGLFramebufferObject::Depth);
-   depthBuffFormat.setInternalTextureFormat(GL_RGBA8);
-   depthBuffFormat.setSamples(0);
+   depthBuffFormat.setInternalTextureFormat(GL_RGBA);
+   depthBuffFormat.setSamples(settings.SAMPLES);
    m_shadowMapBuffer = new QOpenGLFramebufferObject(m_width, m_height, depthBuffFormat);
 }
 
 
 void Scene::renderShawdowMap(vr::Hmd_Eye eye) {
-   glClear(GL_DEPTH_BUFFER_BIT);
-   glEnable(GL_DEPTH_TEST);
-   glViewport(0, 0, m_width, m_height);
-   glDisable(GL_MULTISAMPLE);
-   m_shadowMapBuffer->bind();
-   m_shadowShader.bind();
-   renderEye(eye, m_shadowShader);
-   m_shadowMapBuffer->release();
-   if(m_depthMap)
-       delete m_depthMap;
-   m_depthMap = new QOpenGLTexture(m_shadowMapBuffer->toImage());
-   m_depthMap->setDepthStencilMode(QOpenGLTexture::DepthMode);
-   m_shadowShader.release();
+//   glEnable(GL_DEPTH_TEST);
+//   glClear(GL_DEPTH_BUFFER_BIT);
 
-   m_phongShader.bind();
-   m_phongShader.setUniformValue("shadowMap", 88);
-   m_depthMap->bind(88);
-
+//   glViewport(0, 0, m_width, m_height);
+//   glDisable(GL_MULTISAMPLE);
+//   m_shadowMapBuffer->setAttachment(QOpenGLFramebufferObject::Depth);
+//   m_shadowMapBuffer->bind();
+//   m_shadowShader.bind();
+//   renderEye(eye, m_shadowShader);
+//   m_shadowMapBuffer->release();
+//   if (m_depthMap) {
+//      delete m_depthMap;
+//   }
+//   m_depthMap = new QOpenGLTexture(m_shadowMapBuffer->toImage());
+//   m_depthMap->setDepthStencilMode(QOpenGLTexture::DepthMode);
+//   m_shadowShader.release();
+////   GLint id  = m_shadowMapBuffer->texture();
+////   GLint loc = m_phongShader.attributeLocation("shadowMap");
+//   m_phongShader.bind();
+////   glBindTexture(GL_TEXTURE_2D, id);
+//   m_phongShader.setUniformValue("shadowMap", 4);
+//   m_depthMap->bind(4);
 }
+
 
 void Scene::renderLeft() {
    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -355,7 +356,7 @@ void Scene::renderEye(vr::Hmd_Eye eye, QOpenGLShaderProgram& shader) {
    shader.bind();
    //added passing model matrix and the controller disappeared
    //m_shader.setUniformValue("m", helper.mat4x4ToQMatrix4x4(m_modelMat));
-   shader.setUniformValue("lightSpaceMatrix", lightSpaceMatrix);
+   shader.setUniformValue("lightSpaceMatrix", m_lightSpaceMatrix);
    shader.setUniformValue("v", helper.mat4x4ToQMatrix4x4(m_viewMat));
    shader.setUniformValue("p", helper.mat4x4ToQMatrix4x4(m_projectMat));
    shader.setUniformValue("leftEye", eye == vr::Eye_Left);

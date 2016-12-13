@@ -36,9 +36,7 @@ float ShadowCalculation(vec4 fragPosLightSpace)
     // Get depth of current fragment from light's perspective
     float currentDepth = projCoords.z;
     // Check whether current frag pos is in shadow
-    float shadow = currentDepth > closestDepth  ? 0.5 : 0.0;
-
-    return shadow;
+    return currentDepth > closestDepth  ? 0.5 : 0.0;
 }
 
 
@@ -58,7 +56,7 @@ void main()
         normal = texture2D(normalMap, uv).rgb * 2.0 - 1.0;
      }
     vec3 phongColor = vec3(0.3 + 0.7 * max(0.0, dot(normalize(normal), WorldSpace_toLight)));
-    vec4 texColor = texture2D(textMap, uv);
+    vec4 texColor = 0.5 * texture2D(textMap, uv);
     float coef = phongColor.x;
     if(isSky){
         coef = 1.f;
@@ -69,8 +67,8 @@ void main()
   }
 
   //if(isInside){
-      shadow = ShadowCalculation(fs_in.FragPosLightSpace);
-      fragColor = (1.0f - shadow) * fragColor;
+//      shadow = ShadowCalculation(fs_in.FragPosLightSpace);
+//      fragColor = (1.0f - shadow) * fragColor;
 //  }
 
   // light on / light off

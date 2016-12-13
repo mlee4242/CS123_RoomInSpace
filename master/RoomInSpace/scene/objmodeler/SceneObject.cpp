@@ -19,7 +19,6 @@ void SceneObject::setName(const QString& str) {
    m_name = str;
 }
 
-
 QString SceneObject::getName() {
    return m_name;
 }

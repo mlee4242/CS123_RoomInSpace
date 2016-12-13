@@ -20,9 +20,6 @@ VRView::VRView(QWidget *parent) : QOpenGLWidget(parent),
    m_isDragging(false),
    m_preClickTime(0),
    m_curClickTime(0) {
-//   memset(m_inputNext, 0, sizeof(m_inputNext));
-//   memset(m_inputNext, 0, sizeof(m_inputPrev));
-
    QSizePolicy size;
 
    size.setHorizontalPolicy(QSizePolicy::Expanding);
@@ -157,6 +154,7 @@ void VRView::resizeGL(int, int) {
 
 
 void VRView::keyPressEvent(QKeyEvent *event) {
+   std::cout << "a key is pressed " << std::endl;
    switch (event->key())
    {
    case Qt::Key_Left:
@@ -164,6 +162,25 @@ void VRView::keyPressEvent(QKeyEvent *event) {
    case Qt::Key_Right:
    case Qt::Key_Space:
    case Qt::Key_Escape:
+   case Qt::Key_0:
+      settings.SAMPLES = 0;
+      break;
+
+   case Qt::Key_1:
+      settings.SAMPLES = 1;
+      break;
+
+   case Qt::Key_2:
+      settings.SAMPLES = 2;
+      break;
+
+   case Qt::Key_3:
+      settings.SAMPLES = 3;
+      break;
+
+   case Qt::Key_4:
+      settings.SAMPLES = 4;
+      break;
       break;
 
    default:
@@ -229,9 +246,9 @@ void VRView::updatePoses() {
             //std::cerr << glm::to_string(m_matrixDevicePose[i]) << std::endl;
             glm::mat4x4 mat = m_matrixDevicePose[i];
             m_scene->updateController(m_matrixDevicePose[i]);
-            if (m_hasPicked == true){
-                    m_scene->updatePickedObjPos(m_matrixDevicePose[i]);
-             }
+            if (m_hasPicked == true) {
+               m_scene->updatePickedObjPos(m_matrixDevicePose[i]);
+            }
             //m_scene->printControllerBoundingBox();
          }
       }
@@ -262,25 +279,24 @@ void VRView::updateInput() {
                m_preClickTime   = m_curClickTime;
             }
          }
-         if (state.ulButtonPressed & vr::ButtonMaskFromId(vr::k_EButton_SteamVR_Trigger))
-         {
-             m_curClickTime = QDateTime::currentMSecsSinceEpoch() / 1000;
-             float diff = m_curClickTime - m_preClickTime;
-             if(std::fabs(diff) > 0.2){
-                 if (m_hasPicked == false){
-                     std::cout << "this should be false when you pick it up" << std::endl;
-                     std::cout << m_hasPicked << std::endl;
-                    m_scene->pickUp(m_hasPicked, m_matrixDevicePose[i]);
-                 }else{
-                    std::cout << "this should be true when you put it down" << std::endl;
-                    std::cout << m_hasPicked << std::endl;
-                    m_scene->putDown(m_hasPicked);
-                    std::cout << "now it should be false" << std::endl;
-                    std::cout << m_hasPicked << std::endl;
-                 }
+         if (state.ulButtonPressed & vr::ButtonMaskFromId(vr::k_EButton_SteamVR_Trigger)) {
+            m_curClickTime = QDateTime::currentMSecsSinceEpoch() / 1000;
+            float diff = m_curClickTime - m_preClickTime;
+            if (std::fabs(diff) > 0.2) {
+               if (m_hasPicked == false) {
+                  std::cout << "this should be false when you pick it up" << std::endl;
+                  std::cout << m_hasPicked << std::endl;
+                  m_scene->pickUp(m_hasPicked, m_matrixDevicePose[i]);
+               }else{
+                  std::cout << "this should be true when you put it down" << std::endl;
+                  std::cout << m_hasPicked << std::endl;
+                  m_scene->putDown(m_hasPicked);
+                  std::cout << "now it should be false" << std::endl;
+                  std::cout << m_hasPicked << std::endl;
+               }
 
-                 m_preClickTime = m_curClickTime;
-             }
+               m_preClickTime = m_curClickTime;
+            }
          }
          if (state.ulButtonPressed & vr::ButtonMaskFromId(vr::k_EButton_Grip)) {
             m_curClickTime = QDateTime::currentMSecsSinceEpoch() / 1000;

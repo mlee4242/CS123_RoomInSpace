@@ -1,6 +1,5 @@
 #version 330 core
-layout(location = 0) out float depthValue;
 void main()
 {
-//     depthValue = gl_FragCoord.z;
+//    color = vec4(gl_FragCoord.x, gl_FragCoord.y, gl_FragCoord.z, 1.0);
 }

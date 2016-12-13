@@ -61,24 +61,24 @@ void PrimitiveObject::draw(QOpenGLShaderProgram& shader,
 
    if (m_material.map_Kd != "") {
       shader.setUniformValue("useTex", 1);
-      txtMap[m_material.map_Kd]->bind(0);
-      shader.setUniformValue("textMap", 0);
+      txtMap[m_material.map_Kd]->bind(1);
+      shader.setUniformValue("textMap", 1);
    }else{
       shader.setUniformValue("useTex", 0);
    }
 
    if (m_material.map_bump != "") {
       shader.setUniformValue("useBump", 1);
-      txtMap[m_material.map_bump]->bind(1);
-      shader.setUniformValue("bumpMap", 1);
+      txtMap[m_material.map_bump]->bind(2);
+      shader.setUniformValue("bumpMap", 2);
    }else{
       shader.setUniformValue("useBump", 0);
    }
 
    if (m_material.map_normal != "") {
       shader.setUniformValue("useNormal", 1);
-      txtMap[m_material.map_normal]->bind(2);
-      shader.setUniformValue("normalMap", 2);
+      txtMap[m_material.map_normal]->bind(3);
+      shader.setUniformValue("normalMap", 3);
    }else{
       shader.setUniformValue("useNormal", 0);
    }

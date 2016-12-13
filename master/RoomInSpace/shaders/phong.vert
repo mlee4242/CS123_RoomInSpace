@@ -27,10 +27,10 @@ void main()
     fragTexCoord = texCoord;
 // move UFO
     vec3 vert = vertex;
-//    if(move.x > 0){
-//        vert.z +=  4.0f * cos(move.y);
-//        vert.x +=  4.0f * sin(move.y);
-//    }
+    if(move.x > 0){
+        vert.z +=  4.0f * cos(move.y);
+        vert.x +=  4.0f * sin(move.y);
+    }
 
      gl_Position =  p * v * m * vec4(vert.x, vert.y, vert.z, 1.0f);
      position = gl_Position.xyz;

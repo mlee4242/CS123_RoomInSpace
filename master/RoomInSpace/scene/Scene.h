@@ -78,9 +78,9 @@ private:
    uint32_t m_eyeWidth, m_eyeHeight;
    int m_width, m_height;
 
-   glm::mat4        lightProjection;
-   glm::mat4        lightView;
-   QMatrix4x4       lightSpaceMatrix;
+   glm::mat4        m_lightProjection;
+   glm::mat4        m_lightView;
+   QMatrix4x4       m_lightSpaceMatrix;
 };
 
 #endif // SCENE_H

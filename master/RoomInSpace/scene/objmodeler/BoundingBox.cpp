@@ -229,7 +229,12 @@ bool BoundingBox::inside(const glm::vec4& x) {
           helper.between(wx, wp1, wp2);
 }
 
-
+/**
+ * @brief BoundingBox::hit
+ * @param p
+ * @param d
+ * @return
+ */
 float BoundingBox::hit(const glm::vec4& p, const glm::vec4& d) {
    float t = FLT_MAX;
 
