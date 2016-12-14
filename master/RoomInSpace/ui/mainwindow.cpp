@@ -38,13 +38,3 @@ void MainWindow::showFramerate(float fps) {
 void MainWindow::showStatus(const QString& message) {
    ui->statusBar->showMessage(message);
 }
-
-
-void MainWindow::on_overUnderButton_clicked() {
-   if (ui->overUnderButton->isChecked()) {
-      settings.windowMode = OverUnder;
-   }else{ settings.windowMode = SideBySide; }
-}
-
-
-void MainWindow::on_sideSideButton_clicked() {}

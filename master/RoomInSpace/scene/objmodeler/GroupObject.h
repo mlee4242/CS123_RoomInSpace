@@ -6,15 +6,17 @@
 
 /**
  * @brief The GroupObject class
+ * The groupobject contains a set of primitive objects
  *
  */
 class GroupObject : public SceneObject
 {
-   friend class ObjLoader;
 public:
    GroupObject();
    ~GroupObject();
+   // add a primitive object into this group
    void addPrimitiveObject(PrimitiveObject *obj);
+   // draw all the objects in this group
    void draw(QOpenGLShaderProgram& shader,
              QMap<QString, QOpenGLTexture *>& txtMap) override;
 

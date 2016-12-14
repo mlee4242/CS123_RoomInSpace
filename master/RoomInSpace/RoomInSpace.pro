@@ -26,8 +26,8 @@ SOURCES += ui/main.cpp\
     scene/objmodeler/SceneObject.cpp \
     scene/objmodeler/PrimitiveObject.cpp \
     scene/objmodeler/GroupObject.cpp \
-    scene/objmodeler/ObjLoader.cpp \
-    thirdparty/glew/src/glew.c
+    scene/objmodeler/ObjLoader.cpp
+    #thirdparty/glew/src/glew.c
     #scene/rendermodel/CGLRenderModel.cpp \
     #scene/rendermodel/DeviceModels.cpp
 
@@ -46,8 +46,8 @@ HEADERS  += ui/mainwindow.h \
     scene/objmodeler/GroupObject.h \
     scene/objmodeler/material.h \
     scene/objmodeler/ObjLoader.h \
-    scene/objmodeler/delete_ptr.h \
-    thirdparty/glew/include/GL/glew.h
+    scene/objmodeler/delete_ptr.h
+    #thirdparty/glew/include/GL/glew.h
     #scene/rendermodel/CGLRenderModel.h \
     #scene/rendermodel/DeviceModels.h
 
@@ -133,57 +133,5 @@ DEFINES += GLM_SWIZZLE GLM_FORCE_RADIANS
 DISTFILES += \
     shaders/phong.frag \
     shaders/phong.vert \
-    shaders/phong.frag \
-    shaders/phong.vert \
-    textures/uvmap.png \
-    models/sphere.obj \
-    models/cylinder/cylinder.obj \
-    models/simpleroom/roomsimple.obj \
-    models/simpleroom/roomfull.obj \
-    models/teapot/teapot.obj \
-    models/isphere/isphere.obj \
-    models/monkey.obj \
-    models/monkey.mtl \
-    models/cube/cube.obj \
-    models/rect.obj \
-    models/teapot/2teapot.obj \
-    models/room/roominspace.obj \
-    models/room/roominspace.mtl \
-    models/tests/test.obj \
-    models/tests/test.mtl \
-    models/tests/maps/download.jpg \
-    models/tests/maps/download2.jpg \
-    models/tests/maps/download3.png \
-    models/room/maps/6-091229101607-5-lit.jpg \
-    models/room/maps/6-091229101607-7-lit.jpg \
-    models/room/maps/6-091229101608-9-lit.jpg \
-    models/room/maps/6-091229101608-11-lit.jpg \
-    models/room/maps/2457331_093930679000_2.jpg \
-    models/room/maps/20100724062419875118.jpg \
-    models/room/maps/20100724062419875422.jpg \
-    models/room/maps/bed_cover.jpg \
-    models/room/maps/beige_wood.jpg \
-    models/room/maps/black.jpg \
-    models/room/maps/bool_master.jpg \
-    models/room/maps/brown_wood.jpg \
-    models/room/maps/ceiling.jpg \
-    models/room/maps/clock.jpg \
-    models/room/maps/clock_body.jpg \
-    models/room/maps/earthinspace.jpg \
-    models/room/maps/face.png \
-    models/room/maps/floor.jpg \
-    models/room/maps/hair.jpg \
-    models/room/maps/kid_body.jpg \
-    models/room/maps/mpm_vol.01_p22_pages_top_diff.jpg \
-    models/room/maps/red.jpg \
-    models/room/maps/photo_1.jpg \
-    models/room/maps/photo_2.jpg \
-    models/room/maps/photo_3.jpg \
-    models/room/maps/photo_4.jpg \
-    models/room/maps/photo_5.jpg \
-    models/room/maps/photo_6.jpg \
-    models/room/maps/book_page.jpg \
-    models/room/maps/red_brown_wood.tif \
-    models/room/maps/wall.jpg \
     shaders/shadow.vert \
     shaders/shadow.frag

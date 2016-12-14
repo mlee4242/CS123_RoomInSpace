@@ -1,6 +1,5 @@
-#include <gl/glew.h>
-#include <gl/glu.h>
 #include <QDir>
+#include <QDateTime>
 #include "Scene.h"
 #include "glm/ext.hpp"
 #include "objmodeler/SceneObject.h"
@@ -8,29 +7,30 @@
 #include "objmodeler/PrimitiveObject.h"
 #include "objmodeler/delete_ptr.h"
 #include "Settings.h"
-#include <gl/glew.h>
 #define LIGHT_NEAR_CLIP    0.1f
 #define LIGHT_FAR_CLIP     5.5f
+#define SHADOWMAP_SIZE     2048
 Scene::Scene() :
    m_glTextMap(QMap<QString, QOpenGLTexture *>()),
+   m_sceneObjs(QVector<SceneObject *>()),
+   m_skyBoxes(QVector<SceneObject *>()),
    m_viewMat(glm::mat4x4()),
    m_projectMat(glm::mat4x4()),
    m_modelMat(glm::mat4x4()),
    m_eyeWidth(0), m_eyeHeight(0),
    m_leftBuffer(0), m_rightBuffer(0),
    m_objLoader(new ObjLoader),
-   m_controllerObj(0),
-   m_pickedObj(0),
-   m_depthMap(0),
-   m_sceneObjs(QVector<SceneObject *>()),
-   m_skyBoxes(QVector<SceneObject *>()),
-   m_currentSky(0) {
+   m_controllerObj(nullptr),
+   m_pickedObj(nullptr),
+   m_depthMap(nullptr),
+   m_currentSky(0),
+   m_pointLightPos(QVector3D(0, 1.8, 0)) {
    m_lightProjection = glm::ortho(-5.5f, 5.5f, -5.5f, 5.5f,
                                   LIGHT_NEAR_CLIP, LIGHT_FAR_CLIP);
-   m_lightDir =  glm::vec3(-0.5f, 2.0f, 1.75f);
-   m_lightView = glm::lookAt( m_lightDir,
-                             glm::vec3(0.0f, 0.0f, -2.0f),
-                             glm::vec3(0.0f, 1.0f, 0.0f));
+   m_dirLightDir = glm::vec3(1.0f, 3.0f, 1.0f);
+   m_lightView   = glm::lookAt(m_dirLightDir,
+                               glm::vec3(0.0f, 0.0f, -2.0f),
+                               glm::vec3(0.0f, 1.0f, 0.0f));
    m_lightSpaceMatrix = helper.mat4x4ToQMatrix4x4(m_lightProjection * m_lightView);
 }
 
@@ -50,24 +50,11 @@ Scene::~Scene() {
    if (m_shadowMapBuffer) {
       delete m_shadowMapBuffer;
    }
-   if (m_sceneObjs.size() > 0) {
-      for (auto obj : m_sceneObjs) {
-         if (obj->getObjectType() == PRIMITIVE_OBJECT) {
-            delete static_cast<PrimitiveObject *> (obj);
-         }
-         if (obj->getObjectType() == GROUP_OBJECT) {
-            delete static_cast<GroupObject *> (obj);
-         }
-         if (obj->getObjectType() == SCENE_OBJECT) {
-            delete (obj);
-         }
-      }
-   }
    if (m_glTextMap.size() > 0) {
       QMap<QString, QOpenGLTexture *>::iterator i;
       for (i = m_glTextMap.begin(); i != m_glTextMap.end(); i++) {
          QOpenGLTexture *ptr = i.value();
-         delete ptr;
+//         delete ptr;
       }
    }
 }
@@ -82,7 +69,7 @@ void Scene::generateTextureMap(const QVector<QString>& textures) {
 
 void Scene::categorizeSceneObjects(QVector<SceneObject *>& objects) {
    for (SceneObject *obj : objects) {
-      std::cout << obj->getName().toStdString() << std::endl;
+//      std::cout << obj->getName().toStdString() << std::endl;
       if (obj->getName().contains("Sky")) {
          obj->setActive(false);
          m_skyBoxes.push_front(obj);
@@ -102,10 +89,14 @@ void Scene::printControllerBoundingBox() {
    box.printVertices();
 }
 
-void Scene::picking(glm::mat4x4& mat){
-    // need to check if m_pickedObj is nothing
-    m_pickedObj->updateModelMatrixFromReference(mat);
+
+void Scene::pickedUp(glm::mat4x4& mat) {
+   // need to check if m_pickedObj is nothing
+   if (m_pickedObj) {
+      m_pickedObj->updateModelMatrixFromReference(mat);
+   }
 }
+
 
 bool Scene::pickUp(glm::mat4x4& mat) {
    BoundingBox controllerBox;
@@ -144,12 +135,6 @@ void Scene::putDown() {
 }
 
 
-void Scene::updatePickedObjPos(glm::mat4x4& mat) {
-   if(m_pickedObj)
-       m_pickedObj->updateModelMatrixFromReference(mat);
-}
-
-
 void Scene::initScene() {
    glEnable(GL_DEPTH_TEST);
    glEnable(GL_CULL_FACE);
@@ -179,17 +164,17 @@ void Scene::initScene() {
 
    m_phongShader.bind();
 
-   m_phongShader.setAttributeBuffer("vertex", GL_FLOAT, 0, 3, 8 * sizeof(GLfloat));
+   m_phongShader.setAttributeBuffer("vertex", GL_FLOAT, 0, 3, settings.VERTEX_UNIT_SIZE * sizeof(GLfloat));
    m_phongShader.enableAttributeArray("vertex");
 
-   m_phongShader.setAttributeBuffer("texCoord", GL_FLOAT, 3 * sizeof(GLfloat), 2, 8 * sizeof(GLfloat));
+   m_phongShader.setAttributeBuffer("texCoord", GL_FLOAT, 3 * sizeof(GLfloat), 2, settings.VERTEX_UNIT_SIZE * sizeof(GLfloat));
    m_phongShader.enableAttributeArray("texCoord");
 
-   m_phongShader.setAttributeBuffer("normal", GL_FLOAT, 5 * sizeof(GLfloat), 3, 8 * sizeof(GLfloat));
+   m_phongShader.setAttributeBuffer("normal", GL_FLOAT, 5 * sizeof(GLfloat), 3, settings.VERTEX_UNIT_SIZE * sizeof(GLfloat));
    m_phongShader.enableAttributeArray("normal");
 
 //   m_shader.release(); // FM :+
-//   m_vao.release();    // FM :+
+   m_vao.release();    // FM :+
    m_vertexBuffer.release();
 }
 
@@ -255,39 +240,28 @@ void Scene::setMatrices(const glm::mat4x4& v, const glm::mat4x4& p) {
 
 void Scene::initShadowMap() {
    QOpenGLFramebufferObjectFormat depthBuffFormat;
-   depthBuffFormat.setAttachment(QOpenGLFramebufferObject::Depth);
+   depthBuffFormat.setAttachment(QOpenGLFramebufferObject::CombinedDepthStencil);
    depthBuffFormat.setInternalTextureFormat(GL_RGBA8);
    depthBuffFormat.setSamples(settings.SAMPLES);
-   m_shadowMapBuffer = new QOpenGLFramebufferObject(2048, 2048, depthBuffFormat);
-}
+   m_shadowMapBuffer = new QOpenGLFramebufferObject(SHADOWMAP_SIZE, SHADOWMAP_SIZE, depthBuffFormat);
 
-int count = 0;
-void Scene::renderShawdowMap(vr::Hmd_Eye eye) {
-    if(count == 0){
+   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
    glEnable(GL_DEPTH_TEST);
-   glClear(GL_DEPTH_BUFFER_BIT);
    glEnable(GL_MULTISAMPLE);
-   glViewport(0, 0, 2048, 2048);
+   glViewport(0, 0, SHADOWMAP_SIZE, SHADOWMAP_SIZE);
    m_shadowMapBuffer->bind();
    m_shadowShader.bind();
-//   m_shadowMapBuffer->setAttachment(QOpenGLFramebufferObject::Depth);
-   renderEye(eye, m_shadowShader);
+   renderEye(m_shadowShader);
    m_shadowMapBuffer->release();
-//   GLint id = m_shadowMapBuffer->texture();
 
    m_depthMap = new QOpenGLTexture(m_shadowMapBuffer->toImage(false));
-   m_depthMap->setDepthStencilMode(QOpenGLTexture::DepthMode);
-   m_shadowShader.release();
-//   GLint id  = m_shadowMapBuffer->texture();
-//   GLint loc = m_phongShader.attributeLocation("shadowMap");
-   count++;
-   }
+}
 
+
+void Scene::bindShadowMap() {
    m_phongShader.bind();
-//   glBindTexture(GL_TEXTURE_2D, id);
-//   glBindTexture(GL_TEXTURE_2D, id);
-   m_phongShader.setUniformValue("shadowMap", 4);
-   m_depthMap->bind(4);
+   m_phongShader.setUniformValue("shadowMap", 0);
+   m_depthMap->bind(0);
 }
 
 
@@ -298,7 +272,7 @@ void Scene::renderLeft() {
 
    glEnable(GL_MULTISAMPLE);
    m_leftBuffer->bind();
-   renderEye(vr::Eye_Left, m_phongShader);
+   renderEye(m_phongShader);
    m_leftBuffer->release();
 
    QRect sourceRect(0, 0, m_eyeWidth, m_eyeHeight);
@@ -311,7 +285,7 @@ void Scene::renderLeft() {
 void Scene::renderRight() {
    glEnable(GL_MULTISAMPLE);
    m_rightBuffer->bind();
-   renderEye(vr::Eye_Right, m_phongShader);
+   renderEye(m_phongShader);
    m_rightBuffer->release();
 
    QRect sourceRect(0, 0, m_eyeWidth, m_eyeHeight);
@@ -325,7 +299,7 @@ void Scene::renderComp() {
    glClearColor(0.25f, 0.25f, 0.28f, 1.0f);
    glViewport(0, 0, m_width, m_height);
    glDisable(GL_MULTISAMPLE);
-   renderEye(vr::Eye_Right, m_phongShader);
+   renderEye(m_phongShader);
 }
 
 
@@ -354,11 +328,11 @@ void Scene::updateController(glm::mat4x4& mat) {
    //std::cerr << glm::to_string(mat) << std::endl;
    m_controllerObj->setActive(true);
    m_controllerObj->setModelMatrix(mat);
-   //  }
+   //}
 }
 
 
-void Scene::renderEye(vr::Hmd_Eye eye, QOpenGLShaderProgram& shader) {
+void Scene::renderEye(QOpenGLShaderProgram& shader) {
    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
    glEnable(GL_DEPTH_TEST);
    if (settings.SAMPLES == 0) {
@@ -369,13 +343,12 @@ void Scene::renderEye(vr::Hmd_Eye eye, QOpenGLShaderProgram& shader) {
    m_vao.bind();
    shader.bind();
    //added passing model matrix and the controller disappeared
-   //m_shader.setUniformValue("m", helper.mat4x4ToQMatrix4x4(m_modelMat));
+   shader.setUniformValue("pointLightPosition", m_pointLightPos);
    shader.setUniformValue("lightSpaceMatrix", m_lightSpaceMatrix);
    shader.setUniformValue("v", helper.mat4x4ToQMatrix4x4(m_viewMat));
    shader.setUniformValue("p", helper.mat4x4ToQMatrix4x4(m_projectMat));
-   shader.setUniformValue("leftEye", eye == vr::Eye_Left);
-   shader.setUniformValue("overUnder", settings.windowMode == OverUnder);
-   shader.setUniformValue("light", settings.lightOn);
+   shader.setUniformValue("lightOn", settings.lightOn);
+   shader.setUniformValue("shadowOn", settings.shadowOn);
 
    for (auto obj : m_sceneObjs) {
       obj->draw(shader, m_glTextMap);

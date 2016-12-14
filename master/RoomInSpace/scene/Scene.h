@@ -37,25 +37,28 @@ public:
    void renderLeft();
    void renderRight();
    void renderComp();
-   void renderShawdowMap(vr::Hmd_Eye eye);
+   void bindShadowMap();
    void nextSky();
    void printControllerBoundingBox();
    void *getResolveTexture();
 
+   // return if there is an object is picked up
    bool pickUp(glm::mat4x4& mat);
-   void picking(glm::mat4x4& mat);
+
+   // if an object is picked up, update its model matrix
+   void pickedUp(glm::mat4x4& mat);
+
+   // put down objects
    void putDown();
-   void updatePickedObjPos(glm::mat4x4& mat);
 
 private:
-   void renderEye(vr::Hmd_Eye eye, QOpenGLShaderProgram& shader);
+   void renderEye(QOpenGLShaderProgram& shader);
    void generateTextureMap(const QVector<QString>& textures);
    void categorizeSceneObjects(QVector<SceneObject *>& objects);
    bool compileShader(QOpenGLShaderProgram& shader,
                       const QString&        vertexShaderPath,
                       const QString&        fragmentShaderPath);
 
-   // QOpenGLShaderProgram m_shader;
    QOpenGLShaderProgram m_shadowShader;
    QOpenGLShaderProgram m_phongShader;
    QOpenGLBuffer m_vertexBuffer;
@@ -65,8 +68,9 @@ private:
    QVector<SceneObject *> m_sceneObjs;
    QVector<SceneObject *> m_skyBoxes;
    int m_currentSky;
-   SceneObject* m_controllerObj;
-   SceneObject* m_pickedObj;
+
+   SceneObject *m_controllerObj;
+   SceneObject *m_pickedObj;
 
    QOpenGLFramebufferObject *m_leftBuffer;
    QOpenGLFramebufferObject *m_rightBuffer;
@@ -79,10 +83,11 @@ private:
    uint32_t m_eyeWidth, m_eyeHeight;
    int m_width, m_height;
 
-   glm::mat4        m_lightProjection;
-   glm::mat4        m_lightView;
-   glm::vec3        m_lightDir;
-   QMatrix4x4       m_lightSpaceMatrix;
+   glm::mat4 m_lightProjection;
+   glm::mat4 m_lightView;
+   glm::vec3 m_dirLightDir;
+   QVector3D m_pointLightPos;
+   QMatrix4x4 m_lightSpaceMatrix;
 };
 
 #endif // SCENE_H

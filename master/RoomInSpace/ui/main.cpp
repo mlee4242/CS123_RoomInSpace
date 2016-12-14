@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include <QApplication>
 #include <QSurfaceFormat>
+#include <QMessageBox>
 #include <QSettings>
 #include "Settings.h"
 #include <chrono>
@@ -13,13 +14,22 @@ int main(int argc, char *argv[]) {
    glFormat.setProfile(QSurfaceFormat::CoreProfile);
    //glFormat.setSamples(0);
    glFormat.setSwapInterval(0);
-
    glFormat.setOption(QSurfaceFormat::DebugContext);
-
    QSurfaceFormat::setDefaultFormat(glFormat);
-
    QApplication a(argc, argv);
-   MainWindow   w;
+   QMessageBox msgBox;
+   msgBox.setWindowTitle("VR mode");
+   msgBox.setText("Run it in VR mode?");
+   msgBox.setStandardButtons(QMessageBox::Yes);
+   msgBox.addButton(QMessageBox::No);
+   msgBox.setDefaultButton(QMessageBox::No);
+   if (msgBox.exec() == QMessageBox::Yes) {
+      settings.VRMode = true;
+   }else {
+      settings.VRMode = false;
+   }
+
+   MainWindow w;
    w.show();
 
    return a.exec();

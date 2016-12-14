@@ -18,7 +18,6 @@ enum ObjectType {
 };
 class SceneObject
 {
-   friend class ObjLoader;
 public:
    SceneObject();
 
@@ -26,7 +25,10 @@ public:
    glm::mat4x4 getModelMatrix();
    ObjectType getObjectType();
 
+   // return the bounding box of this object in box
    void getBox(BoundingBox& box);
+
+   // update the bounding box of this object when adding an extra vertice
    void updateBox(const glm::vec3& p);
    void setName(const QString& str);
    void setModelMatrix(glm::mat4x4& mat);
@@ -42,8 +44,6 @@ public:
    bool isActive();
    bool isPicked();
 
-   virtual void free() {}
-
    virtual void draw(QOpenGLShaderProgram& shader,
                      QMap<QString, QOpenGLTexture *>& txtMap) {}
 
@@ -55,12 +55,13 @@ protected:
    QString m_name;
    BoundingBox m_box;
    glm::mat4x4 m_modelMat;
+   // the reference matrix represents the matrix that transforms the object back to the origin
+   // it is set when collision happens
    glm::mat4x4 m_referenceMat;
    ObjectType m_type;
    bool m_pickable;
    bool m_isPicked;
    bool m_isActive;
-   bool m_isHit;
    QElapsedTimer m_timer;
 };
 

@@ -18,7 +18,6 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QRadioButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -35,8 +34,6 @@ public:
     QHBoxLayout *horizontalLayout_2;
     QGroupBox *groupBox;
     QVBoxLayout *verticalLayout_3;
-    QRadioButton *overUnderButton;
-    QRadioButton *sideSideButton;
     QLabel *fpsLabel;
     QStatusBar *statusBar;
 
@@ -74,17 +71,6 @@ public:
         verticalLayout_3->setSpacing(6);
         verticalLayout_3->setContentsMargins(11, 11, 11, 11);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
-        overUnderButton = new QRadioButton(groupBox);
-        overUnderButton->setObjectName(QStringLiteral("overUnderButton"));
-        overUnderButton->setChecked(true);
-
-        verticalLayout_3->addWidget(overUnderButton);
-
-        sideSideButton = new QRadioButton(groupBox);
-        sideSideButton->setObjectName(QStringLiteral("sideSideButton"));
-
-        verticalLayout_3->addWidget(sideSideButton);
-
 
         horizontalLayout_2->addWidget(groupBox);
 
@@ -115,8 +101,6 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Room In Space", 0));
         groupBox->setTitle(QApplication::translate("MainWindow", "3D Mode", 0));
-        overUnderButton->setText(QApplication::translate("MainWindow", "Over and Under", 0));
-        sideSideButton->setText(QApplication::translate("MainWindow", "Side by Side", 0));
         fpsLabel->setText(QApplication::translate("MainWindow", "FPS", 0));
     } // retranslateUi
 

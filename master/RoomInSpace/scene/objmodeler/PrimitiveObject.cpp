@@ -8,13 +8,23 @@
 #include <chrono>
 #include "glm/ext.hpp"
 
+/**
+ * @brief PrimitiveObject::PrimitiveObject
+ */
 PrimitiveObject::PrimitiveObject() : m_setted(0)
 {}
 
+/**
+ * @brief PrimitiveObject::~PrimitiveObject
+ */
 
 PrimitiveObject::~PrimitiveObject()
 {}
 
+/**
+ * @brief PrimitiveObject::setVertices
+ * @param verts
+ */
 void PrimitiveObject::setVertices(const QVector<GLfloat>& verts) {
    m_vertices    = verts;
    m_numVertices = verts.size();
@@ -22,27 +32,48 @@ void PrimitiveObject::setVertices(const QVector<GLfloat>& verts) {
 }
 
 
+/**
+ * @brief PrimitiveObject::setMaterial
+ * @param mtl
+ */
 void PrimitiveObject::setMaterial(const Material& mtl) {
    m_material = mtl;
    m_setted++;
 }
 
 
+/**
+ * @brief PrimitiveObject::setOffset
+ * @param offset
+ */
 void PrimitiveObject::setOffset(int offset) {
    m_offset = offset;
 }
 
 
+/**
+ * @brief PrimitiveObject::setNumVertices
+ * @param num
+ */
 void PrimitiveObject::setNumVertices(int num) {
    m_numVertices = num;
 }
 
 
+/**
+ * @brief PrimitiveObject::getNumVertices
+ * @return
+ */
 int PrimitiveObject::getNumVertices() {
    return m_numVertices;
 }
 
 
+/**
+ * @brief PrimitiveObject::draw
+ * @param shader
+ * @param txtMap
+ */
 void PrimitiveObject::draw(QOpenGLShaderProgram& shader,
                            QMap<QString, QOpenGLTexture *>& txtMap) {
    glm::mat4x4 modelMat = m_modelMat;
@@ -58,6 +89,8 @@ void PrimitiveObject::draw(QOpenGLShaderProgram& shader,
    shader.setUniformValue("isInside", !m_name.contains("Sky") && !m_name.contains("UFO"));
    shader.setUniformValue("pickable", m_pickable);
    shader.setUniformValue("diffuse", helper.vec3ToQVector3D(m_material.Kd));
+   shader.setUniformValue("ambient", helper.vec3ToQVector3D(m_material.Ka));
+   shader.setUniformValue("specular", helper.vec3ToQVector3D(m_material.Ks));
 
    if (m_material.map_Kd != "") {
       shader.setUniformValue("useTex", 1);
@@ -83,5 +116,5 @@ void PrimitiveObject::draw(QOpenGLShaderProgram& shader,
       shader.setUniformValue("useNormal", 0);
    }
 
-   glDrawArrays(GL_TRIANGLES, m_offset / 8, m_numVertices / 8);
+   glDrawArrays(GL_TRIANGLES, m_offset, m_numVertices);
 }

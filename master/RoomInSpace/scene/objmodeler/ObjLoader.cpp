@@ -10,7 +10,8 @@
 #include "PrimitiveObject.h"
 #include "GroupObject.h"
 #include "Settings.h"
-ObjLoader::ObjLoader() : m_materialMap(QMap<QString, Material>())
+ObjLoader::ObjLoader() : m_materialMap(QMap<QString, Material>()),
+   m_allObjs(QVector<PrimitiveObject *>())
 {}
 
 ObjLoader::~ObjLoader() {}
@@ -24,6 +25,9 @@ void ObjLoader::loadObj(const QString&          target,
 }
 
 
+/**
+ * @brief ObjLoader::setUpPickableList
+ */
 void ObjLoader::setUpPickableList() {
    settings.pickableList.push_back("Mug");
    settings.pickableList.push_back("OpenBook");
@@ -34,6 +38,10 @@ void ObjLoader::setUpPickableList() {
 }
 
 
+/**
+ * @brief ObjLoader::getTextureMap
+ * @param textMap
+ */
 void ObjLoader::getTextureMap(QVector<QString>& textMap) {
    for (Material m : m_materialMap) {
       if ((m.map_Ka != "") && !textMap.contains(m.map_Ka)) {
@@ -52,6 +60,10 @@ void ObjLoader::getTextureMap(QVector<QString>& textMap) {
 }
 
 
+/**
+ * @brief ObjLoader::loadMaterials
+ * @param target
+ */
 void ObjLoader::loadMaterials(const QString& target) {
    QString mtlPath = QDir::currentPath() + "/" + target + ".mtl";
    QFile   mtlFile(mtlPath);
@@ -120,6 +132,11 @@ void ObjLoader::loadMaterials(const QString& target) {
 }
 
 
+/**
+ * @brief ObjLoader::parseVertices
+ * @param target
+ * @param cVerts
+ */
 void ObjLoader::parseVertices(const QString& target, QVector<GLfloat>& cVerts) {
    QString objPath = QDir::currentPath() + "/" + target + ".obj";
    QFile   objFile(objPath);
@@ -144,27 +161,29 @@ void ObjLoader::parseVertices(const QString& target, QVector<GLfloat>& cVerts) {
             {
                line = in.readLine();
                data = line.simplified().split(" ");
-               // # object o_Chair
-               if ((data.length() > 0) && (data[0] == "v")) {
-                  float v1 = data[1].toFloat() + 0.1, v2 = data[2].toFloat() - 0.5f, v3 = data[3].toFloat();
-                  // flip y and z
 
+               if ((data.length() > 0) && (data[0] == "v")) {
+                  float v1 = data[1].toFloat(), v2 = data[2].toFloat(), v3 = data[3].toFloat();
+                  // add vertices
                   verts.append(v1);
                   verts.append(v2);
                   verts.append(v3);
-
                   obj->updateBox(glm::vec3(v1, v2, v3));
                }else if ((data.length() > 0) && (data[0] == "vt")) {
+                  // add uv coordinates
                   uvs.append(data[1].toFloat());
                   uvs.append(data[2].toFloat());
                }else if ((data.length() > 0) && (data[0] == "vn")) {
+                  // add normals
                   ns.append(data[1].toFloat());
                   ns.append(data[2].toFloat());
                   ns.append(data[3].toFloat());
                }else if ((data.length() > 0) && (data[0] == "usemtl")) {
+                  // map material
                   QString mtlName = data[1];
                   obj->setMaterial(m_materialMap[mtlName]);
                }else if ((data.length() > 0) && (data[0] == "f")) {
+                  // according to the f *** line, put vertices, uvs and normals in the correct order
                   if (data.length() == 5) { // this is quad
                      int         tris[] = { 0, 1, 2, 0, 2, 3 };
                      QStringList row;
@@ -176,21 +195,17 @@ void ObjLoader::parseVertices(const QString& target, QVector<GLfloat>& cVerts) {
                         int n  = row[2].toInt() - 1;
                         for (int j = 0; j < 3; j++) {
                            cVerts.append(verts.at(v * 3 + j));
-                           offset++;
-                           count++;
                         }
                         for (int j = 0; j < 2; j++) {
                            cVerts.append(uvs.at(vt * 2 + j));
-                           offset++;
-                           count++;
                         }
                         for (int j = 0; j < 3; j++) {
                            cVerts.append(ns.at(n * 3 + j));
-                           offset++;
-                           count++;
                         }
+                        offset += 1;
+                        count  += 1;
                      }
-                  }else {
+                  }else { // this is triangle
                      QStringList row;
                      for (int i = 1; i < 4; i++) {
                         row = data[i].split("/");
@@ -199,8 +214,6 @@ void ObjLoader::parseVertices(const QString& target, QVector<GLfloat>& cVerts) {
                         int n  = row[2].toInt() - 1;
                         for (int j = 0; j < 3; j++) {
                            cVerts.append(verts.at(v * 3 + j));
-                           offset++;
-                           count++;
                         }
                         for (int j = 0; j < 2; j++) {
                            if (vt == -1) {
@@ -208,20 +221,16 @@ void ObjLoader::parseVertices(const QString& target, QVector<GLfloat>& cVerts) {
                            }else{
                               cVerts.append(uvs.at(vt * 2 + j));
                            }
-                           offset++;
-                           count++;
                         }
                         for (int j = 0; j < 3; j++) {
                            if (n == -1) {
                               cVerts.append(0);
-                              offset++;
-                              count++;
                            }else{
                               cVerts.append(ns.at(n * 3 + j));
-                              offset++;
-                              count++;
                            }
                         }
+                        offset += 1;
+                        count  += 1;
                      }
                   }
                   // end of parsing one line of f ...
@@ -230,7 +239,6 @@ void ObjLoader::parseVertices(const QString& target, QVector<GLfloat>& cVerts) {
                   nextObj = true;
                }
             } // end of parsing one obj
-//            std::cout << "parsed " << obj->getName().toStdString() << std::endl;
             obj->setNumVertices(count);
             obj->setObjectType(PRIMITIVE_OBJECT);
             m_allObjs.append(obj);
@@ -240,6 +248,10 @@ void ObjLoader::parseVertices(const QString& target, QVector<GLfloat>& cVerts) {
 }
 
 
+/**
+ * @brief ObjLoader::buildGroups
+ * @param results
+ */
 void ObjLoader::buildGroups(QVector<SceneObject *>& results) {
    QMap<QString, GroupObject *> groupDicts = QMap<QString, GroupObject *>();
    for (PrimitiveObject *ptr : m_allObjs) {
@@ -273,12 +285,3 @@ void ObjLoader::buildGroups(QVector<SceneObject *>& results) {
       }
    }
 }
-
-
-//   for (SceneObject *ptr : results) {
-//      BoundingBox b;
-//      std::cout << (ptr->getName()).toStdString() << std::endl;
-//      ptr->getBox(b);
-//      b.print();
-//   }
-//}

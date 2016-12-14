@@ -12,8 +12,8 @@ enum RenderMode {
 };
 
 enum WindowMode {
-   OverUnder,
-   SideBySide,
+   OVER_UNDER,
+   SIDE_BY_SIDE,
    NUM_WINDOWS_TYPES
 };
 
@@ -24,14 +24,15 @@ struct Settings
    float            cameraFar  = 100.f;      // The distance from the camera to the far clipping plane.
 
    int              renderMode       = COMPUTER_MODE;
-   int              windowMode       = OverUnder;
+   int              windowMode       = OVER_UNDER;
    int              VERTEX_UNIT_SIZE = 8;
    int              SAMPLES          = 4;
 
    QString          path    = "models/room/";
    QString          target  = "roominspace";
-   bool             VRMode  = true;
+   bool             VRMode  = false;
    bool             lightOn = true;
+   bool             shadowOn = true;
 
    QVector<QString> pickableList;
    long int         frames = 0;
