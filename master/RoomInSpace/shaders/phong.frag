@@ -18,30 +18,22 @@ in vec3 n;                   // world-space normal
 out vec4 fragColor;
 const vec3 lightPosition = vec3(0, 1.8, 0);
 
-in VS_OUT {
-    vec3 FragPos;
-    vec3 Normal;
-    vec2 TexCoords;
-    vec4 FragPosLightSpace;
-} fs_in;
+in vec4 FragPosLightSpace;
+
 
 float ShadowCalculation(vec4 fragPosLightSpace)
 {
     // perform perspective divide
+
     vec3 projCoords = fragPosLightSpace.xyz / fragPosLightSpace.w;
     // Transform to [0,1] range
-//    vec2 uv = vec2(projCoords.x,  projCoords.y);
-    projCoords.x =  projCoords.x * 0.5 - 0.5;
-    projCoords.y = -projCoords.y * 0.5 + 0.5;
-    projCoords.z = -projCoords.z * 0.5 + 0.5;
-//    projCoords.z =  fragPosLightSpace.z;
-//    projCoords.xy = projCoords.xy * 0.5 + 0.5;
+    projCoords.x = projCoords.x * 0.5 + 0.5;
+    projCoords.y = projCoords.y * 0.5 + 0.5;
+    float currentDepth = 0.5f * projCoords.z + 0.5;
     // Get closest depth value from light's perspective (using [0,1] range fragPosLight as coords)
-    float closestDepth = 1.f - texture2D(shadowMap, projCoords.xy).x;
+    float closestDepth = texture2D(shadowMap, projCoords.xy).x;
     // Get depth of current fragment from light's perspective
-    float currentDepth = projCoords.z;
-    // Check whether current frag pos is in shadow
-    return currentDepth < closestDepth  ? 0.5 : 0.0;
+    return currentDepth * 1000 - closestDepth * 1000 > 10 ? 0.75 : 1.0;
 }
 
 
@@ -72,14 +64,17 @@ void main()
   }
 
   if(isInside){
-      shadow = ShadowCalculation(fs_in.FragPosLightSpace);
-      fragColor = (1.0f - shadow) * fragColor;
+      shadow = ShadowCalculation(FragPosLightSpace);
+      fragColor = shadow * fragColor;
   }
 
   // light on / light off
   if(!light && isInside){
       fragColor = 0.3 * fragColor;
   }
+
+//  vec3 projCoords = FragPosLightSpace.xyz / FragPosLightSpace.w;
+//  fragColor = vec4(projCoords.z * 0.5, projCoords.z * 0.5, projCoords.z * 0.5, 1.f);
 //  if(useNormal){
 //      fragColor = texture2D(normalMap, uv);
 //  }

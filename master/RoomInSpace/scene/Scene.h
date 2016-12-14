@@ -80,6 +80,7 @@ private:
 
    glm::mat4        m_lightProjection;
    glm::mat4        m_lightView;
+   glm::vec3        m_lightDir;
    QMatrix4x4       m_lightSpaceMatrix;
 };
 
