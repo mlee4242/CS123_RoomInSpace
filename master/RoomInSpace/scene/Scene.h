@@ -42,8 +42,9 @@ public:
    void printControllerBoundingBox();
    void *getResolveTexture();
 
-   void pickUp(bool& pickStatus, glm::mat4x4& mat);
-   void putDown(bool& pickStatus);
+   bool pickUp(glm::mat4x4& mat);
+   void picking(glm::mat4x4& mat);
+   void putDown();
    void updatePickedObjPos(glm::mat4x4& mat);
 
 private:
@@ -64,8 +65,8 @@ private:
    QVector<SceneObject *> m_sceneObjs;
    QVector<SceneObject *> m_skyBoxes;
    int m_currentSky;
-   std::unique_ptr<SceneObject> m_controllerObj;
-   std::shared_ptr<SceneObject> m_pickedObj;
+   SceneObject* m_controllerObj;
+   SceneObject* m_pickedObj;
 
    QOpenGLFramebufferObject *m_leftBuffer;
    QOpenGLFramebufferObject *m_rightBuffer;

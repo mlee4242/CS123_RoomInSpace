@@ -33,7 +33,7 @@ float ShadowCalculation(vec4 fragPosLightSpace)
     // Get closest depth value from light's perspective (using [0,1] range fragPosLight as coords)
     float closestDepth = texture2D(shadowMap, projCoords.xy).x;
     // Get depth of current fragment from light's perspective
-    return currentDepth * 1000 - closestDepth * 1000 > 10 ? 0.75 : 1.0;
+    return currentDepth * 1000 - closestDepth * 1000 > 5 ? 0.75 : 1.0;
 }
 
 
@@ -43,7 +43,6 @@ void main()
   // don't know what the hell is this
   vec2 uv = vec2(fragTexCoord.x, 1.f - fragTexCoord.y);
   vec3 normal = n;
-  float shadow = 0.0f;
   if(useTex){
      if(useBump){ // bump mapping
         // do something
@@ -64,7 +63,7 @@ void main()
   }
 
   if(isInside){
-      shadow = ShadowCalculation(FragPosLightSpace);
+      float shadow = ShadowCalculation(FragPosLightSpace);
       fragColor = shadow * fragColor;
   }
 

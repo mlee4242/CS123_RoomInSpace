@@ -19,14 +19,15 @@ Scene::Scene() :
    m_eyeWidth(0), m_eyeHeight(0),
    m_leftBuffer(0), m_rightBuffer(0),
    m_objLoader(new ObjLoader),
+   m_controllerObj(0),
+   m_pickedObj(0),
    m_depthMap(0),
    m_sceneObjs(QVector<SceneObject *>()),
    m_skyBoxes(QVector<SceneObject *>()),
-   m_currentSky(0),
-   m_controllerObj(nullptr) {
+   m_currentSky(0) {
    m_lightProjection = glm::ortho(-5.5f, 5.5f, -5.5f, 5.5f,
                                   LIGHT_NEAR_CLIP, LIGHT_FAR_CLIP);
-   m_lightDir =  glm::vec3(-0.5f, 1.0f, 1.75f);
+   m_lightDir =  glm::vec3(-0.5f, 2.0f, 1.75f);
    m_lightView = glm::lookAt( m_lightDir,
                              glm::vec3(0.0f, 0.0f, -2.0f),
                              glm::vec3(0.0f, 1.0f, 0.0f));
@@ -87,7 +88,7 @@ void Scene::categorizeSceneObjects(QVector<SceneObject *>& objects) {
          m_skyBoxes.push_front(obj);
       }else if (obj->getName().contains("Controller")) {
          obj->setActive(false);
-         m_controllerObj.reset(obj);
+         m_controllerObj = obj;
       }else{
          m_sceneObjs.push_back(obj);
       }
@@ -101,8 +102,12 @@ void Scene::printControllerBoundingBox() {
    box.printVertices();
 }
 
+void Scene::picking(glm::mat4x4& mat){
+    // need to check if m_pickedObj is nothing
+    m_pickedObj->updateModelMatrixFromReference(mat);
+}
 
-void Scene::pickUp(bool& pickStatus, glm::mat4x4& mat) {
+bool Scene::pickUp(glm::mat4x4& mat) {
    BoundingBox controllerBox;
    BoundingBox objBox;
    bool        collide;
@@ -117,31 +122,31 @@ void Scene::pickUp(bool& pickStatus, glm::mat4x4& mat) {
          }
          std::cout << "collide value is " << std::endl;
          std::cout << collide << std::endl;
-         m_pickedObj.reset(obj);
+         m_pickedObj = obj;
          m_pickedObj->setReferenceMatrx(mat);
 
          std::cout << "this is reference matrix" << std::endl;
          std::cout << glm::to_string(mat) << std::endl;
          m_pickedObj->updateModelMatrixFromReference(mat);
          m_pickedObj->setIsPicked(true);
-         pickStatus = true;
-         break;
+         return true;
       }
    }
+   return false;
 }
 
 
-void Scene::putDown(bool& pickStatus) {
+void Scene::putDown() {
    m_pickedObj->resetModelMatrix();
    m_pickedObj->resetReferenceMatrx();
    m_pickedObj->setIsPicked(false);
-   m_pickedObj.reset();
-   pickStatus = false;
+   m_pickedObj = nullptr;
 }
 
 
 void Scene::updatePickedObjPos(glm::mat4x4& mat) {
-   m_pickedObj->updateModelMatrixFromReference(mat);
+   if(m_pickedObj)
+       m_pickedObj->updateModelMatrixFromReference(mat);
 }
 
 
@@ -253,23 +258,21 @@ void Scene::initShadowMap() {
    depthBuffFormat.setAttachment(QOpenGLFramebufferObject::Depth);
    depthBuffFormat.setInternalTextureFormat(GL_RGBA8);
    depthBuffFormat.setSamples(settings.SAMPLES);
-   m_shadowMapBuffer = new QOpenGLFramebufferObject(1024, 1024, depthBuffFormat);
+   m_shadowMapBuffer = new QOpenGLFramebufferObject(2048, 2048, depthBuffFormat);
 }
 
-
+int count = 0;
 void Scene::renderShawdowMap(vr::Hmd_Eye eye) {
+    if(count == 0){
    glEnable(GL_DEPTH_TEST);
    glClear(GL_DEPTH_BUFFER_BIT);
    glEnable(GL_MULTISAMPLE);
-   glViewport(0, 0, 1024, 1024);
+   glViewport(0, 0, 2048, 2048);
    m_shadowMapBuffer->bind();
    m_shadowShader.bind();
 //   m_shadowMapBuffer->setAttachment(QOpenGLFramebufferObject::Depth);
    renderEye(eye, m_shadowShader);
    m_shadowMapBuffer->release();
-   if (m_depthMap) {
-      delete m_depthMap;
-   }
 //   GLint id = m_shadowMapBuffer->texture();
 
    m_depthMap = new QOpenGLTexture(m_shadowMapBuffer->toImage(false));
@@ -277,6 +280,8 @@ void Scene::renderShawdowMap(vr::Hmd_Eye eye) {
    m_shadowShader.release();
 //   GLint id  = m_shadowMapBuffer->texture();
 //   GLint loc = m_phongShader.attributeLocation("shadowMap");
+   count++;
+   }
 
    m_phongShader.bind();
 //   glBindTexture(GL_TEXTURE_2D, id);
@@ -356,7 +361,6 @@ void Scene::updateController(glm::mat4x4& mat) {
 void Scene::renderEye(vr::Hmd_Eye eye, QOpenGLShaderProgram& shader) {
    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
    glEnable(GL_DEPTH_TEST);
-
    if (settings.SAMPLES == 0) {
       glDisable(GL_MULTISAMPLE);
    } else{

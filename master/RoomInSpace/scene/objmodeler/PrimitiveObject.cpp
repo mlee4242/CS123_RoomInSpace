@@ -82,5 +82,6 @@ void PrimitiveObject::draw(QOpenGLShaderProgram& shader,
    }else{
       shader.setUniformValue("useNormal", 0);
    }
+
    glDrawArrays(GL_TRIANGLES, m_offset / 8, m_numVertices / 8);
 }
