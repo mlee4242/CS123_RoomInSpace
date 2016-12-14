@@ -65,7 +65,7 @@ private:
    QVector<SceneObject *> m_skyBoxes;
    int m_currentSky;
    std::unique_ptr<SceneObject> m_controllerObj;
-   std::unique_ptr<SceneObject> m_pickedObj;
+   std::shared_ptr<SceneObject> m_pickedObj;
 
    QOpenGLFramebufferObject *m_leftBuffer;
    QOpenGLFramebufferObject *m_rightBuffer;

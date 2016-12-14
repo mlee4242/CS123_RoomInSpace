@@ -134,7 +134,7 @@ void Scene::putDown(bool& pickStatus) {
    m_pickedObj->resetModelMatrix();
    m_pickedObj->resetReferenceMatrx();
    m_pickedObj->setIsPicked(false);
-   //m_pickedObj.reset();
+   m_pickedObj.reset();
    pickStatus = false;
 }
 
