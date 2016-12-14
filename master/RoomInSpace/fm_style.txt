@@ -1165,16 +1165,16 @@ nl_multi_line_cond                        = false    # false/true
 nl_multi_line_define                      = true     # false/true
 
 # Whether to put a newline before 'case' statement
-nl_before_case                            = true     # false/true
+nl_before_case                            = false     # false/true
 
 # Add or remove newline between ')' and 'throw'
 nl_before_throw                           = ignore   # ignore/add/remove/force
 
 # Whether to put a newline after 'case' statement
-nl_after_case                             = true     # false/true
+nl_after_case                             = false     # false/true
 
 # Add or remove a newline between a case ':' and '{'. Overrides nl_after_case.
-nl_case_colon_brace                       = ignore   # ignore/add/remove/force
+nl_case_colon_brace                       = remove   # ignore/add/remove/force
 
 # Newline between namespace and {
 nl_namespace_brace                        = ignore   # ignore/add/remove/force
