@@ -243,7 +243,13 @@ void VRView::updatePoses() {
             if (m_hasPicked == true) {
                m_scene->pickedUp(m_matrixDevicePose[i]);
             }
-            //m_scene->printControllerBoundingBox();
+//            std::cout << "velocity: " <<m_trackedDevicePose[i].vVelocity.v[0] << std::endl;
+            auto velocity = m_trackedDevicePose[i].vVelocity.v;
+            if ((std::fabs(velocity[0]) > 3.f || std::fabs(velocity[1]) > 3.f || std::fabs(velocity[2] > 3.f))&& m_hasPicked == true){
+                m_scene->putDown();
+                m_hasPicked = false;
+            }
+
          }
       }
    }
@@ -283,36 +289,9 @@ void VRView::updateInput() {
                std::cout << "Pick up something? " << m_hasPicked << std::endl;
                m_preClickTime = m_curClickTime;
                break;
-            }else{
-              m_scene->putDown();
-              m_hasPicked    = false;
             }
+         }
 
-         }//testing
-
-//            if ((m_hasPicked == true) && (std::fabs(diff) > 0.2)) {
-//               //std::cout << "this should be true when you put it down" << std::endl;
-//               std::cout << "there is a picked obj. update its matrix." << std::endl;
-//               m_scene->pickedUp(m_matrixDevicePose[i]);
-//               //std::cout << "now it should be false " << m_hasPicked << std::endl;
-
-//            }
-        // } // end of grap
-
-//         diff = m_curClickTime - m_preClickTime;
-//         if (!(state.ulButtonPressed & vr::ButtonMaskFromId(vr::k_EButton_SteamVR_Trigger)) &&
-//             ((m_hasPicked == true) && (std::fabs(diff) > 0.2))) {
-//            m_scene->putDown();
-//            m_hasPicked    = false;
-//            m_preClickTime = m_curClickTime;
-//            std::cout << "put back" << std::endl;
-//         } // end of put down
-//        if (m_hasPicked == true){
-//          if (state.ulButtonPressed & vr::ButtonMaskFromId(vr::k_EButton_SteamVR_Trigger)) {
-//                  m_scene->putDown();
-//                  m_hasPicked    = false;
-//              }
-//          }
 
          diff = m_curClickTime - m_preClickTime;
          if (state.ulButtonPressed & vr::ButtonMaskFromId(vr::k_EButton_Grip)) {
