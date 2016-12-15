@@ -13,8 +13,12 @@
 #include <QOpenGLDebugMessage>
 #include <QOpenGLDebugLogger>
 #include <QOpenGLTexture>
-#include <openvr_mingw.hpp>
+#include <openvr_mingw.hpp> // openvr.h for MSVC
 #include <memory>
+
+/**
+ * @brief The VRView class
+ */
 class VRView : public QOpenGLWidget, protected QOpenGLFunctions_4_1_Core
 {
    Q_OBJECT

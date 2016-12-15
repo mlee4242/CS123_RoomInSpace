@@ -19,6 +19,7 @@ GroupObject::~GroupObject() {
  * @param obj
  */
 void GroupObject::addPrimitiveObject(PrimitiveObject *obj) {
+   m_setted++;
    m_box.updateBox(obj->m_box);
    m_primObjects.push_back(obj);
 }

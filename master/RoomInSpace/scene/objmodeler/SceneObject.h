@@ -16,11 +16,16 @@ enum ObjectType {
    GROUP_OBJECT,
    PRIMITIVE_IN_GROUP
 };
+
+/**
+ * @brief The SceneObject class
+ */
 class SceneObject
 {
 public:
    SceneObject();
-
+   // the name of the object
+   // for group object, it is the name of the group
    QString getName();
    glm::mat4x4 getModelMatrix();
    ObjectType getObjectType();
@@ -30,8 +35,13 @@ public:
 
    // update the bounding box of this object when adding an extra vertice
    void updateBox(const glm::vec3& p);
+
+   // set the name of the object, for group object, it is the name of the group
    void setName(const QString& str);
    void setModelMatrix(glm::mat4x4& mat);
+
+   // update model matrix by first transforming it back to origin (xreference matrix)
+   // the times the pose matrix (where the controller is)
    void updateModelMatrixFromReference(const glm::mat4x4& poseMat);
    void resetModelMatrix();
    void resetReferenceMatrx();
@@ -43,6 +53,7 @@ public:
    bool isPickable();
    bool isActive();
    bool isPicked();
+   bool isSetted();
 
    virtual void draw(QOpenGLShaderProgram& shader,
                      QMap<QString, QOpenGLTexture *>& txtMap) {}
@@ -61,7 +72,10 @@ protected:
    ObjectType m_type;
    bool m_pickable;
    bool m_isPicked;
+   // if this object is active, active object will be drawn on the screeen
    bool m_isActive;
+   int m_setted;
+   // the inner timer for this object, can be used in animation
    QElapsedTimer m_timer;
 };
 

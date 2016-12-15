@@ -1,6 +1,7 @@
 #include "SceneObject.h"
 #include <iostream>
 #include <glm/ext.hpp>
+
 SceneObject::SceneObject() : m_name(""),
    m_box(BoundingBox()),
    m_modelMat(glm::mat4x4()),
@@ -9,7 +10,8 @@ SceneObject::SceneObject() : m_name(""),
    m_pickable(false),
    m_isPicked(false),
    m_isActive(true),
-   m_timer(QElapsedTimer()){
+   m_setted(0),
+   m_timer(QElapsedTimer()) {
    m_timer.start();
 }
 
@@ -157,6 +159,11 @@ void SceneObject::setIsPicked(bool b) {
  */
 bool SceneObject::isActive() {
    return m_isActive;
+}
+
+
+bool SceneObject::isSetted() {
+   return m_setted > 0;
 }
 
 

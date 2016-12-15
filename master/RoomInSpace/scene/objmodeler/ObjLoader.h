@@ -14,7 +14,7 @@ public:
    ~ObjLoader();
    // load an obj file
    void loadObj(const QString&          target,
-                QVector<SceneObject *>& results,
+                QVector<SceneObject *> &results,
                 QVector<GLfloat>&       cVerts);
 
    // get the texture map for the loaded obj files
@@ -34,7 +34,11 @@ private:
    void setUpPickableList();
 
    QMap<QString, Material> m_materialMap;
-   QVector<PrimitiveObject *> m_allObjs; // will be freed by
+   // not very necessary using pointers because we use vector..
+   // but just in case a loop is copying the object
+   // using pointer because we have to use pointers for scene
+   // using pointer here for an easier life when initializing the scene
+   QVector<PrimitiveObject *> m_allObjs; // will be freed here
 };
 
 #endif // OBJLOADER_H

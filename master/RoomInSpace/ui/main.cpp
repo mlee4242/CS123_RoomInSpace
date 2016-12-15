@@ -6,7 +6,6 @@
 #include <QDir>
 #include "Settings.h"
 #include <chrono>
-
 int main(int argc, char *argv[]) {
    QCoreApplication::setOrganizationName("Brown University");
    QCoreApplication::setOrganizationDomain("cs.brown.edu");
@@ -19,7 +18,7 @@ int main(int argc, char *argv[]) {
    glFormat.setOption(QSurfaceFormat::DebugContext);
    QSurfaceFormat::setDefaultFormat(glFormat);
    QApplication a(argc, argv);
-   QMessageBox msgBox;
+   QMessageBox  msgBox;
    msgBox.setWindowTitle("Room in Space");
    msgBox.setText("Run it in VR mode?");
    msgBox.setStandardButtons(QMessageBox::Yes);
@@ -32,6 +31,5 @@ int main(int argc, char *argv[]) {
    }
    MainWindow w;
    w.show();
-
    return a.exec();
 }

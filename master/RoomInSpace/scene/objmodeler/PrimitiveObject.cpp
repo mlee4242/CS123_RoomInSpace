@@ -11,7 +11,7 @@
 /**
  * @brief PrimitiveObject::PrimitiveObject
  */
-PrimitiveObject::PrimitiveObject() : m_setted(0)
+PrimitiveObject::PrimitiveObject()
 {}
 
 /**
@@ -48,6 +48,7 @@ void PrimitiveObject::setMaterial(const Material& mtl) {
  */
 void PrimitiveObject::setOffset(int offset) {
    m_offset = offset;
+   m_setted++;
 }
 
 
@@ -57,6 +58,7 @@ void PrimitiveObject::setOffset(int offset) {
  */
 void PrimitiveObject::setNumVertices(int num) {
    m_numVertices = num;
+   m_setted++;
 }
 
 

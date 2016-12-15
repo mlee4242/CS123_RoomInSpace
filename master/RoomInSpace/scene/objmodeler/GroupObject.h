@@ -16,6 +16,7 @@ public:
    ~GroupObject();
    // add a primitive object into this group
    void addPrimitiveObject(PrimitiveObject *obj);
+
    // draw all the objects in this group
    void draw(QOpenGLShaderProgram& shader,
              QMap<QString, QOpenGLTexture *>& txtMap) override;

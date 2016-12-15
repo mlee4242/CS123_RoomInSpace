@@ -10,17 +10,39 @@
 #include "PrimitiveObject.h"
 #include "GroupObject.h"
 #include "Settings.h"
+
+/**
+ * @brief ObjLoader::ObjLoader
+ */
 ObjLoader::ObjLoader() : m_materialMap(QMap<QString, Material>()),
    m_allObjs(QVector<PrimitiveObject *>())
 {}
 
+/**
+ * @brief ObjLoader::~ObjLoader
+ * We free all the objects in the scene. The objLoader has all the primitive objects,
+ * even they will be a part of GroupObject from the perspective of the scene
+ */
 ObjLoader::~ObjLoader() {}
-void ObjLoader::loadObj(const QString&          target,
+
+
+/**
+ * @brief ObjLoader::loadObj
+ * @param target, path to the obj file, with out the .obj suffix, because we also have to read material file!
+ * @param results, where we put our results
+ * @param points, where we put all the vertices
+ */
+void ObjLoader::loadObj(const QString&        target,
                         QVector<SceneObject *>& results,
-                        QVector<GLfloat>&       points) {
+                        QVector<GLfloat>&     points) {
+   // which one is pickable
    setUpPickableList();
+   // load the material file
    loadMaterials(target);
+   // parse all vertices, uvs, and normals
+   // build all primitive objects
    parseVertices(target, points);
+   // group different primitive objects into groups
    buildGroups(results);
 }
 
@@ -41,6 +63,7 @@ void ObjLoader::setUpPickableList() {
 /**
  * @brief ObjLoader::getTextureMap
  * @param textMap
+ * Read in all the textures appeared in this mtl file
  */
 void ObjLoader::getTextureMap(QVector<QString>& textMap) {
    for (Material m : m_materialMap) {
@@ -63,6 +86,7 @@ void ObjLoader::getTextureMap(QVector<QString>& textMap) {
 /**
  * @brief ObjLoader::loadMaterials
  * @param target
+ * load and parse the material file
  */
 void ObjLoader::loadMaterials(const QString& target) {
    QString mtlPath = QDir::currentPath() + "/" + target + ".mtl";
@@ -251,6 +275,14 @@ void ObjLoader::parseVertices(const QString& target, QVector<GLfloat>& cVerts) {
 /**
  * @brief ObjLoader::buildGroups
  * @param results
+ * the trick is that we use the name as the identicier (?)
+ * name is in the format of [..]_[..]_[..]
+ * if a name starts with g, we know it is a primitive object that belongs to a group
+ *     the name of the group is the second word
+ *     if we haven't build the group, we build the group first
+ *     otherwise, we just add the object into the group
+ * if a name starts with o, we know it is a primitive object on its own
+ *
  */
 void ObjLoader::buildGroups(QVector<SceneObject *>& results) {
    QMap<QString, GroupObject *> groupDicts = QMap<QString, GroupObject *>();
@@ -260,7 +292,8 @@ void ObjLoader::buildGroups(QVector<SceneObject *>& results) {
       if (nameDict[0] == "g") {    // this is an object in a group
          QString groupName = nameDict[1];
          if (!groupDicts[groupName]) {
-            GroupObject *newGroup = new GroupObject;
+            // build a new group if there is no such a group
+            GroupObject *newGroup = new GroupObject();
             newGroup->setName(groupName);
             newGroup->setObjectType(GROUP_OBJECT);
             groupDicts[groupName] = newGroup;

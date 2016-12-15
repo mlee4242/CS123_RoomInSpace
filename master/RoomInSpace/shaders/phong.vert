@@ -17,9 +17,14 @@ out vec3 n;        // world-space normal
 out vec4 fragPosLightSpace;
 out vec3 viewPos;
 out vec3 fragPos;
+
+// http://stackoverflow.com/questions/4200224/random-noise-functions-for-glsl
+float rand(vec2 co){
+    return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
+}
+
 void main()
 {
-
     fragTexCoord = texCoord;
     // move UFO
     vec3 vert = vertex;

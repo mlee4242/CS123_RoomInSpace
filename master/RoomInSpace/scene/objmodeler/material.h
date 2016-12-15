@@ -5,9 +5,15 @@
 #include <QString>
 #include <iostream>
 // using Qt library to avoid compatibility issues
+
+/**
+ * @brief The Material struct
+ * The material struct for .mtl. This is a subset of all the possible material,
+ * but should be enough for this project
+ */
 struct Material
 {
-   QString   name;
+   QString   name; // the name of the material, which is used as an identifier
    int       id;
    float     Ns;
    float     Ni;
@@ -15,14 +21,15 @@ struct Material
    float     Tr;
    glm::vec3 Tf;
    float     illum;
-   glm::vec3 Ka;
-   glm::vec3 Kd;
-   glm::vec3 Ks;
-   glm::vec3 Ke;
-   QString   map_Ka;
-   QString   map_Kd;
-   QString   map_bump;
-   QString   map_normal;
+   glm::vec3 Ka;         // ambient
+   glm::vec3 Kd;         // diffuse
+   glm::vec3 Ks;         // specualr
+   glm::vec3 Ke;         // emissive
+   QString   map_Ka;     // the path for the texture of ambient
+   QString   map_Kd;     // the path for the texture of diffuse
+   QString   map_bump;   // the path for the texture used in bump mapping
+   QString   map_normal; // the path for the texture used in normal mapping
+   // notice that normal mapping path is not consistent with the a real .mtl
    Material() {
       name     = "", id = -1;
       Ns       = 0, Ni = 0, d = 0, Tr = 0, Tf = glm::vec3(), illum = 0;

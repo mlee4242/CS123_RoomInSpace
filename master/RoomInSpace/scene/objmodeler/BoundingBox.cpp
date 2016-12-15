@@ -229,6 +229,7 @@ bool BoundingBox::inside(const glm::vec4& x) {
           helper.between(wx, wp1, wp2);
 }
 
+
 /**
  * @brief BoundingBox::hit
  * @param p

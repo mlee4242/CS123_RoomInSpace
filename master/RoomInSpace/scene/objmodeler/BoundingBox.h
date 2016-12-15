@@ -7,6 +7,10 @@
 
 /**
  * @brief The BoundingBox class
+ * Every scene object has a bounding box.
+ * It has two types of encodings : the 8 vertices of the bounding box and the initial non-transformed planes.s
+ * The bounding box can be transformed with a model via the model matrix as well as the 8 vertices,
+ * but not the initial planes
  */
 class BoundingBox
 {
