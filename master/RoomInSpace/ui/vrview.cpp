@@ -261,11 +261,12 @@ void VRView::updateInput() {
       ProcessVREvent(event);
    }
 
+   m_curClickTime = QDateTime::currentMSecsSinceEpoch() / 1000;
+   float diff = m_curClickTime - m_preClickTime;
+
    for (vr::TrackedDeviceIndex_t i = 0; i < vr::k_unMaxTrackedDeviceCount; i++) {
       vr::VRControllerState_t state;
 //    if (m_hmd->GetControllerState(i, &state, sizeof(state))) { //msvc and openvr.h
-      m_curClickTime = QDateTime::currentMSecsSinceEpoch() / 1000;
-      float diff = m_curClickTime - m_preClickTime;
       if (m_hmd->GetControllerState(i, &state)) {  // mingw and openvr_mingw.hpp
          if (state.ulButtonPressed & vr::ButtonMaskFromId(vr::k_EButton_SteamVR_Touchpad)) {
             if (std::fabs(diff) > 0.2) {
@@ -275,13 +276,20 @@ void VRView::updateInput() {
          } // end of light on
 
          diff = m_curClickTime - m_preClickTime;
-         if (state.ulButtonPressed & vr::ButtonMaskFromId(vr::k_EButton_SteamVR_Trigger)) {
+         if (state.ulButtonPressed & vr::ButtonMaskFromId(vr::k_EButton_SteamVR_Trigger ))  {
             if (m_hasPicked == false) {
                std::cout << "this should be false when you pick it up: " << m_hasPicked << std::endl;
                m_hasPicked = m_scene->pickUp(m_matrixDevicePose[i]);
                std::cout << "Pick up something? " << m_hasPicked << std::endl;
                m_preClickTime = m_curClickTime;
+               break;
+            }else{
+              m_scene->putDown();
+              m_hasPicked    = false;
             }
+
+         }
+
 //            if ((m_hasPicked == true) && (std::fabs(diff) > 0.2)) {
 //               //std::cout << "this should be true when you put it down" << std::endl;
 //               std::cout << "there is a picked obj. update its matrix." << std::endl;
@@ -289,16 +297,22 @@ void VRView::updateInput() {
 //               //std::cout << "now it should be false " << m_hasPicked << std::endl;
 
 //            }
-         } // end of grap
+        // } // end of grap
 
-         diff = m_curClickTime - m_preClickTime;
-         if (!(state.ulButtonPressed & vr::ButtonMaskFromId(vr::k_EButton_SteamVR_Trigger)) &&
-             ((m_hasPicked == true) && (std::fabs(diff) > 0.2))) {
-            m_scene->putDown();
-            m_hasPicked    = false;
-            m_preClickTime = m_curClickTime;
-            std::cout << "put back" << std::endl;
-         } // end of put down
+//         diff = m_curClickTime - m_preClickTime;
+//         if (!(state.ulButtonPressed & vr::ButtonMaskFromId(vr::k_EButton_SteamVR_Trigger)) &&
+//             ((m_hasPicked == true) && (std::fabs(diff) > 0.2))) {
+//            m_scene->putDown();
+//            m_hasPicked    = false;
+//            m_preClickTime = m_curClickTime;
+//            std::cout << "put back" << std::endl;
+//         } // end of put down
+//        if (m_hasPicked == true){
+//          if (state.ulButtonPressed & vr::ButtonMaskFromId(vr::k_EButton_SteamVR_Trigger)) {
+//                  m_scene->putDown();
+//                  m_hasPicked    = false;
+//              }
+//          }
 
          diff = m_curClickTime - m_preClickTime;
          if (state.ulButtonPressed & vr::ButtonMaskFromId(vr::k_EButton_Grip)) {
