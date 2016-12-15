@@ -288,7 +288,7 @@ void VRView::updateInput() {
               m_hasPicked    = false;
             }
 
-         }
+         }//testing
 
 //            if ((m_hasPicked == true) && (std::fabs(diff) > 0.2)) {
 //               //std::cout << "this should be true when you put it down" << std::endl;
