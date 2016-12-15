@@ -1,5 +1,5 @@
 # 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
-# File Created: 14.12.2016 17:59:59
+# File Created: 14.12.2016 22:15:14
 
 newmtl Material__2097634029
 	Ns 10.000000
@@ -1473,20 +1473,6 @@ newmtl Material__2097649838
 	map_Ka maps\earthinspace.jpg
 	map_Kd maps\earthinspace.jpg
 
-newmtl Material__2097649814
-	Ns 10.000000
-	Ni 1.500000
-	d 1.000000
-	Tr 0.000000
-	Tf 1.000000 1.000000 1.000000 
-	illum 2
-	Ka 0.588000 0.588000 0.588000
-	Kd 0.588000 0.588000 0.588000
-	Ks 0.000000 0.000000 0.000000
-	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\controller.png
-	map_Kd maps\controller.png
-
 newmtl Material__2097649969
 	Ns 10.000000
 	Ni 1.500000
@@ -1666,4 +1652,19 @@ newmtl Material__2097649968
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\white.jpg
 	map_Kd maps\white.jpg
+
+newmtl Material__2097649970
+	Ns 10.000000
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.588000 0.588000 0.588000
+	Kd 0.588000 0.588000 0.588000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\controllertxt.jpg
+	map_Kd maps\controllertxt.jpg

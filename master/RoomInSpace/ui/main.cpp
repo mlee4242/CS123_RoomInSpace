@@ -3,8 +3,10 @@
 #include <QSurfaceFormat>
 #include <QMessageBox>
 #include <QSettings>
+#include <QDir>
 #include "Settings.h"
 #include <chrono>
+
 int main(int argc, char *argv[]) {
    QCoreApplication::setOrganizationName("Brown University");
    QCoreApplication::setOrganizationDomain("cs.brown.edu");
@@ -18,7 +20,7 @@ int main(int argc, char *argv[]) {
    QSurfaceFormat::setDefaultFormat(glFormat);
    QApplication a(argc, argv);
    QMessageBox msgBox;
-   msgBox.setWindowTitle("VR mode");
+   msgBox.setWindowTitle("Room in Space");
    msgBox.setText("Run it in VR mode?");
    msgBox.setStandardButtons(QMessageBox::Yes);
    msgBox.addButton(QMessageBox::No);
@@ -28,7 +30,6 @@ int main(int argc, char *argv[]) {
    }else {
       settings.VRMode = false;
    }
-
    MainWindow w;
    w.show();
 

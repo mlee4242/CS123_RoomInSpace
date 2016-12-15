@@ -245,11 +245,12 @@ void VRView::updatePoses() {
             }
 //            std::cout << "velocity: " <<m_trackedDevicePose[i].vVelocity.v[0] << std::endl;
             auto velocity = m_trackedDevicePose[i].vVelocity.v;
-            if ((std::fabs(velocity[0]) > 3.f || std::fabs(velocity[1]) > 3.f || std::fabs(velocity[2] > 3.f))&& m_hasPicked == true){
-                m_scene->putDown();
-                m_hasPicked = false;
+            if (((std::fabs(velocity[0]) > 3.f) ||
+                 (std::fabs(velocity[1]) > 3.f) ||
+                  std::fabs(velocity[2] > 3.f)) && (m_hasPicked == true)) {
+               m_scene->putDown();
+               m_hasPicked = false;
             }
-
          }
       }
    }
@@ -281,8 +282,7 @@ void VRView::updateInput() {
             }
          } // end of light on
 
-         diff = m_curClickTime - m_preClickTime;
-         if (state.ulButtonPressed & vr::ButtonMaskFromId(vr::k_EButton_SteamVR_Trigger ))  {
+         if (state.ulButtonPressed & vr::ButtonMaskFromId(vr::k_EButton_SteamVR_Trigger)) {
             if (m_hasPicked == false) {
                std::cout << "this should be false when you pick it up: " << m_hasPicked << std::endl;
                m_hasPicked = m_scene->pickUp(m_matrixDevicePose[i]);
@@ -292,8 +292,6 @@ void VRView::updateInput() {
             }
          }
 
-
-         diff = m_curClickTime - m_preClickTime;
          if (state.ulButtonPressed & vr::ButtonMaskFromId(vr::k_EButton_Grip)) {
             m_curClickTime = QDateTime::currentMSecsSinceEpoch() / 1000;
             if (std::fabs(diff) > 0.2) {
