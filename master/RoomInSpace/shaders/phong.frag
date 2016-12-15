@@ -15,6 +15,7 @@ uniform bool shadowOn;
 uniform bool isSky;
 uniform bool isInside;
 uniform vec3 pointLightPosition;
+uniform vec3 dirLightDir;
 in vec2 fragTexCoord;
 in vec3 position; // world-space position
 in vec3 n;        // world-space normal
@@ -47,10 +48,8 @@ float  percentageCloserFiltering(float bias){
     // Get closest depth value from light's perspective (using [0,1] range fragPosLight as coords)
     float closestDepth = texture2D(shadowMap, projCoords.xy).x;
     vec2 texelSize = 1.0 / textureSize(shadowMap, 0);
-    for(int x = -1; x <= 1; ++x)
-    {
-        for(int y = -1; y <= 1; ++y)
-        {
+    for(int x = -1; x <= 1; ++x){
+        for(int y = -1; y <= 1; ++y){
             float pcfDepth = texture2D(shadowMap, projCoords.xy + vec2(x, y) * texelSize).r;
             shadow += currentDepth - 0.007 > pcfDepth ? 1.0 : 0.0;
         }
@@ -84,11 +83,15 @@ void main()
     vec4 texColor = texture2D(textMap, uv);
     vec3 diffTex = mix(texColor.rgb, diffuse, 0.2).rgb;
     float bias = max(0.05 * (1.0 - dot(normal, lightDir)), 0.005);
+    float aff = distance(vec3(0, 0, 0), vec3(fragPosLightSpace));
     if(!isSky){
        if(shadowOn){
            shadow = 1.f - 0.25 * percentageCloserFiltering(bias);
        }
-       fragColor = vec4(shadow * (diff * diffTex + spec * specular), 1.0f);
+       if(isInside){
+           aff = 1.f - min(1.f, .75f * 1.f / (1.f + aff + aff * aff));
+       }
+       fragColor = vec4(shadow * (aff * diff * diffTex + spec * specular), 1.0f);
     }else{
        fragColor = vec4(diffTex, 1.0f);
     }

@@ -27,7 +27,7 @@ Scene::Scene() :
    m_pointLightPos(QVector3D(0, 1.8, 0)) {
    m_lightProjection = glm::ortho(-5.5f, 5.5f, -5.5f, 5.5f,
                                   LIGHT_NEAR_CLIP, LIGHT_FAR_CLIP);
-   m_dirLightDir = glm::vec3(1.0f, 3.0f, 1.0f);
+   m_dirLightDir = glm::vec3(1.0f, 3.0f, 2.0f);
    m_lightView   = glm::lookAt(m_dirLightDir,
                                glm::vec3(0.0f, 0.0f, -2.0f),
                                glm::vec3(0.0f, 1.0f, 0.0f));
@@ -38,16 +38,20 @@ Scene::Scene() :
 Scene::~Scene() {
    m_vertexBuffer.destroy();
    m_vao.destroy();
-   if (m_leftBuffer) {
+   if (m_leftBuffer && (m_leftBuffer != nullptr)) {
       delete m_leftBuffer;
    }
-   if (m_rightBuffer) {
+   if (m_rightBuffer && (m_rightBuffer != nullptr)) {
       delete m_rightBuffer;
    }
-   if (m_resolveBuffer) {
+   if (m_resolveBuffer && (m_resolveBuffer != nullptr)) {
       delete m_resolveBuffer;
    }
-   if (m_shadowMapBuffer) {
+   if (m_shadowMapBuffer && (m_shadowMapBuffer != nullptr)) {
+      delete m_shadowMapBuffer;
+   }
+
+   if (m_depthMap && (m_depthMap != nullptr)) {
       delete m_shadowMapBuffer;
    }
    if (m_glTextMap.size() > 0) {
@@ -69,7 +73,6 @@ void Scene::generateTextureMap(const QVector<QString>& textures) {
 
 void Scene::categorizeSceneObjects(QVector<SceneObject *>& objects) {
    for (SceneObject *obj : objects) {
-//      std::cout << obj->getName().toStdString() << std::endl;
       if (obj->getName().contains("Sky")) {
          obj->setActive(false);
          m_skyBoxes.push_front(obj);
@@ -92,7 +95,7 @@ void Scene::printControllerBoundingBox() {
 
 void Scene::pickedUp(glm::mat4x4& mat) {
    // need to check if m_pickedObj is nothing
-   if (m_pickedObj) {
+   if (m_pickedObj && (m_pickedObj != nullptr)) {
       m_pickedObj->updateModelMatrixFromReference(mat);
    }
 }
@@ -101,26 +104,20 @@ void Scene::pickedUp(glm::mat4x4& mat) {
 bool Scene::pickUp(glm::mat4x4& mat) {
    BoundingBox controllerBox;
    BoundingBox objBox;
-   bool        collide;
    m_controllerObj->getBox(controllerBox);
    for (SceneObject *obj : m_sceneObjs) {
       if (obj->isPickable()) {
-         std::cout << "this object is pickable" << std::endl;
          obj->getBox(objBox);
-         collide = objBox.overlap(controllerBox);
-         if (collide == 0) {
-            continue;
-         }
-         std::cout << "collide value is " << std::endl;
-         std::cout << collide << std::endl;
-         m_pickedObj = obj;
-         m_pickedObj->setReferenceMatrx(mat);
+         if (objBox.overlap(controllerBox)) {
+            std::cout << "collided!" << std::endl;
+            m_pickedObj = obj;
+            m_pickedObj->setReferenceMatrx(mat);
 
-         std::cout << "this is reference matrix" << std::endl;
-         std::cout << glm::to_string(mat) << std::endl;
-         m_pickedObj->updateModelMatrixFromReference(mat);
-         m_pickedObj->setIsPicked(true);
-         return true;
+            std::cout << "reference matrix: " << glm::to_string(mat) << std::endl;
+            m_pickedObj->updateModelMatrixFromReference(mat);
+            m_pickedObj->setIsPicked(true);
+            return true;
+         }
       }
    }
    return false;
@@ -266,10 +263,7 @@ void Scene::bindShadowMap() {
 
 
 void Scene::renderLeft() {
-   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-   glEnable(GL_DEPTH_TEST);
    glViewport(0, 0, m_eyeWidth, m_eyeHeight);
-
    glEnable(GL_MULTISAMPLE);
    m_leftBuffer->bind();
    renderEye(m_phongShader);
@@ -344,6 +338,7 @@ void Scene::renderEye(QOpenGLShaderProgram& shader) {
    shader.bind();
    //added passing model matrix and the controller disappeared
    shader.setUniformValue("pointLightPosition", m_pointLightPos);
+   shader.setUniformValue("dirLightDir", helper.vec3ToQVector3D(m_dirLightDir));
    shader.setUniformValue("lightSpaceMatrix", m_lightSpaceMatrix);
    shader.setUniformValue("v", helper.mat4x4ToQMatrix4x4(m_viewMat));
    shader.setUniformValue("p", helper.mat4x4ToQMatrix4x4(m_projectMat));
