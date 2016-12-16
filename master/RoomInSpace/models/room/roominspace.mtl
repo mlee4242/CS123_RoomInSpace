@@ -1,5 +1,5 @@
 # 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
-# 创建的文件:16.12.2016 12:37:43
+# 创建的文件:16.12.2016 16:24:54
 
 newmtl Material__2097634029
 	Ns 10.000000
@@ -1501,21 +1501,7 @@ newmtl Material__2097649820
 	map_Ka maps\skybox1.jpg
 	map_Kd maps\skybox1.jpg
 
-newmtl Material__729
-	Ns 10.000000
-	Ni 1.500000
-	d 1.000000
-	Tr 0.000000
-	Tf 1.000000 1.000000 1.000000 
-	illum 2
-	Ka 0.588000 0.588000 0.588000
-	Kd 0.588000 0.588000 0.588000
-	Ks 0.000000 0.000000 0.000000
-	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\metal2.jpg
-	map_Kd maps\metal2.jpg
-
-newmtl Material__39
+newmtl Material__55
 	Ns 10.000000
 	Ni 1.500000
 	d 1.000000
@@ -1529,7 +1515,7 @@ newmtl Material__39
 	map_Ka maps\white.jpg
 	map_Kd maps\white.jpg
 
-newmtl Material__751
+newmtl Material__53
 	Ns 10.000000
 	Ni 1.500000
 	d 1.000000
@@ -1540,8 +1526,22 @@ newmtl Material__751
 	Kd 0.588000 0.588000 0.588000
 	Ks 0.000000 0.000000 0.000000
 	Ke 0.000000 0.000000 0.000000
-	map_Ka maps\metal2.jpg
-	map_Kd maps\metal2.jpg
+	map_Ka maps\red.jpg
+	map_Kd maps\red.jpg
+
+newmtl Material__54
+	Ns 10.000000
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.588000 0.588000 0.588000
+	Kd 0.588000 0.588000 0.588000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\book_page.jpg
+	map_Kd maps\book_page.jpg
 
 newmtl Material__2097630192
 	Ns 10.000000
@@ -1626,3 +1626,44 @@ newmtl Material__2097649970
 	Ke 0.000000 0.000000 0.000000
 	map_Ka maps\controllertxt.jpg
 	map_Kd maps\controllertxt.jpg
+
+newmtl Material__28
+	Ns 10.000000
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.588000 0.588000 0.588000
+	Kd 0.588000 0.588000 0.588000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\a_gold_and_bronze_metallic.jpg
+	map_Kd maps\a_gold_and_bronze_metallic.jpg
+
+newmtl Material__25
+	Ns 10.000000
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.588000 0.588000 0.588000
+	Kd 0.588000 0.588000 0.588000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka maps\a_gold_and_bronze_metallic.jpg
+	map_Kd maps\a_gold_and_bronze_metallic.jpg
+
+newmtl Material__2097649973
+	Ns 10.000000
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.588000 0.588000 0.588000
+	Kd 0.588000 0.588000 0.588000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Kd maps\pure_white.png
