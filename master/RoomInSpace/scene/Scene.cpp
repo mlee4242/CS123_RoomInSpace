@@ -59,7 +59,24 @@ Scene::~Scene() {
    if (m_glTextMap.size() > 0) {
       qDeleteAll(m_glTextMap);
    }
-   // bugs for Qt
+
+   for (SceneObject *obj : m_sceneObjs) {
+      if (obj->getObjectType() == SCENE_OBJECT) {
+         delete obj;
+      }
+      if (obj->getObjectType() == PRIMITIVE_OBJECT) {
+         delete dynamic_cast<PrimitiveObject *>(obj);
+      }
+      if (obj->getObjectType() == GROUP_OBJECT) {
+         delete dynamic_cast<GroupObject *>(obj);
+      }
+   }
+
+   for (SceneObject *obj : m_skyBoxes) {
+      delete dynamic_cast<PrimitiveObject *>(obj);
+   }
+   delete dynamic_cast<PrimitiveObject *>(m_controllerObj);
+   // bugs of Qt
    // Texture is not valid in the current context warnings when exiting QOpenGLWidget apps
    // https://bugreports.qt.io/browse/QTBUG-50707
    m_vertexBuffer->destroy();
@@ -116,7 +133,7 @@ void Scene::printControllerBoundingBox() {
 void Scene::pickedUp(glm::mat4x4& mat) {
    // need to check if m_pickedObj is nothing
    if (m_pickedObj && (m_pickedObj != nullptr)) {
-      std::cout << "why not update obj position" << std::endl;
+      // std::cout << "why not update obj position" << std::endl;
       m_pickedObj->updateModelMatrixFromReference(mat);
    }
 }
@@ -354,7 +371,7 @@ void Scene::renderRight() {
 void Scene::renderComp() {
    glClearColor(0.25f, 0.25f, 0.28f, 1.0f);
    glViewport(0, 0, m_width, m_height);
-   glDisable(GL_MULTISAMPLE);
+   glEnable(GL_MULTISAMPLE);
    renderEye(m_phongShader);
 }
 

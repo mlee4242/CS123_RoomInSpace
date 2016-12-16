@@ -51,7 +51,7 @@ float  percentageCloserFiltering(float bias){
     for(int x = -1; x <= 1; ++x){
         for(int y = -1; y <= 1; ++y){
             float pcfDepth = texture2D(shadowMap, projCoords.xy + vec2(x, y) * texelSize).r;
-            shadow += currentDepth - 0.007 > pcfDepth ? 1.0 : 0.0;
+            shadow += currentDepth - 0.008 > pcfDepth ? 1.0 : 0.0;
         }
     }
     shadow /= 9.0;

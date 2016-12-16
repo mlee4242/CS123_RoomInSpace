@@ -20,7 +20,7 @@ ObjLoader::ObjLoader() : m_materialMap(QMap<QString, Material>()),
 
 /**
  * @brief ObjLoader::~ObjLoader
- * We free all the objects in the scene. The objLoader has all the primitive objects,
+ * We free all the objects in the scene class. The objLoader has all the primitive objects,
  * even they will be a part of GroupObject from the perspective of the scene
  */
 ObjLoader::~ObjLoader() {}

@@ -1277,7 +1277,7 @@ release/mainwindow.o: ui/mainwindow.cpp ui/vrview.h \
 		C:/Qt/5.6/mingw49_32/include/QtWidgets/qmainwindow.h \
 		C:/Qt/5.6/mingw49_32/include/QtWidgets/qtabwidget.h \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qicon.h \
-		ui_mainwindow.h \
+		release/ui_mainwindow.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/QVariant \
 		C:/Qt/5.6/mingw49_32/include/QtWidgets/QAction \
 		C:/Qt/5.6/mingw49_32/include/QtWidgets/qaction.h \
