@@ -14,49 +14,49 @@ CXX           = g++
 DEFINES       = -DUNICODE -DGLEW_STATIC -D_USE_MATH_DEFINES -DTIXML_USE_STL -DGLM_SWIZZLE -DGLM_FORCE_RADIANS -DQT_QML_DEBUG -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_NEEDS_QMAIN
 CFLAGS        = -pipe -fno-keep-inline-dllexport -O2 -Wall -Wextra $(DEFINES)
 CXXFLAGS      = -pipe -fno-keep-inline-dllexport -O2 -std=gnu++1y -frtti -Wall -Wextra -fexceptions -mthreads $(DEFINES)
-INCPATH       = -I. -I. -Ithirdparty -Ithirdparty\openvr\headers -Ithirdparty\glew\include -Iutilities -Ishaders -Imodels -Itextures -Icamera -Iui -Iscenegraph -Iutilities -Ithirdparty/include -IC:\Qt\5.6\mingw49_32\include -IC:\Qt\5.6\mingw49_32\include\QtOpenGL -IC:\Qt\5.6\mingw49_32\include\QtWidgets -IC:\Qt\5.6\mingw49_32\include\QtGui -IC:\Qt\5.6\mingw49_32\include\QtANGLE -IC:\Qt\5.6\mingw49_32\include\QtCore -Irelease -I. -IC:\Qt\5.6\mingw49_32\mkspecs\win32-g++ 
+INCPATH       = -I. -I. -Ithirdparty -Ithirdparty/openvr/headers -Ithirdparty/glew/include -Iutilities -Ishaders -Imodels -Itextures -Icamera -Iui -Iscenegraph -Iutilities -Ithirdparty/include -IC:/Qt/5.6/mingw49_32/include -IC:/Qt/5.6/mingw49_32/include/QtOpenGL -IC:/Qt/5.6/mingw49_32/include/QtWidgets -IC:/Qt/5.6/mingw49_32/include/QtGui -IC:/Qt/5.6/mingw49_32/include/QtANGLE -IC:/Qt/5.6/mingw49_32/include/QtCore -Irelease -I. -IC:/Qt/5.6/mingw49_32/mkspecs/win32-g++ 
 LINKER      =        g++
 LFLAGS        =        -Wl,-s -Wl,-subsystem,windows -mthreads
-LIBS        =        -lmingw32 -LC:\Qt\5.6\mingw49_32\lib C:\Qt\5.6\mingw49_32\lib\libqtmain.a -lshell32 -LC:\utils\my_sql\my_sql\lib -LC:\utils\postgresql\pgsql\lib -LE:\Code\CS123_RoomInSpace\master\RoomInSpace\thirdparty\openvr\lib\win32 -lopenvr_api -lopengl32 -lglu32 C:\Qt\5.6\mingw49_32\lib\libQt5OpenGL.a C:\Qt\5.6\mingw49_32\lib\libQt5Widgets.a C:\Qt\5.6\mingw49_32\lib\libQt5Gui.a C:\Qt\5.6\mingw49_32\lib\libQt5Core.a release\win32_res.o 
-QMAKE         = C:\Qt\5.6\mingw49_32\bin\qmake.exe
+LIBS        =        -lmingw32 -LC:/Qt/5.6/mingw49_32/lib C:/Qt/5.6/mingw49_32/lib/libqtmain.a -lshell32 C:/Qt/5.6/mingw49_32/lib/libQt5Core.a -LC:/utils/my_sql/my_sql/lib -LC:/utils/postgresql/pgsql/lib -LC:/Users/avd/Documents/CS123_Han_Mike_FM/CS123_RoomInSpace/master/RoomInSpace/thirdparty/openvr/lib/win32 -lopenvr_api -lopengl32 -lglu32 C:/Qt/5.6/mingw49_32/lib/libQt5OpenGL.a C:/Qt/5.6/mingw49_32/lib/libQt5Widgets.a C:/Qt/5.6/mingw49_32/lib/libQt5Gui.a C:/Qt/5.6/mingw49_32/lib/libQt5Core.a release/win32_res.o 
+QMAKE         = C:/Qt/5.6/mingw49_32/bin/qmake.exe
 IDC           = idc
 IDL           = midl
-ZIP           = zip -r -9
+ZIP           = 
 DEF_FILE      = 
-RES_FILE      = release\win32_res.o
-COPY          = copy /y
-SED           = $(QMAKE) -install sed
-COPY_FILE     = copy /y
-COPY_DIR      = xcopy /s /q /y /i
-DEL_FILE      = del
+RES_FILE      = release/win32_res.o
+COPY          = cp -f
+SED           = sed
+COPY_FILE     = cp -f
+COPY_DIR      = cp -f -R
+DEL_FILE      = rm -f
 DEL_DIR       = rmdir
-MOVE          = move
-CHK_DIR_EXISTS= if not exist
-MKDIR         = mkdir
-INSTALL_FILE    = copy /y
-INSTALL_PROGRAM = copy /y
-INSTALL_DIR     = xcopy /s /q /y /i
+MOVE          = mv -f
+CHK_DIR_EXISTS= test -d
+MKDIR         = mkdir -p
+INSTALL_FILE    = cp -f
+INSTALL_PROGRAM = cp -f
+INSTALL_DIR     = cp -f -R
 
 ####### Output directory
 
-OBJECTS_DIR   = release
+OBJECTS_DIR   = release/
 
 ####### Files
 
-SOURCES       = ui\main.cpp \
-		ui\mainwindow.cpp \
-		ui\vrview.cpp \
-		camera\OrbitingCamera.cpp \
-		camera\CamtransCamera.cpp \
-		utilities\Settings.cpp \
-		utilities\Helpers.cpp \
-		scene\Scene.cpp \
-		scene\objmodeler\BoundingBox.cpp \
-		scene\objmodeler\SceneObject.cpp \
-		scene\objmodeler\PrimitiveObject.cpp \
-		scene\objmodeler\GroupObject.cpp \
-		scene\objmodeler\ObjLoader.cpp release\moc_mainwindow.cpp \
-		release\moc_vrview.cpp
+SOURCES       = ui/main.cpp \
+		ui/mainwindow.cpp \
+		ui/vrview.cpp \
+		camera/OrbitingCamera.cpp \
+		camera/CamtransCamera.cpp \
+		utilities/Settings.cpp \
+		utilities/Helpers.cpp \
+		scene/Scene.cpp \
+		scene/objmodeler/BoundingBox.cpp \
+		scene/objmodeler/SceneObject.cpp \
+		scene/objmodeler/PrimitiveObject.cpp \
+		scene/objmodeler/GroupObject.cpp \
+		scene/objmodeler/ObjLoader.cpp release/moc_mainwindow.cpp \
+		release/moc_vrview.cpp
 OBJECTS       = release/main.o \
 		release/mainwindow.o \
 		release/vrview.o \
@@ -76,37 +76,37 @@ OBJECTS       = release/main.o \
 DIST          = shaders/phong.frag \
 		shaders/phong.vert \
 		shaders/shadow.vert \
-		shaders/shadow.frag ui\mainwindow.h \
-		ui\vrview.h \
-		thirdparty\openvr\headers\openvr_mingw.hpp \
-		camera\OrbitingCamera.h \
-		camera\CamtransCamera.h \
-		utilities\Settings.h \
-		utilities\Helpers.h \
-		scene\Scene.h \
-		scene\objmodeler\BoundingBox.h \
-		scene\objmodeler\SceneObject.h \
-		scene\objmodeler\PrimitiveObject.h \
-		scene\objmodeler\GroupObject.h \
-		scene\objmodeler\material.h \
-		scene\objmodeler\ObjLoader.h \
-		scene\objmodeler\delete_ptr.h ui\main.cpp \
-		ui\mainwindow.cpp \
-		ui\vrview.cpp \
-		camera\OrbitingCamera.cpp \
-		camera\CamtransCamera.cpp \
-		utilities\Settings.cpp \
-		utilities\Helpers.cpp \
-		scene\Scene.cpp \
-		scene\objmodeler\BoundingBox.cpp \
-		scene\objmodeler\SceneObject.cpp \
-		scene\objmodeler\PrimitiveObject.cpp \
-		scene\objmodeler\GroupObject.cpp \
-		scene\objmodeler\ObjLoader.cpp
+		shaders/shadow.frag ui/mainwindow.h \
+		ui/vrview.h \
+		thirdparty/openvr/headers/openvr_mingw.hpp \
+		camera/OrbitingCamera.h \
+		camera/CamtransCamera.h \
+		utilities/Settings.h \
+		utilities/Helpers.h \
+		scene/Scene.h \
+		scene/objmodeler/BoundingBox.h \
+		scene/objmodeler/SceneObject.h \
+		scene/objmodeler/PrimitiveObject.h \
+		scene/objmodeler/GroupObject.h \
+		scene/objmodeler/material.h \
+		scene/objmodeler/ObjLoader.h \
+		scene/objmodeler/delete_ptr.h ui/main.cpp \
+		ui/mainwindow.cpp \
+		ui/vrview.cpp \
+		camera/OrbitingCamera.cpp \
+		camera/CamtransCamera.cpp \
+		utilities/Settings.cpp \
+		utilities/Helpers.cpp \
+		scene/Scene.cpp \
+		scene/objmodeler/BoundingBox.cpp \
+		scene/objmodeler/SceneObject.cpp \
+		scene/objmodeler/PrimitiveObject.cpp \
+		scene/objmodeler/GroupObject.cpp \
+		scene/objmodeler/ObjLoader.cpp
 QMAKE_TARGET  = RoomInSpace
-DESTDIR        = release\ #avoid trailing-slash linebreak
+DESTDIR        = release/ #avoid trailing-slash linebreak
 TARGET         = RoomInSpace.exe
-DESTDIR_TARGET = release\RoomInSpace.exe
+DESTDIR_TARGET = release/RoomInSpace.exe
 
 ####### Build rules
 
@@ -115,23 +115,23 @@ all: Makefile.Release  $(DESTDIR_TARGET)
 
 $(DESTDIR_TARGET): ui_mainwindow.h $(OBJECTS) release/win32_res.o
 	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) object_script.RoomInSpace.Release  $(LIBS)
-	copy /y E:\Code\CS123_RoomInSpace\master\RoomInSpace\thirdparty\openvr\bin\win32\openvr_api.dll E:\Code\CS123_RoomInSpace\master\RoomInSpace\release 
+	cp -f C:\Users\avd\Documents\CS123_Han_Mike_FM\CS123_RoomInSpace\master\RoomInSpace\thirdparty\openvr\bin\win32\openvr_api.dll C:\Users\avd\Documents\CS123_Han_Mike_FM\CS123_RoomInSpace\master\RoomInSpace\release 
 	
 
 release/win32_res.o: win32.rc
-	windres -i win32.rc -o release\win32_res.o --include-dir=. $(DEFINES)
+	windres -i win32.rc -o release/win32_res.o --include-dir=. $(DEFINES)
 
 qmake: FORCE
-	@$(QMAKE) -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" -o Makefile.Release RoomInSpace.pro
+	@$(QMAKE) -spec win32-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile.Release RoomInSpace.pro
 
 qmake_all: FORCE
 
 dist:
-	$(ZIP) RoomInSpace.zip $(SOURCES) $(DIST) RoomInSpace.pro C:\Qt\5.6\mingw49_32\mkspecs\features\spec_pre.prf C:\Qt\5.6\mingw49_32\mkspecs\qdevice.pri C:\Qt\5.6\mingw49_32\mkspecs\features\device_config.prf C:\Qt\5.6\mingw49_32\mkspecs\common\angle.conf C:\Qt\5.6\mingw49_32\mkspecs\qconfig.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_axbase.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_axbase_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_axcontainer.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_axcontainer_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_axserver.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_axserver_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_bluetooth.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_bluetooth_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_bootstrap_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_clucene_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_concurrent.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_concurrent_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_core.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_core_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_dbus.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_dbus_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_designer.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_designer_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_designercomponents_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_gui.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_gui_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_help.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_help_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_multimedia.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_multimedia_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_multimediawidgets.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_multimediawidgets_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_network.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_network_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_nfc.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_nfc_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_opengl.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_opengl_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_openglextensions.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_openglextensions_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_platformsupport_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_positioning.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_positioning_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_printsupport.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_printsupport_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_qml.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_qml_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_qmldevtools_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_qmltest.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_qmltest_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_quick.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_quick_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_quickparticles_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_quickwidgets.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_sensors.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_sensors_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_serialport.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_serialport_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_sql.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_sql_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_svg.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_svg_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_testlib.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_testlib_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_uiplugin.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_uitools.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_uitools_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_webchannel.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_webchannel_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_websockets.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_websockets_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_widgets.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_widgets_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_winextras.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_winextras_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_xml.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_xml_private.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_xmlpatterns.pri C:\Qt\5.6\mingw49_32\mkspecs\modules\qt_lib_xmlpatterns_private.pri C:\Qt\5.6\mingw49_32\mkspecs\features\qt_functions.prf C:\Qt\5.6\mingw49_32\mkspecs\features\qt_config.prf C:\Qt\5.6\mingw49_32\mkspecs\features\win32\qt_config.prf C:\Qt\5.6\mingw49_32\mkspecs\win32-g++\qmake.conf C:\Qt\5.6\mingw49_32\mkspecs\features\spec_post.prf C:\Qt\5.6\mingw49_32\mkspecs\features\exclusive_builds.prf C:\Qt\5.6\mingw49_32\mkspecs\features\default_pre.prf C:\Qt\5.6\mingw49_32\mkspecs\features\win32\default_pre.prf C:\Qt\5.6\mingw49_32\mkspecs\features\resolve_config.prf C:\Qt\5.6\mingw49_32\mkspecs\features\exclusive_builds_post.prf C:\Qt\5.6\mingw49_32\mkspecs\features\default_post.prf C:\Qt\5.6\mingw49_32\mkspecs\features\build_pass.prf C:\Qt\5.6\mingw49_32\mkspecs\features\qml_debug.prf C:\Qt\5.6\mingw49_32\mkspecs\features\win32\rtti.prf C:\Qt\5.6\mingw49_32\mkspecs\features\precompile_header.prf C:\Qt\5.6\mingw49_32\mkspecs\features\warn_on.prf C:\Qt\5.6\mingw49_32\mkspecs\features\qt.prf C:\Qt\5.6\mingw49_32\mkspecs\features\resources.prf C:\Qt\5.6\mingw49_32\mkspecs\features\moc.prf C:\Qt\5.6\mingw49_32\mkspecs\features\win32\opengl.prf C:\Qt\5.6\mingw49_32\mkspecs\features\uic.prf C:\Qt\5.6\mingw49_32\mkspecs\features\file_copies.prf C:\Qt\5.6\mingw49_32\mkspecs\features\win32\windows.prf C:\Qt\5.6\mingw49_32\mkspecs\features\testcase_targets.prf C:\Qt\5.6\mingw49_32\mkspecs\features\exceptions.prf C:\Qt\5.6\mingw49_32\mkspecs\features\yacc.prf C:\Qt\5.6\mingw49_32\mkspecs\features\lex.prf RoomInSpace.pro C:\Qt\5.6\mingw49_32\lib\qtmain.prl C:\Qt\5.6\mingw49_32\lib\Qt5OpenGL.prl C:\Qt\5.6\mingw49_32\lib\Qt5Widgets.prl C:\Qt\5.6\mingw49_32\lib\Qt5Gui.prl C:\Qt\5.6\mingw49_32\lib\Qt5Core.prl  NO_PCH_SOURCES RESOURCES HEADERS SOURCES OBJECTIVE_SOURCES FORMS YACCSOURCES YACCSOURCES LEXSOURCES 
+	$(ZIP) RoomInSpace.zip $(SOURCES) $(DIST) RoomInSpace.pro C:/Qt/5.6/mingw49_32/mkspecs/features/spec_pre.prf C:/Qt/5.6/mingw49_32/mkspecs/qdevice.pri C:/Qt/5.6/mingw49_32/mkspecs/features/device_config.prf C:/Qt/5.6/mingw49_32/mkspecs/common/angle.conf C:/Qt/5.6/mingw49_32/mkspecs/qconfig.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_axbase.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_axbase_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_axcontainer.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_axcontainer_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_axserver.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_axserver_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_bluetooth.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_bluetooth_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_bootstrap_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_clucene_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_concurrent.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_concurrent_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_core.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_core_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_dbus.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_dbus_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_designer.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_designer_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_designercomponents_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_gui.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_gui_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_help.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_help_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_multimedia.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_multimedia_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_multimediawidgets.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_multimediawidgets_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_network.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_network_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_nfc.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_nfc_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_opengl.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_opengl_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_openglextensions.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_openglextensions_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_platformsupport_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_positioning.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_positioning_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_printsupport.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_printsupport_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_qml.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_qml_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_qmldevtools_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_qmltest.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_qmltest_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_quick.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_quick_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_quickparticles_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_quickwidgets.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_quickwidgets_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_sensors.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_sensors_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_serialport.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_serialport_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_sql.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_sql_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_svg.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_svg_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_testlib.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_testlib_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_uiplugin.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_uitools.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_uitools_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_webchannel.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_webchannel_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_websockets.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_websockets_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_widgets.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_widgets_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_winextras.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_winextras_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_xml.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_xml_private.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_xmlpatterns.pri C:/Qt/5.6/mingw49_32/mkspecs/modules/qt_lib_xmlpatterns_private.pri C:/Qt/5.6/mingw49_32/mkspecs/features/qt_functions.prf C:/Qt/5.6/mingw49_32/mkspecs/features/qt_config.prf C:/Qt/5.6/mingw49_32/mkspecs/features/win32/qt_config.prf C:/Qt/5.6/mingw49_32/mkspecs/win32-g++/qmake.conf C:/Qt/5.6/mingw49_32/mkspecs/features/spec_post.prf C:/Qt/5.6/mingw49_32/mkspecs/features/exclusive_builds.prf C:/Qt/5.6/mingw49_32/mkspecs/features/default_pre.prf C:/Qt/5.6/mingw49_32/mkspecs/features/win32/default_pre.prf C:/Qt/5.6/mingw49_32/mkspecs/features/resolve_config.prf C:/Qt/5.6/mingw49_32/mkspecs/features/exclusive_builds_post.prf C:/Qt/5.6/mingw49_32/mkspecs/features/default_post.prf C:/Qt/5.6/mingw49_32/mkspecs/features/build_pass.prf C:/Qt/5.6/mingw49_32/mkspecs/features/qml_debug.prf C:/Qt/5.6/mingw49_32/mkspecs/features/win32/rtti.prf C:/Qt/5.6/mingw49_32/mkspecs/features/precompile_header.prf C:/Qt/5.6/mingw49_32/mkspecs/features/warn_on.prf C:/Qt/5.6/mingw49_32/mkspecs/features/qt.prf C:/Qt/5.6/mingw49_32/mkspecs/features/resources.prf C:/Qt/5.6/mingw49_32/mkspecs/features/moc.prf C:/Qt/5.6/mingw49_32/mkspecs/features/win32/opengl.prf C:/Qt/5.6/mingw49_32/mkspecs/features/uic.prf C:/Qt/5.6/mingw49_32/mkspecs/features/file_copies.prf C:/Qt/5.6/mingw49_32/mkspecs/features/win32/windows.prf C:/Qt/5.6/mingw49_32/mkspecs/features/testcase_targets.prf C:/Qt/5.6/mingw49_32/mkspecs/features/exceptions.prf C:/Qt/5.6/mingw49_32/mkspecs/features/yacc.prf C:/Qt/5.6/mingw49_32/mkspecs/features/lex.prf RoomInSpace.pro C:/Qt/5.6/mingw49_32/lib/qtmain.prl C:/Qt/5.6/mingw49_32/lib/Qt5OpenGL.prl C:/Qt/5.6/mingw49_32/lib/Qt5Widgets.prl C:/Qt/5.6/mingw49_32/lib/Qt5Gui.prl C:/Qt/5.6/mingw49_32/lib/Qt5Core.prl  NO_PCH_SOURCES RESOURCES HEADERS SOURCES OBJECTIVE_SOURCES FORMS YACCSOURCES YACCSOURCES LEXSOURCES 
 
 clean: compiler_clean 
-	-$(DEL_FILE) release\main.o release\mainwindow.o release\vrview.o release\OrbitingCamera.o release\CamtransCamera.o release\Settings.o release\Helpers.o release\Scene.o release\BoundingBox.o release\SceneObject.o release\PrimitiveObject.o release\GroupObject.o release\ObjLoader.o release\moc_mainwindow.o release\moc_vrview.o
-	-$(DEL_FILE) release\win32_res.o
+	-$(DEL_FILE) release/main.o release/mainwindow.o release/vrview.o release/OrbitingCamera.o release/CamtransCamera.o release/Settings.o release/Helpers.o release/Scene.o release/BoundingBox.o release/SceneObject.o release/PrimitiveObject.o release/GroupObject.o release/ObjLoader.o release/moc_mainwindow.o release/moc_vrview.o
+	-$(DEL_FILE) release/win32_res.o
 
 distclean: clean 
 	-$(DEL_FILE) $(DESTDIR_TARGET)
@@ -151,7 +151,7 @@ compiler_rcc_make_all:
 compiler_rcc_clean:
 compiler_moc_header_make_all: release/moc_mainwindow.cpp release/moc_vrview.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) release\moc_mainwindow.cpp release\moc_vrview.cpp
+	-$(DEL_FILE) release/moc_mainwindow.cpp release/moc_vrview.cpp
 release/moc_mainwindow.cpp: C:/Qt/5.6/mingw49_32/include/QtWidgets/QButtonGroup \
 		C:/Qt/5.6/mingw49_32/include/QtWidgets/qbuttongroup.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/qobject.h \
@@ -268,7 +268,7 @@ release/moc_mainwindow.cpp: C:/Qt/5.6/mingw49_32/include/QtWidgets/QButtonGroup 
 		C:/Qt/5.6/mingw49_32/include/QtGui/qquaternion.h \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qgenericmatrix.h \
 		ui/mainwindow.h
-	C:\Qt\5.6\mingw49_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.6/mingw49_32/mkspecs/win32-g++ -IE:/Code/CS123_RoomInSpace/master/RoomInSpace -IE:/Code/CS123_RoomInSpace/master/RoomInSpace -IE:/Code/CS123_RoomInSpace/master/RoomInSpace/thirdparty -IE:/Code/CS123_RoomInSpace/master/RoomInSpace/thirdparty/openvr/headers -IE:/Code/CS123_RoomInSpace/master/RoomInSpace/thirdparty/glew/include -IE:/Code/CS123_RoomInSpace/master/RoomInSpace/utilities -IE:/Code/CS123_RoomInSpace/master/RoomInSpace/shaders -IE:/Code/CS123_RoomInSpace/master/RoomInSpace/models -IE:/Code/CS123_RoomInSpace/master/RoomInSpace/textures -IE:/Code/CS123_RoomInSpace/master/RoomInSpace/camera -IE:/Code/CS123_RoomInSpace/master/RoomInSpace/ui -IE:/Code/CS123_RoomInSpace/master/RoomInSpace/scenegraph -IE:/Code/CS123_RoomInSpace/master/RoomInSpace/utilities -IE:/Code/CS123_RoomInSpace/master/RoomInSpace/thirdparty/include -IC:/Qt/5.6/mingw49_32/include -IC:/Qt/5.6/mingw49_32/include/QtOpenGL -IC:/Qt/5.6/mingw49_32/include/QtWidgets -IC:/Qt/5.6/mingw49_32/include/QtGui -IC:/Qt/5.6/mingw49_32/include/QtANGLE -IC:/Qt/5.6/mingw49_32/include/QtCore ui\mainwindow.h -o release\moc_mainwindow.cpp
+	'C:\Qt\5.6\mingw49_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.6/mingw49_32/mkspecs/win32-g++ -IC:/Users/avd/Documents/CS123_Han_Mike_FM/CS123_RoomInSpace/master/RoomInSpace -IC:/Users/avd/Documents/CS123_Han_Mike_FM/CS123_RoomInSpace/master/RoomInSpace -IC:/Users/avd/Documents/CS123_Han_Mike_FM/CS123_RoomInSpace/master/RoomInSpace/thirdparty -IC:/Users/avd/Documents/CS123_Han_Mike_FM/CS123_RoomInSpace/master/RoomInSpace/thirdparty/openvr/headers -IC:/Users/avd/Documents/CS123_Han_Mike_FM/CS123_RoomInSpace/master/RoomInSpace/thirdparty/glew/include -IC:/Users/avd/Documents/CS123_Han_Mike_FM/CS123_RoomInSpace/master/RoomInSpace/utilities -IC:/Users/avd/Documents/CS123_Han_Mike_FM/CS123_RoomInSpace/master/RoomInSpace/shaders -IC:/Users/avd/Documents/CS123_Han_Mike_FM/CS123_RoomInSpace/master/RoomInSpace/models -IC:/Users/avd/Documents/CS123_Han_Mike_FM/CS123_RoomInSpace/master/RoomInSpace/textures -IC:/Users/avd/Documents/CS123_Han_Mike_FM/CS123_RoomInSpace/master/RoomInSpace/camera -IC:/Users/avd/Documents/CS123_Han_Mike_FM/CS123_RoomInSpace/master/RoomInSpace/ui -IC:/Users/avd/Documents/CS123_Han_Mike_FM/CS123_RoomInSpace/master/RoomInSpace/scenegraph -IC:/Users/avd/Documents/CS123_Han_Mike_FM/CS123_RoomInSpace/master/RoomInSpace/utilities -IC:/Users/avd/Documents/CS123_Han_Mike_FM/CS123_RoomInSpace/master/RoomInSpace/thirdparty/include -IC:/Qt/5.6/mingw49_32/include -IC:/Qt/5.6/mingw49_32/include/QtOpenGL -IC:/Qt/5.6/mingw49_32/include/QtWidgets -IC:/Qt/5.6/mingw49_32/include/QtGui -IC:/Qt/5.6/mingw49_32/include/QtANGLE -IC:/Qt/5.6/mingw49_32/include/QtCore ui/mainwindow.h -o release/moc_mainwindow.cpp
 
 release/moc_vrview.cpp: thirdparty/glm/glm.hpp \
 		thirdparty/glm/detail/_fixes.hpp \
@@ -652,7 +652,7 @@ release/moc_vrview.cpp: thirdparty/glm/glm.hpp \
 		camera/OrbitingCamera.h \
 		camera/Camera.h \
 		ui/vrview.h
-	C:\Qt\5.6\mingw49_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.6/mingw49_32/mkspecs/win32-g++ -IE:/Code/CS123_RoomInSpace/master/RoomInSpace -IE:/Code/CS123_RoomInSpace/master/RoomInSpace -IE:/Code/CS123_RoomInSpace/master/RoomInSpace/thirdparty -IE:/Code/CS123_RoomInSpace/master/RoomInSpace/thirdparty/openvr/headers -IE:/Code/CS123_RoomInSpace/master/RoomInSpace/thirdparty/glew/include -IE:/Code/CS123_RoomInSpace/master/RoomInSpace/utilities -IE:/Code/CS123_RoomInSpace/master/RoomInSpace/shaders -IE:/Code/CS123_RoomInSpace/master/RoomInSpace/models -IE:/Code/CS123_RoomInSpace/master/RoomInSpace/textures -IE:/Code/CS123_RoomInSpace/master/RoomInSpace/camera -IE:/Code/CS123_RoomInSpace/master/RoomInSpace/ui -IE:/Code/CS123_RoomInSpace/master/RoomInSpace/scenegraph -IE:/Code/CS123_RoomInSpace/master/RoomInSpace/utilities -IE:/Code/CS123_RoomInSpace/master/RoomInSpace/thirdparty/include -IC:/Qt/5.6/mingw49_32/include -IC:/Qt/5.6/mingw49_32/include/QtOpenGL -IC:/Qt/5.6/mingw49_32/include/QtWidgets -IC:/Qt/5.6/mingw49_32/include/QtGui -IC:/Qt/5.6/mingw49_32/include/QtANGLE -IC:/Qt/5.6/mingw49_32/include/QtCore ui\vrview.h -o release\moc_vrview.cpp
+	'C:\Qt\5.6\mingw49_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.6/mingw49_32/mkspecs/win32-g++ -IC:/Users/avd/Documents/CS123_Han_Mike_FM/CS123_RoomInSpace/master/RoomInSpace -IC:/Users/avd/Documents/CS123_Han_Mike_FM/CS123_RoomInSpace/master/RoomInSpace -IC:/Users/avd/Documents/CS123_Han_Mike_FM/CS123_RoomInSpace/master/RoomInSpace/thirdparty -IC:/Users/avd/Documents/CS123_Han_Mike_FM/CS123_RoomInSpace/master/RoomInSpace/thirdparty/openvr/headers -IC:/Users/avd/Documents/CS123_Han_Mike_FM/CS123_RoomInSpace/master/RoomInSpace/thirdparty/glew/include -IC:/Users/avd/Documents/CS123_Han_Mike_FM/CS123_RoomInSpace/master/RoomInSpace/utilities -IC:/Users/avd/Documents/CS123_Han_Mike_FM/CS123_RoomInSpace/master/RoomInSpace/shaders -IC:/Users/avd/Documents/CS123_Han_Mike_FM/CS123_RoomInSpace/master/RoomInSpace/models -IC:/Users/avd/Documents/CS123_Han_Mike_FM/CS123_RoomInSpace/master/RoomInSpace/textures -IC:/Users/avd/Documents/CS123_Han_Mike_FM/CS123_RoomInSpace/master/RoomInSpace/camera -IC:/Users/avd/Documents/CS123_Han_Mike_FM/CS123_RoomInSpace/master/RoomInSpace/ui -IC:/Users/avd/Documents/CS123_Han_Mike_FM/CS123_RoomInSpace/master/RoomInSpace/scenegraph -IC:/Users/avd/Documents/CS123_Han_Mike_FM/CS123_RoomInSpace/master/RoomInSpace/utilities -IC:/Users/avd/Documents/CS123_Han_Mike_FM/CS123_RoomInSpace/master/RoomInSpace/thirdparty/include -IC:/Qt/5.6/mingw49_32/include -IC:/Qt/5.6/mingw49_32/include/QtOpenGL -IC:/Qt/5.6/mingw49_32/include/QtWidgets -IC:/Qt/5.6/mingw49_32/include/QtGui -IC:/Qt/5.6/mingw49_32/include/QtANGLE -IC:/Qt/5.6/mingw49_32/include/QtCore ui/vrview.h -o release/moc_vrview.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -660,7 +660,7 @@ compiler_uic_make_all: ui_mainwindow.h
 compiler_uic_clean:
 	-$(DEL_FILE) ui_mainwindow.h
 ui_mainwindow.h: ui/mainwindow.ui
-	C:\Qt\5.6\mingw49_32\bin\uic.exe ui\mainwindow.ui -o ui_mainwindow.h
+	'C:\Qt\5.6\mingw49_32\bin\uic.exe' ui/mainwindow.ui -o ui_mainwindow.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -804,6 +804,9 @@ release/main.o: ui/main.cpp ui/mainwindow.h \
 		C:/Qt/5.6/mingw49_32/include/QtWidgets/qdialog.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/QSettings \
 		C:/Qt/5.6/mingw49_32/include/QtCore/qsettings.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/QDir \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qdir.h \
+		C:/Qt/5.6/mingw49_32/include/QtCore/qfileinfo.h \
 		utilities/Settings.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/QString \
 		C:/Qt/5.6/mingw49_32/include/QtCore/QVector \
@@ -883,7 +886,7 @@ release/main.o: ui/main.cpp ui/mainwindow.h \
 		thirdparty/glm/integer.hpp \
 		thirdparty/glm/detail/func_integer.hpp \
 		thirdparty/glm/detail/func_integer.inl
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\main.o ui\main.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/main.o ui/main.cpp
 
 release/mainwindow.o: ui/mainwindow.cpp ui/vrview.h \
 		thirdparty/glm/glm.hpp \
@@ -1327,7 +1330,7 @@ release/mainwindow.o: ui/mainwindow.cpp ui/vrview.h \
 		C:/Qt/5.6/mingw49_32/include/QtGui/QOffscreenSurface \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qoffscreensurface.h \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qsurface.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\mainwindow.o ui\mainwindow.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/mainwindow.o ui/mainwindow.cpp
 
 release/vrview.o: ui/vrview.cpp ui/vrview.h \
 		thirdparty/glm/glm.hpp \
@@ -1731,7 +1734,7 @@ release/vrview.o: ui/vrview.cpp ui/vrview.h \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qinputmethod.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/QDateTime \
 		C:/Qt/5.6/mingw49_32/include/QtCore/qdatetime.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\vrview.o ui\vrview.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/vrview.o ui/vrview.cpp
 
 release/OrbitingCamera.o: camera/OrbitingCamera.cpp thirdparty/glm/gtc/matrix_transform.hpp \
 		thirdparty/glm/mat4x4.hpp \
@@ -2028,7 +2031,7 @@ release/OrbitingCamera.o: camera/OrbitingCamera.cpp thirdparty/glm/gtc/matrix_tr
 		C:/Qt/5.6/mingw49_32/include/QtCore/qrect.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/qmargins.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/qsize.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\OrbitingCamera.o camera\OrbitingCamera.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/OrbitingCamera.o camera/OrbitingCamera.cpp
 
 release/CamtransCamera.o: camera/CamtransCamera.cpp camera/CamtransCamera.h \
 		camera/Camera.h \
@@ -2325,7 +2328,7 @@ release/CamtransCamera.o: camera/CamtransCamera.cpp camera/CamtransCamera.h \
 		thirdparty/glm/detail/intrinsic_matrix.hpp \
 		thirdparty/glm/detail/intrinsic_matrix.inl \
 		thirdparty/glm/gtx/simd_mat4.inl
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\CamtransCamera.o camera\CamtransCamera.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/CamtransCamera.o camera/CamtransCamera.cpp
 
 release/Settings.o: utilities/Settings.cpp utilities/Settings.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/QString \
@@ -2627,7 +2630,7 @@ release/Settings.o: utilities/Settings.cpp utilities/Settings.h \
 		thirdparty/glm/gtx/simd_mat4.inl \
 		utilities/Helpers.h \
 		thirdparty/openvr/headers/openvr_mingw.hpp
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\Settings.o utilities\Settings.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/Settings.o utilities/Settings.cpp
 
 release/Helpers.o: utilities/Helpers.cpp utilities/Helpers.h \
 		C:/Qt/5.6/mingw49_32/include/QtGui/QMatrix4x4 \
@@ -2921,7 +2924,7 @@ release/Helpers.o: utilities/Helpers.cpp utilities/Helpers.h \
 		thirdparty/glm/detail/intrinsic_matrix.hpp \
 		thirdparty/glm/detail/intrinsic_matrix.inl \
 		thirdparty/glm/gtx/simd_mat4.inl
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\Helpers.o utilities\Helpers.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/Helpers.o utilities/Helpers.cpp
 
 release/Scene.o: scene/Scene.cpp C:/Qt/5.6/mingw49_32/include/QtCore/QDir \
 		C:/Qt/5.6/mingw49_32/include/QtCore/qdir.h \
@@ -3309,7 +3312,7 @@ release/Scene.o: scene/Scene.cpp C:/Qt/5.6/mingw49_32/include/QtCore/QDir \
 		scene/objmodeler/BoundingBox.h \
 		scene/objmodeler/GroupObject.h \
 		scene/objmodeler/delete_ptr.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\Scene.o scene\Scene.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/Scene.o scene/Scene.cpp
 
 release/BoundingBox.o: scene/objmodeler/BoundingBox.cpp scene/objmodeler/BoundingBox.h \
 		thirdparty/glm/glm.hpp \
@@ -3605,7 +3608,7 @@ release/BoundingBox.o: scene/objmodeler/BoundingBox.cpp scene/objmodeler/Boundin
 		C:/Qt/5.6/mingw49_32/include/QtCore/qmargins.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/qsize.h \
 		thirdparty/openvr/headers/openvr_mingw.hpp
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\BoundingBox.o scene\objmodeler\BoundingBox.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/BoundingBox.o scene/objmodeler/BoundingBox.cpp
 
 release/SceneObject.o: scene/objmodeler/SceneObject.cpp scene/objmodeler/SceneObject.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/QString \
@@ -3938,7 +3941,7 @@ release/SceneObject.o: scene/objmodeler/SceneObject.cpp scene/objmodeler/SceneOb
 		thirdparty/glm/detail/intrinsic_matrix.hpp \
 		thirdparty/glm/detail/intrinsic_matrix.inl \
 		thirdparty/glm/gtx/simd_mat4.inl
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\SceneObject.o scene\objmodeler\SceneObject.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/SceneObject.o scene/objmodeler/SceneObject.cpp
 
 release/PrimitiveObject.o: scene/objmodeler/PrimitiveObject.cpp C:/Qt/5.6/mingw49_32/include/QtGui/QOpenGLShaderProgram \
 		C:/Qt/5.6/mingw49_32/include/QtGui/qopenglshaderprogram.h \
@@ -4307,7 +4310,7 @@ release/PrimitiveObject.o: scene/objmodeler/PrimitiveObject.cpp C:/Qt/5.6/mingw4
 		C:/Qt/5.6/mingw49_32/include/QtGui/QMatrix4x4 \
 		utilities/Helpers.h \
 		thirdparty/openvr/headers/openvr_mingw.hpp
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\PrimitiveObject.o scene\objmodeler\PrimitiveObject.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/PrimitiveObject.o scene/objmodeler/PrimitiveObject.cpp
 
 release/GroupObject.o: scene/objmodeler/GroupObject.cpp scene/objmodeler/GroupObject.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/QVector \
@@ -4671,7 +4674,7 @@ release/GroupObject.o: scene/objmodeler/GroupObject.cpp scene/objmodeler/GroupOb
 		C:/Qt/5.6/mingw49_32/include/QtCore/QElapsedTimer \
 		C:/Qt/5.6/mingw49_32/include/QtCore/qelapsedtimer.h \
 		scene/objmodeler/BoundingBox.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\GroupObject.o scene\objmodeler\GroupObject.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/GroupObject.o scene/objmodeler/GroupObject.cpp
 
 release/ObjLoader.o: scene/objmodeler/ObjLoader.cpp scene/objmodeler/ObjLoader.h \
 		C:/Qt/5.6/mingw49_32/include/QtCore/QString \
@@ -5044,13 +5047,13 @@ release/ObjLoader.o: scene/objmodeler/ObjLoader.cpp scene/objmodeler/ObjLoader.h
 		scene/objmodeler/GroupObject.h \
 		utilities/Settings.h \
 		C:/Qt/5.6/mingw49_32/include/QtGui/QMatrix4x4
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\ObjLoader.o scene\objmodeler\ObjLoader.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/ObjLoader.o scene/objmodeler/ObjLoader.cpp
 
 release/moc_mainwindow.o: release/moc_mainwindow.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\moc_mainwindow.o release\moc_mainwindow.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/moc_mainwindow.o release/moc_mainwindow.cpp
 
 release/moc_vrview.o: release/moc_vrview.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\moc_vrview.o release\moc_vrview.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/moc_vrview.o release/moc_vrview.cpp
 
 ####### Install
 

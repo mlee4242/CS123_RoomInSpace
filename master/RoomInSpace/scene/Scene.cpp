@@ -116,6 +116,7 @@ void Scene::printControllerBoundingBox() {
 void Scene::pickedUp(glm::mat4x4& mat) {
    // need to check if m_pickedObj is nothing
    if (m_pickedObj && (m_pickedObj != nullptr)) {
+      std::cout << "why not update obj position" << std::endl;
       m_pickedObj->updateModelMatrixFromReference(mat);
    }
 }
@@ -133,7 +134,7 @@ bool Scene::pickUp(glm::mat4x4& mat) {
    for (SceneObject *obj : m_sceneObjs) {
       if (obj->isPickable()) {
          obj->getBox(objBox);
-         if (objBox.overlap(controllerBox)) {
+         if (objBox.overlap(controllerBox) == 1) {
             std::cout << "collided!" << std::endl;
             m_pickedObj = obj;
             m_pickedObj->setReferenceMatrx(mat);
