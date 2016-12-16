@@ -34,7 +34,7 @@ void main()
     }
 
      gl_Position =  p * v * m * vec4(vert.x, vert.y, vert.z, 1.0f);
-     fragPos = vec3(m * vec4(position, 1.0));
+     fragPos = vec3(m * vec4(vert, 1.0));
      position = gl_Position.xyz;
      n = normal;
      fragPosLightSpace = lightSpaceMatrix * m * vec4(vert, 1.0f);

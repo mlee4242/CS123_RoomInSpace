@@ -60,7 +60,7 @@ float  percentageCloserFiltering(float bias){
 
 void main()
 {
-  vec3 WorldSpace_toLight = normalize(pointLightPosition - position);
+  vec3 WorldSpace_toLight = normalize(pointLightPosition - fragPos);
   // QImage flippe my texture, have to flip the coordiantes
   vec2 uv = vec2(fragTexCoord.x, 1.f - fragTexCoord.y);
   vec3 normal = n;
@@ -72,7 +72,7 @@ void main()
         // do something
         // normal = texture2D(normalMap, uv).rgb * 2.0 - 1.0;
      }
-    float diff = 0.3 + 0.7 * max(0.0, dot(normalize(normal), WorldSpace_toLight));
+    float diff = 0.5 + 0.5 * max(0.0, dot(normalize(normal), WorldSpace_toLight));
     vec3 lightDir = normalize(pointLightPosition - fragPos);
     vec3 viewDir = normalize(viewPos - fragPos);
     float spec = 0.0;
@@ -83,15 +83,16 @@ void main()
     vec4 texColor = texture2D(textMap, uv);
     vec3 diffTex = mix(texColor.rgb, diffuse, 0.2).rgb;
     float bias = max(0.05 * (1.0 - dot(normal, lightDir)), 0.005);
-    float aff = distance(vec3(0, 0, 0), vec3(fragPosLightSpace));
+    float att = 1.0f;
     if(!isSky){
        if(shadowOn){
            shadow = 1.f - 0.25 * percentageCloserFiltering(bias);
        }
        if(isInside){
-           aff = 1.f - min(1.f, .75f * 1.f / (1.f + aff + aff * aff));
+           att =  .25f * distance(vec3(0, 0, 0), vec3(fragPosLightSpace));
+           att =  min(1.f, 1.f / (1.f + att + att * att));
        }
-       fragColor = vec4(shadow * (aff * diff * diffTex + spec * specular), 1.0f);
+       fragColor = vec4(shadow * (att * diff * diffTex + spec * specular), 1.0f);
     }else{
        fragColor = vec4(diffTex, 1.0f);
     }
