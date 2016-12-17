@@ -47,5 +47,5 @@ void main()
      //vec3 N = normalize(vec3(model * vec4(normal, 0.0)));
      //vec3 B = cross(T, N);
 
-     //mat3 TNB = mat3(T, N, B);
+     //TNB = mat3(T, N, B);
 }
