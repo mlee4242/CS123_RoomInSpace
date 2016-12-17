@@ -371,7 +371,6 @@ void Scene::renderRight() {
 void Scene::renderComp() {
    glClearColor(0.25f, 0.25f, 0.28f, 1.0f);
    glViewport(0, 0, m_width, m_height);
-   glEnable(GL_MULTISAMPLE);
    renderEye(m_phongShader);
 }
 
