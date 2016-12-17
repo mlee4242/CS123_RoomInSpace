@@ -34,17 +34,24 @@ VRView::VRView(QWidget *parent) : QOpenGLWidget(parent),
    grabKeyboard();
 }
 
-
+/**
+ * @brief VRView::~VRView
+ */
 VRView::~VRView() {
    shutdown();
 }
 
-
+/**
+ * @brief VRView::minimumSizeHint
+ * @return
+ */
 QSize VRView::minimumSizeHint() const {
    return QSize(1, 1);
 }
 
-
+/**
+ * @brief VRView::updateFramerate
+ */
 void VRView::updateFramerate() {
    if (settings.frames > 0) {
       emit framesPerSecond(settings.frames);
@@ -52,6 +59,9 @@ void VRView::updateFramerate() {
    settings.frames = 0;
 }
 
+/**
+ * @brief VRView::shutdown
+ */
 
 void VRView::shutdown() {
    makeCurrent();
@@ -65,12 +75,18 @@ void VRView::shutdown() {
    doneCurrent();
 }
 
+/**
+ * @brief VRView::debugMessage
+ * @param message
+ */
 
 void VRView::debugMessage(QOpenGLDebugMessage message) {
    qDebug() << message;
 }
 
-
+/**
+ * @brief VRView::initializeGL
+ */
 void VRView::initializeGL() {
    initializeOpenGLFunctions();
 
@@ -106,6 +122,9 @@ void VRView::initializeGL() {
    m_scene->initShadowMap();
 }
 
+/**
+ * @brief VRView::paintGL
+ */
 
 void VRView::paintGL() {
    if (m_hmd) {
@@ -139,19 +158,27 @@ void VRView::paintGL() {
    update();
 }
 
-
+/**
+ * @brief VRView::setMatrices
+ * @param eye
+ */
 void VRView::setMatrices(vr::Hmd_Eye eye) {
    glm::mat4x4 v = getViewMatrix(eye);
    glm::mat4x4 p = getProjMatrix(eye);
    m_scene->setMatrices(v, p);
 }
 
-
+/**
+ * @brief VRView::resizeGL
+ */
 void VRView::resizeGL(int, int) {
    // do nothing
 }
 
-
+/**
+ * @brief VRView::keyPressEvent
+ * @param event
+ */
 void VRView::keyPressEvent(QKeyEvent *event) {
    switch (event->key())
    {
@@ -184,7 +211,9 @@ void VRView::keyPressEvent(QKeyEvent *event) {
    }
 }
 
-
+/**
+ * @brief VRView::initVR
+ */
 void VRView::initVR() {
    vr::EVRInitError error = vr::VRInitError_None;
    m_hmd = vr::VR_Init(&error, vr::VRApplication_Scene);
@@ -230,7 +259,9 @@ void VRView::initVR() {
 #endif
 }
 
-
+/**
+ * @brief VRView::updatePoses
+ */
 void VRView::updatePoses() {
    vr::VRCompositor()->WaitGetPoses(m_trackedDevicePose, vr::k_unMaxTrackedDeviceCount, NULL, 0);
 
@@ -260,7 +291,9 @@ void VRView::updatePoses() {
    }
 }
 
-
+/**
+ * @brief VRView::updateInput
+ */
 void VRView::updateInput() {
    vr::VREvent_t event;
    while (m_hmd->PollNextEvent(&event, sizeof(event)))
@@ -284,9 +317,9 @@ void VRView::updateInput() {
 
          if (state.ulButtonPressed & vr::ButtonMaskFromId(vr::k_EButton_SteamVR_Trigger)) {
             if (m_hasPicked == false) {
-               std::cout << "this should be false when you pick it up: " << m_hasPicked << std::endl;
+               // std::cout << "this should be false when you pick it up: " << m_hasPicked << std::endl;
                m_hasPicked = m_scene->pickUp(m_matrixDevicePose[i]);
-               std::cout << "Pick up something? " << m_hasPicked << std::endl;
+               // std::cout << "Pick up something? " << m_hasPicked << std::endl;
                m_preClickTime = m_curClickTime;
                break;
             }
@@ -329,17 +362,33 @@ void VRView::ProcessVREvent(const vr::VREvent_t& event) {
    }
 }
 
-
+/**
+ * @brief VRView::glUniformMatrix4
+ * @param location
+ * @param count
+ * @param transpose
+ * @param value
+ */
 void VRView::glUniformMatrix4(GLint location, GLsizei count, GLboolean transpose, const GLfloat *value) {
    glUniformMatrix4fv(location, count, transpose, value);
 }
 
-
+/**
+ * @brief VRView::glUniformMatrix4
+ * @param location
+ * @param count
+ * @param transpose
+ * @param value
+ */
 void VRView::glUniformMatrix4(GLint location, GLsizei count, GLboolean transpose, const GLdouble *value) {
    glUniformMatrix4dv(location, count, transpose, value);
 }
 
-
+/**
+ * @brief VRView::getViewMatrix
+ * @param eye
+ * @return
+ */
 glm::mat4x4 VRView::getViewMatrix(vr::Hmd_Eye eye) {
    if (settings.VRMode) {
       if (eye == vr::Eye_Left) {
@@ -352,7 +401,11 @@ glm::mat4x4 VRView::getViewMatrix(vr::Hmd_Eye eye) {
    }
 }
 
-
+/**
+ * @brief VRView::getProjMatrix
+ * @param eye
+ * @return
+ */
 glm::mat4x4 VRView::getProjMatrix(vr::Hmd_Eye eye) {
    if (settings.VRMode) {
       if (eye == vr::Eye_Left) {
@@ -365,7 +418,13 @@ glm::mat4x4 VRView::getProjMatrix(vr::Hmd_Eye eye) {
    }
 }
 
-
+/**
+ * @brief VRView::getTrackedDeviceString
+ * @param device
+ * @param prop
+ * @param error
+ * @return
+ */
 QString VRView::getTrackedDeviceString(vr::TrackedDeviceIndex_t device, vr::TrackedDeviceProperty prop, vr::TrackedPropertyError *error) {
    uint32_t len = m_hmd->GetStringTrackedDeviceProperty(device, prop, NULL, 0, error);
 
@@ -382,7 +441,10 @@ QString VRView::getTrackedDeviceString(vr::TrackedDeviceIndex_t device, vr::Trac
    return result;
 }
 
-
+/**
+ * @brief VRView::mousePressEvent
+ * @param event
+ */
 void VRView::mousePressEvent(QMouseEvent *event) {
    if (event->button() == Qt::RightButton) {
       m_camera->mouseDown(event->x(), event->y());
@@ -391,7 +453,10 @@ void VRView::mousePressEvent(QMouseEvent *event) {
    }
 }
 
-
+/**
+ * @brief VRView::mouseMoveEvent
+ * @param event
+ */
 void VRView::mouseMoveEvent(QMouseEvent *event) {
    if (m_isDragging) {
       m_camera->mouseDragged(event->x(), event->y());
@@ -399,7 +464,10 @@ void VRView::mouseMoveEvent(QMouseEvent *event) {
    }
 }
 
-
+/**
+ * @brief VRView::mouseReleaseEvent
+ * @param event
+ */
 void VRView::mouseReleaseEvent(QMouseEvent *event) {
    if (m_isDragging && (event->button() == Qt::RightButton)) {
       m_camera->mouseUp(event->x(), event->y());
@@ -408,7 +476,10 @@ void VRView::mouseReleaseEvent(QMouseEvent *event) {
    }
 }
 
-
+/**
+ * @brief VRView::wheelEvent
+ * @param event
+ */
 void VRView::wheelEvent(QWheelEvent *event) {
    m_camera->mouseScrolled(event->delta());
    update();
