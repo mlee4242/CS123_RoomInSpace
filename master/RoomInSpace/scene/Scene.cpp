@@ -219,6 +219,9 @@ void Scene::initScene() {
    m_phongShader.setAttributeBuffer("normal", GL_FLOAT, 5 * sizeof(GLfloat), 3, settings.VERTEX_UNIT_SIZE * sizeof(GLfloat));
    m_phongShader.enableAttributeArray("normal");
 
+   m_phongShader.setAttributeBuffer("tangent", GL_FLOAT, 8 * sizeof(GLfloat), 3, settings.VERTEX_UNIT_SIZE * sizeof(GLfloat));
+   m_phongShader.enableAttributeArray("tangent");
+
 //   m_shader.release(); // FM :+
    m_vao.release();    // FM :+
    m_vertexBuffer->release();

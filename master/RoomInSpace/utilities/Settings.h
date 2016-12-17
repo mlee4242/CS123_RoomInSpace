@@ -25,7 +25,7 @@ struct Settings
 
    int              renderMode       = COMPUTER_MODE;
    int              windowMode       = OVER_UNDER;
-   int              VERTEX_UNIT_SIZE = 8;
+   int              VERTEX_UNIT_SIZE = 11;
    int              SAMPLES          = 4;
 
    QString          path    = "models/room/";

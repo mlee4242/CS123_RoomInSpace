@@ -22,10 +22,9 @@ in vec3 n;        // world-space normal
 in vec3 viewPos;
 in vec3 fragPos;
 in vec4 fragPosLightSpace;
-//in mat3 TNB;
+in mat3 TNB;
 out vec4 fragColor;
 
-// the basic shadow calculation
 float shadowCalculation(){
     // perform perspective divide
     vec3 projCoords = fragPosLightSpace.xyz / fragPosLightSpace.w;
@@ -68,14 +67,14 @@ void main()
   vec3 normal = n;
   if(useTex){
      if(useBump){ // bump mapping
-        // do something to the normal based on the bump map
+        // do something to the normal based on the bump mapping
      }
      if(useNormal){ // normal mapping
-        // do something to the normal based on the normal map
+        // do something to the normal based on the normal mapping
         // texture is in tangent space? Convert to world space.
 
-        // normal = normalize(texture2D(normalMap, uv).rgb * 2.0 - 1.0);
-        // normal = normalize(TBN * normal);
+        /normal = normalize(texture2D(normalMap, uv).rgb * 2.0 - 1.0);
+         normal = normalize(TNB * normal);
      }
     float diff = 0.5 + 0.5 * max(0.0, dot(normalize(normal), WorldSpace_toLight));
     vec3 lightDir = normalize(pointLightPosition - fragPos);

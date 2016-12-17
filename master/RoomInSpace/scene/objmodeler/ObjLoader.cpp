@@ -231,6 +231,58 @@ void ObjLoader::parseVertices(const QString& target, QVector<GLfloat>& cVerts) {
                      }
                   }else { // this is triangle
                      QStringList row;
+                     glm::vec3 pos1;
+                     glm::vec3 pos2;
+                     glm::vec3 pos3;
+                     glm::vec2 uv1;
+                     glm::vec2 uv2;
+                     glm::vec2 uv3;
+                     glm::vec3 tangent = glm::vec3(0);
+                     for (int i = 1; i < 4; i++) { //calculate tangent
+                        row = data[i].split("/");
+                        int v  = row[0].toInt() - 1;
+                        int vt = row[1].toInt() - 1;
+
+                        if (i == 1) {
+                            pos1 = glm::vec3(verts.at(v * 3), verts.at(v * 3 + 1), verts.at(v * 3 + 2));
+                            if (vt == -1) {
+                                uv1 = glm::vec2(0.0, 0.0);
+                            }
+                            else {
+                                uv1 = glm::vec2(uvs.at(vt * 2), uvs.at(vt * 2 + 1));
+                            }
+                        }
+                        else if (i == 2) {
+                            pos2 = glm::vec3(verts.at(v * 3), verts.at(v * 3 + 1), verts.at(v * 3 + 2));
+                            if (vt == -1) {
+                                uv2 = glm::vec2(0.0, 0.0);
+                            }
+                            else {
+                                uv2 = glm::vec2(uvs.at(vt * 2), uvs.at(vt * 2 + 1));
+                            }
+                        }
+                        else {
+                            pos3 = glm::vec3(verts.at(v * 3), verts.at(v * 3 + 1), verts.at(v * 3 + 2));
+                            if (vt == -1) {
+                                uv3 = glm::vec2(0.0, 0.0);
+                            }
+                            else {
+                                uv3 = glm::vec2(uvs.at(vt * 2), uvs.at(vt * 2 + 1));
+                            }
+                        }
+                     }
+
+                     glm::vec3 edge1 = pos2 - pos1;
+                     glm::vec3 edge2 = pos3 - pos1;
+                     glm::vec2 deltaUV1 = uv2 - uv1;
+                     glm::vec2 deltaUV2 = uv3 - uv1;
+                     GLfloat f = 1.0f / (deltaUV1.x * deltaUV2.y - deltaUV2.x * deltaUV1.y);
+
+                     tangent.x = f * (deltaUV2.y * edge1.x - deltaUV1.y * edge2.x);
+                     tangent.y = f * (deltaUV2.y * edge1.y - deltaUV1.y * edge2.y);
+                     tangent.z = f * (deltaUV2.y * edge1.z - deltaUV1.y * edge2.z);
+                     tangent = glm::normalize(tangent);
+
                      for (int i = 1; i < 4; i++) {
                         row = data[i].split("/");
                         int v  = row[0].toInt() - 1;
@@ -253,6 +305,9 @@ void ObjLoader::parseVertices(const QString& target, QVector<GLfloat>& cVerts) {
                               cVerts.append(ns.at(n * 3 + j));
                            }
                         }
+                        cVerts.append(tangent.x);
+                        cVerts.append(tangent.y);
+                        cVerts.append(tangent.z);
                         offset += 1;
                         count  += 1;
                      }
