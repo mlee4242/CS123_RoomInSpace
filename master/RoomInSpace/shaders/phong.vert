@@ -10,6 +10,8 @@ uniform vec3 pointLightPosition;
 in vec3 vertex;
 in vec2 texCoord;
 in vec3 normal;
+//in vec3 tangent;
+//out mat3 TNB;
 out vec4 color;
 out vec2 fragTexCoord;
 out vec3 position; // world-space position
@@ -39,4 +41,11 @@ void main()
      n = normal;
      fragPosLightSpace = lightSpaceMatrix * m * vec4(vert, 1.0f);
      viewPos = vec3(v * vec4(0, 0, 0, 1.f));
+
+     //create the TNB matrix for normal mapping
+     //vec3 T = normalize(vec3(model * vec4(tangent, 0.0)));
+     //vec3 N = normalize(vec3(model * vec4(normal, 0.0)));
+     //vec3 B = cross(T, N);
+
+     //mat3 TNB = mat3(T, N, B);
 }
